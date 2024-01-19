@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --gold: #E49013;
+    --blue: #05143D;
+    --main: #FCF2E3;
+  }
+
+/* Font family */
+
+  /* 
+  font-family: 'Merriweather', serif;
+  font-family: 'Caveat', cursive;
+  font-family: 'Courier Prime', monospace; 
+  */
