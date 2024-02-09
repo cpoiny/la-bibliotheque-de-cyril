@@ -1,0 +1,130 @@
+footer {
+    width: 100%;
+    min-height: 30vh;
+    position:fixed;
+    bottom:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.footer_h3{
+    margin-bottom: 2vh;
+    font-family: 'Merriweather', serif;
+    font-size: clamp(13px, 0.5em, 18px);
+    font-weight: normal;
+}
+
+
+/* Bloc mentions, contact, reseaux */
+
+.container{
+    width: 100%;
+    min-height: 15vh;
+    justify-content: space-around;
+    align-items: start;
+    background-color: var(--main);
+    padding: 3vh 1vh;
+    flex-wrap: wrap;
+    gap: 5vh;
+}
+
+.container .mentions, .contact, .social_network{
+    height: 100%;
+}
+
+/* Mentions  */
+.container .mentions ul li a {
+    font-family: 'Merriweather', serif;
+    font-size: 10px;
+    color: var(--black);
+}
+
+.container .mentions ul li a:hover {
+    color: var(--gold);
+}
+
+.container .mentions ul li  {
+    margin-bottom: 1vh;
+}
+
+/* Contact */
+
+.contact form {
+    display : flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.contact form textarea, input {
+    border-radius: 15px;
+    border: none;
+    padding-left: 5px;
+    padding-top: 5px;
+   
+}
+
+.contact form input {
+    height: 4vh;
+}
+
+.contact form textarea::placeholder, input::placeholder{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+/* Social network */
+
+.container .social_network ul li{
+ margin-right:2vw;
+}
+
+
+/* Copyright */
+
+.copyright{
+    align-items: center;
+    margin: 1vh;
+}
+
+.copyright img{
+    width: 5vh;
+    height: min-height(2vh);
+    object-fit: cover;
+    margin-right: 1vw;
+}
+
+.copyright p{
+    font-family: "Caveat", serif;
+    letter-spacing:2px;
+}
+
+
+/* Responsive Small */
+
+@media (max-width: 675px) { 
+    
+    .mentions, .contact, .social_network{
+        width: 80%;
+    }
+    .contact form{
+        width: min-width(50%);
+    }
+
+    .copyright p{
+        font-size: 12px;
+    }
+
+     }
+

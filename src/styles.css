@@ -2,7 +2,7 @@
 * {
     margin : 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 :root {
@@ -12,6 +12,17 @@
     --blue: #05143D;
     --main: #FCF2E3;
   }
+
+  ul li {
+    list-style : none;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  
 
 /* Font family */
 
