@@ -19,14 +19,9 @@ footer {
 .footer_h3{
     margin-bottom: 2vh;
     font-family: 'Merriweather', serif;
-    font-size: clamp(15px, 0.5em, 2rem);
+    font-size: clamp(13px, 0.5em, 18px);
     font-weight: normal;
-    font-size: 14px;
-
 }
-
-
-
 
 
 /* Bloc mentions, contact, reseaux */
@@ -88,6 +83,13 @@ footer {
     padding-left: 5px;
     padding-top: 5px;
 }
+
+/* Social network */
+
+.container .social_network ul li{
+ margin-right:2vw;
+}
+
 
 /* Copyright */
 
