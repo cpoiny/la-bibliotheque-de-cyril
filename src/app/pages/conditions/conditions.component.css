@@ -1,0 +1,15 @@
+.container{
+    margin: 5vh;
+}
+
+
+.conditions-text{
+    font-family: 'Caveat', Courier, monospace;
+    white-space: break-spaces;
+    font-size: clamp(15px, 0.5rem, 20px);
+    text-align: justify;
+}
+
+.text-gold{
+    color: var(--gold)
+}
