@@ -19,7 +19,10 @@
 
   a {
     text-decoration: none;
+    cursor: pointer;
   }
+
+  
 
 /* Font family */
 
