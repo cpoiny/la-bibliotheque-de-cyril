@@ -1,0 +1,18 @@
+.button{
+    background-color: var(--gold);
+    width:150px;
+    height:35px;
+    border-radius: 20px;
+    color: white;
+    font-family: "Caveat", serif;
+    font-size: 18px;
+    border: none;
+    display:block;
+    margin: 0 auto;
+}
+
+.button:hover{
+    background-color: var(--white);
+    color: var(--gold)
+}
+
