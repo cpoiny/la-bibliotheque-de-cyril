@@ -6,7 +6,8 @@
             <!-- Liens des mentions légales -->
             <div class="mentions_links">
                 <ul>
-                    <li><a routerLink="la_bibliotheque_de_cyril/page_de_confidentialite">Politique de confidentialité</a></li>
+                    <li><a routerLink="la_bibliotheque_de_cyril/page_de_confidentialite">Politique de
+                            confidentialité</a></li>
                     <li><a routerLink="la_bibliotheque_de_cyril/cookies">Politique en matière de cookies</a></li>
                     <li><a routerLink="la_bibliotheque_de_cyril/conditions">Conditions d'utilisation</a></li>
                 </ul>
@@ -15,10 +16,19 @@
         <!-- Me contacter -->
         <div class="contact flex column">
             <h3 class="footer_h3">Me contacter</h3>
-            <form action="">
-                <textarea  placeholder="Votre message..." name="" id="" cols="30" rows="6"></textarea>
-                <input type="email"  placeholder="Votre email">
-                <app-button class="footer_button_form" type="submit" [title]="title"></app-button>
+            <form action="" [formGroup]="formContact" (ngSubmit)="onSubmit()">
+                <textarea placeholder="Votre message..." formControlName="message" id="message"
+                    cols="30" rows="6" required></textarea>
+                @if (isInvalidMessage) {
+                <p class="display_error_message">{{errorMessage}}</p>
+                }
+                <input type="email" placeholder="Votre email" id="email" formControlName="email"
+                    required>
+                @if (isInvalidEmail) {
+                <p class="display_error_message">{{errorEmail}}</p>
+                }
+                <app-button class="footer_button_form" type="submit" [title]="title"
+                    ></app-button>
             </form>
         </div>
 
@@ -26,8 +36,10 @@
         <div class="social_network">
             <h3 class="footer_h3 ">Réseaux sociaux</h3>
             <ul class="flex">
-                <li><a href=""><img src="assets/icons/insta_icon.svg" alt="instagram"></a></li>
-                <li><a href=""><img src="assets/icons/threads_icon.svg" alt="thread"></a></li>
+                <li><a href="https://www.instagram.com/labibliothequedecyril/" target="_blank"><img
+                            src="assets/icons/insta_icon.svg" alt="instagram"></a></li>
+                <li><a href="https://www.threads.net/@labibliothequedecyril" target="_blank"><img
+                            src="assets/icons/threads_icon.svg" alt="threads"></a></li>
             </ul>
         </div>
     </div>

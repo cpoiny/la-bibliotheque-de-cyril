@@ -11,5 +11,7 @@ import { EventEmitter } from 'stream';
 export class ButtonComponent {
 
 @Input() title: string = "";
+@Input() isDisabled!: boolean;
+
 
 }
