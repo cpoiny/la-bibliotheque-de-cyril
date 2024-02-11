@@ -1,29 +1,103 @@
 .flex {
     display: flex;
-    flex-direction: column;
 }
 
 
 .container{
-    width:25vw;
-    height: 100vh;
-    border: blue solid 2px;
+    max-width:15vw;
+    height: 70vh;
+    border-right: black solid 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: sticky;
     top:0;
+    right: 0;
 }
 
 /* Image de profil */
 
-.container .profile img{
-    width:8vw;
-    margin: 3vh 0;
+.profile img{
+    width:80%;
+    margin: 3vh 1vw;
 }
 
-.container .menu ul li img {
-    width: 4vw;
+/* Navigation */
+
+.menu {
+    width: 80%;
 }
 
-/* container menu */
+.menu nav ul li {
+    align-items: center;
+    width:auto;
+}
+
+.menu nav ul li img {
+    margin: 1vw;
+    width:15%;
+    cursor: pointer;
+}
+
+.menu nav ul li a{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+}
+
+.menu ul li a:hover{
+    color: var(--gold);
+}
+
+
+/* Responsive */
+
+/* tablet */
+@media (min-width:600px)and (max-width:1024px) {
+.container{
+    min-width: 20%;
+}
+    .profile img{
+        width:8vw;
+        margin: 3vh 0;
+    }
+
+    .menu nav ul li{
+        width:100%;
+    }
+
+    .menu nav ul li a {
+        font-size: 12px;
+        width: 60%;
+    }
+
+    .menu nav ul li img{
+        width: 20%;
+        
+    }
+}
+
+/* smartphone */
+@media (max-width:599px) {
+    .profile img{
+        width:95%;
+        margin: 3vh 0;
+    }
+    .menu nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height:auto; 
+    }
+    .menu nav ul li{
+        width: 50%;
+    }
+
+    .menu nav ul li a{
+        display: none;
+    }
+    .menu nav ul li img{
+        width:100%;
+    }
+}
+

@@ -1,22 +1,25 @@
-
 <div class="container flex">
+
     <!-- Photo de profil -->
     <div class="profile">
         <img src="assets/img/picture_profil.png" alt="photo de profil">
     </div>
 
+
+
     <!-- Menu de navigation -->
-    <nav class="menu">
-        <ul>
-            @for (item of menu(); track item.id){
-                <li>
-                    <img src="{{item.icon}}" alt="{{item.title}}">
+    <div class="menu">
+        <nav >
+            <ul>
+                @for (item of menu(); track item.id){
+                <li class="flex">
+                    <img routerLink="{{item.link}}" src="{{item.icon}}" alt="{{item.title}}">
                     <a routerLink="{{item.link}}">{{item.title}}</a>
                 </li>
 
-            }
-        </ul>
-    </nav>
+                }
+            </ul>
+        </nav>
+    </div>
 
 </div>
-
