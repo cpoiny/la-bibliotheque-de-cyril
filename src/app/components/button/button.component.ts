@@ -12,4 +12,5 @@ export class ButtonComponent {
 
 @Input() title: string = "";
 
+
 }
