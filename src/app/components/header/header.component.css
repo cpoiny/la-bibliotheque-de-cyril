@@ -1,0 +1,29 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container{
+    width:25vw;
+    height: 100vh;
+    border: blue solid 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top:0;
+}
+
+/* Image de profil */
+
+.container .profile img{
+    width:8vw;
+    margin: 3vh 0;
+}
+
+.container .menu ul li img {
+    width: 4vw;
+}
+
+/* container menu */
