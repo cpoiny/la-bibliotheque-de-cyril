@@ -1,0 +1,51 @@
+/* Infos generales */
+
+
+/*Title */
+
+.title_error_page {
+    font-family: "Caveat", serif;
+    font-size: clamp(40px, 0.5rem, 20px);
+    text-align: center;
+    gap: 2vh;
+}
+
+/* Container */
+.container {
+    position: relative;
+    width: 80%;
+    display: block;
+    margin: 2vh auto;
+}
+
+
+/* Image */
+
+.container img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+
+/* Button */
+.container .btn {
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    color: white;
+    font-size: clamp(10px, 1.5rem, 15px);
+    padding: 1vh;
+    border: none;
+    background-color: var(--gold);
+    border-radius: 20px;
+
+}
+
+.container .btn:hover {
+    background-color: var(--black);
+    color:var(--gold);
+    border-radius: 20px;
+}
+
+
