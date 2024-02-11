@@ -17,10 +17,18 @@
         <div class="contact flex column">
             <h3 class="footer_h3">Me contacter</h3>
             <form action="" [formGroup]="formContact" (ngSubmit)="onSubmit()">
-                <textarea placeholder="Votre message..." formControlName="message" id="" cols="30" rows="6"
-                    required></textarea>
-                <input type="email" placeholder="Votre email" formControlName="email" required>
-                <app-button class="footer_button_form" type="submit" [title]="title"></app-button>
+                <textarea placeholder="Votre message..." formControlName="message" id="message"
+                    cols="30" rows="6" required></textarea>
+                @if (isInvalidMessage) {
+                <p class="display_error_message">{{errorMessage}}</p>
+                }
+                <input type="email" placeholder="Votre email" id="email" formControlName="email"
+                    required>
+                @if (isInvalidEmail) {
+                <p class="display_error_message">{{errorEmail}}</p>
+                }
+                <app-button class="footer_button_form" type="submit" [title]="title"
+                    ></app-button>
             </form>
         </div>
 
