@@ -5,9 +5,10 @@
 
 .title_error_page {
     font-family: "Caveat", serif;
-    font-size: clamp(40px, 0.5rem, 20px);
+    font-size: clamp(30px, 0.5rem, 35px);
     text-align: center;
     gap: 2vh;
+    margin: 0 2vw;
 }
 
 /* Container */
@@ -31,15 +32,12 @@
 /* Button */
 .container .btn {
     position: absolute;
-    bottom: 8%;
-    right: 5%;
+    bottom: 5%;
+    right: 12%;
     color: white;
-    font-size: clamp(10px, 1.5rem, 15px);
+    font-size: 18px;
     padding: 1vh;
     border: none;
-    background-color: var(--gold);
-    border-radius: 20px;
-
 }
 
 .container .btn:hover {
@@ -48,4 +46,25 @@
     border-radius: 20px;
 }
 
+/* Responsive */
 
+@media (max-width:768px) {
+    .container {
+        width: 100%;
+        margin: 3vh auto;
+    }
+
+    .container .btn{
+        font-size: 14px;
+        bottom: 3%;
+        right: 10%;
+    }
+}
+
+@media (max-width:375px) {
+    .container .btn{
+        font-size: 11px;
+        bottom: 3%;
+        right: 10%;
+    }
+}
