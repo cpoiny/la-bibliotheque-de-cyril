@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { CategoryComponent } from './pages/category/category.component';
+import { BooksComponent } from './pages/books/books.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { PostComponent } from './pages/post/post.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
@@ -15,8 +15,8 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: "la_bibliotheque_de_cyril/category",
-        component: CategoryComponent
+        path: "la_bibliotheque_de_cyril/litterature",
+        component: BooksComponent
     },
     {
         path: "la_bibliotheque_de_cyril/post/{id}",
