@@ -48,7 +48,6 @@
 
 .active {
     background-color: var(--main);
-
 }
 
 .active a {
@@ -62,8 +61,8 @@
 /* tablet */
 @media (min-width:600px) and (max-width:1024px) {
     .container {
-        width: 20vw;
-        min-width: 20vw;
+        width: 22vw;
+        min-width: 22vw;
         border-right: black solid 0.5px;
     }
 
@@ -101,7 +100,9 @@
     }
 
     .menu nav ul li {
-        width: 50%;
+        width: 70%;
+        margin-bottom: 3vh;
+        padding:1vh;
     }
 
     .menu nav ul li a {
@@ -110,7 +111,15 @@
 
     .menu nav ul li img {
         width: 100%;
+        margin: 0;
     }
+
+    .active {
+        border :var(--gold) 2px solid;
+        background-color: var(--white);
+        border-radius: 50%;
+    }
+    
 }
 
 @media (max-width:425px) {
@@ -118,4 +127,9 @@
         width: 16vw;
         min-width: 16vw;
     }
+   
+    
+   
+
+
 }
