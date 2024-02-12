@@ -1,5 +1,6 @@
 import { Component, Signal, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
 
 type IMenu = {
   id: number;
@@ -11,7 +12,7 @@ type IMenu = {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterLink,PictureProfileComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

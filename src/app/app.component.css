@@ -1,7 +1,4 @@
 main {
     display: flex;
 }
-main .header{
-    width: 32%;
-    border-right: black solid 2px;
-}
+

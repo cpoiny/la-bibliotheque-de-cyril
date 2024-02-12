@@ -5,25 +5,34 @@
 
 .title_error_page {
     font-family: "Caveat", serif;
-    font-size: clamp(30px, 0.5rem, 35px);
+    font-size: clamp(35px, 0.5rem, 40px);
     text-align: center;
     gap: 2vh;
-    margin: 0 2vw;
+    margin: 1vw 2vw 0;
 }
 
 /* Container */
+
 .container {
     position: relative;
-    width: 80%;
+    width: 90vw;
     display: block;
-    margin: 2vh auto;
+    margin: 0 5vw;
+}
+
+.bloc-container {
+    position: relative;
+    width: 80vw;
+    display: block;
+    margin: 0 auto;
 }
 
 
 /* Image */
 
 .container img {
-    width: 100%;
+    width: 85vw;
+    margin: 3vh 0;
     height: auto;
     cursor: pointer;
 }
@@ -42,7 +51,7 @@
 
 .container .btn:hover {
     background-color: var(--black);
-    color:var(--gold);
+    color: var(--gold);
     border-radius: 20px;
 }
 
@@ -50,21 +59,44 @@
 
 @media (max-width:768px) {
     .container {
-        width: 100%;
+        width: 100vw;
         margin: 3vh auto;
     }
 
-    .container .btn{
+    .bloc-container .btn {
         font-size: 14px;
-        bottom: 3%;
+        bottom: 15%;
         right: 10%;
     }
+
 }
 
-@media (max-width:375px) {
-    .container .btn{
+@media (max-width:425px) {
+
+    .container {
+        width: 100vw;
+        margin: 3vh auto;
+    }
+
+    .title_error_page {
+        height: auto;
+        font-size: 20px;
+    }
+
+    .bloc-container{
+        width: 100vw;
+    }
+
+    .bloc-container .btn {
         font-size: 11px;
-        bottom: 3%;
-        right: 10%;
+        bottom: 4%;
+        right: 12%;
+    }
+
+    .bloc-container img {
+        width: 100vw;
+        height: auto;
+        display: block; 
+        margin: 0 1vw;
     }
 }

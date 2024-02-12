@@ -1,46 +1,57 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { BooksComponent } from './pages/books/books.component';
+import { HomeComponent } from './pages/blog/home/home.component';
+import { BooksComponent } from './pages/blog/books/books.component';
 import { ErrorComponent } from './pages/error/error.component';
-import { PostComponent } from './pages/post/post.component';
-import { ConnexionComponent } from './pages/connexion/connexion.component';
-import { BackofficeAddComponent } from './pages/backoffice-add/backoffice-add.component';
-import { ConfidentialiteComponent } from './pages/confidentialite/confidentialite.component';
-import { CookiesComponent } from './pages/cookies/cookies.component';
-import { ConditionsComponent } from './pages/conditions/conditions.component';
+import { PostComponent } from './pages/blog/post/post.component';
+import { ConnexionComponent } from './pages/backOffice/connexion/connexion.component';
+import { BackofficeAddComponent } from './pages/backOffice/backoffice-add/backoffice-add.component';
+import { ConfidentialiteComponent } from './pages/blog/confidentialite/confidentialite.component';
+import { CookiesComponent } from './pages/blog/cookies/cookies.component';
+import { ConditionsComponent } from './pages/blog/conditions/conditions.component';
 
 export const routes: Routes = [
     {
         path: "la_bibliotheque_de_cyril",
-        component: HomeComponent
+        component: HomeComponent,
     },
     {
-        path: "la_bibliotheque_de_cyril/litterature",
-        component: BooksComponent
+        path: "la_bibliotheque_de_cyril",
+        children: [
+            {
+                path: "litterature",
+                component: BooksComponent
+            },
+            {
+                path: "post/{id}",
+                component: PostComponent
+            },
+            {
+                path: "page_de_confidentialite",
+                component: ConfidentialiteComponent
+            },
+            {
+                path: "cookies",
+                component: CookiesComponent
+            },
+            {
+                path: "conditions",
+                component: ConditionsComponent
+            }
+        ]
     },
     {
-        path: "la_bibliotheque_de_cyril/post/{id}",
-        component: PostComponent
-    },
-    {
-        path: "la_bibliotheque_de_cyril/page_de_confidentialite",
-        component: ConfidentialiteComponent
-    },
-    {
-        path: "la_bibliotheque_de_cyril/cookies",
-        component: CookiesComponent
-    },
-    {
-        path: "la_bibliotheque_de_cyril/conditions",
-        component: ConditionsComponent
-    },
-    {
-        path: "la_bibliotheque_de_cyril/administration_du_blog/connexion",
-        component: ConnexionComponent
-    },
-    {
-        path: "la_bibliotheque_de_cyril/administration_du_blog/add_post",
-        component: BackofficeAddComponent
+        path: "administration_de_la_bibliotheque_de_cyril",
+        component: ConnexionComponent,
+        children : [
+            {
+                path: "connexion",
+            component: ConnexionComponent,
+            },
+            {
+                path: "add_post",
+                component: BackofficeAddComponent
+            },
+        ]
     },
     {
         path: "**",
