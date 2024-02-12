@@ -14,3 +14,12 @@
     color: var(--gold)
 }
 
+.flex{
+    display: flex
+}
+
+.header{
+    width: 14vw;
+    min-width: 14vw;
+    border-right: black solid 2px;
+}

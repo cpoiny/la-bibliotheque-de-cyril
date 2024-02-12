@@ -2,6 +2,15 @@
     margin: 5vh;
 }
 
+.flex{
+    display: flex
+}
+
+.header{
+    width: 14vw;
+    min-width: 14vw;
+    border-right: black solid 2px;
+}
 
 .cookies-text{
     font-family: 'Caveat', Courier, monospace;

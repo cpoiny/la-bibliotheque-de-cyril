@@ -7,3 +7,7 @@
     min-width: 14vw;
     border-right: black solid 2px;
 }
+
+.flex {
+    display: flex;
+}
