@@ -10,7 +10,7 @@
         <nav >
             <ul>
                 @for (item of menu(); track item.id){
-                <li class="flex">
+                <li class="flex" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <img routerLink="{{item.link}}" src="{{item.icon}}" alt="{{item.title}}">
                     <a routerLink="{{item.link}}">{{item.title}}</a>
                 </li>

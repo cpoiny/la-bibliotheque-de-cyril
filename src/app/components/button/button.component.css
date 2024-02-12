@@ -1,7 +1,9 @@
 .button{
     background-color: var(--gold);
-    width:150px;
-    height:35px;
+    width:15vw;
+    max-width:18vw;
+    max-width:15vw;
+    height:5vh;
     border-radius: 20px;
     color: white;
     font-family: "Caveat", serif;
@@ -14,5 +16,11 @@
 .button:hover{
     background-color: var(--white);
     color: var(--gold)
+}
+
+/* Responsive */
+
+@media (max-width:425px) {
+    
 }
 
