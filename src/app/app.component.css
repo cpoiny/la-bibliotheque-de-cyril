@@ -2,6 +2,7 @@ main {
     display: flex;
 }
 main .header{
-    width: 32%;
+    width: 14vw;
+    min-width: 14vw;
     border-right: black solid 2px;
 }

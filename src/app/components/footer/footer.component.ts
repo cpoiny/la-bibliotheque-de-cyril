@@ -6,11 +6,13 @@ import { CookiesComponent } from '../../pages/cookies/cookies.component';
 import { ConditionsComponent } from '../../pages/conditions/conditions.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { cp } from 'node:fs';
+import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterModule, ButtonComponent, ConfidentialiteComponent, CookiesComponent, ConditionsComponent, ReactiveFormsModule],
+  imports: [RouterModule, ButtonComponent, ConfidentialiteComponent, CookiesComponent, ConditionsComponent, ReactiveFormsModule,
+  PictureProfileComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
