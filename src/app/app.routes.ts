@@ -8,6 +8,8 @@ import { BackofficeAddComponent } from './pages/backOffice/backoffice-add/backof
 import { ConfidentialiteComponent } from './pages/blog/confidentialite/confidentialite.component';
 import { CookiesComponent } from './pages/blog/cookies/cookies.component';
 import { ConditionsComponent } from './pages/blog/conditions/conditions.component';
+import { MoviesComponent } from './pages/blog/movies/movies.component';
+import { QuotesComponent } from './pages/blog/quotes/quotes.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +22,14 @@ export const routes: Routes = [
             {
                 path: "litterature",
                 component: BooksComponent
+            },
+            {
+                path: "cinema",
+                component: MoviesComponent
+            },
+            {
+                path: "citations",
+                component: QuotesComponent
             },
             {
                 path: "post/{id}",

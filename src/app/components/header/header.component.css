@@ -43,6 +43,15 @@
     color: var(--gold);
 }
 
+.active{
+    background-color: var(--main);
+    
+}
+.active a {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: bold;
+}
 
 /* Responsive */
 

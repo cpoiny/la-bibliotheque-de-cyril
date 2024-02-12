@@ -1,5 +1,5 @@
 import { Component, Signal, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
 
 type IMenu = {
@@ -12,7 +12,7 @@ type IMenu = {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink,PictureProfileComponent],
+  imports: [RouterLink,PictureProfileComponent, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -32,7 +32,7 @@ menu : Signal<IMenu[]> = signal([
     id: 2,
     icon: "assets/icons/loupe.png",
     title: "Recherche",
-    link: ""
+    link: "/la_bibliotheque_de_cyril/recherche"
   },
   {
     id: 3,
@@ -44,13 +44,13 @@ menu : Signal<IMenu[]> = signal([
     id: 4,
     icon :"assets/icons/clap.png",
     title: "Cinéma",
-    link: "/la_bibliotheque_de_cyril/litterature"
+    link: "/la_bibliotheque_de_cyril/cinema"
   },
   {
     id: 5,
     icon :"assets/icons/citation.png",
     title: "Citations",
-    link: "/la_bibliotheque_de_cyril/litterature"
+    link: "/la_bibliotheque_de_cyril/citations"
   }
 ]);
 
