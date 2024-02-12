@@ -1,4 +1,57 @@
-.container{
+.v-line{
+    border-left: 1px solid #000;
+    height:15vh;
+    left: 50%;
+    display: block;
+    margin : 4vh auto;
+    width:1vw;
+   }
+
+/* Entête */
+.entete {
+    width: 100vw;
+    height: 82vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.picture-home {
+    width: 20vw;
+    min-width: 20vw;
+    margin-top: 3vh;
+    flex: 1;
+}
+
+.title-home {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(30px 0.5rem 45px);
+    font-weight: lighter;
+    padding: 2vw 3vw;
+    text-align: center;
+}
+
+.entete .slogan {
+    background-color: var(--main);
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.entete .slogan .slogan-text {
+    font-family: 'Caveat', sans-serif;
+    font-size: 30px;
+    width: 60%;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: clamp(40px 0.5rem 55px);
+
+}
+
+/* Partie inférieure */
+.container {
     margin: 5vh;
 }
 
@@ -6,3 +59,51 @@
 .flex {
     display: flex;
 }
+
+
+
+
+
+/* Responsive Tablet*/
+@media (min-width:631px) and (max-width:1140px) {
+
+    .entete {
+        height: 70vh;
+    }
+
+    .picture-home {
+        width: 25vw;
+        min-width: 25vw;
+    }
+
+    .title-home {
+        font-size:26px;
+    }
+}
+
+
+
+
+/* Responsive Mobile*/
+@media (max-width:630px) {
+
+    .entete {
+        height: 60vh;
+    }
+
+    .picture-home {
+        width: 30vw;
+        min-width: 30vw;
+
+    }
+    .title-home {
+        font-size:22px;
+    }
+  
+
+    .entete .slogan .slogan-text {
+        /* font-size: 23px; */
+        width: 80%;
+    }
+}
+
