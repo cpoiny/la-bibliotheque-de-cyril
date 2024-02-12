@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../button/button.component';
-import { ConfidentialiteComponent } from '../../pages/confidentialite/confidentialite.component';
-import { CookiesComponent } from '../../pages/cookies/cookies.component';
-import { ConditionsComponent } from '../../pages/conditions/conditions.component';
+import { ConfidentialiteComponent } from '../../pages/blog/confidentialite/confidentialite.component';
+import { CookiesComponent } from '../../pages/blog/cookies/cookies.component';
+import { ConditionsComponent } from '../../pages/blog/conditions/conditions.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { cp } from 'node:fs';
 import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterModule, ButtonComponent, ConfidentialiteComponent, CookiesComponent, ConditionsComponent, ReactiveFormsModule,
+  imports: [RouterLink, ButtonComponent, ConfidentialiteComponent, CookiesComponent, ConditionsComponent, ReactiveFormsModule,
   PictureProfileComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
