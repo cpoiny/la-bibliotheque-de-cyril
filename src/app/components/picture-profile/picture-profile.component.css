@@ -3,3 +3,14 @@
     display: block;
     margin: 2vh auto;
 }
+
+/* Responsive */
+
+@media (max-width:599px) {
+
+    .profile img{
+        width:80%;
+        display: block;
+        margin: 2vh auto 3vh;
+    }
+}
