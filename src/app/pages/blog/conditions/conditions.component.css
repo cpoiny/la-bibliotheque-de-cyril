@@ -7,7 +7,7 @@
     font-family: 'Caveat', Courier, monospace;
     white-space: break-spaces;
     font-size: clamp(18px, 0.5rem, 22px);
-    text-align: justify;
+    text-align: left;
 }
 
 .text-gold{
@@ -22,4 +22,32 @@
     width: 14vw;
     min-width: 14vw;
     border-right: black solid 2px;
+}
+
+/* Responsive Tablet */
+
+@media (min-width:426px)and (max-width:1024px) {
+    .header{
+    width: 20vw;
+    min-width: 20vw;
+    }
+
+    .container{
+        margin: 5vh 3vh;
+    }
+    
+}
+
+/* Responsive Smartphone */
+
+@media (max-width:425px) {
+    .header{
+    width: 16vw;
+    min-width: 16vw;
+    }
+
+    .container{
+        margin: 5vh 2vh;
+    }
+    
 }
