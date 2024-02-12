@@ -26,7 +26,7 @@ menu : Signal<IMenu[]> = signal([
     id: 1,
     icon :"assets/icons/accueil.png",
     title: "Accueil",
-    link: "/la_bibliotheque_de_cyril"
+    link: ""
   },
   {
     id: 2,

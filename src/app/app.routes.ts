@@ -13,7 +13,7 @@ import { QuotesComponent } from './pages/blog/quotes/quotes.component';
 
 export const routes: Routes = [
     {
-        path: "la_bibliotheque_de_cyril",
+        path: "",
         component: HomeComponent,
     },
     {
@@ -50,13 +50,10 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "administration_de_la_bibliotheque_de_cyril",
+        path: "admin_la_bibliotheque_de_cyril",
         component: ConnexionComponent,
         children : [
-            {
-                path: "connexion",
-            component: ConnexionComponent,
-            },
+           
             {
                 path: "add_post",
                 component: BackofficeAddComponent

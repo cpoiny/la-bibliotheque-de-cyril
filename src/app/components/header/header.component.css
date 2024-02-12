@@ -100,7 +100,7 @@
     }
 
     .menu nav ul li {
-        width: 70%;
+        width: 80%;
         margin-bottom: 3vh;
         padding:1vh;
     }
@@ -124,12 +124,8 @@
 
 @media (max-width:425px) {
     .container {
-        width: 20vw;
+        width: 18vw;
         min-width: 18vw;
     }
-   
-    
-   
-
 
 }
