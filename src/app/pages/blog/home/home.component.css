@@ -1,3 +1,15 @@
+/* General */
+.flex {
+    display: flex;
+}
+
+.titre-partie{
+    text-align: center;
+    font-family: 'Merriweather', sans-serif;
+    font-size: 20px;
+    margin: 4vh auto;
+}
+
 /* Entête */
 .container-entete {
     flex-direction: column;
@@ -14,7 +26,7 @@
 .picture-home {
     width: 20vw;
     min-width: 18vw;
-    margin-top: 3vh;
+    margin-top: 5vh;
 }
 
 .title-home {
@@ -44,32 +56,28 @@
 
 /* Présentation */
 
-.presentation h3{
-    text-align: center;
-    margin: 4vh auto;
-    font-family: 'Merriweather', sans-serif;
-    font-size: 20px;
-}
-.presentation p {
+.presentation-text {
     margin: 2vh 4vh;
     font-family: 'Courier', sans-serif;
     font-size: clamp(16px 1rem 20px);
 }
 
 
-/* Partie inférieure */
-.container {
-    margin: 5vh;
-}
-
-.container div {
+/* Partie theme */
+.container-theme {
+    margin:  0 5vh 3vh;
+    flex-direction: column;
+    align-items: center;
     border: red solid 2px;
+    width: 100%;
 }
 
-.flex {
-    display: flex;
-}
 
+
+
+
+
+/* ------------------R-E-S-P-O-N-S-I-V-E------------------------------ */
 
 /* Responsive Tablet*/
 @media (min-width:631px) and (max-width:1140px) {
@@ -81,6 +89,7 @@
     .picture-home {
         width: 25vw;
         min-width: 25vw;
+        margin-top: 3vh;
     }
 
     .title-home {
@@ -105,13 +114,15 @@
     }
 
     .picture-home {
-        width: 30vw;
-        min-width: 30vw;
-
+        width: 40vw;
+        min-width: 35vw;
+        margin-top: 2vh;
     }
 
     .title-home {
-        font-size: 22px;
+        font-size: 20px;
+        width: 90vw;
+        padding: 0;
     }
 
 
