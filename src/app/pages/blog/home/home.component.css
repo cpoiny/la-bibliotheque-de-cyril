@@ -59,7 +59,7 @@
 .presentation-text {
     margin: 2vh 4vh;
     font-family: 'Courier Prime', Courier, sans-serif;
-    font-size: clamp(16px 1rem 20px);
+    font-size: clamp(18px, 1rem, 22px);
 }
 
 

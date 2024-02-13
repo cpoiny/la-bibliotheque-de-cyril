@@ -1,13 +1,16 @@
-<article>
-    <div class="titre-card flex">
-        <h4 class="titre-category">Littérature</h4>
-        <p class="text-category">agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
-            corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-            reprehenderit qui in ea voluptate velit ess</p>
-    </div>
-
-    <div class="image-card">
-        <img src="assets/img/vivre_libre.png" alt="image">
-        <!-- <button>Bouton</button> -->
-    </div>
-</article>
+@for (card of cardsCategory(); track card.id ) {
+    
+    <article>
+        <div class="titre-card flex">
+            <h4 class="titre-category">{{card.title}}</h4>
+            <p class="text-category">{{card.text}}</p>
+        </div>
+    
+        <div class="image-card flex">
+                <img routerLink="{{card.link}}" src="{{card.img}}" alt="{{card.title}}">
+            <!-- <button>Bouton</button> -->
+        </div>
+    </article>
+    
+    <app-vertical-line></app-vertical-line>
+}
