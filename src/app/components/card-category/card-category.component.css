@@ -3,6 +3,7 @@ article {
     display: flex;
     justify-content: space-around;
     gap: 5vh;
+    margin: 3vh 0;
 }
 
 .flex {
@@ -14,7 +15,7 @@ article {
 /* Partie text */
 
 .titre-card {
-    width: 45%;
+    width: 40%;
     padding: 1vw;
 
 }
@@ -28,7 +29,7 @@ article {
 
 .text-category {
     font-family: "Caveat", sans-serif;
-    font-size: clamp(18px 1rem 22px);
+    font-size: clamp(18px, 0.5rem, 28px);
     height: auto;
 }
 
@@ -36,7 +37,7 @@ article {
 
 
 .image-card {
-    width: 45%;
+    width: 50%;
 }
 
 .image-card img {
@@ -51,7 +52,13 @@ article {
 /* Responsive Tablet*/
 @media (min-width:631px) and (max-width:1140px) {
     article {
-        width: 60vw;
+        width: 70vw;
+       
+    }
+    .titre-card {
+        width: 60%;
+        padding: 1vw;
+    
     }
 }
 

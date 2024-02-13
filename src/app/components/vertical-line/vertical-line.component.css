@@ -4,6 +4,17 @@
     min-height: 10vh;
     left: 50%;
     display: block;
-    margin : 4vh auto;
+    margin : 1vh auto;
     width:1vw;
    }
+
+
+
+   @media (max-width:630px) {
+
+    .v-line {
+        margin : 2vh auto;
+        height:8vh;
+        min-height: 8vh;
+    }
+}
