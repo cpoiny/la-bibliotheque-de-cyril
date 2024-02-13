@@ -1,0 +1,8 @@
+.v-line{
+    border-left: 1px solid #000;
+    height:15vh;
+    left: 50%;
+    display: block;
+    margin : 4vh auto;
+    width:1vw;
+   }
