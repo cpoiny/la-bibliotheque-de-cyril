@@ -8,6 +8,7 @@ type ICategoryCard = {
   text: string;
   img: string;
   link: string;
+  icon: string;
 }
 
 
@@ -20,6 +21,7 @@ type ICategoryCard = {
 })
 export class CardCategoryComponent {
 
+
   // Afficher mes catégories sur la home page"
   cardsCategory: Signal<ICategoryCard[]> = signal([
     {
@@ -27,21 +29,25 @@ export class CardCategoryComponent {
       title: "Litterature",
       text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
       img: "assets/illustration/cat-litterature.png",
-      link:"/la_bibliotheque_de_cyril/litterature"
+      link:"/la_bibliotheque_de_cyril/litterature",
+      icon: "assets/icons/livre.png"
     },
     {
       id: 2,
       title: "Cinéma",
       text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
       img: "assets/illustration/cat-cinema.png",
-      link:"/la_bibliotheque_de_cyril/cinema"
+      link:"/la_bibliotheque_de_cyril/cinema",
+     icon: "assets/icons/clap.png"
     },
     {
       id: 3,
       title: "Citations",
       text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
       img: "assets/illustration/cat-citation.png",
-      link:"/la_bibliotheque_de_cyril/citations"
+      link:"/la_bibliotheque_de_cyril/citations",
+
+      icon: "assets/icons/citation.png"
     },
   ]);
 

@@ -8,7 +8,7 @@ article {
     display: flex;
 }
 
-li:nth-child(3n) .x{
+li:nth-child(3n) .x {
     flex-direction: row-reverse;
 }
 
@@ -41,14 +41,19 @@ li:nth-child(3n) .x{
 
 .image-card {
     width: 50%;
+    position: relative;
 }
 
-li:nth-child(3n) .x .image-card{
+li:nth-child(3n) .x .image-card {
     justify-content: center;
 }
 
+li:nth-child(3n) .x .button-card-category {
+    left: 45%;
+    top: 42%;
+}
 
-.image-card img {
+.image-card .img-main {
     width: 50%;
     box-sizing: border-box;
     object-fit: contain;
@@ -58,12 +63,34 @@ li:nth-child(3n) .x .image-card{
 }
 
 
+/* Bouton catégorie */
+
+
+.button-card-category {
+    background-color: var(--main);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 20%;
+    top: 45%;
+}
+
+.img-icon {
+    width: 100%;
+    padding: 10px;
+}
+
+
 /* ------------------R-E-S-P-O-N-S-I-V-E------------------------------ */
 
 /* Responsive Tablet*/
 @media (min-width:631px) and (max-width:1140px) {
     article {
-        width: 70vw;
+        width: 65vw;
+        max-width: 60vw;
     }
 
     .titre-card {
@@ -71,12 +98,18 @@ li:nth-child(3n) .x .image-card{
         padding: 1vw;
     }
 
-    .image-card {
-        align-items: start;
+    .image-card .img-main {
+        width: 100%;
     }
 
-    .image-card img {
-        width: 100%;
+    .button-card-category {
+        top: 40%;
+        left: 40%;
+    }
+
+    li:nth-child(3n) .x .button-card-category {
+        left: 45%;
+        top: 42%;
     }
 }
 
@@ -89,21 +122,33 @@ li:nth-child(3n) .x .image-card{
         gap: 5vh;
     }
 
-    li:nth-child(3n) .x{
+    li:nth-child(3n) .x {
         flex-direction: column-reverse;
     }
+
     .image-card {
         width: 100%;
+        justify-content: start;
+        align-items: center;
     }
 
     .titre-card {
         width: 100%;
     }
 
-    .image-card img {
+    .image-card .img-main {
         width: 100%;
     }
 
+    .button-card-category {
+        top: 40%;
+        left: 40%;
+    }
+
+    li:nth-child(3n) .x .button-card-category {
+        left: 40%;
+        top: 42%;
+    }
 }
 
 @media (max-width:400px) {
