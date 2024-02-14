@@ -61,8 +61,8 @@
 /* tablet */
 @media (min-width:600px) and (max-width:1024px) {
     .container {
-        width: 22vw;
-        min-width: 22vw;
+        width: 20vw;
+        min-width: 20vw;
         border-right: black solid 0.5px;
     }
 
