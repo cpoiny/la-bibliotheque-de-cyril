@@ -2,11 +2,11 @@ export interface IMedia {
     id: number,
     title: string,
     author_id: number,
-    category: string,
-    created_at: string,
-    updated_date: string,
+    theme: string,
+    created_at: Date,
+    updated_date: Date | null,
     edition?: string,
-    theme : "Book" | "Movie" | "Quote"
+    category : "book" | "movie" | "quote"
 }
 
 
@@ -15,110 +15,110 @@ export const MEDIAS: IMedia[] = [
         id: 1,
         title: "Le café suspendu",
         author_id: 1,
-        category: "Classique",
-        created_at: "18 juin 2022",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2022-06-18"),
+        updated_date: null,
         edition: "Editions Grasset",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 2,
         title: "Le dernier été en ville",
         author_id: 2,
-        category: "Classique",
-        created_at: "1 mai 2022",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2022-05-01"),
+        updated_date: null,
         edition: " Editions Gallimard",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 3,
         title: "Vivre libre",
         author_id: 3,
-        category: "Aventure",
-        created_at: "27 juillet 2021",
-        updated_date: "",
+        theme: "Aventure",
+        created_at: new Date("2021-07-27"),
+        updated_date: null,
         edition: "Editions Points",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 4,
         title: "L'ecume des jours",
         author_id: 4,
-        category: "Classique",
-        created_at: "30 septembre 2020",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2020-09-30"),
+        updated_date: null,
         edition: "Editions 1018",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 5,
         title: "Tendre est la nuit",
         author_id: 5,
-        category: "Classique",
-        created_at: "17 septembre 2020",
-        updated_date: "",
+        theme: "Classique",
+        created_at:new Date("2020-09-17"),
+        updated_date: null,
         edition: "Livre de poche",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 6,
         title: "La vie devant soi",
         author_id: 6,
-        category: "Classique",
-        created_at: "13 decembre 2020",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2020-12-13"),
+        updated_date: null,
         edition: "Editions Folio",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 7,
         title: "Sur la route",
         author_id: 7,
-        category: "Classique",
-        created_at: "9 janvier 2021",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2021-01-09"),
+        updated_date: null,
         edition: "Eidtions Folio",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 8,
         title: "Fight club",
         author_id: 8,
-        category: "Classique",
-        created_at: "8 fevrier 2021",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2021-02-08"),
+        updated_date: null,
         edition: "Editions Folio",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 9,
         title: "Les yeux noirs existent",
         author_id: 9,
-        category: "Classique",
-        created_at: "29 décembre 2022",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2022-12-29"),
+        updated_date: null,
         edition: "",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 10,
         title: "La constellation",
         author_id: 10,
-        category: "Poesie",
-        created_at: "1 mai 2023",
-        updated_date: "",
+        theme: "Poesie",
+        created_at: new Date("2023-05-01"),
+        updated_date: null,
         edition: "Editions Grasset",
-        theme : "Book"
+        category : "book"
     },
     {
         id: 11,
         title: "L'amant",
         author_id: 11,
-        category: "Classique",
-        created_at: "28 novembre 2022",
-        updated_date: "",
+        theme: "Classique",
+        created_at: new Date("2022-11-28"),
+        updated_date: null,
         edition: "Editions de minuit",
-        theme : "Book"
+        category : "book"
     },
 ]

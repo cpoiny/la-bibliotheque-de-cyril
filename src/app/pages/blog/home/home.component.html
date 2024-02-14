@@ -53,10 +53,20 @@
     <section class="container-theme flex">
 
         <h3 class="titre-partie">MES THEMES FAVORIS </h3>
-
             <app-card-category></app-card-category>
        
 
+            <h3 class="titre-partie">NOUVELLE PUBLICATION</h3>
+
+            <article >   
+                <img src="{{lastPost.picture}}" alt="{{lastPost.title}}">
+                
+                <div >
+                    <h4 >{{lastPost.title}}</h4>
+                    <p>{{lastPost.content}}</p>
+                </div>
+              
+            </article>
 
     </section>
 </div>
