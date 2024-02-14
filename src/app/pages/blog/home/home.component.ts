@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { RouterLink } from '@angular/router';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
@@ -39,10 +39,17 @@ getAllPosts(): IPost[] {
   return this.posts = this.postService.getAllPosts();
 }
 
+// getLastPost(posts: Signal<IPost[]>): void {
+//   const allPost = posts()
+//   .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
+//   this.lastPost = allPost[0];
+// }
+
 getLastPost(posts: IPost[]): void {
   const allPost = posts
   .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
   this.lastPost = allPost[0];
 }
+
 
 }

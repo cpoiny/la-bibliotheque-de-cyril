@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { IPost, POSTS } from '../../mocks/posts.mock';
 
 @Injectable({
@@ -6,7 +6,6 @@ import { IPost, POSTS } from '../../mocks/posts.mock';
 })
 export class PostService {
   
-  posts!: IPost[];
 
   constructor() { }
 
@@ -14,4 +13,10 @@ export class PostService {
   getAllPosts(): IPost[] {
     return POSTS;
   }
+
+  getAllBooksPost() : IPost[]{
+  return POSTS
+  .filter((post: IPost)=> post.category === "book");
+  }
+
 }

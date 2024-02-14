@@ -1,3 +1,5 @@
+import { Signal, signal } from "@angular/core";
+
 export interface IPost {
     id: number,
     title: string,
@@ -8,7 +10,8 @@ export interface IPost {
     publication_date: Date,
     updated_date: Date | null,
     isDraft: true | false,
-    isOntheWishlist: true | false
+    isOntheWishlist: true | false,
+    category : "book" | "movie" | "quote"
 }
 
 export interface IGalerie {
@@ -26,7 +29,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2022-06-18"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 2,
@@ -37,7 +41,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2022-05-01"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 3,
@@ -48,7 +53,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2021-07-27"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 4,
@@ -59,7 +65,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2020-09-30"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 5,
@@ -70,7 +77,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2020-09-17"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 6,
@@ -81,7 +89,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2020-12-13"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 7,
@@ -92,7 +101,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2021-01-09"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 8,
@@ -103,7 +113,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2021-02-08"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 9,
@@ -114,7 +125,8 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2022-12-29"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 10,
@@ -125,20 +137,34 @@ export const POSTS: IPost[] = [
         publication_date: new Date("2023-05-01"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
     },
     {
         id: 11,
         title: "L'amant",
         content: "Comment appelle-t-on l’inverse d’une désillusion littéraire ? Un coup de foudre ? Alors j’ai eu un coup de foudre.\n La Duras comme on l’appelle elle donne tout quand elle écrit. Elle se positionne « en dehors d’elle même ». \n Dans mes souvenirs de lycéen planait sur ce livre une ombre de feel good, de romance fleur bleue. Grand bien m’a pris de l’ouvrir à nouveau presque 20 ans plus tard. \n L’Amant, tout le monde le sait, raconte de manière autobiographique une histoire d’amour entre une jeune française et un jeune homme chinois de 12 ans de plus qu’elle. Et ça finalement c’est la partie la moins intéressante du livre. C’est le vecteur. Le vecteur que Duras utilise pour s’explorer, explorer celle qu’elle a été, ressasser des souvenirs, entre fantasmes et réalités. \n Elle décortique le rapport filial qu’elle eut avec sa mère, le rapport avec ses frères, avec l’Indochine française d’après guerre, le Mékong, Cholen et ceux qu’elle a pu y croiser. Au fil de la lecture se dessine de manière prématurée le profil de cette femme clivante, écorchée vive et engagée qu’elle deviendra plus tard. \n L’amant c’est un tableau sur lequel on peut y voir des paysages et des sentiments. \n C’est parfois violent, ça interroge, ça secoue, et c’est sublime. Goncourt 84 quand même. \n Bref, gros coup de foudre pour cette femme qui s’introspecte et se livre sans faille. \n En route pour le Barrage maintenant 🇻🇳",
-        picture: "assets/img/l-amany.png",
+        picture: "assets/img/l-amant.png",
         media_id: 11,
         publication_date: new Date("2022-11-28"),
         updated_date: null,
         isDraft: false,
-        isOntheWishlist: false
+        isOntheWishlist: false,
+        category : "book"
+    },
+    {
+        id: 12,
+        title: "Movie",
+        content: "Comment appelle-t-on l’inverse d’une désillusion littéraire ? Un coup de foudre ? Alors j’ai eu un coup de foudre.\n La Duras comme on l’appelle elle donne tout quand elle écrit. Elle se positionne « en dehors d’elle même ». \n Dans mes souvenirs de lycéen planait sur ce livre une ombre de feel good, de romance fleur bleue. Grand bien m’a pris de l’ouvrir à nouveau presque 20 ans plus tard. \n L’Amant, tout le monde le sait, raconte de manière autobiographique une histoire d’amour entre une jeune française et un jeune homme chinois de 12 ans de plus qu’elle. Et ça finalement c’est la partie la moins intéressante du livre. C’est le vecteur. Le vecteur que Duras utilise pour s’explorer, explorer celle qu’elle a été, ressasser des souvenirs, entre fantasmes et réalités. \n Elle décortique le rapport filial qu’elle eut avec sa mère, le rapport avec ses frères, avec l’Indochine française d’après guerre, le Mékong, Cholen et ceux qu’elle a pu y croiser. Au fil de la lecture se dessine de manière prématurée le profil de cette femme clivante, écorchée vive et engagée qu’elle deviendra plus tard. \n L’amant c’est un tableau sur lequel on peut y voir des paysages et des sentiments. \n C’est parfois violent, ça interroge, ça secoue, et c’est sublime. Goncourt 84 quand même. \n Bref, gros coup de foudre pour cette femme qui s’introspecte et se livre sans faille. \n En route pour le Barrage maintenant 🇻🇳",
+        picture: "assets/img/l-amant.png",
+        media_id: 12,
+        publication_date: new Date("2021-02-02"),
+        updated_date: null,
+        isDraft: false,
+        isOntheWishlist: false,
+        category : "movie"
     },
 
 
 
-]
+];
