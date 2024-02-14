@@ -27,7 +27,7 @@ export class CardCategoryComponent {
     {
       id: 1,
       title: "Litterature",
-      text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
+      text: "Corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate.",
       img: "assets/illustration/cat-litterature.png",
       link:"/la_bibliotheque_de_cyril/litterature",
       icon: "assets/icons/livre.png"
@@ -35,7 +35,7 @@ export class CardCategoryComponent {
     {
       id: 2,
       title: "Cinéma",
-      text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
+      text: "Agnam aliquam quaerat voluptatem.nsequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess.",
       img: "assets/illustration/cat-cinema.png",
       link:"/la_bibliotheque_de_cyril/cinema",
      icon: "assets/icons/clap.png"
@@ -43,7 +43,7 @@ export class CardCategoryComponent {
     {
       id: 3,
       title: "Citations",
-      text: "agnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam  corporis suscipit laboriosam, isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit ess",
+      text: "Isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit.",
       img: "assets/illustration/cat-citation.png",
       link:"/la_bibliotheque_de_cyril/citations",
 

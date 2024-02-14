@@ -3,15 +3,15 @@ import { HeaderComponent } from '../../../components/header/header.component';
 import { RouterLink } from '@angular/router';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { CardCategoryComponent } from '../../../components/card-category/card-category.component';
-import { MediaService } from '../../../services/MediaService/media.service';
 import { PostService } from '../../../services/PostService/post.service';
 import { IPost } from '../../../mocks/posts.mock';
+import { SlicePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent,RouterLink,VerticalLineComponent,CardCategoryComponent],
+  imports: [HeaderComponent,RouterLink,VerticalLineComponent,CardCategoryComponent, SlicePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -43,7 +43,6 @@ getLastPost(posts: IPost[]): void {
   const allPost = posts
   .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
   this.lastPost = allPost[0];
-  console.log("lastPost", this.lastPost);
 }
 
 }
