@@ -2,7 +2,6 @@
 
     <!-- Entete -->
     <div class="entete flex">
-
         <section>
             <img class="picture-home" src="assets/img/picture_profil.png" alt="photo page d'accueil">
         </section>
@@ -37,7 +36,6 @@
             reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
             eum fugiat quo voluptas nulla pariatur?"</p>
     </div>
-
 </div>
 
 
@@ -45,28 +43,26 @@
 <app-vertical-line></app-vertical-line>
 
 
-<!-- Partie inférieure avec navigation et contenu -->
+<!-- Menu et contenu -->
 <div class="contenu flex">
     <app-header class="header"></app-header>
 
     <!-- Themes -->
     <section class="container-theme flex">
-
         <h3 class="titre-partie">MES THEMES FAVORIS </h3>
-            <app-card-category></app-card-category>
-       
+        <app-card-category></app-card-category>
 
-            <h3 class="titre-partie">NOUVELLE PUBLICATION</h3>
-
-            <article >   
-                <img src="{{lastPost.picture}}" alt="{{lastPost.title}}">
-                
-                <div >
-                    <h4 >{{lastPost.title}}</h4>
-                    <p>{{lastPost.content}}</p>
-                </div>
-              
-            </article>
-
+        <!-- Nouvlle publication -->
+        <h3 class="titre-partie">NOUVELLE PUBLICATION</h3>
+        <article class="last-post flex">
+            <img src="{{lastPost.picture}}" alt="{{lastPost.title}}">
+            <div class="last-post-content flex">
+                <h4 class="last-post-title">{{lastPost.title}}</h4>
+                <p class="last-post-resume">{{lastPost.content | slice:0:200}}... </p>
+                <a class="last-post-link" routerLink="">Voir Publication</a>
+            </div>
+        </article>
+        
+        <app-vertical-line></app-vertical-line>
     </section>
 </div>

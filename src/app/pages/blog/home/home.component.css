@@ -72,6 +72,43 @@
 }
 
 
+/* Nouvelle publication */
+.last-post{
+    width: 60vw;
+    min-width: 60vw;
+    height: auto;
+    justify-content: space-around;
+    align-items: space-between;
+    gap: 5vw;
+    margin-bottom: 5vh;
+}
+
+.last-post img{
+    width: 40%;
+    object-fit: contain;
+}
+
+.last-post-content{
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+    min-width: 50%;
+    gap: 2vw;
+}
+
+.last-post-title{
+    font-family: "Caveat", sans-serif;
+    font-size: 30px;
+}
+
+.last-post-resume{
+    font-family: "Courier Prime", sans-serif;
+    font-size: clamp(17px, 0.5rem, 22px);
+}
+.last-post-link{
+    color: var(--gold);
+    text-decoration: underline;
+}
 
 
 
@@ -102,6 +139,19 @@
 
     .container-theme {
         margin:  1vh; 
+    }
+
+    .last-post{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .last-post img{
+        width: 60%;
+    }
+
+    .last-post-content{
+        width: 90%;
     }
 }
 
@@ -140,5 +190,18 @@
     .titre-partie{
         font-size: 17px;
         margin: 1vh auto 4vh;
+    }
+
+    .last-post{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .last-post img{
+        width: 100%;
+    }
+
+    .last-post-content{
+        width: 100%;
     }
 }
