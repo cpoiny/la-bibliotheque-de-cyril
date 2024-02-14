@@ -4,7 +4,8 @@ import { RouterLink } from '@angular/router';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { CardCategoryComponent } from '../../../components/card-category/card-category.component';
 import { MediaService } from '../../../services/MediaService/media.service';
-import { IMedia, MEDIAS } from '../../../mocks/media.mock';
+import { PostService } from '../../../services/PostService/post.service';
+import { IPost } from '../../../mocks/posts.mock';
 
 
 @Component({
@@ -16,32 +17,33 @@ import { IMedia, MEDIAS } from '../../../mocks/media.mock';
 })
 export class HomeComponent implements OnInit {
 
-books!: IMedia[];
-lastBook! :IMedia;
+posts!: IPost[];
+lastPost! :IPost;
 
 constructor(
-  private mediaService : MediaService
+  private postService: PostService
 ){}
 
 ngOnInit(){
-  this.getAllBooks();
-  if (this.books){
-    this.getLastPost(this.books);
-    console.log("liste books",this.books);
+  this.getAllPosts();
+  if (this.posts){
+    this.getLastPost(this.posts);
   } else {
-    this.getAllBooks;
-    this.getLastPost(this.books);
+    this.getAllPosts;
+    this.getLastPost(this.posts);
   }
 
 }
 
-getAllBooks(): IMedia[] {
-  return  this.books = this.mediaService.getAllBooks();
+getAllPosts(): IPost[] {
+  return this.posts = this.postService.getAllPosts();
 }
 
-getLastPost(books: IMedia[]): void {
-  const lastPost = books.sort((a,b) => (b.created_at)- (a.created_at));
-
+getLastPost(posts: IPost[]): void {
+  const allPost = posts
+  .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
+  this.lastPost = allPost[0];
+  console.log("lastPost", this.lastPost);
 }
 
 }
