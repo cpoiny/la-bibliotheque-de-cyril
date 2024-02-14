@@ -1,26 +1,21 @@
 <ul>
 
     @for (card of cardsCategory(); track card.id ) {
-        <li>
+    <li>
+        <article class="x">
+            <div class="titre-card flex">
+                <h4 class="titre-category">{{card.title}}</h4>
+                <p class="text-category">{{card.text}}</p>
+            </div>
 
-
-            <article class="x">
-                <div class="titre-card flex">
-                    <h4 class="titre-category">{{card.title}}</h4>
-                    <p class="text-category">{{card.text}}</p>
-                </div>
-            
-                <div class="image-card flex">
-                        <img routerLink="{{card.link}}" src="{{card.img}}" alt="{{card.title}}">
-                    <!-- <button>Bouton</button> -->
-                </div>
-            </article>
-
-        </li>
-        
-        <app-vertical-line></app-vertical-line>
+            <div class="image-card flex">
+                <img  class="img-main"routerLink="{{card.link}}" src="{{card.img}}" alt="{{card.title}}">
+                <button class="button-card-category"  >
+                    <img class="img-icon" routerLink="{{card.link}}" src="{{card.icon}}" alt="">
+                </button>
+            </div>
+        </article>
+    </li>
+    <app-vertical-line></app-vertical-line>
     }
-
-
 </ul>
-
