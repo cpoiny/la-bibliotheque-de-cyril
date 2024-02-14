@@ -1,0 +1,16 @@
+@for (card of cardsCategory(); track card.id ) {
+    
+    <article>
+        <div class="titre-card flex">
+            <h4 class="titre-category">{{card.title}}</h4>
+            <p class="text-category">{{card.text}}</p>
+        </div>
+    
+        <div class="image-card flex">
+                <img routerLink="{{card.link}}" src="{{card.img}}" alt="{{card.title}}">
+            <!-- <button>Bouton</button> -->
+        </div>
+    </article>
+    
+    <app-vertical-line></app-vertical-line>
+}
