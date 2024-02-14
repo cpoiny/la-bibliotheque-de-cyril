@@ -8,6 +8,11 @@ article {
     display: flex;
 }
 
+li:nth-child(3n) .x{
+    flex-direction: row-reverse;
+}
+
+
 
 /* Partie text */
 
@@ -16,7 +21,6 @@ article {
     padding: 1vw;
     flex-direction: column;
     justify-content: end;
-
 }
 
 .titre-category {
@@ -39,6 +43,11 @@ article {
     width: 50%;
 }
 
+li:nth-child(3n) .x .image-card{
+    justify-content: center;
+}
+
+
 .image-card img {
     width: 50%;
     box-sizing: border-box;
@@ -60,12 +69,10 @@ article {
     .titre-card {
         width: 50%;
         padding: 1vw;
-        border: green solid 2px;
     }
 
     .image-card {
         align-items: start;
-        border: blue solid 2px;
     }
 
     .image-card img {
@@ -82,6 +89,9 @@ article {
         gap: 5vh;
     }
 
+    li:nth-child(3n) .x{
+        flex-direction: column-reverse;
+    }
     .image-card {
         width: 100%;
     }
