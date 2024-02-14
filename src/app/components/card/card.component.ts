@@ -9,8 +9,8 @@ import { Component, Input, Signal } from '@angular/core';
 })
 export class CardComponent {
 
-// @Input() image!: string;  
-// @Input() titre!: string;
-// @Input() theme!: string;
+@Input() image: string = "";  
+@Input() titre: string = "";
+@Input() theme: string ="";
 
 }

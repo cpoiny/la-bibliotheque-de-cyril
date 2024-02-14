@@ -5,3 +5,40 @@
 .flex {
     display: flex;
 }
+
+/* CARD BOOK */
+ul {
+    display : flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 5vw;
+
+}
+
+
+.card {
+    width: 20vw;
+    height: 20vw;
+    gap: 5vh;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+}
+
+.card figcaption {
+    height:20%;
+    width: 100%;
+    /* box-sizing: border-box; */
+    display: flex;
+    justify-content: center;
+    background-color: var(--main);
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    opacity: 80%;
+    font-family: 'Courier Prime', Courier, monospace;
+    font-size: 20px;
+}

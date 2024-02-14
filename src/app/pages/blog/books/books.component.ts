@@ -5,11 +5,12 @@ import { PageHeaderComponent } from '../../../components/page-header/page-header
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent],
+  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, UpperCasePipe],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
