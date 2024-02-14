@@ -23,7 +23,9 @@
     color: black;
   }
 
-  
+  img {
+    display: block;
+  }
 
 /* Font family */
 

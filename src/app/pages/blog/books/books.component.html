@@ -4,7 +4,23 @@
     <app-header class="header"></app-header>
 
     <section class="container">
-        <p>Books work</p>
+
+        <ul>
+            <!-- <app-card [image]="{{book.picture}}" [titre]="{{book.tite}}" [theme]="{{book.category}}"></app-card> -->
+
+            @for (book of books; track book.id) {
+                <li>
+
+                    <figure class="card">
+                        <img src="{{book.picture}}" alt="{{book.title}}">
+                        <figcaption>{{book.category | uppercase}}</figcaption>
+                    </figure>
+
+                </li>
+            }
+
+        </ul>
+
     </section>
 
 
