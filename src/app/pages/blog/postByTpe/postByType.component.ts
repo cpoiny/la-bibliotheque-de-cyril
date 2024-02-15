@@ -57,7 +57,4 @@ export class PostByTypeComponent implements OnInit {
       this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
     })
   }
-
-
-
 }
