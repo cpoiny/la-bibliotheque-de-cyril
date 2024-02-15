@@ -30,8 +30,10 @@ export class PostByTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.allPosts = this.getAllPosts();
-    
-    //Methode pour recharger mon composant à chaque changement d'url
+    // Méthode appelée une première fois
+    this.getPostByCategory();
+
+    //Methode pour recharger mon composant à chaque changement d'url ensuite
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd))
@@ -51,6 +53,7 @@ export class PostByTypeComponent implements OnInit {
   getPostByCategory() {
     this.activatedRoute.paramMap.subscribe(params => {
       const url = params.get('type');
+      this.title = url!;
       this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
     })
   }
