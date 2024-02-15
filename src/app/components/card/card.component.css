@@ -3,6 +3,7 @@
     height: 20vw;
     gap: 5vh;
     position: relative;
+    cursor:pointer;
 }
 
 .card img {
@@ -32,7 +33,6 @@
     .card {
         width:60vw;
         height: 60vw;
-        border: blue solid 2px;
     }
     .titre-partie{
         font-size: 18px;

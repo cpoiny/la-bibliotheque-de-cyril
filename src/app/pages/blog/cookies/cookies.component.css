@@ -24,7 +24,8 @@
 }
 
 .flex {
-    display: flex
+    display: flex;
+    /* max-width: 100%; */
 }
 
 /* Responsive Tablet */

@@ -65,13 +65,11 @@ export class FooterComponent implements OnInit {
   onSubmit() {
     this.displayErrorMessageForMessage();
     this.displayErrorMessageForEmail();
-    
     this.resetForm();
   }
 
   resetForm(){
     if(this.formContact.valid) {
-
       this.formContact.reset();
     }
   }

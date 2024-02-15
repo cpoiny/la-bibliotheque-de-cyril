@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { UpperCasePipe } from '@angular/common';
+import { PostComponent } from '../post/post.component';
 
 @Component({
-  selector: 'app-books',
+  selector: 'app-postByType',
   standalone: true,
-  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, UpperCasePipe],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+  imports: [HeaderComponent, RouterLink, PageHeaderComponent, CardComponent, RouterOutlet, UpperCasePipe],
+  templateUrl: './postByType.component.html',
+  styleUrl: './postByType.component.css'
 })
-export class BooksComponent implements OnInit {
+export class PostByTypeComponent implements OnInit {
 
   books: IPost[] = [];
   // themesBook : string[] = [];

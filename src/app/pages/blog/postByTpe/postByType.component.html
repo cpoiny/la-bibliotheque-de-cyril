@@ -4,10 +4,10 @@
     <app-header class="header"></app-header>
     <section class="container">
         <h3 class="titre-partie">LITTERATURE</h3>
-        <ul>
+        <ul class="card-list">
             @for (book of books; track book.id) {
             <li>
-                <app-card [picture]="book.picture" [title]="book.title" [theme]="book.category">
+                <app-card [id]="book.id" [picture]="book.picture" [title]="book.title" [theme]="book.category">
                 </app-card>
             </li>
             }

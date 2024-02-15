@@ -2,6 +2,7 @@
     margin: 5vh;
 }
 
+
 .flex {
     display: flex;
 }
@@ -14,12 +15,12 @@
 }
 
 /* CARD BOOK */
-ul {
+.card-list {
     display : flex;
     width: 100%;
     flex-wrap: wrap;
     gap: 5vw;
-
+    justify-content: center;
 }
 
 
