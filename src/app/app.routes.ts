@@ -21,19 +21,33 @@ export const routes: Routes = [
         children: [
             {
                 path: "litterature",
-                component: BooksComponent
+                component: BooksComponent,
+                children: [
+                    {
+                        path: "post/{id}",
+                        component: PostComponent
+                    },
+                ]
             },
             {
                 path: "cinema",
-                component: MoviesComponent
+                component: MoviesComponent,
+                children: [
+                    {
+                        path: "post/{id}",
+                        component: PostComponent
+                    },
+                ]
             },
             {
                 path: "citations",
-                component: QuotesComponent
-            },
-            {
-                path: "post/{id}",
-                component: PostComponent
+                component: QuotesComponent,
+                children: [
+                    {
+                        path: "post/{id}",
+                        component: PostComponent
+                    },
+                ]
             },
             {
                 path: "page_de_confidentialite",
