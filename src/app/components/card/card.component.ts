@@ -1,10 +1,11 @@
 import { UpperCasePipe } from '@angular/common';
-import { Component, Input, Signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [UpperCasePipe],
+  imports: [UpperCasePipe, RouterLink],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })

@@ -3,7 +3,7 @@
     height: 20vw;
     gap: 5vh;
     position: relative;
-   
+    cursor:pointer;
 }
 
 .card img {
