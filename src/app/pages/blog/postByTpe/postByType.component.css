@@ -12,6 +12,7 @@
     font-family: 'Merriweather', sans-serif;
     font-size: 20px;
     margin: 2vh auto 5vh;
+    text-transform: capitalize;
 }
 
 /* CARD BOOK */

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
-import { MediaService } from '../../../services/MediaService/media.service';
 import { UpperCasePipe } from '@angular/common';
-import { PostComponent } from '../post/post.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-postByType',
@@ -18,19 +17,31 @@ import { PostComponent } from '../post/post.component';
 })
 export class PostByTypeComponent implements OnInit {
 
-  books: IPost[] = [];
-  // themesBook : string[] = [];
+  postsByCategory: IPost[] = [];
+  title: string = "";
+  url!: string;
 
 
   constructor(
     private postService: PostService,
-    private mediaService : MediaService
+    //  private router : Router
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getAllPosts();
-    this.getAllBooksPosts();
+    this.getActivatedRoute().subscribe((params: {type: string})=> {
+      this.url =  params.type
+    });
+    const allPosts = this.getAllPosts();
+    if (allPosts) {
+      this.postsByCategory = this.postService.getPostByCategory(allPosts, this.url);
+      this.title = this.url;
+    }
+  }
 
+  getActivatedRoute(): Observable<any>{
+    const typeUrl = this.activatedRoute.params;
+    return typeUrl;
   }
 
   getAllPosts(): IPost[] {
@@ -38,21 +49,10 @@ export class PostByTypeComponent implements OnInit {
     return posts;
   }
 
-  getAllBooksPosts(): void {
-    this.books = this.postService.getAllBooksPost();
-    console.log("voir mes livres",this.books);
-    // this.getThemeBook(this.books);
-  }
 
-  // getThemeBook(books: IPost[]): void {
-  //   const arrayOfThemes : string[] = [];
-  //   books.forEach((book)=> {
-  //     const myBook = this.mediaService.getOneBook(book.media_id);
-  //     arrayOfThemes.push(myBook.theme);
-  //   })
-  //   this.themesBook = arrayOfThemes; 
-  // }  
 
-  
+
+
+
 
 }

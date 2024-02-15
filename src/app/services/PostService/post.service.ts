@@ -6,7 +6,7 @@ import { MediaService } from '../MediaService/media.service';
   providedIn: 'root'
 })
 export class PostService {
-  
+
 
   constructor() { }
 
@@ -15,9 +15,18 @@ export class PostService {
     return POSTS;
   }
 
-  getAllBooksPost() : IPost[]{
-  return POSTS
-  .filter((post: IPost)=> post.category === "book");
+  getPostByCategory(posts: IPost[], category: string): IPost[] {
+    if(posts) {
+      if (category === "litterature") {
+        return posts.filter((post)=> post.category === "book")
+      } else if (category === "cinema") {
+        return posts.filter((post)=> post.category === "movie")
+      } else {
+        return posts.filter((post)=> post.category === "quote")
+      }
+  } else {
+    return [];
   }
+}
 
 }

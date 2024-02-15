@@ -3,9 +3,9 @@
 <div class="flex">
     <app-header class="header"></app-header>
     <section class="container">
-        <h3 class="titre-partie">LITTERATURE</h3>
+        <h3 class="titre-partie">{{title}}</h3>
         <ul class="card-list">
-            @for (book of books; track book.id) {
+            @for (book of postsByCategory; track book.id) {
             <li>
                 <app-card [id]="book.id" [picture]="book.picture" [title]="book.title" [theme]="book.category">
                 </app-card>
