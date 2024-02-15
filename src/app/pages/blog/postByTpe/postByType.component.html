@@ -4,13 +4,18 @@
     <app-header class="header"></app-header>
     <section class="container">
         <h3 class="titre-partie">{{title}}</h3>
-        <ul class="card-list">
-            @for (book of postsByCategory; track book.id) {
-            <li>
-                <app-card [id]="book.id" [picture]="book.picture" [title]="book.title" [theme]="book.category">
-                </app-card>
-            </li>
-            }
-        </ul>
+        @if (postsByCategory.length > 0) {
+            <ul class="card-list">
+                @for (post of postsByCategory; track post.id) {
+                <li>
+                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.category">
+                    </app-card>
+                </li>
+                }
+            </ul>
+        } @else {
+            <p> Des {{title}} à venir prochainement !</p>
+        }
+        
     </section>
 </div>
