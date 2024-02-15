@@ -8,8 +8,6 @@ import { BackofficeAddComponent } from './pages/backOffice/backoffice-add/backof
 import { ConfidentialiteComponent } from './pages/blog/confidentialite/confidentialite.component';
 import { CookiesComponent } from './pages/blog/cookies/cookies.component';
 import { ConditionsComponent } from './pages/blog/conditions/conditions.component';
-import { MoviesComponent } from './pages/blog/movies/movies.component';
-import { QuotesComponent } from './pages/blog/quotes/quotes.component';
 
 export const routes: Routes = [
     {
@@ -20,34 +18,16 @@ export const routes: Routes = [
         path: "la_bibliotheque_de_cyril",
         children: [
             {
-                path: "litterature",
+                path: "publications/:type",
                 component: BooksComponent,
-                children: [
-                    {
-                        path: "post/{id}",
-                        component: PostComponent
-                    },
-                ]
             },
             {
-                path: "cinema",
-                component: MoviesComponent,
-                children: [
-                    {
-                        path: "post/{id}",
-                        component: PostComponent
-                    },
-                ]
+                path: "publications/:type/:id",
+                component: PostComponent,
             },
             {
-                path: "citations",
-                component: QuotesComponent,
-                children: [
-                    {
-                        path: "post/{id}",
-                        component: PostComponent
-                    },
-                ]
+                path: "cinema/post/:id",
+                component: PostComponent
             },
             {
                 path: "page_de_confidentialite",
@@ -66,8 +46,8 @@ export const routes: Routes = [
     {
         path: "admin_la_bibliotheque_de_cyril",
         component: ConnexionComponent,
-        children : [
-           
+        children: [
+
             {
                 path: "add_post",
                 component: BackofficeAddComponent

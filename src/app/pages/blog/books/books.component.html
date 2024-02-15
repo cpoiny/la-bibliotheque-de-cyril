@@ -6,8 +6,8 @@
         <h3 class="titre-partie">LITTERATURE</h3>
         <ul class="card-list">
             @for (book of books; track book.id) {
-            <li routerLink="post/{{book.id}}">
-                <app-card [picture]="book.picture" [title]="book.title" [theme]="book.category">
+            <li>
+                <app-card [id]="book.id" [picture]="book.picture" [title]="book.title" [theme]="book.category">
                 </app-card>
             </li>
             }

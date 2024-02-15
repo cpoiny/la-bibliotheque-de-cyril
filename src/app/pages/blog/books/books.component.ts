@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { UpperCasePipe } from '@angular/common';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, UpperCasePipe],
+  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, RouterOutlet, UpperCasePipe],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })

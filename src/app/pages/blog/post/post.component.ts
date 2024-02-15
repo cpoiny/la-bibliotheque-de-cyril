@@ -1,41 +1,22 @@
-import { Component, OnInit, Signal, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
-import { IPost } from '../../../mocks/posts.mock';
-import { PostService } from '../../../services/PostService/post.service';
-import { CardComponent } from '../../../components/card/card.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [PageHeaderComponent, CardComponent],
+  imports: [PageHeaderComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
 export class PostComponent implements OnInit {
 
-  books: IPost[] = [];
-
-
-  constructor(
-    private postService: PostService
-  ) { }
-
+  constructor(private activatedRoute: Router) {} 
   ngOnInit() {
-    this.getAllPosts();
-    this.getAllBooksPosts();
+  console.log("mon post", this.activatedRoute);
 
   }
 
-  getAllPosts(): IPost[] {
-    const posts = this.postService.getAllPosts();
-    return posts;
-  }
-
-  getAllBooksPosts(): void {
-    this.books = this.postService.getAllBooksPost();
-  }
-
-  
 
 
 }
