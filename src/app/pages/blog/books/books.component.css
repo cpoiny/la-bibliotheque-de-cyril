@@ -6,6 +6,13 @@
     display: flex;
 }
 
+
+.titre-partie{
+    font-family: 'Merriweather', sans-serif;
+    font-size: 20px;
+    margin: 2vh auto 5vh;
+}
+
 /* CARD BOOK */
 ul {
     display : flex;
@@ -41,4 +48,33 @@ ul {
     opacity: 80%;
     font-family: 'Courier Prime', Courier, monospace;
     font-size: 20px;
+}
+
+/* Responsive */
+
+
+@media (max-width: 425px) {
+
+    .card {
+        width:60vw;
+        height: 60vw;
+        border: blue solid 2px;
+    }
+    .titre-partie{
+        font-size: 18px;
+        margin: 0 0 4vh;
+    }
+}
+
+
+@media (min-width: 426px) and (max-width:768px){
+
+    .card {
+        width:30vw;
+        height: 30vw;
+    }
+    .titre-partie{
+        font-size: 18px;
+        margin: 0 0 4vh;
+    }
 }

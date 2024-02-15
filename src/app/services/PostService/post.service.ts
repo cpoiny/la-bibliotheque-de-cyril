@@ -1,5 +1,6 @@
 import { Injectable, Signal } from '@angular/core';
 import { IPost, POSTS } from '../../mocks/posts.mock';
+import { MediaService } from '../MediaService/media.service';
 
 @Injectable({
   providedIn: 'root'

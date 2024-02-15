@@ -5,15 +5,16 @@
 
     <section class="container">
 
+        <h3 class="titre-partie">LITTERATURE</h3>
         <ul>
             <!-- <app-card [image]="{{book.picture}}" [titre]="{{book.tite}}" [theme]="{{book.category}}"></app-card> -->
 
             @for (book of books; track book.id) {
-                <li>
 
+                <li>
                     <figure class="card">
                         <img src="{{book.picture}}" alt="{{book.title}}">
-                        <figcaption>{{book.category | uppercase}}</figcaption>
+                            <figcaption>{{book.category | uppercase}}</figcaption>
                     </figure>
 
                 </li>
