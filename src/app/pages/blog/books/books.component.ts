@@ -5,13 +5,13 @@ import { PageHeaderComponent } from '../../../components/page-header/page-header
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
-import { DatePipe, UpperCasePipe } from '@angular/common';
 import { MediaService } from '../../../services/MediaService/media.service';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, UpperCasePipe, DatePipe],
+  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, UpperCasePipe],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
