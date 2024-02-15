@@ -10,13 +10,13 @@ import { UpperCasePipe } from '@angular/common';
 import { PostComponent } from '../post/post.component';
 
 @Component({
-  selector: 'app-books',
+  selector: 'app-postByType',
   standalone: true,
-  imports: [HeaderComponent, RouterLink, PageHeaderComponent, BooksComponent, CardComponent, RouterOutlet, UpperCasePipe],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+  imports: [HeaderComponent, RouterLink, PageHeaderComponent, CardComponent, RouterOutlet, UpperCasePipe],
+  templateUrl: './postByType.component.html',
+  styleUrl: './postByType.component.css'
 })
-export class BooksComponent implements OnInit {
+export class PostByTypeComponent implements OnInit {
 
   books: IPost[] = [];
   // themesBook : string[] = [];
