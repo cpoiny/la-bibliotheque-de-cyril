@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { UpperCasePipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-postByType',
@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrl: './postByType.component.css'
 })
 export class PostByTypeComponent implements OnInit {
-
+  allPosts: IPost[] = [];
   postsByCategory: IPost[] = [];
   title: string = "";
   url!: string;
@@ -24,34 +24,36 @@ export class PostByTypeComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    //  private router : Router
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() {
-    this.getActivatedRoute().subscribe((params: {type: string})=> {
-      this.url =  params.type
-    });
-    const allPosts = this.getAllPosts();
-    if (allPosts) {
-      this.postsByCategory = this.postService.getPostByCategory(allPosts, this.url);
-      this.title = this.url;
-    }
+  ngOnInit(): void {
+    this.allPosts = this.getAllPosts();
+    
+    //Methode pour recharger mon composant à chaque changement d'url
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd))
+      .subscribe((() => {
+        this.getPostByCategory();
+      }));
+
   }
 
-  getActivatedRoute(): Observable<any>{
-    const typeUrl = this.activatedRoute.params;
-    return typeUrl;
-  }
-
+  // Methode pour récupérer tous les posts
   getAllPosts(): IPost[] {
     const posts = this.postService.getAllPosts();
     return posts;
   }
 
-
-
-
+  // Méthode pour récupérer les posts en fonction de l'url
+  getPostByCategory() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      const url = params.get('type');
+      this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
+    })
+  }
 
 
 
