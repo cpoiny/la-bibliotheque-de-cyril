@@ -11,8 +11,13 @@ export class MediaService {
 books: IMedia[] = MEDIAS;
 
   getAllBooks(): IMedia[] {
-    const myBooks = MEDIAS.filter((media: IMedia)=> media.category === "book")
+    const myBooks = MEDIAS.filter((media: IMedia) => media.category === "book")
     this.books=myBooks;
     return this.books;
+  }
+
+  getOneBook(id: number) : IMedia {
+    const book = MEDIAS.filter((media: IMedia) => media.id === id);
+    return book[0];
   }
 }

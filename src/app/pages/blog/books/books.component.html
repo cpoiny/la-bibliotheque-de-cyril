@@ -2,27 +2,15 @@
 
 <div class="flex">
     <app-header class="header"></app-header>
-
     <section class="container">
-
+        <h3 class="titre-partie">LITTERATURE</h3>
         <ul>
-            <!-- <app-card [image]="{{book.picture}}" [titre]="{{book.tite}}" [theme]="{{book.category}}"></app-card> -->
-
             @for (book of books; track book.id) {
-                <li>
-
-                    <figure class="card">
-                        <img src="{{book.picture}}" alt="{{book.title}}">
-                        <figcaption>{{book.category | uppercase}}</figcaption>
-                    </figure>
-
-                </li>
+            <li>
+                <app-card [picture]="book.picture" [title]="book.title" [theme]="book.category">
+                </app-card>
+            </li>
             }
-
         </ul>
-
     </section>
-
-
-
 </div>
