@@ -1,6 +1,5 @@
 .container {
     margin: 5vh;
-    /* border: red solid 2px; */
 }
 
 
@@ -23,54 +22,77 @@
 }
 
 .post {
-    width: 90%;
+    width: 100%;
     min-width: 90%;
-    border: blue solid 2px;
 }
 
 .post-content {
-    margin: 5vh 0;
-    height: 80%;
+    width: 40%;
+    margin: 5vh auto;
+    justify-content: space-between;
 }
 
 .post-img {
-    width: 50%;
-    min-width: 50%;
-    /* height: 80%; */
+    width: 40%;
+    min-width: 40%;
     margin: 5vh;
-
 }
 
 .post-text {
     width: 100%;
-    min-width: 80%;
+    min-width: 100%;
     white-space: break-spaces;
     text-align: left;
     overflow-y: scroll;
-    height: 80%;
+    height: 50vh;
+    font-family: 'Courier Prime', Courier, monospace;
+    padding: 1vh;
 }
 
 .post-date {
     margin-top: 5vh;
+    font-family: "Merriweather", sans-serif;
 }
 
 /* R-E-S-P-O-N-S-I-V-E */
 
 
-@media (max-width: 780px) {
+@media (min-width: 701px) and (max-width: 1200px) {
+    .post{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .post-img {
+        width: 80%;
+    }
+
+    .post-content {
+        width: 90%;
+    }
+    
+
+}
+
+@media (max-width: 700px) {
     .container {
-        border: brown solid 2px;
+        margin: 2vh;
     }
 
     .post {
         flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
-    .post-img img {
-        margin: 0;
-        border: green solid 2px;
-        width: 50%;
+    .post-content {
+        width: 100%;
+    }
 
+    .post-img {
+        width: 90%;
+        margin: 1vh;
     }
 
 }
