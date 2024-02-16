@@ -40,7 +40,7 @@
 
 .menu nav ul li a {
     font-family: 'Courier Prime', Courier, monospace;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .menu ul li a:hover {
@@ -75,11 +75,14 @@
 
     .menu nav ul li {
         width: 100%;
+        margin-bottom: 3vh;
     }
 
     .menu nav ul li a {
-        font-size: 12px;
+        font-size: 15px;
         width: 60%;
+        
+       
     }
 
 
