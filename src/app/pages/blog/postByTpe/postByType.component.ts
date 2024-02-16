@@ -29,7 +29,9 @@ export class PostByTypeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.allPosts = this.getAllPosts();
+
     // Méthode appelée une première fois
     this.getPostByCategory();
 
@@ -57,4 +59,5 @@ export class PostByTypeComponent implements OnInit {
       this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
     })
   }
+
 }

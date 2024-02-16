@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { IPost, POSTS } from '../../mocks/posts.mock';
+import { AUTHORS, IAuthor } from '../../mocks/author.mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-
 
   constructor() { }
 
@@ -26,6 +26,20 @@ export class PostService {
   } else {
     return [];
   }
+
+}
+
+
+getPostById(id : number) : IPost[] {
+  const post = POSTS.filter((post) => post.id === id);
+  return post;
+}
+
+
+getAuthorById(post: IPost): IAuthor {
+    const id = post.author_id;
+    const author = AUTHORS.filter((author) => author.id === id);
+    return author[0];
 }
 
 }
