@@ -1,6 +1,6 @@
-.container{
+.container {
     margin: 5vh;
-    border: red solid 2px;
+    /* border: red solid 2px; */
 }
 
 
@@ -15,17 +15,16 @@
     flex-direction: column;
 }
 
-.titre-partie{
+.titre-partie {
     font-family: 'Merriweather', sans-serif;
     font-size: 20px;
     margin: 2vh auto;
     text-transform: capitalize;
 }
 
-.post{
+.post {
     width: 90%;
-    min-width:90%;
-    height: 80vh;
+    min-width: 90%;
     border: blue solid 2px;
 }
 
@@ -34,12 +33,12 @@
     height: 80%;
 }
 
-.post img {
+.post-img {
     width: 50%;
-    min-width:50%;
-    height: 80%;
+    min-width: 50%;
+    /* height: 80%; */
     margin: 5vh;
-    box-sizing: border-box;
+
 }
 
 .post-text {
@@ -55,18 +54,23 @@
     margin-top: 5vh;
 }
 
-/* RESPONSIVE*/
+/* R-E-S-P-O-N-S-I-V-E */
 
 
 @media (max-width: 780px) {
+    .container {
+        border: brown solid 2px;
+    }
+
     .post {
         flex-direction: column;
     }
 
-    .post img {
-        margin:0;
+    .post-img img {
+        margin: 0;
         border: green solid 2px;
+        width: 50%;
 
-}
+    }
 
 }
