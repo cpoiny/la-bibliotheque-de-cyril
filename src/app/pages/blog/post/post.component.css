@@ -2,6 +2,11 @@
     margin: 5vh;
 }
 
+.header{
+    position: sticky;
+    top:0;
+}
+
 
 .flex {
     display: flex;
@@ -34,7 +39,6 @@
     width: 40%;
     margin: 5vh auto;
     justify-content: space-between;
-    /* overflow-y: scroll; */
 }
 
 .post-img {

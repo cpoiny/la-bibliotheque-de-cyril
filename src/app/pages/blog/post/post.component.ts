@@ -13,8 +13,10 @@ import { DatePipe, UpperCasePipe } from '@angular/common';
   standalone: true,
   imports: [PageHeaderComponent, VerticalLineComponent, HeaderComponent, UpperCasePipe, DatePipe],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.css'
+  styleUrl: './post.component.css',
 })
+
+
 export class PostComponent implements OnInit {
 
   post! : IPost;

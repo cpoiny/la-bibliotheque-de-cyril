@@ -120,7 +120,6 @@ li:nth-child(3n) .x .button-card-category {
         flex-direction: column-reverse;
         margin: 0 auto;
         gap: 5vh;
-        border: red solid 1px;
     }
 
     li:nth-child(3n) .x {
