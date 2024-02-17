@@ -46,7 +46,6 @@ export class CardCategoryComponent {
       text: "Isi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit.",
       img: "assets/illustration/cat-citation.png",
       link:"/la_bibliotheque_de_cyril/publications/citations",
-
       icon: "assets/icons/citation.png"
     },
   ]);

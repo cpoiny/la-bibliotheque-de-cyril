@@ -12,77 +12,77 @@ export const AUTHORS: IAuthor[] = [
         id: 1,
         first_name: "Amanda",
         last_name: "STHERS",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Amanda-Sthers.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 2,
-        first_name: "GIANFRANCO",
-        last_name: "Calligarich",
-        picture: "",
-        description: ""
+        first_name: "Gianfranco",
+        last_name: "CALLIGARICH",
+        picture: "assets/img/auteur/Gianfranco-CALLIGARICH.png",
+        description: "Lorem Ipsum"
     },
     {
         id: 3,
         first_name: "Henri",
         last_name: "DE MONFREID",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Henry-de-Monfreid.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 4,
         first_name: "Boris",
         last_name: "VIAN",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Boris-Vian.png",
+        description: "Lorem Ipsum"
     },
     {
         id: 5,
         first_name: "Francis Scott",
         last_name: "FITZGERALD",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/F-Scott-Fitzgerald.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 6,
         first_name: "Romain",
         last_name: "GARY",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Romain-Gary.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 7,
         first_name: "Jack",
         last_name: "KEROUAC",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Jack-Kerouac.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 8,
         first_name: "Chuck",
         last_name: "PALAHNUIK",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Chuck-Palahnuik.png",
+        description: "Lorem Ipsum"
     },
     {
         id: 9,
         first_name: "Samir",
-        last_name: "",
-        picture: "",
-        description: ""
+        last_name: "TIGHZERT",
+        picture: "assets/img/auteur/Samir-Tighzert.jpg",
+        description: "Lorem Ipsum"
     },
     {
         id: 10,
         first_name: "Arthur",
         last_name: "RIMBAUD",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Arthur-Rimbaud.PNG",
+        description: "Lorem Ipsum"
     },
     {
         id: 11,
-        first_name: "MArguerite",
+        first_name: "Marguerite",
         last_name: "DURAS",
-        picture: "",
-        description: ""
+        picture: "assets/img/auteur/Marguerite-Duras.jpg",
+        description: "Lorem Ipsum"
     },
 ]
