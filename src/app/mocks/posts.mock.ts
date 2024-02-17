@@ -113,6 +113,19 @@ export const POSTS: IPost[] = [
         category : "book"
     },
     {
+        id: 12,
+        title: "Sur la route",
+        content: "Aujourd'hui je voulais redonner de la visibilité à l'une de mes toutes premières chroniques sur cette page, celle de \"Sur la route\".\n\n Ce bouquin fait partie de ceux qui me suivent partout tout le temps, et son auteur est une source d'inspiration inconditionnelle, ce genre de source d'inspiration qui nous aide à conduire une vie. \n\n Sur la route c'est le livre de la vie libre, la seule qui vaille le coup. Livre clef de la Beat Génération, c'est le récit des errances de l'auteur, barroudeur passionné de jazz et de bebop, sillonnant les routes américaines. \n\n Voyageant en stop, logeant chez qui l'accepte, partageant femmes et alcool avec des amis d'un jour, Kerouac alias Sal Paradise, s'abandonne à la loi du hasard, à la recherche d'une fraternité réelle. Ici rien d'autre n'est plus important que le présent immédiat qui, grâce à l'insouciance, nous procure des jouissances infinies. \n\n Ce livre est le compte rendu de cette quête, avec ses moments d'euphorie, mais aussi ses passages à vide et ses échecs. Un manuel imparfait qui nous guide dans notre manière de grandir. \n\n Je conseille à tout le monde de le lire, plusieurs fois, en entier, par passage. Je suis persuadé que chacun d'entre nous peut y trouver des réponses.\n\n Le bonheur est dans le mouvement, le voyage c'est la liberté et la liberté c'est la vie 🌍",
+        picture: "assets/img/sur_la_route.png",
+        media_id: 7,
+        author_id: 7,
+        publication_date: new Date("2021-01-09"),
+        updated_date: null,
+        isDraft: false,
+        isOntheWishlist: false,
+        category : "movie"
+    },
+    {
         id: 8,
         title: "Fight club",
         content: "Autant que ce soit dit tout de suite, dans ce roman anti conformiste publié en 1996, l'auteur ne cherche pas à faire quelque chose de beau. Il est à la recherche d'une vérité. \n\n Comme le dit Tyler Durden: \" Attirer l'attention de Dieu en étant mauvais vaut mieux que de ne pas attirer son attention du tout. Sa haine est préférable à son indifférence.\" Le ton est donné !\n\n Fight Club c'est l'histoire d'un type sans nom, banal, cadre moyen, américain moyen, qui se plonge dans la violence dans le but d'évacuer sa haine de la société, ainsi que sa frustration profonde (il a un petit côté Taxi Driver oui). L'examen non critique de la violence et de ses répercussions devient lui-même une célébration, une esthétique et une idéologie. \n\n La rencontre du personnage principal avecTyler Durden, aux antipodes de sa personnalité, va lui permettre de révéler ce qu'il cache au plus profond de lui. \n\n Métaphore lucide et jubilatoire d'un monde au bord du chaos, perdu faute de révolution, ce roman est un OVNI littéraire qui ne laisse personne indifférent. \n\n Si le style ultra minimaliste peut dérouter, l'intrigue cumule néanmoins tous les ingrédients nécessaires pour créer une histoire explosive. \n\n Indéniablement une œuvre de son temps, cette critique sociale demande cependant une certaine attention si l'on ne veut rien en rater. \n\n Si je peux me permettre d'ajouter un petit bémol le voici: l'histoire nous guide complètement en nous imposant des opinions \"libératrices\" et ne nous laisse aucune marge de perspicacité. De plus, si à première vue ce roman est un pamphlet anti consumériste, il semble tout de même que Palahnuik ne soit pas dupe. En effet, les américains moyens censés trouver la liberté dans l'autodestruction se rassemblent finalement autour d'un guide, Tyler, auquel ils finissent par obéir aveuglément, au mépris de leurs propres libertés individuelles. \n\n Au final, le bouquin et le film sont comme les combats qu'ils decrivent. Après les avoir lus et vus, rien ne sera règlé, rien n'ira mieux, mais plus rien n'aura d'importance 🥊",
@@ -164,19 +177,7 @@ export const POSTS: IPost[] = [
         isOntheWishlist: false,
         category : "book"
     },
-    {
-        id: 12,
-        title: "Movie",
-        content: "Comment appelle-t-on l’inverse d’une désillusion littéraire ? Un coup de foudre ? Alors j’ai eu un coup de foudre.\n\n La Duras comme on l’appelle elle donne tout quand elle écrit. Elle se positionne « en dehors d’elle même ». \n\n Dans mes souvenirs de lycéen planait sur ce livre une ombre de feel good, de romance fleur bleue. Grand bien m’a pris de l’ouvrir à nouveau presque 20 ans plus tard. \n\n L’Amant, tout le monde le sait, raconte de manière autobiographique une histoire d’amour entre une jeune française et un jeune homme chinois de 12 ans de plus qu’elle. Et ça finalement c’est la partie la moins intéressante du livre. C’est le vecteur. Le vecteur que Duras utilise pour s’explorer, explorer celle qu’elle a été, ressasser des souvenirs, entre fantasmes et réalités. \n\n Elle décortique le rapport filial qu’elle eut avec sa mère, le rapport avec ses frères, avec l’Indochine française d’après guerre, le Mékong, Cholen et ceux qu’elle a pu y croiser. Au fil de la lecture se dessine de manière prématurée le profil de cette femme clivante, écorchée vive et engagée qu’elle deviendra plus tard. \n\n L’amant c’est un tableau sur lequel on peut y voir des paysages et des sentiments. \n\n C’est parfois violent, ça interroge, ça secoue, et c’est sublime. Goncourt 84 quand même. \n\n Bref, gros coup de foudre pour cette femme qui s’introspecte et se livre sans faille. \n\n En route pour le Barrage maintenant 🇻🇳",
-        picture: "assets/img/l-amant.png",
-        media_id: 12,
-        author_id: 12,
-        publication_date: new Date("2021-02-02"),
-        updated_date: null,
-        isDraft: false,
-        isOntheWishlist: false,
-        category : "movie"
-    },
+
 
 
 
