@@ -59,9 +59,9 @@
 }
 
 .post-img {
-    width: 40%;
-    min-width: 40%;
-    margin: 5vh;
+    width: 35%;
+    min-width: 35%;
+    margin: 5vh 2vh;
 }
 
 .post-text {
@@ -148,7 +148,8 @@
     .vertical-line {
         margin-left: 8vh;
     }
-    .button-back{
+
+    .button-back {
         width: 7vw;
     }
 
@@ -181,7 +182,8 @@
     .vertical-line {
         margin: 0;
     }
-    .button-back{
+
+    .button-back {
         width: 10vw;
     }
 
