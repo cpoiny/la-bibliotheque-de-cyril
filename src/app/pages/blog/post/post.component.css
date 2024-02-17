@@ -38,8 +38,10 @@
 .titre-partie {
     font-family: 'Merriweather', sans-serif;
     font-size: 30px;
-    margin: 1vh auto;
     text-transform: capitalize;
+}
+.espace{
+    margin: 5vh 0;
 }
 
 .vertical-line {
@@ -112,15 +114,14 @@
 
 /* Auteur */
 .auteur {
-    border: green solid 2px;
     display: flex;
-    width: 50%;
-    text-align: center;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .auteur-img {
-    width: 20vw;
-    border: blue solid 2px;
+    width: 30%;
 }
 
 /* R-E-S-P-O-N-S-I-V-E */
