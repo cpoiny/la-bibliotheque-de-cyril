@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { IAuthor } from '../../../mocks/author.mock';
-import { DatePipe, UpperCasePipe } from '@angular/common';
+import { DatePipe, Location, UpperCasePipe } from '@angular/common';
+import { ButtonComponent } from '../../../components/button/button.component';
 
 @Component({
   selector: 'app-post',
@@ -21,10 +22,12 @@ export class PostComponent implements OnInit {
 
   post! : IPost;
   author!: IAuthor;
+  retour: string = "Retour";
 
   constructor(
     private postService: PostService,
-    private  activatedRoute: ActivatedRoute
+    private  activatedRoute: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -46,6 +49,10 @@ export class PostComponent implements OnInit {
   const authorToDisplay = this.postService.getAuthorById(post);
   this.author = authorToDisplay;
  }
+
+ goBack(){
+  this.location.back();
+}
 }
 
 

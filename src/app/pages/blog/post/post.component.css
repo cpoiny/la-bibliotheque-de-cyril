@@ -2,11 +2,27 @@
     margin: 5vh;
 }
 
-.header{
+.header {
     position: sticky;
-    top:0;
+    top: 0;
 }
 
+.button-back {
+    position: sticky;
+    display: block;
+    top: 0%;
+    width: 4vw;
+    background-color: var(--gold);
+    color: white;
+    font-family: "Caveat", sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.button-back:hover {
+    background-color: var(--black);
+    opacity: 50%;
+}
 
 .flex {
     display: flex;
@@ -25,8 +41,8 @@
     margin: 1vh auto;
     text-transform: capitalize;
 }
- 
-.vertical-line{
+
+.vertical-line {
     margin-left: 5vh;
 }
 
@@ -39,6 +55,7 @@
     width: 40%;
     margin: 5vh auto;
     justify-content: space-between;
+
 }
 
 .post-img {
@@ -58,6 +75,12 @@
     padding: 1vh;
 }
 
+.post-text::first-letter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+
 .post-date {
     margin-top: 5vh;
     font-family: "Merriweather", sans-serif;
@@ -67,36 +90,49 @@
 .post-text::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-  }
-  
-  /* Define the thumb style */
-  .post-text::-webkit-scrollbar-thumb {
+}
+
+/* Define the thumb style */
+.post-text::-webkit-scrollbar-thumb {
     background-color: var(--gold);
     border-radius: 5px;
-  }
-  
-  /* Define the track style */
-  .post-text::-webkit-scrollbar-track {
+}
+
+/* Define the track style */
+.post-text::-webkit-scrollbar-track {
     background-color: white;
     border: 0.5px solid var(--main);
-  }
-  
-  
-  .post-text::-webkit-scrollbar-button:hover {
-    background-color: var(--gold);
-  }
+}
 
+
+.post-text::-webkit-scrollbar-button:hover {
+    background-color: var(--gold);
+}
+
+
+/* Auteur */
+.auteur {
+    border: green solid 2px;
+    display: flex;
+    width: 50%;
+    text-align: center;
+}
+
+.auteur-img {
+    width: 20vw;
+    border: blue solid 2px;
+}
 
 /* R-E-S-P-O-N-S-I-V-E */
 
 
 @media (min-width: 701px) and (max-width: 1200px) {
-    .post{
+    .post {
         flex-direction: column;
         width: 100%;
         align-items: center;
     }
-    
+
     .post-img {
         width: 70%;
     }
@@ -104,11 +140,16 @@
     .post-content {
         width: 90%;
     }
-    .titre-partie{
+
+    .titre-partie {
         font-size: 25px;
     }
-    .vertical-line{
+
+    .vertical-line {
         margin-left: 8vh;
+    }
+    .button-back{
+        width: 7vw;
     }
 
 }
@@ -132,11 +173,16 @@
         width: 90%;
         margin: 1vh;
     }
-    .titre-partie{
+
+    .titre-partie {
         font-size: 20px;
     }
-    .vertical-line{
-        margin:0;
+
+    .vertical-line {
+        margin: 0;
+    }
+    .button-back{
+        width: 10vw;
     }
 
 }
