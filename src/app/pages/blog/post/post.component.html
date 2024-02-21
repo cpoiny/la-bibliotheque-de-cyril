@@ -43,8 +43,9 @@
         <div class="auteur">
             <img class="auteur-img"src="{{author.picture}}" alt="{{author.first_name | uppercase}} {{author.last_name | uppercase}}">
 
-            <div>
-                <p>{{author.first_name | uppercase}} {{author.last_name | uppercase}}</p>
+            <div class="auteur-description">
+                <p><strong>{{author.first_name}} {{author.last_name | uppercase}}</strong></p>
+                <br>
                 <p>{{author.description}}</p>
             </div>
         </div>
