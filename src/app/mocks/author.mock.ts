@@ -67,8 +67,8 @@ export const AUTHORS: IAuthor[] = [
     {
         id: 9,
         first_name: "Samir",
-        last_name: "TIGHZERT",
-        picture: "assets/img/auteur/Samir-Tighzert.jpg",
+        last_name: "BOUTAMDJA",
+        picture: "assets/img/auteur/Samir-Boutambja.jpg",
         description: "Lorem Ipsum"
     },
     {

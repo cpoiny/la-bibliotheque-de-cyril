@@ -8,20 +8,28 @@
 }
 
 .button-back {
-    position: sticky;
     display: block;
-    top: 0%;
-    width: 4vw;
-    background-color: var(--gold);
-    color: white;
-    font-family: "Caveat", sans-serif;
+    width: 3vw;
+    background-color: var(--white);
     border: none;
     cursor: pointer;
+    height: 3vw;
+    position: relative;
+    border-radius: 50%;
+    position: sticky;
+    top: 0%;
+}
+
+.button-back img {
+    width: 3vw;
+    position : absolute;
+    top: 0%;
+    border: var(--gold) 1px solid;
+    border-radius: 50%;
 }
 
 .button-back:hover {
-    background-color: var(--black);
-    opacity: 50%;
+    background-color: var(--gold);
 }
 
 .flex {
@@ -90,8 +98,8 @@
 
 /* Define the scrollbar style */
 .post-text::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
 }
 
 /* Define the thumb style */
@@ -150,8 +158,9 @@
         margin-left: 8vh;
     }
 
-    .button-back {
-        width: 7vw;
+    .button-back img {
+        width: 5vw;
+      
     }
 
 }
@@ -184,8 +193,9 @@
         margin: 0;
     }
 
-    .button-back {
-        width: 10vw;
+    .button-back img {
+        width: 5vw;
+    
     }
 
 }

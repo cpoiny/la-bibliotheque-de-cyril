@@ -8,7 +8,7 @@
             <ul class="card-list">
                 @for (post of postsByCategory; track post.id) {
                 <li>
-                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.category">
+                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
                     </app-card>
                 </li>
                 }
