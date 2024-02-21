@@ -39,11 +39,6 @@ getAllPosts(): IPost[] {
   return this.posts = this.postService.getAllPosts();
 }
 
-// getLastPost(posts: Signal<IPost[]>): void {
-//   const allPost = posts()
-//   .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
-//   this.lastPost = allPost[0];
-// }
 
 getLastPost(posts: IPost[]): void {
   const allPost = posts

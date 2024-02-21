@@ -55,7 +55,6 @@
 }
 
 /* Présentation */
-
 .presentation-text {
     margin: 2vh 4vh;
     font-family: 'Courier Prime', Courier, sans-serif;
@@ -106,8 +105,12 @@
     font-size: clamp(17px, 0.5rem, 22px);
 }
 .last-post-link{
+    color: var(--black);
+    font-family: "Courier Prime", sans-serif;
+}
+
+.last-post-link:hover{
     color: var(--gold);
-    text-decoration: underline;
 }
 
 

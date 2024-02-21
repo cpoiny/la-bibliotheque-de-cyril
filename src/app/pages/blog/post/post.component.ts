@@ -19,38 +19,36 @@ import { DatePipe, Location, UpperCasePipe } from '@angular/common';
 
 export class PostComponent implements OnInit {
 
-  post! : IPost;
+  post!: IPost;
   author!: IAuthor;
 
   constructor(
     private postService: PostService,
-    private  activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location
-  ) {}
+  ) { }
 
   ngOnInit() {
-
     this.getPostById();
     console.log("post to display", this.post);
     this.getAuthorById(this.post);
 
   }
 
-
   getPostById(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    const postToDisplay =  this.postService.getPostById(id);
+    const postToDisplay = this.postService.getPostById(id);
     this.post = postToDisplay[0];
- }
+  }
 
- getAuthorById(post: IPost): void {
-  const authorToDisplay = this.postService.getAuthorById(post);
-  this.author = authorToDisplay;
- }
+  getAuthorById(post: IPost): void {
+    const authorToDisplay = this.postService.getAuthorById(post);
+    this.author = authorToDisplay;
+  }
 
- goBack(){
-  this.location.back();
-}
+  goBack() {
+    this.location.back();
+  }
 }
 
 
