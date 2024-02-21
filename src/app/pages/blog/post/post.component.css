@@ -22,7 +22,7 @@
 
 .button-back img {
     width: 3vw;
-    position : absolute;
+    position: absolute;
     top: 0%;
     border: var(--gold) 1px solid;
     border-radius: 50%;
@@ -48,7 +48,8 @@
     font-size: 30px;
     text-transform: capitalize;
 }
-.espace{
+
+.espace {
     margin: 5vh 0;
 }
 
@@ -123,14 +124,27 @@
 /* Auteur */
 .auteur {
     display: flex;
-    width: 80%;
+    width: 60%;
     justify-content: space-around;
     align-items: center;
+    margin: 0 auto;
+    gap: 5vh;
+    margin-bottom: 5vh;
 }
 
 .auteur-img {
     width: 30%;
+    max-height: 30vh;
+    object-fit: cover;
 }
+
+
+.auteur-description {
+    width: 60%;
+    margin-right: 2vw;
+}
+
+
 
 /* R-E-S-P-O-N-S-I-V-E */
 
@@ -160,8 +174,21 @@
 
     .button-back img {
         width: 5vw;
-      
+
     }
+
+    .auteur {
+        width: 100%;
+    }
+
+    .auteur-img {
+        width: 40%;
+    }
+
+    .auteur-description {
+        width: 50%;
+    }
+
 
 }
 
@@ -195,7 +222,20 @@
 
     .button-back img {
         width: 5vw;
-    
+
+    }
+
+    .auteur {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .auteur-img {
+        width: 90%;
+    }
+
+    .auteur-description {
+        width: 90%;
     }
 
 }
