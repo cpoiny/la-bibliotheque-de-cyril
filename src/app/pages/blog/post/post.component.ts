@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { HeaderComponent } from '../../../components/header/header.component';
@@ -7,11 +7,12 @@ import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { IAuthor } from '../../../mocks/author.mock';
 import { DatePipe, Location, UpperCasePipe } from '@angular/common';
+import { AuthorComponent } from '../../../components/author/author.component';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [PageHeaderComponent, VerticalLineComponent, HeaderComponent, UpperCasePipe, DatePipe],
+  imports: [PageHeaderComponent, VerticalLineComponent, HeaderComponent, AuthorComponent, UpperCasePipe, DatePipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
 })
@@ -19,8 +20,8 @@ import { DatePipe, Location, UpperCasePipe } from '@angular/common';
 
 export class PostComponent implements OnInit {
 
-  post!: IPost;
-  author!: IAuthor;
+post!: IPost;
+author!: IAuthor;
 
   constructor(
     private postService: PostService,

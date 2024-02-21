@@ -177,19 +177,6 @@
 
     }
 
-    .auteur {
-        width: 100%;
-    }
-
-    .auteur-img {
-        width: 40%;
-    }
-
-    .auteur-description {
-        width: 50%;
-    }
-
-
 }
 
 @media (max-width: 700px) {
@@ -223,19 +210,6 @@
     .button-back img {
         width: 5vw;
 
-    }
-
-    .auteur {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .auteur-img {
-        width: 90%;
-    }
-
-    .auteur-description {
-        width: 90%;
     }
 
 }

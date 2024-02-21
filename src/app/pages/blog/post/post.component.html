@@ -38,17 +38,13 @@
         <app-vertical-line></app-vertical-line>
 
 
-        
+        <!-- Auteur -->
         <h2 class="titre-partie espace">L'auteur</h2>
-        <div class="auteur">
-            <img class="auteur-img"src="{{author.picture}}" alt="{{author.first_name | uppercase}} {{author.last_name | uppercase}}">
+        <app-author [author]="author"></app-author>
 
-            <div class="auteur-description">
-                <p><strong>{{author.first_name}} {{author.last_name | uppercase}}</strong></p>
-                <br>
-                <p>{{author.description}}</p>
-            </div>
-        </div>
+        <app-vertical-line></app-vertical-line>
+
+        <!-- D'autres propositions -->
     </section>
     
 </div>
