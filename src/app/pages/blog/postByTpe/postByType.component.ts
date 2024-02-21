@@ -7,6 +7,8 @@ import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { UpperCasePipe } from '@angular/common';
 import { filter } from 'rxjs';
+import { MediaService } from '../../../services/MediaService/media.service';
+import { IMedia } from '../../../mocks/media.mock';
 
 @Component({
   selector: 'app-postByType',
@@ -22,8 +24,10 @@ export class PostByTypeComponent implements OnInit {
   url!: string;
 
 
+
   constructor(
     private postService: PostService,
+
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -34,6 +38,7 @@ export class PostByTypeComponent implements OnInit {
 
     // Méthode appelée une première fois
     this.getPostByCategory();
+  
 
     //Methode pour recharger mon composant à chaque changement d'url ensuite
     this.router.events
@@ -59,5 +64,7 @@ export class PostByTypeComponent implements OnInit {
       this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
     })
   }
+
+ 
 
 }

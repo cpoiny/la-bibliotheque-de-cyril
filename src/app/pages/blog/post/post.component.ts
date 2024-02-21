@@ -7,7 +7,6 @@ import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { IAuthor } from '../../../mocks/author.mock';
 import { DatePipe, Location, UpperCasePipe } from '@angular/common';
-import { ButtonComponent } from '../../../components/button/button.component';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +21,6 @@ export class PostComponent implements OnInit {
 
   post! : IPost;
   author!: IAuthor;
-  retour: string = "Retour";
 
   constructor(
     private postService: PostService,
