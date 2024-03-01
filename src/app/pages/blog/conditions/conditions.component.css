@@ -6,7 +6,7 @@
 .conditions-text{
     font-family: 'Caveat', monospace;
     white-space: break-spaces;
-    font-size: clamp(18px, 0.5rem, 22px);
+    font-size: 22px;
     text-align: left;
 }
 

@@ -24,7 +24,7 @@ export const POSTS: Post[] = [
         author_id: 2,
         publication_date: new Date("2022-05-01"),
         updated_date: null,
-        isDraft: false,
+        isDraft: true,
         isOntheWishlist: false,
         category : "book"
     },
@@ -154,7 +154,7 @@ export const POSTS: Post[] = [
         author_id: 11,
         publication_date: new Date("2022-11-28"),
         updated_date: null,
-        isDraft: false,
+        isDraft: true,
         isOntheWishlist: false,
         category : "book"
     },

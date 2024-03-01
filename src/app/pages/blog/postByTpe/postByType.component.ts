@@ -16,7 +16,7 @@ import { Post } from '../../../models/post.model';
   styleUrl: './postByType.component.css'
 })
 export class PostByTypeComponent implements OnInit {
-  allPosts: Post[] = [];
+  allPostsPublished: Post[] = [];
   postsByCategory: Post[] = [];
   title: string = "";
   url!: string;
@@ -25,14 +25,13 @@ export class PostByTypeComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
 
-    this.allPosts = this.getAllPosts();
+    this.allPostsPublished = this.getAllPostsPublished();
 
     // Méthode appelée une première fois
     this.getPostByCategory();
@@ -49,8 +48,10 @@ export class PostByTypeComponent implements OnInit {
   }
 
   // Methode pour récupérer tous les posts
-  getAllPosts(): Post[] {
-    const posts = this.postService.getAllPosts();
+  getAllPostsPublished(): Post[] {
+    let posts : Post[] = [];
+    posts = this.postService.getAllPosts().filter((post:Post)=> post.isDraft === false);
+    console.log("post", posts);
     return posts;
   }
 
@@ -59,7 +60,7 @@ export class PostByTypeComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       const url = params.get('type');
       this.title = url!;
-      this.postsByCategory = this.postService.getPostByCategory(this.allPosts, url!);
+      this.postsByCategory = this.postService.getPostByCategory(this.allPostsPublished, url!);
     })
   }
 
