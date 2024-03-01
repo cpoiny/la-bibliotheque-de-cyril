@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { FooterComponent } from './components/footer/footer.component';
-import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { FooterComponent } from './components/blog/footer/footer.component';
+import { PageHeaderComponent } from './components/blog/page-header/page-header.component';
 
 
 @Component({

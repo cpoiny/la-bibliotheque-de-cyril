@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../../components/header/header.component';
+import { HeaderComponent } from '../../../components/blog/header/header.component';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
+import { PageHeaderComponent } from '../../../components/blog/page-header/page-header.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { UpperCasePipe } from '@angular/common';

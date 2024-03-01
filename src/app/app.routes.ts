@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/blog/home/home.component';
-import { ErrorComponent } from './pages/error/error.component';
+import { ErrorComponent } from './pages/pageNotFound/error.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { ConnexionComponent } from './pages/backOffice/connexion/connexion.component';
 import { BackofficeAddComponent } from './pages/backOffice/backoffice-add/backoffice-add.component';

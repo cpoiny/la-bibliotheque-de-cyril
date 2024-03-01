@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonComponent } from '../button/button.component';
-import { ConfidentialiteComponent } from '../../pages/blog/confidentialite/confidentialite.component';
-import { CookiesComponent } from '../../pages/blog/cookies/cookies.component';
-import { ConditionsComponent } from '../../pages/blog/conditions/conditions.component';
+import { ButtonComponent } from '../../button/button.component';
+import { ConfidentialiteComponent } from '../../../pages/blog/confidentialite/confidentialite.component';
+import { CookiesComponent } from '../../../pages/blog/cookies/cookies.component';
+import { ConditionsComponent } from '../../../pages/blog/conditions/conditions.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
+import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 
 @Component({
   selector: 'app-footer',

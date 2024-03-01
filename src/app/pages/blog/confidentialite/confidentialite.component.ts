@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../components/header/header.component';
+import { HeaderComponent } from '../../../components/blog/header/header.component';
 import { RouterLink } from '@angular/router';
-import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
+import { PageHeaderComponent } from '../../../components/blog/page-header/page-header.component';
 
 @Component({
   selector: 'app-confidentialite',

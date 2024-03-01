@@ -1,6 +1,6 @@
 import { Component, Signal, signal } from '@angular/core';
-import { VerticalLineComponent } from '../vertical-line/vertical-line.component';
 import { RouterLink } from '@angular/router';
+import { VerticalLineComponent } from '../../vertical-line/vertical-line.component';
 
 type ICategoryCard = {
   id: number;

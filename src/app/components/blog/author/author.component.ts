@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
-import { Author } from '../../models/author.model';
+import { Author } from '../../../models/author.model';
+
 
 @Component({
   selector: 'app-author',

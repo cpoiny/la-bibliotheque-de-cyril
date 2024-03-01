@@ -1,8 +1,8 @@
 import { Component, OnInit, Signal } from '@angular/core';
-import { HeaderComponent } from '../../../components/header/header.component';
+import { HeaderComponent } from '../../../components/blog/header/header.component';
 import { RouterLink } from '@angular/router';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
-import { CardCategoryComponent } from '../../../components/card-category/card-category.component';
+import { CardCategoryComponent } from '../../../components/blog/card-category/card-category.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { SlicePipe } from '@angular/common';
 import { Post } from '../../../models/post.model';

@@ -1,6 +1,6 @@
 import { Component, Signal, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { PictureProfileComponent } from '../picture-profile/picture-profile.component';
+import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 
 type IMenu = {
   id: number;
