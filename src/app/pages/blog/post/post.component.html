@@ -1,4 +1,4 @@
-<app-page-header></app-page-header>
+<!-- <app-page-header></app-page-header> -->
 <div class="flex">
 
     <!-- Menu -->
@@ -6,13 +6,21 @@
 
     <!-- POST -->
     <section class="container">
+        <div class="back-btn-titres">
 
-        <button type="button" class="button-back" (click)="goBack()">
-            <img src="assets/icons/retour.png" alt="retour en arrière">
-        </button>
-        <!-- TITRE POST : Livre et auteur -->
-        <h1 class="titre-partie">"{{post.title}}"</h1>
-        <h2 class="titre-partie">{{author.first_name | uppercase}} {{author.last_name | uppercase}}</h2>
+            <button type="button" class="button-back" (click)="goBack()">
+                <img src="assets/icons/retour.png" alt="retour en arrière">
+            </button>
+            <!-- TITRE POST : Livre et auteur -->
+            <div class="titres">
+                <h1 class="titre-partie ">" {{post.title}} "</h1>
+                <h2 class="titre-media">{{author.first_name | uppercase}} {{author.last_name | uppercase}}</h2>
+
+            </div>
+
+
+
+        </div>
     
         <app-vertical-line class="vertical-line"></app-vertical-line>
 
