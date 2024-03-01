@@ -40,7 +40,7 @@ export class AppComponent {
 
 
 checkUrl(url: string): void {
-  if (url.includes("cyril")) {
+  if (url.includes("biblio")) {
     this.isBackOffice = false;
   } else {
     this.isBackOffice = true;

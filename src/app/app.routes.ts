@@ -40,10 +40,12 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "admin_lbdc",
+        path: "backOffice_lbdc_connexion",
         component: ConnexionComponent,
+    },
+    {
+        path: "lbdc_cyril",
         children: [
-
             {
                 path: "add_post",
                 component: BackofficeAddComponent

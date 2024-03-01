@@ -1,0 +1,26 @@
+.header-bo {
+    width: 100vw;
+} 
+
+/* Entete contain title and picture profile */
+
+.entete-bo{   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    min-height: 10vh;
+    background-color: var(--main);
+}
+
+.entete-bo h1{
+width: 80%;
+text-align: center;
+border :red solid 2px ;
+
+}
+
+.entete-bo .picture{
+    border: red solid 1px;
+    height: 5vh;
+}
