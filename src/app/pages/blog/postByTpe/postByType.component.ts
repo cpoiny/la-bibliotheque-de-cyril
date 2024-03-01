@@ -51,7 +51,6 @@ export class PostByTypeComponent implements OnInit {
   getAllPostsPublished(): Post[] {
     let posts : Post[] = [];
     posts = this.postService.getAllPosts().filter((post:Post)=> post.isDraft === false);
-    console.log("post", posts);
     return posts;
   }
 

@@ -2,4 +2,6 @@
 <main>
   <router-outlet class="body"></router-outlet>
 </main>
-<app-footer></app-footer>
+@if(!isBackOffice){
+  <app-footer></app-footer>
+}

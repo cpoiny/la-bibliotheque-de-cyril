@@ -9,6 +9,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
     provideClientHydration(),
+    // add this provider to use httpClient instead of the ngModule + add withFetch because there was a warning otherwise
     provideHttpClient(withFetch()),
 
   ]

@@ -40,7 +40,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "admin_la_bibliotheque_de_cyril",
+        path: "admin_lbdc",
         component: ConnexionComponent,
         children: [
 
