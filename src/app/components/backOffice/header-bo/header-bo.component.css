@@ -49,7 +49,11 @@ app-picture-profile{
     font-size: 25px;
 }
 
-.nav-bo ul li a:hover{
+/* .nav-bo ul li a:hover{
+    text-decoration: underline 4px var(--gold);
+} */
+
+.nav-bo ul .active a{
     text-decoration: underline 4px var(--gold);
 }
 

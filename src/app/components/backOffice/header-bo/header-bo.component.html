@@ -5,9 +5,11 @@
     </div>
     <nav class="nav-bo">
         <ul>
-            <li><a routerLink="">Mon compte</a></li>
-            <li><a routerLink="">Tous mes posts</a></li>
-            <li><a routerLink="">Publication</a></li>
+            @for(menu of menuBO; track menu.id){
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <a routerLink="{{menu.link}}">{{menu.title}}</a>
+                </li>
+            }
         </ul>
     </nav>
 </div>
