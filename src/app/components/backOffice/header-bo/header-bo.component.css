@@ -9,18 +9,18 @@
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    min-height: 10vh;
     background-color: var(--main);
 }
 
 .entete-bo h1{
-width: 80%;
+width: 70%;
 text-align: center;
-border :red solid 2px ;
+font-family: 'Courier Prime', sans-serif;
+font-weight: normal;
 
 }
 
-.entete-bo .picture{
-    border: red solid 1px;
-    height: 5vh;
+app-picture-profile{
+    height:100%;
+    
 }

@@ -1,7 +1,15 @@
 .profile img{
-    width:50%;
+    width:100%;
     display: block;
-    margin: 3vh auto 2vh;
+    /* margin: 3vh auto 2vh; */
+    object-fit: contain;
+  
+}
+
+.profile{
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Responsive */

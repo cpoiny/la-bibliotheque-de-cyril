@@ -19,7 +19,10 @@
 
 
 /* Image de profil */
-
+.header-blog {
+    width: 50%;
+    margin: 2vh auto 5vh;
+}
 
 /* Navigation */
 
@@ -68,7 +71,7 @@
     }
 
 
-    .profile img {
+    .header-blog {
         min-width: 8vw;
         margin: 3vh 0;
     }
@@ -98,8 +101,9 @@
         min-width: 15vw;
         border-right: black solid 0.5px;
     }
-    .profile img {
-        width: 95%;
+
+    .header-blog {
+        width: 100%;
         margin: 3vh 0;
     }
 
@@ -114,7 +118,7 @@
     .menu nav ul li {
         width: 100%;
         margin-bottom: 3vh;
-        padding:0.8vh;
+        padding: 0.8vh;
     }
 
     .menu nav ul li a {
@@ -127,11 +131,11 @@
     }
 
     .active {
-        border :var(--gold) 2px solid;
+        border: var(--gold) 2px solid;
         background-color: var(--white);
         border-radius: 50%;
     }
-    
+
 }
 
 @media (max-width:425px) {

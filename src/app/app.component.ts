@@ -40,10 +40,10 @@ export class AppComponent {
 
 
 checkUrl(url: string): void {
-  if (url.includes("biblio")) {
-    this.isBackOffice = false;
-  } else {
+  if (url.includes("lbdc")) {
     this.isBackOffice = true;
+  } else {
+    this.isBackOffice = false;
   }
 }
  
