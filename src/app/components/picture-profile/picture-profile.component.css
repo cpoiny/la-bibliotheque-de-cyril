@@ -1,7 +1,15 @@
 .profile img{
-    width:50%;
+    width:100%;
     display: block;
-    margin: 3vh auto 2vh;
+    /* margin: 3vh auto 2vh; */
+    object-fit: contain;
+  
+}
+
+.profile{
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Responsive */
@@ -9,8 +17,8 @@
 @media (max-width:599px) {
 
     .profile img{
-        width:80%;
+        width:100%;
         display: block;
-        margin: 2vh auto 3vh;
+        /* margin: 2vh auto 3vh; */
     }
 }

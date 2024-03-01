@@ -1,5 +1,6 @@
 .header-bo {
     width: 100vw;
+    min-width: 100vw;
 } 
 
 /* Entete contain title and picture profile */
@@ -9,18 +10,80 @@
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    min-height: 10vh;
     background-color: var(--main);
 }
 
 .entete-bo h1{
-width: 80%;
+width: 100%;
 text-align: center;
-border :red solid 2px ;
+font-family: 'Courier Prime', sans-serif;
+font-weight: 100;
 
 }
 
-.entete-bo .picture{
-    border: red solid 1px;
-    height: 5vh;
+app-picture-profile{
+    height:100%;
+    padding: 0.5rem 2rem;
+}
+
+/* Navigation */
+
+.nav-bo{
+    margin-top:.2rem;
+    background-color: var(--main);
+}
+.nav-bo ul {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bo ul li{
+    width: 33%;
+    min-width:30%;
+    text-align: center;
+    padding: 1vh;
+}
+
+.nav-bo ul li a {
+    font-family: "Caveat", sans-serif;
+    font-size: 25px;
+}
+
+.nav-bo ul .active a{
+    text-decoration: underline 4px var(--gold);
+}
+
+/* Responsive */
+
+/* Smartphone */
+@media (max-width:599px) {
+    .entete-bo h1{
+        font-size: 18px;
+    }
+
+    .nav-bo ul li a {
+        font-family: "Caveat", sans-serif;
+        font-size: 20px;
+    }
+
+    app-picture-profile{
+        padding: 0.5rem;
+    }
+
+
+}
+
+
+/* tablet */
+@media (min-width:600px) and (max-width:1024px) {
+
+    .entete-bo h1{
+        font-size: 20px;
+    }
+
+    .nav-bo ul li a {
+        font-family: "Caveat", sans-serif;
+        font-size: 20px;
+    }
+
 }

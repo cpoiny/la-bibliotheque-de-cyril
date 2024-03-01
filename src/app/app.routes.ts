@@ -40,7 +40,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "backOffice_lbdc_connexion",
+        path: "admin_lbdc_connexion",
         component: ConnexionComponent,
     },
     {
