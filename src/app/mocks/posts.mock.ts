@@ -1,26 +1,7 @@
-import { Signal, signal } from "@angular/core";
 
-export interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    picture: string;
-    media_id : number;
-    author_id: number;
-    galerie?: IGalerie[];
-    publication_date: Date,
-    updated_date: Date | null;
-    isDraft: true | false;
-    isOntheWishlist: true | false;
-    category : "book" | "movie" | "quote";
-}
+import { Post } from "../models/post.model";
 
-export interface IGalerie {
-    titre: string,
-    img: string
-}
-
-export const POSTS: IPost[] = [
+export const POSTS: Post[] = [
     {
         id: 1,
         title: "Le café suspendu",
@@ -177,8 +158,4 @@ export const POSTS: IPost[] = [
         isOntheWishlist: false,
         category : "book"
     },
-
-
-
-
 ];

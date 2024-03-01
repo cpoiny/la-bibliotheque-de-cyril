@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PostComponent } from '../../pages/blog/post/post.component';
 import { MediaService } from '../../services/MediaService/media.service';
-import { IMedia } from '../../mocks/media.mock';
+import { Media } from '../../models/media.model';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +17,7 @@ export class CardComponent implements OnInit{
 @Input() picture!: string;  
 @Input() title!: string;
 @Input() id! :number;
-book!: IMedia;
+book!: Media;
 
 
 constructor(

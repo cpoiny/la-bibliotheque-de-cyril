@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IPost, POSTS } from '../../mocks/posts.mock';
-import { AUTHORS, IAuthor } from '../../mocks/author.mock';
+import { POSTS } from '../../mocks/posts.mock';
+import { AUTHORS} from '../../mocks/author.mock';
+import { Post } from '../../models/post.model';
+import { Author } from '../../models/author.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,11 @@ export class PostService {
   constructor() { }
 
 
-  getAllPosts(): IPost[] {
+  getAllPosts(): Post[] {
     return POSTS;
   }
 
-  getPostByCategory(posts: IPost[], category: string): IPost[] {
+  getPostByCategory(posts: Post[], category: string): Post[] {
     if(posts) {
       if (category === "litterature") {
         return posts.filter((post)=> post.category === "book")
@@ -30,13 +32,13 @@ export class PostService {
 }
 
 
-getPostById(id : number) : IPost[] {
+getPostById(id : number) : Post[] {
   const post = POSTS.filter((post) => post.id === id);
   return post;
 }
 
 
-getAuthorById(post: IPost): IAuthor {
+getAuthorById(post: Post): Author {
     const id = post.author_id;
     const author = AUTHORS.filter((author) => author.id === id);
     return author[0];

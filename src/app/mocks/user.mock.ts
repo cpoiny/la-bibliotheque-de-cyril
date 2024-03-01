@@ -1,14 +1,7 @@
-export interface IUser {
-    id: number,
-    pseudo: string,
-    email: string,
-    password: string,
-    role: "admin" | "contributor" | "visitor",
-    token: string
-}
+import { User } from "../models/user.model";
 
 
-export const USERS: IUser[] = [ 
+export const USERS: User[] = [ 
     {
         id: 1,
         pseudo: "Cyril",

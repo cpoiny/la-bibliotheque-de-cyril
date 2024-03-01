@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from '../../../components/page-header/page-header.component';
-import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
 import { CardComponent } from '../../../components/card/card.component';
 import { UpperCasePipe } from '@angular/common';
 import { filter } from 'rxjs';
-import { MediaService } from '../../../services/MediaService/media.service';
-import { IMedia } from '../../../mocks/media.mock';
+import { Post } from '../../../models/post.model';
 
 @Component({
   selector: 'app-postByType',
@@ -18,8 +16,8 @@ import { IMedia } from '../../../mocks/media.mock';
   styleUrl: './postByType.component.css'
 })
 export class PostByTypeComponent implements OnInit {
-  allPosts: IPost[] = [];
-  postsByCategory: IPost[] = [];
+  allPosts: Post[] = [];
+  postsByCategory: Post[] = [];
   title: string = "";
   url!: string;
 
@@ -51,7 +49,7 @@ export class PostByTypeComponent implements OnInit {
   }
 
   // Methode pour récupérer tous les posts
-  getAllPosts(): IPost[] {
+  getAllPosts(): Post[] {
     const posts = this.postService.getAllPosts();
     return posts;
   }
