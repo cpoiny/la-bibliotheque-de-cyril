@@ -5,7 +5,7 @@
 
 .cookies-text {
     font-family: 'Caveat', monospace;
-    font-size: clamp(18px, 0.5rem, 22px);
+    font-size: 22px;
     text-align: left;
 }
 

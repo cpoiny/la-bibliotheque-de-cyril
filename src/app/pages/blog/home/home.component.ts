@@ -4,8 +4,8 @@ import { RouterLink } from '@angular/router';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { CardCategoryComponent } from '../../../components/card-category/card-category.component';
 import { PostService } from '../../../services/PostService/post.service';
-import { IPost } from '../../../mocks/posts.mock';
 import { SlicePipe } from '@angular/common';
+import { Post } from '../../../models/post.model';
 
 
 @Component({
@@ -17,8 +17,8 @@ import { SlicePipe } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
-posts!: IPost[];
-lastPost! :IPost;
+posts!: Post[];
+lastPost! :Post;
 
 constructor(
   private postService: PostService
@@ -35,12 +35,12 @@ ngOnInit(){
 
 }
 
-getAllPosts(): IPost[] {
+getAllPosts(): Post[] {
   return this.posts = this.postService.getAllPosts();
 }
 
 
-getLastPost(posts: IPost[]): void {
+getLastPost(posts: Post[]): void {
   const allPost = posts
   .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
   this.lastPost = allPost[0];

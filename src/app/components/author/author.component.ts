@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IAuthor } from '../../mocks/author.mock';
 import { UpperCasePipe } from '@angular/common';
+import { Author } from '../../models/author.model';
 
 @Component({
   selector: 'app-author',
@@ -10,5 +10,5 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './author.component.css'
 })
 export class AuthorComponent {
-@Input() author! :IAuthor;
+@Input() author! :Author
 }

@@ -1,16 +1,7 @@
-export interface IMedia {
-    id: number,
-    title: string,
-    author_id: number,
-    theme: string,
-    created_at: Date,
-    updated_date: Date | null,
-    edition?: string,
-    category : "book" | "movie" | "quote"
-}
+import { Media } from "../models/media.model";
 
 
-export const MEDIAS: IMedia[] = [
+export const MEDIAS: Media[] = [
     {
         id: 1,
         title: "Le café suspendu",

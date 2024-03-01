@@ -3,11 +3,12 @@ import { PageHeaderComponent } from '../../../components/page-header/page-header
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ActivatedRoute } from '@angular/router';
-import { IPost } from '../../../mocks/posts.mock';
 import { PostService } from '../../../services/PostService/post.service';
-import { IAuthor } from '../../../mocks/author.mock';
+
 import { DatePipe, Location, UpperCasePipe } from '@angular/common';
 import { AuthorComponent } from '../../../components/author/author.component';
+import { Post } from '../../../models/post.model';
+import { Author } from '../../../models/author.model';
 
 @Component({
   selector: 'app-post',
@@ -20,8 +21,8 @@ import { AuthorComponent } from '../../../components/author/author.component';
 
 export class PostComponent implements OnInit {
 
-post!: IPost;
-author!: IAuthor;
+post!: Post;
+author!: Author;
 
   constructor(
     private postService: PostService,
@@ -42,7 +43,7 @@ author!: IAuthor;
     this.post = postToDisplay[0];
   }
 
-  getAuthorById(post: IPost): void {
+  getAuthorById(post: Post): void {
     const authorToDisplay = this.postService.getAuthorById(post);
     this.author = authorToDisplay;
   }

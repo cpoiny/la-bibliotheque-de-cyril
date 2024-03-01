@@ -1,13 +1,6 @@
-export interface IAuthor {
-    id: number,
-    first_name: string,
-    last_name: string,
-    picture: string,
-    description: string
-}
+import { Author } from "../models/author.model";
 
-
-export const AUTHORS: IAuthor[] = [
+export const AUTHORS: Author[] = [
     {
         id: 1,
         first_name: "Amanda",
