@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderBoComponent } from '../../../components/backOffice/header-bo/header-bo.component';
 import { ButtonComponent } from '../../../components/button/button.component';
+import { ButtonCatBOComponent } from '../../../components/backOffice/button-cat-bo/button-cat-bo.component';
 
 export interface ICategoryButton{
   id: number;
@@ -11,7 +12,7 @@ export interface ICategoryButton{
 @Component({
   selector: 'app-backoffice-add',
   standalone: true,
-  imports: [HeaderBoComponent,ButtonComponent],
+  imports: [HeaderBoComponent,ButtonComponent, ButtonCatBOComponent],
   templateUrl: './backoffice-add.component.html',
   styleUrl: './backoffice-add.component.css'
 })

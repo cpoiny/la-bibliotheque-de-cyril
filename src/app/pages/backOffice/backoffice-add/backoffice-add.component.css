@@ -37,30 +37,11 @@
     font-weight: normal;
 }
 
-.entete-titre button {
-    border: var(--black);
-    width: 150px;
-    height: 50px;;
-    border-radius: 40px;
-}
-
 .catButton{
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-around;
 }
 
-.catButton button{
-    font-family: "Merriweather", sans-serif;
-    border: black solid 0.5px;
-    background-color: white;
 
-}
-
-.catButton button:hover{
-    background-color: var(--gold);
-    color: white;
-    border: none;
-    transform: scale(1.08);
-}
 

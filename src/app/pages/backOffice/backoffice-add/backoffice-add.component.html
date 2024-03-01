@@ -9,7 +9,7 @@
             <ul class = catButton>
                     @for(button of categoriesButton; track button.id){
                     <li>
-                        <button>{{button.title}}</button>
+                        <app-button-cat-bo [title]="button.title"></app-button-cat-bo>
                     </li>
                 }
                 </ul>
