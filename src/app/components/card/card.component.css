@@ -4,6 +4,12 @@
     gap: 5vh;
     position: relative;
     cursor:pointer;
+    -webkit-transition: all 100ms ease-in-out;
+    transition: all 100ms ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.04);
 }
 
 .card img {
@@ -43,11 +49,11 @@
 }
 
 
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:1025px){
 
     .card {
-        width:30vw;
-        height: 30vw;
+        width:40vw;
+        height: 40vw;
     }
     .titre-partie{
         font-size: 18px;

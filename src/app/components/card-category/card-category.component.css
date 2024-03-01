@@ -42,7 +42,9 @@ li:nth-child(3n) .x {
 .image-card {
     width: 50%;
     position: relative;
+   
 }
+
 
 li:nth-child(3n) .x .image-card {
     justify-content: center;
@@ -76,11 +78,18 @@ li:nth-child(3n) .x .button-card-category {
     position: absolute;
     left: 20%;
     top: 45%;
+    -webkit-transition: all 100ms ease-in-out;
+    transition: all 100ms ease-in-out;
+}
+
+.button-card-category:hover{
+    transform: scale(1.5);
 }
 
 .img-icon {
     width: 100%;
     padding: 10px;
+
 }
 
 
