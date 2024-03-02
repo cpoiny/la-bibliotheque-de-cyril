@@ -40,14 +40,23 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "admin_lbdc/connexion",
+        path: "admin-lbdc/connexion",
         component: ConnexionComponent,
     },
     {
-        path: "lbdc_cyril",
+        path: "admin-lbdc/posts",
         children: [
             {
-                path: "add_post",
+                path: "all",
+                component: PostByTypeComponent
+                // Créer une page pour afficher tous les posts
+            },
+            {
+                path: "modifier/:id",
+                component: BackofficeAddComponent
+            },
+            {
+                path: "ajouter",
                 component: BackofficeAddComponent
             },
         ]

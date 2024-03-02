@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export interface ICategoryButton {
   id: number;
   title: string;
+  icon: string;
 }
 
 
@@ -32,19 +33,23 @@ export class BackofficeAddComponent implements OnInit {
     {
       id: 1,
       title: "Littérature",
+      icon: "assets/icons/livre.png",
     },
     {
       id: 2,
       title: "Cinéma",
+      icon: "assets/icons/clap.png",
     },
     {
       id: 3,
       title: "Citations",
+      icon: "assets/icons/citation.png",
     }
   ]
 
   ngOnInit(): void {
     this.buildForm();
+    console.log(this.categoriesButton);
 
   }
 
@@ -76,17 +81,21 @@ export class BackofficeAddComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-    this.selectedFile = file;
-    this.postForm.patchValue({ image: file });
+      this.selectedFile = file;
+      this.postForm.patchValue({ image: file });
 
-    // Afficher l'image sélectionnée
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.selectedFileUrl = reader.result as string;
-    };
-    reader.readAsDataURL(this.selectedFile);
+      // Afficher l'image sélectionnée
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedFileUrl = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
-}
+
+  getValueCategory() :void {
+    console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
+  }
 
 }
 

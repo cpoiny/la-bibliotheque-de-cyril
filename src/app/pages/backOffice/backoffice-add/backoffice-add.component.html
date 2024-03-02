@@ -1,15 +1,19 @@
 <div class="container">
-    <!-- <app-header-bo></app-header-bo> -->
+    <app-header-bo></app-header-bo>
     <div class="container-body">
 
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
             <div class="entete-titre">
                 <h1>Ajouter une publication</h1>
-                <ul class=catButton>
+                <ul class="catButton">
                     @for(button of categoriesButton; track button.id){
                     <li>
-                        <app-button-cat-bo [title]="button.title"></app-button-cat-bo>
+                        <label class="cat" for="button.title" (click)="getValueCategory()">
+                            <span class="cat-text">{{button.title}}</span>
+                            <img class="cat-icon" src="{{button.icon}}" alt="button.title">
+                        </label>
+                        <input class="cat-input" type="radio" name="button.title" id="button.title" value="button.title">
                     </li>
                     }
                 </ul>
@@ -57,7 +61,8 @@
                         <img class="photo selected" [src]="selectedFileUrl" alt="selectedFileUrl">
                         }
                         @else(){
-                        <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
+                        <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
+                            alt="Image placeholder">
                         }
                     </div>
 

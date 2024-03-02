@@ -9,7 +9,7 @@
 .container-body {
     margin: 5vh auto;
     width: 80%;
-    }
+}
 
 /* Entete : img, title, button */
 .container-entete {
@@ -37,10 +37,32 @@
     font-weight: normal;
 }
 
+
 .catButton {
     display: flex;
-    width: 90%;
+    min-width: 40vw;
     justify-content: space-around;
+}
+
+.catButton li {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:1vw;
+    width: 8vw;
+    height: 3vw;
+    border-radius: 30px;
+    border: black solid 1px;
+}
+
+
+
+.cat-icon {
+    display: none;
+}
+
+.cat-input {
+    display: none;
 }
 
 /* Formulaire */
@@ -60,7 +82,7 @@
     display: flex;
 }
 
-.container-formulaire div label {
+.container-formulaire form div label {
     width: 29%;
     font-family: "Caveat", sans-serif;
     font-size: 28px;
@@ -117,8 +139,8 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 800px) {
-    .container-body{
+@media (max-width: 850px) {
+    .container-body {
         width: 95%;
     }
 
@@ -130,24 +152,20 @@
     }
 
     .entete-titre h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         display: block;
-        width: 100%;
     }
-    .container-formulaire{
-        width: 100%;
 
-        margin :0;
+    .container-formulaire {
+        width: 100%;
+        margin: 0;
     }
 
     .container-formulaire form div {
         flex-wrap: wrap;
-       
+
     }
 
-    .catButton {
-        display: none;
-    }
 
     .container-formulaire div label,
     .input-form,
@@ -160,4 +178,38 @@
         height: 40vw;
     }
 
+    .cat-icon {
+        display: block;
+    }
+
+    .cat-text {
+        display: none;
+    }
+
+
+
+    @media (max-width: 799px) {
+
+        .container-formulaire form div label{
+            width: 100%;
+        }
+        .entete-titre {
+            width: 90%;
+            text-align: center;
+        }
+
+        .entete-titre h1 {
+            font-size: 1.5rem;
+        }
+
+        .cat-icon {
+            display: block;
+        }
+
+        .cat-text {
+            display: none;
+        }
+
+
+    }
 }
