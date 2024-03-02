@@ -72,19 +72,17 @@ export class BackofficeAddComponent implements OnInit {
     }
   }
 
+  // Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
     this.selectedFile = file;
-    // this.postForm.get('photo')?.setValue(this.selectedFile);
     this.postForm.patchValue({ image: file });
-    console.log("ma photo", this.selectedFile);
 
     // Afficher l'image sélectionnée
     const reader = new FileReader();
     reader.onload = () => {
       this.selectedFileUrl = reader.result as string;
-      console.log("test photo");
     };
     reader.readAsDataURL(this.selectedFile);
   }

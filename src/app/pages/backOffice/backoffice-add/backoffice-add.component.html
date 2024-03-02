@@ -20,43 +20,46 @@
         <div class="container-formulaire">
             <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
                 <!-- Nom Auteur -->
-                <div class="nom-auteur">
+                <div>
                     <label for="nom">Nom auteur :</label>
-                    <input type="text" id="nom" formControlName="nom">
+                    <input class="input-form" type="text" id="nom" formControlName="nom">
                 </div>
                 <!-- Prenom Auteur -->
-                <div class="prenom-auteur">
+                <div>
                     <label for="prenom">Prenom auteur :</label>
-                    <input type="text" id="prenom" formControlName="prenom">
+                    <input class="input-form" type="text" id="prenom" formControlName="prenom">
                 </div>
                 <!-- Titre -->
-                <div class="titre-post">
+                <div>
                     <label for="titre">Titre :</label>
-                    <input type="text" id="titre" formControlName="titre">
+                    <input class="input-form" type="text" id="titre" formControlName="titre">
                 </div>
                 <!-- Catégorie -->
-                <div class="categorie-post">
+                <div>
                     <label for="categorie">Catégorie :</label>
-                    <input type="text" id="categorie" formControlName="categorie">
+                    <input class="input-form" type="text" id="categorie" formControlName="categorie">
                 </div>
                 <!-- Publication -->
-                <div class="publication-post">
+                <div>
                     <label for="publication">Publication:</label>
-                    <textarea name="publication" id="publication" cols="30" rows="10"
+                    <textarea class="input-form" name="publication" id="publication" cols="30" rows="10"
                         formControlName="publication"></textarea>
 
                 </div>
                 <!-- Photo de couverture -->
                 <div class="photo-post">
-                    <label for="photo">Photo de couverture</label>
-                    <input type="file" accept="assets/*" id="photo" formControlName="photo"
-                        (change)="onFileSelected($event)">
-                    @if(selectedFileUrl){
-                    <img class="photo-post" [src]="selectedFileUrl" alt="Image sélectionnée">
-                    }
-                    @else(){
-                    <img class="photo-post" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                    }
+                    <label for="photo">Photo de couverture :</label>
+                    <div class="photo-image">
+
+                        <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
+                            (change)="onFileSelected($event)">
+                        @if(selectedFileUrl){
+                        <img class="photo selected" [src]="selectedFileUrl" alt="selectedFileUrl">
+                        }
+                        @else(){
+                        <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
+                        }
+                    </div>
 
                 </div>
                 <!-- Boutons -->

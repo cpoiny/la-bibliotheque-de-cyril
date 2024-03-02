@@ -45,9 +45,56 @@
 
 /* Formulaire */
 
-.photo-post {
-    width: 150px;
-    height: 150px;
-    /* border: black solid 2px; */
+.container-formulaire{
+    border: red solid 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-formulaire form{
+    width: 70%;
+}
+
+.container-formulaire form div{
+    margin-bottom : 5vh;
+    gap: 5vh;
+    display: flex;
+}
+
+.container-formulaire div label {
+    width: 30%;
+    font-family: "Caveat", sans-serif;
+    font-size: 28px;
+}
+
+.container-formulaire div .input-form {
+    width: 70%;
+    height: 5vh;
+    border-radius: 20px;
+    border: black solid 0.5px;
+}
+
+
+/* Photo de la publication */
+
+.photo {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 20px;;
+    
+}
+
+.photo-image{
+    display: flex;
+    flex-direction: column;
+}
+/* Pour le placeholder */
+.notSelected{
+    border: black solid 0.5px;
+}
+
+/* Pour l'image sélectionnée */
+.selected {
+    border: none;
 }
 
