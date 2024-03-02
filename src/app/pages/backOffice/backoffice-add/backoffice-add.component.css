@@ -43,5 +43,11 @@
     justify-content: space-around;
 }
 
+/* Formulaire */
 
+.photo-post {
+    width: 150px;
+    height: 150px;
+    /* border: black solid 2px; */
+}
 

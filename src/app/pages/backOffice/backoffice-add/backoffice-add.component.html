@@ -1,30 +1,77 @@
 <div class="container">
-<app-header-bo></app-header-bo>
-<div class="container-body">
+    <app-header-bo></app-header-bo>
+    <div class="container-body">
 
-    <div class="container-entete">
-        <img src="assets/illustration/back-office.png" alt="back-office">
-        <div class="entete-titre">
-            <h1>Ajouter une publication</h1>
-            <ul class = catButton>
+        <div class="container-entete">
+            <img src="assets/illustration/back-office.png" alt="back-office">
+            <div class="entete-titre">
+                <h1>Ajouter une publication</h1>
+                <ul class=catButton>
                     @for(button of categoriesButton; track button.id){
                     <li>
                         <app-button-cat-bo [title]="button.title"></app-button-cat-bo>
                     </li>
-                }
+                    }
                 </ul>
-    
+
+            </div>
         </div>
-    </div>
-    
-    <div class="container-formulaire">
-        <p>Mon formulaire</p>
+
+        <div class="container-formulaire">
+            <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+                <!-- Nom Auteur -->
+                <div class="nom-auteur">
+                    <label for="nom">Nom auteur :</label>
+                    <input type="text" id="nom" formControlName="nom">
+                </div>
+                <!-- Prenom Auteur -->
+                <div class="prenom-auteur">
+                    <label for="prenom">Prenom auteur :</label>
+                    <input type="text" id="prenom" formControlName="prenom">
+                </div>
+                <!-- Titre -->
+                <div class="titre-post">
+                    <label for="titre">Titre :</label>
+                    <input type="text" id="titre" formControlName="titre">
+                </div>
+                <!-- Catégorie -->
+                <div class="categorie-post">
+                    <label for="categorie">Catégorie :</label>
+                    <input type="text" id="categorie" formControlName="categorie">
+                </div>
+                <!-- Publication -->
+                <div class="publication-post">
+                    <label for="publication">Publication:</label>
+                    <textarea name="publication" id="publication" cols="30" rows="10"
+                        formControlName="publication"></textarea>
+
+                </div>
+                <!-- Photo de couverture -->
+                <div class="photo-post">
+                    <label for="photo">Photo de couverture</label>
+                    <input type="file" accept="assets/*" id="photo" formControlName="photo"
+                        (change)="onFileSelected($event)">
+                    @if(selectedFileUrl){
+                    <img class="photo-post" [src]="selectedFileUrl" alt="Image sélectionnée">
+                    }
+                    @else(){
+                    <img class="photo-post" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
+                    }
+
+                </div>
+                <!-- Boutons -->
+                <div>
+                    <button>Annuler</button>
+                    <button type="submit" [disabled]="postForm.invalid">Publier</button>
+                </div>
+
+
+
+            </form>
+        </div>
+
+
     </div>
 
 
 </div>
-
-
-</div>
-
-
