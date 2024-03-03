@@ -31,7 +31,7 @@ export class HeaderBoComponent {
     {
       id: 3,
       title: "Publication",
-      link: "/admin-lbdc/ajouter"
+      link: "/admin-lbdc/toutes-les-publications/ajouter"
     }
   ];
 

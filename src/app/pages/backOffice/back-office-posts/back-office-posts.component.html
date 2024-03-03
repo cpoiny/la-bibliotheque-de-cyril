@@ -1,11 +1,14 @@
+<app-header-bo></app-header-bo>
 <div class="container">
-    <app-header-bo></app-header-bo>
     <!-- Afficher toutes les cards -->
 
 
-    <div class="ajout">
-        <span>+</span>
-        <app-button  routerLink="ajouter" [title]="ajouter"></app-button>
+
+
+
+    <div routerLink="ajouter" class="ajout">
+        <img src="assets/icons/plus-gold.png" alt="ajouter">
+        <app-button [title]="ajouter"></app-button>
     </div>
     <!-- Catégorie littérature -->
     <div class="posts">
@@ -16,15 +19,16 @@
             <li>
                 <app-card class="card" [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
-                <button>Modifier</button>
-                <button>Supprimer</button>
+                <div class="actions-button">
+                    <app-actions-button></app-actions-button>
+                </div>
 
             </li>
             }
         </ul>
 
         } @else {
-        <p>Aucun post dans cette catégorie</p>
+        <p class="no-post">Aucun post dans cette catégorie.</p>
         }
     </div>
 
@@ -38,15 +42,16 @@
             <li>
                 <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
-                <button>Modifier</button>
-                <button>Supprimer</button>
+                <div class="actions-button">
+                    <app-actions-button></app-actions-button>
+                </div>
 
             </li>
             }
         </ul>
 
         } @else {
-        <p>Aucun post dans cette catégorie</p>
+        <p class="no-post">Aucun post dans cette catégorie.</p>
         }
     </div>
 
@@ -60,15 +65,15 @@
             <li>
                 <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
-                <button>Modifier</button>
-                <button>Supprimer</button>
-
+                <div class="actions-button">
+                    <app-actions-button></app-actions-button>
+                </div>
             </li>
             }
         </ul>
 
         } @else {
-        <p>Aucun post dans cette catégorie</p>
+        <p class="no-post">Aucun post dans cette catégorie.</p>
         }
     </div>
 

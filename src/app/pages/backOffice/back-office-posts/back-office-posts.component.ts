@@ -5,11 +5,12 @@ import { Post } from '../../../models/post.model';
 import { PostService } from '../../../services/PostService/post.service';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../components/button/button.component';
+import { ActionsButtonComponent } from '../../../components/backOffice/actions-button/actions-button.component';
 
 @Component({
   selector: 'app-back-office-posts',
   standalone: true,
-  imports: [HeaderBoComponent, CardComponent, RouterLink, ButtonComponent],
+  imports: [HeaderBoComponent, CardComponent, RouterLink, ButtonComponent, ActionsButtonComponent],
   templateUrl: './back-office-posts.component.html',
   styleUrl: './back-office-posts.component.css'
 })
