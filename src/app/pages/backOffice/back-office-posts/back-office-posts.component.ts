@@ -16,15 +16,16 @@ import { ActionsButtonComponent } from '../../../components/backOffice/actions-b
 })
 export class BackOfficePostsComponent implements OnInit{
 
-ajouter: string = "Nouvelle publication";
-
 constructor (
   private postService: PostService,
 ){}
 
+ajouter: string = "Nouvelle publication";
 bookPosts : Post[] = [];
 moviePosts : Post[] = [];
 quotePosts : Post[] = [];
+srcEdit : string = "assets/icons/edit.png";
+srcDelete : string = "assets/icons/corbeille.png"
 
 ngOnInit() : void {
 
@@ -45,7 +46,11 @@ getAllPosts() : void {
 filterAllPosts() : void {
 }
 
-test() : void {
-  console.log("test button");
+onEdit(): void {
+  console.log("click edit");
+}
+
+onDelete(): void {
+  console.log("click delete");
 }
 }
