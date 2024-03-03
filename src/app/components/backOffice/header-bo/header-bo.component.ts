@@ -26,12 +26,12 @@ export class HeaderBoComponent {
     {
       id: 2,
       title: "Tous mes posts",
-      link: "/admin-lbdc/all"
+      link: "/admin-lbdc/toutes-les-publications"
     },
     {
       id: 3,
       title: "Publication",
-      link: "/admin-lbdc/add"
+      link: "/admin-lbdc/toutes-les-publications/ajouter"
     }
   ];
 

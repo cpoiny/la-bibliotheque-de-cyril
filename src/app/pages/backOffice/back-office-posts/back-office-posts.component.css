@@ -1,0 +1,54 @@
+.container {
+    width: 90%;
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10vh;
+    margin: 18vh auto 3vw;
+}
+
+.posts ul {
+    margin: 0 5vh;
+    display: flex;
+    gap: 5vh;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+h2 {
+    margin: 5vh;
+    font-size:xx-large;
+}
+
+.ajout{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 3vh 5vh 0;
+    cursor: pointer;
+}
+
+
+app-button:hover {
+    cursor: pointer;
+}
+
+.ajout img{
+    width: 3vw;
+    min-width: 40px;
+    margin-right: 2vh;
+}
+
+.no-post{
+    margin: 0 5vh;
+    font-size: 1.5rem;
+}
+
+
+.actions-button {
+    display: flex;
+    justify-content: end;
+    
+}
+

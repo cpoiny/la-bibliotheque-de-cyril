@@ -1,4 +1,4 @@
-import { Media } from "../models/media.model";
+import { Media } from "../../models/media.model";
 
 
 export const MEDIAS: Media[] = [
