@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Post } from '../../../models/post.model';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ActionsButtonComponent {
 @Input() src: string = "";
 @Input() alt: string = "";
-@Output() buttonAction = new EventEmitter<void>();
+@Output() buttonAction = new EventEmitter<Post>();
 
 
 
 onClick(): void {
-  this.buttonAction.emit()
+  let data : any;
+  this.buttonAction.emit(data);
 }
 
 

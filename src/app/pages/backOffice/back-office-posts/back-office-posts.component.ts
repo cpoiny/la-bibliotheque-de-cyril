@@ -46,8 +46,8 @@ getAllPosts() : void {
 filterAllPosts() : void {
 }
 
-onEdit(): void {
-  console.log("click edit");
+onEdit(data: any): void {
+  console.log("click edit", data);
 }
 
 onDelete(): void {
