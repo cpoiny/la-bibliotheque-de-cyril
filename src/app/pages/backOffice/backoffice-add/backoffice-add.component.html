@@ -17,65 +17,11 @@
                     </li>
                     }
                 </ul>
-
             </div>
         </div>
 
-        <div class="container-formulaire">
-            <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-                <!-- Nom Auteur -->
-                <div>
-                    <label for="nom">Nom auteur :</label>
-                    <input class="input-form" type="text" id="nom" formControlName="nom">
-                </div>
-                <!-- Prenom Auteur -->
-                <div>
-                    <label for="prenom">Prenom auteur :</label>
-                    <input class="input-form" type="text" id="prenom" formControlName="prenom">
-                </div>
-                <!-- Titre -->
-                <div>
-                    <label for="titre">Titre :</label>
-                    <input class="input-form" type="text" id="titre" formControlName="titre">
-                </div>
-                <!-- Catégorie -->
-                <div>
-                    <label for="categorie">Catégorie :</label>
-                    <input class="input-form" type="text" id="categorie" formControlName="categorie">
-                </div>
-                <!-- Publication -->
-                <div>
-                    <label for="publication">Publication:</label>
-                    <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
-                        formControlName="publication"></textarea>
-
-                </div>
-                <!-- Photo de couverture -->
-                <div class="photo-post">
-                    <label for="photo">Photo de couverture :</label>
-                    <div class="photo-image">
-
-                        <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
-                            (change)="onFileSelected($event)">
-                        @if(selectedFileUrl){
-                        <img class="photo selected" [src]="selectedFileUrl" alt="selectedFileUrl">
-                        }
-                        @else(){
-                        <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
-                            alt="Image placeholder">
-                        }
-                    </div>
-
-                </div>
-                <!-- Boutons -->
-                <div>
-                    <button>Annuler</button>
-                    <button type="submit" [disabled]="postForm.invalid">Publier</button>
-                </div>
-
-
-
-            </form>
+        <div class="container-formulaire"> 
+          <app-post-form></app-post-form>
         </div>
 
 
