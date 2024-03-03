@@ -1,32 +1,23 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <!-- Nom Auteur -->
     <div class="postForm-champ">
-        <label for="nom">Nom auteur :</label>
+        <label for="auteur">Auteur :</label>
         <!-- <input class="input-form" type="text" id="nom" formControlName="nom"> -->
-        <select class="input-form" name="nom-auteur" id="nom" formControlName="nom">
+        <select class="input-form" name="auteur" id="auteur" formControlName="auteur">
             <option value=""></option>
-            @for(element of list; track element){
-                <option value="{{element}}">{{element}}</option>
+            @for(author of listOfAuthors; track author.id){
+                <option value="{{author.name}}">{{author.name}}</option>
             }
         </select>
     </div>
-    <!-- Prenom Auteur -->
-    <div  class="postForm-champ">
-        <label for="prenom">Prenom auteur :</label>
-        <select class="input-form" name="prenom-auteur" id="prenom" formControlName="prenom">
-            <option value=""></option>
-            @for(element of list; track element){
-                <option value="{{element}}">{{element}}</option>
-            }
-        </select>
-    </div>
+  
     <!-- Titre -->
     <div  class="postForm-champ">
         <label for="titre">Titre :</label>
         <select class="input-form" name="titre" id="titre" formControlName="titre">
             <option value=""></option>
-            @for(element of list; track element){
-                <option value="{{element}}">{{element}}</option>
+            @for(post of posts; track post.id){
+                <option value="{{post.title}}">{{post.title}}</option>
             }
         </select>
     </div>
@@ -35,8 +26,8 @@
         <label for="categorie">Catégorie :</label>
         <select class="input-form" name="categorie" id="categorie" formControlName="categorie">
             <option value=""></option>
-            @for(element of list; track element){
-                <option value="{{element}}">{{element}}</option>
+            @for(post of posts; track post.id){
+                <option value="{{post.id}}">{{post.id}}</option>
             }
         </select>
     </div>

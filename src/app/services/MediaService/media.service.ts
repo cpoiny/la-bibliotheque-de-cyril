@@ -13,7 +13,7 @@ books: Media[] = MEDIAS;
 
   getAllBooks(): Media[] {
     const myBooks = MEDIAS.filter((media: Media) => media.category === "book")
-    this.books=myBooks;
+    this.books = myBooks;
     return this.books;
   }
 

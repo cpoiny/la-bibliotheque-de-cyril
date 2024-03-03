@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
+import { AuthorService } from '../../../services/author.service';
+import { Author } from '../../../models/author.model';
 
 @Component({
   selector: 'app-post-form',
@@ -12,11 +14,14 @@ import { Post } from '../../../models/post.model';
 })
 export class PostFormComponent implements OnInit {
 
-  list: string[] = ["A", "B", "C"];
+  posts: Post[] = [];
+  listOfAuthors: Author[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private postService : PostService
+    private postService: PostService,
+    private authorService: AuthorService,
+
   ) { }
 
 
@@ -24,18 +29,17 @@ export class PostFormComponent implements OnInit {
   selectedFile!: File | null;
   selectedFileUrl!: string | ArrayBuffer | null;
 
- 
+
   ngOnInit(): void {
     this.buildForm();
     this.getAllPosts();
-    console.log("test");
-  
+    console.log(this.getAllInfosForm());
+
   }
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
+      auteur: ['', Validators.required],
       titre: ['', Validators.required],
       categorie: ['', Validators.required],
       publication: ['', Validators.required, Validators.minLength(5)],
@@ -74,9 +78,12 @@ export class PostFormComponent implements OnInit {
 
 
   getAllPosts(): void {
-    let posts: Post[] = [];
-    posts = this.postService.getAllPosts();
-    console.log("tous mes posts", posts);
+    this.posts = this.postService.getAllPosts();
+  }
 
+  getAllInfosForm(): void {
+    // recupérer les auteurs
+    this.listOfAuthors = this.authorService.getAllAuthors();
+    console.log("mes auteurs", this.listOfAuthors);
   }
 }
