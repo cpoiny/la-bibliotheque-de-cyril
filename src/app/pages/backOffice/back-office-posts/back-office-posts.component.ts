@@ -44,4 +44,8 @@ getAllPosts() : void {
 
 filterAllPosts() : void {
 }
+
+test() : void {
+  console.log("test button");
+}
 }

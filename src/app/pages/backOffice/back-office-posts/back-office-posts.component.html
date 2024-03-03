@@ -20,7 +20,7 @@
                 <app-card class="card" [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button [id]="post.id" (click)= test()></app-actions-button>
                 </div>
 
             </li>
@@ -43,7 +43,7 @@
                 <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button [id]="post.id"></app-actions-button>
                 </div>
 
             </li>
@@ -66,7 +66,7 @@
                 <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
                 </app-card>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button [id]="post.id"></app-actions-button>
                 </div>
             </li>
             }
