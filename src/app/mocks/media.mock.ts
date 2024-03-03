@@ -116,7 +116,7 @@ export const MEDIAS: Media[] = [
         id: 12,
         title: "Test",
         author_id: 11,
-        theme: "movie",
+        theme: "Action",
         created_at: new Date("2022-11-28"),
         updated_date: null,
         edition: "movie film",

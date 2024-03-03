@@ -4,6 +4,7 @@ import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/author.service';
 import { Author } from '../../../models/author.model';
+import { MediaService } from '../../../services/MediaService/media.service';
 
 @Component({
   selector: 'app-post-form',
@@ -16,11 +17,13 @@ export class PostFormComponent implements OnInit {
 
   posts: Post[] = [];
   listOfAuthors: Author[] = [];
+  listOfThemes : string [] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
     private authorService: AuthorService,
+    private mediaService: MediaService,
 
   ) { }
 
@@ -33,7 +36,8 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getAllPosts();
-    console.log(this.getAllInfosForm());
+    this.getAllAuthors();
+    this.getAllThemes();
 
   }
 
@@ -41,7 +45,7 @@ export class PostFormComponent implements OnInit {
     this.postForm = this.formBuilder.group({
       auteur: ['', Validators.required],
       titre: ['', Validators.required],
-      categorie: ['', Validators.required],
+      theme: ['', Validators.required],
       publication: ['', Validators.required, Validators.minLength(5)],
       photo: [null, Validators.required],
     })
@@ -81,9 +85,12 @@ export class PostFormComponent implements OnInit {
     this.posts = this.postService.getAllPosts();
   }
 
-  getAllInfosForm(): void {
-    // recupérer les auteurs
+  getAllAuthors(): void {
     this.listOfAuthors = this.authorService.getAllAuthors();
-    console.log("mes auteurs", this.listOfAuthors);
   }
+
+  getAllThemes(): void {
+    this.listOfThemes = this.mediaService.getAllTheme();
+}
+
 }
