@@ -21,17 +21,17 @@ export class HeaderBoComponent {
     {
       id: 1,
       title: "Mon compte",
-      link: "/admin_lbdc_connexion"
+      link: "/admin-lbdc/connexion"
     },
     {
       id: 2,
       title: "Tous mes posts",
-      link: " "
+      link: "/admin-lbdc/all"
     },
     {
       id: 3,
       title: "Publication",
-      link: "/lbdc_cyril/add_post"
+      link: "/admin-lbdc/add"
     }
   ];
 
