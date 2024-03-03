@@ -2,22 +2,43 @@
     <!-- Nom Auteur -->
     <div class="postForm-champ">
         <label for="nom">Nom auteur :</label>
-        <input class="input-form" type="text" id="nom" formControlName="nom">
+        <!-- <input class="input-form" type="text" id="nom" formControlName="nom"> -->
+        <select class="input-form" name="nom-auteur" id="nom" formControlName="nom">
+            <option value=""></option>
+            @for(element of list; track element){
+                <option value="{{element}}">{{element}}</option>
+            }
+        </select>
     </div>
     <!-- Prenom Auteur -->
     <div  class="postForm-champ">
         <label for="prenom">Prenom auteur :</label>
-        <input class="input-form" type="text" id="prenom" formControlName="prenom">
+        <select class="input-form" name="prenom-auteur" id="prenom" formControlName="prenom">
+            <option value=""></option>
+            @for(element of list; track element){
+                <option value="{{element}}">{{element}}</option>
+            }
+        </select>
     </div>
     <!-- Titre -->
     <div  class="postForm-champ">
         <label for="titre">Titre :</label>
-        <input class="input-form" type="text" id="titre" formControlName="titre">
+        <select class="input-form" name="titre" id="titre" formControlName="titre">
+            <option value=""></option>
+            @for(element of list; track element){
+                <option value="{{element}}">{{element}}</option>
+            }
+        </select>
     </div>
     <!-- Catégorie -->
     <div  class="postForm-champ">
         <label for="categorie">Catégorie :</label>
-        <input class="input-form" type="text" id="categorie" formControlName="categorie">
+        <select class="input-form" name="categorie" id="categorie" formControlName="categorie">
+            <option value=""></option>
+            @for(element of list; track element){
+                <option value="{{element}}">{{element}}</option>
+            }
+        </select>
     </div>
     <!-- Publication -->
     <div  class="postForm-champ">

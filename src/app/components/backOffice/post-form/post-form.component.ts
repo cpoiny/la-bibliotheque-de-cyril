@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PostService } from '../../../services/PostService/post.service';
+import { Post } from '../../../models/post.model';
 
 @Component({
   selector: 'app-post-form',
@@ -8,11 +10,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })
-export class PostFormComponent {
+export class PostFormComponent implements OnInit {
 
+  list: string[] = ["A", "B", "C"];
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private postService : PostService
   ) { }
 
 
@@ -23,6 +27,8 @@ export class PostFormComponent {
  
   ngOnInit(): void {
     this.buildForm();
+    this.getAllPosts();
+    console.log("test");
   
   }
 
@@ -66,7 +72,11 @@ export class PostFormComponent {
     }
   }
 
-  getValueCategory() :void {
-    console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
+
+  getAllPosts(): void {
+    let posts: Post[] = [];
+    posts = this.postService.getAllPosts();
+    console.log("tous mes posts", posts);
+
   }
 }
