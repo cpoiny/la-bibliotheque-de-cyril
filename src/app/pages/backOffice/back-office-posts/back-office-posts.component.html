@@ -21,7 +21,7 @@
                 </app-card>
                 <div class="actions-button">
                     <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
-                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete()"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
                 </div>
 
             </li>

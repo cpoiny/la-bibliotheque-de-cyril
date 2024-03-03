@@ -46,11 +46,17 @@ getAllPosts() : void {
 filterAllPosts() : void {
 }
 
-onEdit(data: any): void {
-  console.log("click edit", data);
+onEdit(post: Post): void {
+  console.log("click edit", post);
+
+  // recupérer toutes les valeurs du formulaire dont nom ateur, theme du media (avec le media id) , 
 }
 
-onDelete(): void {
-  console.log("click delete");
+onDelete(post: Post): void {
+  console.log("click delete", post);
+  // open modale pour confirmer la suppression
+
+  // fonction delete by ID
+
 }
 }
