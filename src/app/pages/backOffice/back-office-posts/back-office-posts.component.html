@@ -1,0 +1,75 @@
+<div class="container">
+    <app-header-bo></app-header-bo>
+    <!-- Afficher toutes les cards -->
+
+
+    <div class="ajout">
+        <span>+</span>
+        <app-button  routerLink="ajouter" [title]="ajouter"></app-button>
+    </div>
+    <!-- Catégorie littérature -->
+    <div class="posts">
+        <h2>Littérature</h2>
+        @if (bookPosts.length > 0){
+        <ul>
+            @for(post of bookPosts; track post.id) {
+            <li>
+                <app-card class="card" [id]="post.id" [picture]="post.picture" [title]="post.title">
+                </app-card>
+                <button>Modifier</button>
+                <button>Supprimer</button>
+
+            </li>
+            }
+        </ul>
+
+        } @else {
+        <p>Aucun post dans cette catégorie</p>
+        }
+    </div>
+
+    <!-- Catégorie Cinéma -->
+
+    <div class="posts">
+        <h2>Cinéma</h2>
+        @if (moviePosts.length > 0){
+        <ul>
+            @for(post of moviePosts; track post.id) {
+            <li>
+                <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
+                </app-card>
+                <button>Modifier</button>
+                <button>Supprimer</button>
+
+            </li>
+            }
+        </ul>
+
+        } @else {
+        <p>Aucun post dans cette catégorie</p>
+        }
+    </div>
+
+
+    <!-- Catégorie Citations -->
+    <div class="posts">
+        <h2>Citations</h2>
+        @if (quotePosts.length > 0){
+        <ul>
+            @for(post of quotePosts; track post.id) {
+            <li>
+                <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
+                </app-card>
+                <button>Modifier</button>
+                <button>Supprimer</button>
+
+            </li>
+            }
+        </ul>
+
+        } @else {
+        <p>Aucun post dans cette catégorie</p>
+        }
+    </div>
+
+</div>

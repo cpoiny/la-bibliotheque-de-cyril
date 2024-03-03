@@ -8,6 +8,7 @@ import { ConfidentialiteComponent } from './pages/blog/confidentialite/confident
 import { CookiesComponent } from './pages/blog/cookies/cookies.component';
 import { ConditionsComponent } from './pages/blog/conditions/conditions.component';
 import { PostByTypeComponent } from './pages/blog/postByTpe/postByType.component';
+import { BackOfficePostsComponent } from './pages/backOffice/back-office-posts/back-office-posts.component';
 
 export const routes: Routes = [
     {
@@ -44,19 +45,18 @@ export const routes: Routes = [
         component: ConnexionComponent,
     },
     {
-        path: "admin-lbdc/posts",
+        path: "admin-lbdc",
         children: [
             {
-                path: "all",
-                component: PostByTypeComponent
-                // Créer une page pour afficher tous les posts
+                path: "toutes-les-publications",
+                component: BackOfficePostsComponent
             },
             {
-                path: "modifier/:id",
+                path: "toutes-les-publications/modifier/:id",
                 component: BackofficeAddComponent
             },
             {
-                path: "ajouter",
+                path: "toutes-les-publications/ajouter",
                 component: BackofficeAddComponent
             },
         ]
