@@ -20,9 +20,6 @@ export interface ICategoryButton {
 })
 export class BackofficeAddComponent implements OnInit {
 
-  constructor(
-  
-  ) { }
 
 
   categoriesButton: ICategoryButton[] = [

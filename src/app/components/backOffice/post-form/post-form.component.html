@@ -1,23 +1,35 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <!-- Nom Auteur -->
     <div class="postForm-champ">
-        <label for="nom">Nom auteur :</label>
-        <input class="input-form" type="text" id="nom" formControlName="nom">
+        <label for="auteur">Auteur :</label>
+        <!-- <input class="input-form" type="text" id="nom" formControlName="nom"> -->
+        <select class="input-form" name="auteur" id="auteur" formControlName="auteur">
+            <option value=""></option>
+            @for(author of listOfAuthors; track author.id){
+                <option value="{{author.name}}">{{author.name}}</option>
+            }
+        </select>
     </div>
-    <!-- Prenom Auteur -->
-    <div  class="postForm-champ">
-        <label for="prenom">Prenom auteur :</label>
-        <input class="input-form" type="text" id="prenom" formControlName="prenom">
-    </div>
+  
     <!-- Titre -->
     <div  class="postForm-champ">
         <label for="titre">Titre :</label>
-        <input class="input-form" type="text" id="titre" formControlName="titre">
+        <select class="input-form" name="titre" id="titre" formControlName="titre">
+            <option value=""></option>
+            @for(post of posts; track post.id){
+                <option value="{{post.title}}">{{post.title}}</option>
+            }
+        </select>
     </div>
     <!-- Catégorie -->
     <div  class="postForm-champ">
         <label for="categorie">Catégorie :</label>
-        <input class="input-form" type="text" id="categorie" formControlName="categorie">
+        <select class="input-form" name="categorie" id="categorie" formControlName="categorie">
+            <option value=""></option>
+            @for(post of posts; track post.id){
+                <option value="{{post.id}}">{{post.id}}</option>
+            }
+        </select>
     </div>
     <!-- Publication -->
     <div  class="postForm-champ">

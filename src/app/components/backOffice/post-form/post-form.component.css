@@ -1,6 +1,4 @@
-
 /* Formulaire */
-
 
 form {
     width: 80vw;
@@ -26,7 +24,10 @@ form .postForm-champ label {
     font-size: 20px;
     padding-left: 30px;
     font-family: "Courier Prime", 'Courier New', Courier, monospace;
+    background-color: white;
+
 }
+
 
 .publication {
     width: 70%;
@@ -45,16 +46,13 @@ form .postForm-champ label {
     min-width: 12vw;
     min-height: 12vw;
     border-radius: 20px;
-
 }
 
 .photo-image {
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: wrap;
-   
 }
-
 
 /* Pour le placeholder */
 .notSelected {
@@ -75,24 +73,14 @@ form .postForm-champ label {
 
 @media (max-width: 850px) {
   
-  form{
-    width: 80vw;
-  }
-
-  form .postForm-champ label
-  {
-    width: 100%;
-  }
     form .postForm-champ  {
         flex-wrap: wrap;
-        
-
     }
 
+    form .postForm-champ label,
     .input-form,
     .publication {
         width: 100%;
-       
     }
 
    .post-photo{
@@ -105,14 +93,4 @@ form .postForm-champ label {
         height: 40vw;
     }
 
-
-
-
-    @media (max-width: 799px) {
-
-      
-     
-
-
-    }
 }

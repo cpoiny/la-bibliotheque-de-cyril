@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PostService } from '../../../services/PostService/post.service';
+import { Post } from '../../../models/post.model';
+import { AuthorService } from '../../../services/author.service';
+import { Author } from '../../../models/author.model';
 
 @Component({
   selector: 'app-post-form',
@@ -8,11 +12,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })
-export class PostFormComponent {
+export class PostFormComponent implements OnInit {
 
+  posts: Post[] = [];
+  listOfAuthors: Author[] = [];
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private postService: PostService,
+    private authorService: AuthorService,
+
   ) { }
 
 
@@ -20,16 +29,17 @@ export class PostFormComponent {
   selectedFile!: File | null;
   selectedFileUrl!: string | ArrayBuffer | null;
 
- 
+
   ngOnInit(): void {
     this.buildForm();
-  
+    this.getAllPosts();
+    console.log(this.getAllInfosForm());
+
   }
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
+      auteur: ['', Validators.required],
       titre: ['', Validators.required],
       categorie: ['', Validators.required],
       publication: ['', Validators.required, Validators.minLength(5)],
@@ -66,7 +76,14 @@ export class PostFormComponent {
     }
   }
 
-  getValueCategory() :void {
-    console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
+
+  getAllPosts(): void {
+    this.posts = this.postService.getAllPosts();
+  }
+
+  getAllInfosForm(): void {
+    // recupérer les auteurs
+    this.listOfAuthors = this.authorService.getAllAuthors();
+    console.log("mes auteurs", this.listOfAuthors);
   }
 }
