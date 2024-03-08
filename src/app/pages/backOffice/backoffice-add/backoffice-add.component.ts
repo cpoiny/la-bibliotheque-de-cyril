@@ -53,6 +53,7 @@ constructor(
 
   ngOnInit(): void {
     this.getPostDetails();
+    this.checkIfIsNewPost();
 
   }
 
@@ -65,12 +66,20 @@ constructor(
     const foundPost = this.postService.getPostById(id);
     if(foundPost){
       this.post = foundPost[0];
-      this.isNewPost = false;
     } else {
       this.router.navigate(['']);
     }
  
   }
+
+  checkIfIsNewPost(): void {
+    const url = this.router.url;
+       if (url.includes('ajouter')) {
+         this.isNewPost = true;
+       } else {
+         this.isNewPost = false;
+       }
+     }
 
 }
 

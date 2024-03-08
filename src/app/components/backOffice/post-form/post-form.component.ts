@@ -5,7 +5,7 @@ import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -20,7 +20,7 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
-    private activatedRoute : ActivatedRoute
+    private router : Router
 
   ) { }
 
@@ -79,6 +79,7 @@ export class PostFormComponent implements OnInit {
     if (file) {
       this.selectedFile = file;
       this.postForm.patchValue({ photo: file });
+      this.imageUrl = '';
      
       // Afficher l'image sélectionnée
       const reader = new FileReader();
@@ -91,11 +92,14 @@ export class PostFormComponent implements OnInit {
   }
 
   checkIfIsNewPost(): void {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    if(id){
-      this.isNewPost = false;
+   const url = this.router.url;
+      if (url.includes('ajouter')) {
+        this.isNewPost = true;
+      } else {
+        this.isNewPost = false;
+      }
     }
-   }
+   
 
 
   getAllPosts(): void {

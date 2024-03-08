@@ -49,17 +49,32 @@
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
                 (change)="onFileSelected($event)" >
                 
-            @if(selectedFileUrl){
-            <img class="photo selected" [src]="selectedFileUrl" alt="selectedFileUrl">
-            }@else(){
-            <img class="photo selected" [src]="imageUrl"[alt]="imageUrl">
-                }
-        
-        @if(isNewPost){
-            <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
-                alt="Image placeholder">
+
+                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
+            @if (!isNewPost) {
+                <div>
+                    @if(selectedFileUrl){
+                        <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
+                        }
+                        @if(imageUrl){
+                        <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
+                            }
+                </div>
+
+            } @else() {
+                <div>
+                    @if(selectedFileUrl){
+                        <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
+                        }
+                        @else(){
+                            <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
+                            alt="Image placeholder">
+                            }
+                </div>
+
             }
-   
+
+
         </div>
 
     </div>
