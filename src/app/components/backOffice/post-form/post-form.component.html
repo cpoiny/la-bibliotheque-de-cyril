@@ -14,19 +14,22 @@
     <!-- Titre -->
     <div  class="postForm-champ">
         <label for="titre">Titre :</label>
-        <select class="input-form" name="titre" id="titre" formControlName="titre">
-            <option value=""></option>
-            @for(post of posts; track post.id){
-                <option value="{{post.title}}">{{post.title}}</option>
-            }
-        </select>
+        @if (post) {
+            <input class="input-form" name="titre" id="titre" formControlName="titre">
+        } @else {
+            <input class="input-form" name="titre" id="titre" formControlName="titre">
+        }
+          
     </div>
     <!-- Catégorie -->
     <div  class="postForm-champ">
         <label for="theme">Theme :</label>
         <select class="input-form" name="theme" id="theme" formControlName="theme">
-            <option value=""></option>
-            @for(theme of listOfThemes; track theme){
+      
+                <option value=""></option>
+         
+              
+                     @for(theme of listOfThemes; track theme){
                 <option value="{{theme}}">{{theme}}</option>
             }
         </select>

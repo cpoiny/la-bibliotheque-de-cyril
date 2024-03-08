@@ -13,7 +13,9 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
+
     },
     {
         id: 2,
@@ -26,7 +28,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: true,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 3,
@@ -39,7 +42,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Aventure",
     },
     {
         id: 4,
@@ -52,7 +56,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 5,
@@ -65,7 +70,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 6,
@@ -78,7 +84,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 7,
@@ -91,20 +98,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
-    },
-    {
-        id: 12,
-        title: "Sur la route",
-        content: "Aujourd'hui je voulais redonner de la visibilité à l'une de mes toutes premières chroniques sur cette page, celle de \"Sur la route\".\n\n Ce bouquin fait partie de ceux qui me suivent partout tout le temps, et son auteur est une source d'inspiration inconditionnelle, ce genre de source d'inspiration qui nous aide à conduire une vie. \n\n Sur la route c'est le livre de la vie libre, la seule qui vaille le coup. Livre clef de la Beat Génération, c'est le récit des errances de l'auteur, barroudeur passionné de jazz et de bebop, sillonnant les routes américaines. \n\n Voyageant en stop, logeant chez qui l'accepte, partageant femmes et alcool avec des amis d'un jour, Kerouac alias Sal Paradise, s'abandonne à la loi du hasard, à la recherche d'une fraternité réelle. Ici rien d'autre n'est plus important que le présent immédiat qui, grâce à l'insouciance, nous procure des jouissances infinies. \n\n Ce livre est le compte rendu de cette quête, avec ses moments d'euphorie, mais aussi ses passages à vide et ses échecs. Un manuel imparfait qui nous guide dans notre manière de grandir. \n\n Je conseille à tout le monde de le lire, plusieurs fois, en entier, par passage. Je suis persuadé que chacun d'entre nous peut y trouver des réponses.\n\n Le bonheur est dans le mouvement, le voyage c'est la liberté et la liberté c'est la vie 🌍",
-        picture: "assets/img/sur_la_route.png",
-        media_id: 7,
-        author_id: 7,
-        publication_date: new Date("2021-01-09"),
-        updated_date: null,
-        isDraft: false,
-        isOntheWishlist: false,
-        category : "movie"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 8,
@@ -117,7 +112,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 9,
@@ -130,7 +126,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
     },
     {
         id: 10,
@@ -143,7 +140,8 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Poesie",
     },
     {
         id: 11,
@@ -156,6 +154,21 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: true,
         isOntheWishlist: false,
-        category : "book"
+        category : "book",
+        theme: "Classique",
+    },
+    {
+        id: 12,
+        title: "Sur la route",
+        content: "Aujourd'hui je voulais redonner de la visibilité à l'une de mes toutes premières chroniques sur cette page, celle de \"Sur la route\".\n\n Ce bouquin fait partie de ceux qui me suivent partout tout le temps, et son auteur est une source d'inspiration inconditionnelle, ce genre de source d'inspiration qui nous aide à conduire une vie. \n\n Sur la route c'est le livre de la vie libre, la seule qui vaille le coup. Livre clef de la Beat Génération, c'est le récit des errances de l'auteur, barroudeur passionné de jazz et de bebop, sillonnant les routes américaines. \n\n Voyageant en stop, logeant chez qui l'accepte, partageant femmes et alcool avec des amis d'un jour, Kerouac alias Sal Paradise, s'abandonne à la loi du hasard, à la recherche d'une fraternité réelle. Ici rien d'autre n'est plus important que le présent immédiat qui, grâce à l'insouciance, nous procure des jouissances infinies. \n\n Ce livre est le compte rendu de cette quête, avec ses moments d'euphorie, mais aussi ses passages à vide et ses échecs. Un manuel imparfait qui nous guide dans notre manière de grandir. \n\n Je conseille à tout le monde de le lire, plusieurs fois, en entier, par passage. Je suis persuadé que chacun d'entre nous peut y trouver des réponses.\n\n Le bonheur est dans le mouvement, le voyage c'est la liberté et la liberté c'est la vie 🌍",
+        picture: "assets/img/sur_la_route.png",
+        media_id: 7,
+        author_id: 7,
+        publication_date: new Date("2021-01-09"),
+        updated_date: null,
+        isDraft: false,
+        isOntheWishlist: false,
+        category : "movie",
+        theme: "Action",
     },
 ];

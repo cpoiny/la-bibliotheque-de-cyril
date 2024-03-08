@@ -5,7 +5,11 @@
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
             <div class="entete-titre">
-                <h1>Ajouter une publication</h1>
+                @if (isNewPost) {
+                    <h1>Ajouter une publication</h1>
+                } @else {
+                    <h1>Modifier la publication</h1>
+                }
                 <ul class="catButton">
                     @for(button of categoriesButton; track button.id){
                     <li>
@@ -21,7 +25,7 @@
         </div>
 
         <div class="container-formulaire"> 
-          <app-post-form ></app-post-form>
+          <app-post-form [post]="post"></app-post-form>
         </div>
     </div>
 </div>

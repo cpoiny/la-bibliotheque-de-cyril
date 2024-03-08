@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { AuthorService } from '../../../services/author.service';
+import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
 
@@ -14,11 +14,6 @@ import { MediaService } from '../../../services/MediaService/media.service';
   styleUrl: './post-form.component.css'
 })
 export class PostFormComponent implements OnInit {
-
-  posts: Post[] = [];
-  listOfAuthors: Author[] = [];
-  listOfThemes : string [] = [];
-
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
@@ -27,10 +22,14 @@ export class PostFormComponent implements OnInit {
 
   ) { }
 
-
+  @Input() post : Post | undefined;
+  posts: Post[] = [];
+  listOfAuthors: Author[] = [];
+  listOfThemes : string [] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl!: string | ArrayBuffer | null;
+
 
 
   ngOnInit(): void {
@@ -38,16 +37,21 @@ export class PostFormComponent implements OnInit {
     this.getAllPosts();
     this.getAllAuthors();
     this.getAllThemes();
+    if (this.post) {
+      console.log("my post", this.post);
+      this.getAuthorById();
+      this.displayPost(this.post);
+    }
 
   }
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      auteur: ['', Validators.required],
-      titre: ['', Validators.required],
-      theme: ['', Validators.required],
-      publication: ['', Validators.required, Validators.minLength(5)],
-      photo: [null, Validators.required],
+      auteur: ['', [Validators.required]],
+      titre: ['', [Validators.required]],
+      theme: ['', [Validators.required]],
+      publication: ['', [Validators.required, Validators.minLength(5)]],
+      photo: [null, [Validators.required]],
     })
   }
 
@@ -70,7 +74,7 @@ export class PostFormComponent implements OnInit {
     if (file) {
       this.selectedFile = file;
       this.postForm.patchValue({ image: file });
-
+     
       // Afficher l'image sélectionnée
       const reader = new FileReader();
       reader.onload = () => {
@@ -93,4 +97,22 @@ export class PostFormComponent implements OnInit {
     this.listOfThemes = this.mediaService.getAllTheme();
 }
 
+getAuthorById() : string {
+  if (!this.post){
+    return "Pas d'auteur";
+  } else {
+  return this.authorService.getAuthorById(this.post?.author_id);
 }
+};
+
+displayPost(post : Post): void {
+  this.postForm.patchValue({
+    auteur: this.getAuthorById(),
+    titre: this.post?.title,
+    theme: this.post?.theme,
+    publication: this.post?.content,
+    photo: this.post?.picture
+  });
+}
+}
+

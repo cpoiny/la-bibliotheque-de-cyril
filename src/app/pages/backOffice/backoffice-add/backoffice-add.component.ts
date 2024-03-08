@@ -40,6 +40,8 @@ constructor(
   // }
 }
 
+  isNewPost: boolean = true;
+  post!: Post;
 
 
 
@@ -75,13 +77,14 @@ constructor(
 
 
   //fonction pour récupérer une todo par id
-  getPostDetails() {
+  getPostDetails(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log("id todo", id);
     const foundPost = this.postService.getPostById(id);
+    this.isNewPost = false;
 
     if(foundPost){
-      this.postToDisplay = foundPost[0];
+      this.post = foundPost[0];
     } else {
       this.router.navigate(['**']);
     }
@@ -91,17 +94,7 @@ constructor(
   }
 
 
-  // // //function display formulaire
-  // displayPost(post: Post): void {
-  //   this.postToDisplay = post;
 
-    
-  //   this.todoForm.patchValue({
-  //     cat: this.todoDetails.category,
-  //     todo: this.todoDetails.content,
-  //     urgence: this.todoDetails.isUrgent,
-  //   });
-  // }
 
 }
 

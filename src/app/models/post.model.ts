@@ -15,6 +15,7 @@ export class Post{
     public isDraft: true | false,
     public isOntheWishlist: true | false,
     public category : "book" | "movie" | "quote",
+    public theme: string,
     public galerie?: IGalerie[],
     ) {}
 
