@@ -6,11 +6,12 @@ import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-post-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })
@@ -134,6 +135,18 @@ export class PostFormComponent implements OnInit {
       this.isEmptyImage = false;
     }
 
+  }
+
+  showCustomInput: boolean = false;
+  nouvelAuteur: string = '';
+
+  onAuteurChange(event: any) {
+    if (event.target.value === 'autre') {
+      this.showCustomInput = true;
+    } else {
+      this.showCustomInput = false;
+      this.nouvelAuteur = ''; // Réinitialiser la valeur du nouvel auteur si nécessaire
+    }
   }
 }
 
