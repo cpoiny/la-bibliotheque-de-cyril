@@ -5,44 +5,30 @@
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
             <div class="entete-titre">
-               @if(isNewPost){
-                    <h1>Ajouter une publication</h1>
-               }@else (){
-                   <h1>Modifier la publication</h1>
-               } 
-                
-            
-<div class="all-cat">
-                <div class="categoryList">
-                    <label class="boxCatContainer" for="cat1">
-                        <input required type="radio" id="cat1" formControlName="cat" name="cat" class="cat" value="Litterature">
-                        <span class="boxcat">Litterature</span>
-                      
-                        
-                    </label>
+                @if(isNewPost){
+                <h1>Ajouter une publication</h1>
+                }@else (){
+                <h1>Modifier la publication</h1>
+                }
+
+                <div class="all-cat">
+                    @for(category of categoriesButton; track category.id){
+                    <div class="categoryList">
+                        <label class="boxCatContainer" [for]="category.id">
+                            <input required type="radio" [id]="category.id" formControlName="cat" name="cat" class="cat"
+                                value="category">
+                            <span class="boxcat">{{category.title}}</span>
+                        </label>
+                    </div>
+                }
                 </div>
-                <div class="categoryList">
-                    <label class="boxCatContainer" for="cat2">
-                        <input required type="radio" id="cat2" formControlName="cat" name="cat" class="cat" value="Cinema">
-                        <span class="boxcat">Cinema</span>
-                      
-                    </label>
-                </div>
-                <div class="categoryList">
-                    <label class="boxCatContainer" for="cat3">
-                        <input required type="radio" id="cat3" formControlName="cat" name="cat" class="cat" value="Citation">
-                        <span class="boxcat">Citation</span>
-                    
-                    </label>
-                </div>
-</div>   
-            
+
 
             </div>
         </div>
 
-        <div class="container-formulaire"> 
-          <app-post-form [post]="post"></app-post-form>
+        <div class="container-formulaire">
+            <app-post-form [post]="post"></app-post-form>
         </div>
     </div>
 </div>

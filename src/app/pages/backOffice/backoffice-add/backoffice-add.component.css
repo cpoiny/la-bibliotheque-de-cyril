@@ -27,7 +27,7 @@
 
 .container-entete img {
     width: 20%;
-    max-width: 20vw;
+    min-width: 20vw;
 }
 
 .entete-titre {
@@ -47,14 +47,13 @@
 
 .all-cat {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    width: 70%;
+    height: 5vw;
+    justify-content: space-between;
 }
 
 .categoryList {
     position: relative;
-    display: flex;
-    justify-content: space-around;
 }
 
 .boxCatContainer {
@@ -84,10 +83,10 @@
     border-radius: 20px;
     border: black solid 1px;
     top: 12px;
-    left: -10px;
+    left: -30px;
     text-align: center;
-    padding: 13px;
-    width: 10vw;
+    padding: 13px 0;
+    width: 8vw;
 }
 
 .boxCatContainer input:checked~.boxcat {
@@ -107,10 +106,10 @@
         width: 100%;
         margin: 0;
     }
+
     .container-entete {
         flex-direction: column;
         justify-content: center;
-     
         align-items: center;
     }
 
@@ -121,17 +120,18 @@
 
     .all-cat {
         margin-top: 5vw;
+
     }
- 
- 
-    .boxcat{
+
+
+    .boxcat {
         width: 12vw;
     }
 
 
     @media (max-width: 799px) {
 
-     
+
         .entete-titre {
             width: 90%;
             text-align: center;
@@ -141,16 +141,26 @@
             font-size: 1.5rem;
         }
 
-        .boxcat{
+        .container-entete img {
+            height: 20vh;
+            /* width: 40%; */
+        }
+
+        .boxcat {
             width: 140px;
         }
 
     }
 
-    @media (max-width: 450px){
-        .boxcat{
+    @media (max-width: 450px) {
+        .boxcat {
             width: 80px;
-            padding:10px 1px;
+            padding: 10px 1px;
+        }
+
+        .container-entete img {
+            height: 20vh;
+            width: 40%;
         }
 
     }

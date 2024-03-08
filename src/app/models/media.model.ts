@@ -7,7 +7,7 @@ export class Media {
         public theme: string,
         public created_at: Date,
         public updated_date: Date | null,
-        public category : "book" | "movie" | "quote",
+        public category : "litterature" | "cinema" | "citation",
         public edition?: string,
     ){}
 }

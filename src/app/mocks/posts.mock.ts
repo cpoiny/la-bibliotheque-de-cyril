@@ -13,7 +13,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
 
     },
@@ -28,7 +28,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: true,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -42,7 +42,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Aventure",
     },
     {
@@ -56,7 +56,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -70,7 +70,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -84,7 +84,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -98,7 +98,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -112,7 +112,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -126,7 +126,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -140,7 +140,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Poesie",
     },
     {
@@ -154,7 +154,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: true,
         isOntheWishlist: false,
-        category : "book",
+        category : "litterature",
         theme: "Classique",
     },
     {
@@ -168,7 +168,7 @@ export const POSTS: Post[] = [
         updated_date: null,
         isDraft: false,
         isOntheWishlist: false,
-        category : "movie",
+        category : "cinema",
         theme: "Action",
     },
 ];

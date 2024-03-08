@@ -49,11 +49,11 @@ export class PostService {
   getPostByCategory(posts: Post[], category: string): Post[] {
     if (posts) {
       if (category === "litterature") {
-        return posts.filter((post) => post.category === "book")
+        return posts.filter((post) => post.category === "litterature")
       } else if (category === "cinema") {
-        return posts.filter((post) => post.category === "movie")
+        return posts.filter((post) => post.category === "cinema")
       } else {
-        return posts.filter((post) => post.category === "quote")
+        return posts.filter((post) => post.category === "citation")
       }
     } else {
       return [];
