@@ -43,7 +43,7 @@
     font-weight: normal;
 }
 
-
+/*CSS Pour bouton categorie*/
 
 .all-cat {
     display: flex;
@@ -51,16 +51,12 @@
     width: 100%;
 }
 
-.all-cat-mobile{ display:none;}
-
 .categoryList {
     position: relative;
     display: flex;
     justify-content: space-around;
-
 }
 
-/*CSS Pour bouton categorie*/
 .boxCatContainer {
     display: block;
     position: relative;
@@ -83,10 +79,6 @@
     width: 0;
 }
 
-.iconcat {
-    display :none;
-}
-
 .boxcat {
     position: absolute;
     border-radius: 20px;
@@ -95,14 +87,13 @@
     left: -10px;
     text-align: center;
     padding: 13px;
+    width: 10vw;
 }
 
 .boxCatContainer input:checked~.boxcat {
     background-color: var(--gold);
     border: none;
 }
-
-
 
 
 /* RESPONSIVE */
@@ -128,23 +119,15 @@
         display: block;
     }
 
-   .all-cat{
-    display: none;
-   }
-   .all-cat-mobile{
-    display: block;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-   }
-
+    .all-cat {
+        margin-top: 5vw;
+    }
+ 
+ 
     .boxcat{
-        display: block;
-        margin:0;
-        width: 5vw;
-        height: 5vw;
-       
-    }    
+        width: 12vw;
+    }
+
 
     @media (max-width: 799px) {
 
@@ -158,19 +141,17 @@
             font-size: 1.5rem;
         }
 
-        .all-cat{
-            display: none;
-           }
-        .all-cat-mobile{
-            display: block;
-           }
-        
-        .iconcat{
-            display: block;
-            width: 20vw;
-            height: 8vh;
+        .boxcat{
+            width: 140px;
         }
-      
+
+    }
+
+    @media (max-width: 450px){
+        .boxcat{
+            width: 80px;
+            padding:10px 1px;
+        }
 
     }
 }
