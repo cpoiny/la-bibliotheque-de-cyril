@@ -43,33 +43,17 @@
     font-weight: normal;
 }
 
+.test input[type="radio"]:checked + label {
+    /* Styles à appliquer lorsque le bouton radio est sélectionné */
+    font-weight: bold;
+    color: red;
+  }
 
-.catButton {
-    display: flex;
-    min-width: 40vw;
-    justify-content: space-around;
-}
+.test label {
+    /* Styles à appliquer lorsque le bouton radio est sélectionné */
+   color :blue
+  }
 
-.catButton li {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    padding:1vw;
-    width: 8vw;
-    height: 3vw;
-    border-radius: 30px;
-    border: black solid 1px;
-}
-
-
-
-.cat-icon {
-    display: none;
-}
-
-.cat-input {
-    display: none;
-}
 
 
 /* RESPONSIVE */

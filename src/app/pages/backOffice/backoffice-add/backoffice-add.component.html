@@ -11,17 +11,20 @@
                    <h1>Modifier la publication</h1>
                } 
                 
-                <ul class="catButton">
-                    @for(button of categoriesButton; track button.id){
-                    <li>
-                        <label class="cat" for="button.title" (click)="getValueCategory()">
-                            <span class="cat-text">{{button.title}}</span>
-                            <img class="cat-icon" src="{{button.icon}}" alt="button.title">
-                        </label>
-                        <input class="cat-input" type="radio" name="button.title" id="button.title" value="button.title">
-                    </li>
-                    }
-                </ul>
+               
+            
+                <div class="test">
+                    <label for="litterature">Littérature</label>
+                    <input type="radio"  id="litterature" name="categorie" checked>
+                  </div>
+                  <div class="test">
+                    <label for="cinema">Cinéma</label>
+                    <input type="radio" id="cinema"  name="categorie">
+                  </div>
+                  <div class="test">
+                    <label for="citation">Citation</label>
+                    <input type="radio" id="citation" name="categorie">
+                  </div>
             </div>
         </div>
 

@@ -6,6 +6,7 @@ import { PostFormComponent } from '../../../components/backOffice/post-form/post
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 export interface ICategoryButton {
@@ -28,11 +29,15 @@ constructor(
   private activatedRoute : ActivatedRoute,
   private postService : PostService,
   private router : Router,
-){}
+  private formBuilder: FormBuilder
+){
+ 
+}
 
-  isNewPost: boolean = true;
-  post!: Post;
-  categoriesButton: ICategoryButton[] = [
+
+isNewPost: boolean = true;
+post!: Post;
+categoriesButton: ICategoryButton[] = [
     {
       id: 1,
       title: "Littérature",
@@ -45,10 +50,15 @@ constructor(
     },
     {
       id: 3,
-      title: "Citations",
+      title: "Citation",
       icon: "assets/icons/citation.png",
     }
   ]
+  
+  
+
+  
+
 
 
   ngOnInit(): void {
@@ -57,10 +67,7 @@ constructor(
 
   }
 
-  getValueCategory() :void {
-    console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
-  }
-
+ 
   // To get the post and send it to the form in order to patch value
   getPostDetails(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -82,6 +89,8 @@ constructor(
          this.isNewPost = false;
        }
      }
+
+
 
 }
 
