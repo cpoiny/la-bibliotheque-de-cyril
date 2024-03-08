@@ -10,7 +10,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2022-06-18"),
         updated_date: null,
         edition: "Editions Grasset",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2022-05-01"),
         updated_date: null,
         edition: " Editions Gallimard",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2021-07-27"),
         updated_date: null,
         edition: "Editions Points",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 4,
@@ -40,7 +40,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2020-09-30"),
         updated_date: null,
         edition: "Editions 1018",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 5,
@@ -50,7 +50,7 @@ export const MEDIAS: Media[] = [
         created_at:new Date("2020-09-17"),
         updated_date: null,
         edition: "Livre de poche",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 6,
@@ -60,7 +60,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2020-12-13"),
         updated_date: null,
         edition: "Editions Folio",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 7,
@@ -70,7 +70,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2021-01-09"),
         updated_date: null,
         edition: "Eidtions Folio",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 8,
@@ -80,7 +80,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2021-02-08"),
         updated_date: null,
         edition: "Editions Folio",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 9,
@@ -90,7 +90,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2022-12-29"),
         updated_date: null,
         edition: "",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 10,
@@ -100,7 +100,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2023-05-01"),
         updated_date: null,
         edition: "Editions Grasset",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 11,
@@ -110,7 +110,7 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2022-11-28"),
         updated_date: null,
         edition: "Editions de minuit",
-        category : "book"
+        category : "litterature"
     },
     {
         id: 12,
@@ -120,6 +120,6 @@ export const MEDIAS: Media[] = [
         created_at: new Date("2022-11-28"),
         updated_date: null,
         edition: "movie film",
-        category : "movie"
+        category : "cinema"
     },
 ]

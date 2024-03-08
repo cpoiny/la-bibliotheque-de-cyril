@@ -14,7 +14,8 @@ export class Post{
     public updated_date: Date | null,
     public isDraft: true | false,
     public isOntheWishlist: true | false,
-    public category : "book" | "movie" | "quote",
+    public category : "litterature" | "cinema" | "citation",
+    public theme: string,
     public galerie?: IGalerie[],
     ) {}
 

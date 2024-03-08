@@ -27,7 +27,7 @@
 
 .container-entete img {
     width: 20%;
-    max-width: 20vw;
+    min-width: 20vw;
 }
 
 .entete-titre {
@@ -43,32 +43,55 @@
     font-weight: normal;
 }
 
+/*CSS Pour bouton categorie*/
 
-.catButton {
+.all-cat {
     display: flex;
-    min-width: 40vw;
-    justify-content: space-around;
+    width: 70%;
+    height: 5vw;
+    justify-content: space-between;
 }
 
-.catButton li {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    padding:1vw;
-    width: 8vw;
-    height: 3vw;
-    border-radius: 30px;
+.categoryList {
+    position: relative;
+}
+
+.boxCatContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 28px;
+    margin-top: -10px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.boxCatContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.boxcat {
+    position: absolute;
+    border-radius: 20px;
     border: black solid 1px;
+    top: 12px;
+    left: -30px;
+    text-align: center;
+    padding: 13px 0;
+    width: 8vw;
 }
 
-
-
-.cat-icon {
-    display: none;
-}
-
-.cat-input {
-    display: none;
+.boxCatContainer input:checked~.boxcat {
+    background-color: var(--gold);
+    border: none;
 }
 
 
@@ -83,10 +106,10 @@
         width: 100%;
         margin: 0;
     }
+
     .container-entete {
         flex-direction: column;
         justify-content: center;
-        /* width: 100%; */
         align-items: center;
     }
 
@@ -95,21 +118,20 @@
         display: block;
     }
 
-  
+    .all-cat {
+        margin-top: 5vw;
 
-    .cat-icon {
-        display: block;
     }
 
-    .cat-text {
-        display: none;
-    }
 
+    .boxcat {
+        width: 12vw;
+    }
 
 
     @media (max-width: 799px) {
 
-     
+
         .entete-titre {
             width: 90%;
             text-align: center;
@@ -119,14 +141,27 @@
             font-size: 1.5rem;
         }
 
-        .cat-icon {
-            display: block;
+        .container-entete img {
+            height: 20vh;
+            /* width: 40%; */
         }
 
-        .cat-text {
-            display: none;
+        .boxcat {
+            width: 140px;
         }
 
+    }
+
+    @media (max-width: 450px) {
+        .boxcat {
+            width: 80px;
+            padding: 10px 1px;
+        }
+
+        .container-entete img {
+            height: 20vh;
+            width: 40%;
+        }
 
     }
 }

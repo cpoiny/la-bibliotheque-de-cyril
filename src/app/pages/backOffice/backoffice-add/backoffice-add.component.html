@@ -5,23 +5,30 @@
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
             <div class="entete-titre">
+                @if(isNewPost){
                 <h1>Ajouter une publication</h1>
-                <ul class="catButton">
-                    @for(button of categoriesButton; track button.id){
-                    <li>
-                        <label class="cat" for="button.title" (click)="getValueCategory()">
-                            <span class="cat-text">{{button.title}}</span>
-                            <img class="cat-icon" src="{{button.icon}}" alt="button.title">
+                }@else (){
+                <h1>Modifier la publication</h1>
+                }
+               
+                <div class="all-cat">
+                    @for(category of categoriesButton; track category.id){
+                    <div class="categoryList">
+                        <label class="boxCatContainer" [for]="category.id">
+                            <input required type="radio" [id]="category.id" formControlName="categorie" name="categorie" class="cat"
+                                value="category">
+                            <span class="boxcat">{{category.title}}</span>
                         </label>
-                        <input class="cat-input" type="radio" name="button.title" id="button.title" value="button.title">
-                    </li>
-                    }
-                </ul>
+                    </div>
+                }
+                </div>
+           
+
             </div>
         </div>
 
-        <div class="container-formulaire"> 
-          <app-post-form ></app-post-form>
+        <div class="container-formulaire">
+            <app-post-form [post]="post"></app-post-form>
         </div>
     </div>
 </div>

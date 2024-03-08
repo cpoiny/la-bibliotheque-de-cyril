@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { AuthorService } from '../../../services/author.service';
+import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -14,52 +15,61 @@ import { MediaService } from '../../../services/MediaService/media.service';
   styleUrl: './post-form.component.css'
 })
 export class PostFormComponent implements OnInit {
-
-  posts: Post[] = [];
-  listOfAuthors: Author[] = [];
-  listOfThemes : string [] = [];
-
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
+    private router: Router
 
   ) { }
 
-
+  @Input() post: Post | undefined;
+  posts: Post[] = [];
+  listOfAuthors: Author[] = [];
+  listOfThemes: string[] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
-  selectedFileUrl!: string | ArrayBuffer | null;
+  selectedFileUrl: string | ArrayBuffer | null = ''
+  imageUrl: string = '';
+  isEmptyImage? : boolean;
+
+
 
 
   ngOnInit(): void {
+    this.checkIfNewPost();
     this.buildForm();
     this.getAllPosts();
     this.getAllAuthors();
     this.getAllThemes();
+    if (this.post) {
+      this.getAuthorById();
+      this.displayPost(this.post);
+      this.imageUrl = this.post.picture;
+    }
 
   }
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      auteur: ['', Validators.required],
-      titre: ['', Validators.required],
-      theme: ['', Validators.required],
-      publication: ['', Validators.required, Validators.minLength(5)],
-      photo: [null, Validators.required],
+      auteur: ['', [Validators.required]],
+      titre: ['', [Validators.required]],
+      theme: ['', [Validators.required]],
+      publication: ['', [Validators.required, Validators.minLength(5)]],
+      photo: [null, [Validators.required]],
+      categorie: ['', [Validators.required]]
     })
   }
 
 
   onSubmit(): void {
     if (this.postForm.valid) {
-      console.log("mon formulaire 1", this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
     } else {
-      console.log("mon formulaire 2", this.postForm);
+      
       console.log("formulaire non valide")
     }
   }
@@ -67,19 +77,23 @@ export class PostFormComponent implements OnInit {
   // Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+   
     if (file) {
       this.selectedFile = file;
       this.postForm.patchValue({ image: file });
+      this.imageUrl = '';
+      this.isEmptyImage = false;
 
       // Afficher l'image sélectionnée
       const reader = new FileReader();
       reader.onload = () => {
         this.selectedFileUrl = reader.result as string;
+
       };
       reader.readAsDataURL(this.selectedFile);
+
     }
   }
-
 
   getAllPosts(): void {
     this.posts = this.postService.getAllPosts();
@@ -91,6 +105,35 @@ export class PostFormComponent implements OnInit {
 
   getAllThemes(): void {
     this.listOfThemes = this.mediaService.getAllTheme();
+  }
+
+  getAuthorById(): string {
+    if (!this.post) {
+      return "Pas d'auteur";
+    } else {
+      return this.authorService.getAuthorById(this.post?.author_id);
+    }
+  };
+
+  displayPost(post: Post): void {
+    this.postForm.patchValue({
+      auteur: this.getAuthorById(),
+      titre: this.post?.title,
+      theme: this.post?.theme,
+      publication: this.post?.content,
+      photo: this.post?.picture,
+      categorie : this.post?.category,
+    });
+  }
+
+  checkIfNewPost(): void {
+    const url = this.router.url;
+    if(url.includes("ajouter")){
+      this.isEmptyImage = true;
+    } else {
+      this.isEmptyImage = false;
+    }
+
+  }
 }
 
-}

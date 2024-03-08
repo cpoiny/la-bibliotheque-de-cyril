@@ -12,7 +12,7 @@ export class MediaService {
 books: Media[] = MEDIAS;
 
   getAllBooks(): Media[] {
-    const myBooks = MEDIAS.filter((media: Media) => media.category === "book")
+    const myBooks = MEDIAS.filter((media: Media) => media.category === "litterature")
     this.books = myBooks;
     return this.books;
   }

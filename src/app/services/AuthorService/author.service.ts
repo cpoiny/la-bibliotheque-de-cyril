@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Author } from '../models/author.model';
-import { AUTHORS } from '../mocks/author.mock';
+import { Author } from '../../models/author.model';
+import { AUTHORS } from '../../mocks/author.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,12 @@ export class AuthorService {
 
   sortAuthor(authors : Author[]) : Author[] {
    return authors.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name) ?1 : 0);
+  }
+
+  getAuthorById(id : number) : string {
+    let authorsList = this.getAllAuthors();
+    let foundAuthor! : Author | undefined;
+    foundAuthor = authorsList.find((author) => author.id === id);
+    return foundAuthor!.name; 
   }
 }

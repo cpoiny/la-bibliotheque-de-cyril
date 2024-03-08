@@ -38,9 +38,9 @@ getAllPosts() : void {
   
   let posts : Post[] = [];
   posts = this.postService.getAllPosts();
-  this.bookPosts =  posts.filter((post)=> post.category === "book");
-  this.moviePosts = posts.filter((post)=> post.category === "movie");
-  this.quotePosts = posts.filter((post)=> post.category === "quote");
+  this.bookPosts =  posts.filter((post)=> post.category === "litterature");
+  this.moviePosts = posts.filter((post)=> post.category === "cinema");
+  this.quotePosts = posts.filter((post)=> post.category === "citation");
 }
 
 filterAllPosts() : void {
