@@ -6,36 +6,36 @@
         <select class="input-form" name="auteur" id="auteur" formControlName="auteur">
             <option value=""></option>
             @for(author of listOfAuthors; track author.id){
-                <option value="{{author.name}}">{{author.name}}</option>
+            <option value="{{author.name}}">{{author.name}}</option>
             }
         </select>
     </div>
-  
+
     <!-- Titre -->
-    <div  class="postForm-champ">
+    <div class="postForm-champ">
         <label for="titre">Titre :</label>
         @if (post) {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
+        <input class="input-form" name="titre" id="titre" formControlName="titre">
         } @else {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
+        <input class="input-form" name="titre" id="titre" formControlName="titre">
         }
-          
+
     </div>
     <!-- Catégorie -->
-    <div  class="postForm-champ">
+    <div class="postForm-champ">
         <label for="theme">Theme :</label>
         <select class="input-form" name="theme" id="theme" formControlName="theme">
-      
-                <option value=""></option>
-         
-              
-                     @for(theme of listOfThemes; track theme){
-                <option value="{{theme}}">{{theme}}</option>
+
+            <option value=""></option>
+
+
+            @for(theme of listOfThemes; track theme){
+            <option value="{{theme}}">{{theme}}</option>
             }
         </select>
     </div>
     <!-- Publication -->
-    <div  class="postForm-champ">
+    <div class="postForm-champ">
         <label for="publication">Publication:</label>
         <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
             formControlName="publication"></textarea>
@@ -45,41 +45,28 @@
         <label for="photo">Photo de couverture :</label>
         <div class="photo-image">
 
-           
+            <!-- J'affiche mon patch et son changement si je suis sur modifier -->
+
+
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
-                (change)="onFileSelected($event)" >
-                
+                (change)="onFileSelected($event)">
 
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-            @if (!isNewPost) {
-                <div>
-                    @if(selectedFileUrl){
-                        <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
-                        }
-                        @if(imageUrl){
-                        <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                            }
-                </div>
 
-            } @else() {
-                <div>
-                    @if(selectedFileUrl){
-                        <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
-                        }
-                        @else(){
-                            <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
-                            alt="Image placeholder">
-                            }
-                </div>
-
+            @if(isEmptyImage){
+            <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
             }
-
+            @if(selectedFileUrl){
+            <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
+            }
+            @if(imageUrl){
+            <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
+            }
 
         </div>
 
     </div>
     <!-- Boutons -->
-    <div  class="postForm-champ">
+    <div class="postForm-champ">
         <button>Annuler</button>
         <button type="submit" [disabled]="postForm.invalid">Publier</button>
     </div>

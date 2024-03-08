@@ -6,7 +6,7 @@ import { PostFormComponent } from '../../../components/backOffice/post-form/post
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { FormBuilder } from '@angular/forms';
+
 
 export interface ICategoryButton {
   id: number;
@@ -61,6 +61,7 @@ constructor(
     console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
   }
 
+  // To get the post and send it to the form in order to patch value
   getPostDetails(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     const foundPost = this.postService.getPostById(id);
@@ -72,6 +73,7 @@ constructor(
  
   }
 
+  // Manage display of the content if this is a new post or a modification
   checkIfIsNewPost(): void {
     const url = this.router.url;
        if (url.includes('ajouter')) {

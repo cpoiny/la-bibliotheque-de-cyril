@@ -5,7 +5,7 @@ import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -20,23 +20,25 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
-    private router : Router
+    private router: Router
 
   ) { }
 
-  @Input() post : Post | undefined;
+  @Input() post: Post | undefined;
   posts: Post[] = [];
   listOfAuthors: Author[] = [];
-  listOfThemes : string [] = [];
+  listOfThemes: string[] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
-  selectedFileUrl!: string | ArrayBuffer | null;
+  selectedFileUrl: string | ArrayBuffer | null = ''
   imageUrl: string = '';
-  isNewPost: boolean = true;
+  isEmptyImage? : boolean;
+
 
 
 
   ngOnInit(): void {
+    this.checkIfNewPost();
     this.buildForm();
     this.getAllPosts();
     this.getAllAuthors();
@@ -46,7 +48,6 @@ export class PostFormComponent implements OnInit {
       this.displayPost(this.post);
       this.imageUrl = this.post.picture;
     }
-    this.checkIfIsNewPost();
 
   }
 
@@ -63,12 +64,12 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
-      console.log("mon formulaire 1", this.postForm);
+     
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
     } else {
-      console.log("mon formulaire 2", this.postForm);
+      
       console.log("formulaire non valide")
     }
   }
@@ -76,31 +77,23 @@ export class PostFormComponent implements OnInit {
   // Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+   
     if (file) {
       this.selectedFile = file;
-      this.postForm.patchValue({ photo: file });
+      this.postForm.patchValue({ image: file });
       this.imageUrl = '';
-     
+      this.isEmptyImage = false;
+
       // Afficher l'image sélectionnée
       const reader = new FileReader();
       reader.onload = () => {
         this.selectedFileUrl = reader.result as string;
+
       };
       reader.readAsDataURL(this.selectedFile);
-  
+
     }
   }
-
-  checkIfIsNewPost(): void {
-   const url = this.router.url;
-      if (url.includes('ajouter')) {
-        this.isNewPost = true;
-      } else {
-        this.isNewPost = false;
-      }
-    }
-   
-
 
   getAllPosts(): void {
     this.posts = this.postService.getAllPosts();
@@ -112,24 +105,34 @@ export class PostFormComponent implements OnInit {
 
   getAllThemes(): void {
     this.listOfThemes = this.mediaService.getAllTheme();
-}
+  }
 
-getAuthorById() : string {
-  if (!this.post){
-    return "Pas d'auteur";
-  } else {
-  return this.authorService.getAuthorById(this.post?.author_id);
-}
-};
+  getAuthorById(): string {
+    if (!this.post) {
+      return "Pas d'auteur";
+    } else {
+      return this.authorService.getAuthorById(this.post?.author_id);
+    }
+  };
 
-displayPost(post : Post): void {
-  this.postForm.patchValue({
-    auteur: this.getAuthorById(),
-    titre: this.post?.title,
-    theme: this.post?.theme,
-    publication: this.post?.content,
-    photo : this.post?.picture,
-  });
-}
+  displayPost(post: Post): void {
+    this.postForm.patchValue({
+      auteur: this.getAuthorById(),
+      titre: this.post?.title,
+      theme: this.post?.theme,
+      publication: this.post?.content,
+      photo: this.post?.picture,
+    });
+  }
+
+  checkIfNewPost(): void {
+    const url = this.router.url;
+    if(url.includes("ajouter")){
+      this.isEmptyImage = true;
+    } else {
+      this.isEmptyImage = false;
+    }
+
+  }
 }
 
