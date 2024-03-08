@@ -58,13 +58,13 @@ export class PostFormComponent implements OnInit {
       theme: ['', [Validators.required]],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
+      categorie: ['', [Validators.required]]
     })
   }
 
 
   onSubmit(): void {
     if (this.postForm.valid) {
-     
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
@@ -122,6 +122,7 @@ export class PostFormComponent implements OnInit {
       theme: this.post?.theme,
       publication: this.post?.content,
       photo: this.post?.picture,
+      categorie : this.post?.category,
     });
   }
 

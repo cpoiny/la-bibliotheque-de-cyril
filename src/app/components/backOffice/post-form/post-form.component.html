@@ -40,13 +40,14 @@
         <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
             formControlName="publication"></textarea>
     </div>
+
+    
     <!-- Photo de couverture -->
     <div class="postForm-champ post-photo">
         <label for="photo">Photo de couverture :</label>
         <div class="photo-image">
 
             <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-
 
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
                 (change)="onFileSelected($event)" value="">
@@ -65,6 +66,8 @@
         </div>
 
     </div>
+
+
     <!-- Boutons -->
     <div class="postForm-champ">
         <button>Annuler</button>

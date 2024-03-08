@@ -10,19 +10,19 @@
                 }@else (){
                 <h1>Modifier la publication</h1>
                 }
-
+               
                 <div class="all-cat">
                     @for(category of categoriesButton; track category.id){
                     <div class="categoryList">
                         <label class="boxCatContainer" [for]="category.id">
-                            <input required type="radio" [id]="category.id" formControlName="cat" name="cat" class="cat"
+                            <input required type="radio" [id]="category.id" formControlName="categorie" name="categorie" class="cat"
                                 value="category">
                             <span class="boxcat">{{category.title}}</span>
                         </label>
                     </div>
                 }
                 </div>
-
+           
 
             </div>
         </div>

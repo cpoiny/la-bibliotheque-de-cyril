@@ -6,13 +6,12 @@ import { PostFormComponent } from '../../../components/backOffice/post-form/post
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export interface ICategoryButton {
   id: number;
   title: string;
-  icon: string;
 }
 
 
@@ -25,50 +24,45 @@ export interface ICategoryButton {
 })
 export class BackofficeAddComponent implements OnInit {
 
+  catForm!: FormGroup;
+  isNewPost: boolean = true;
+  post!: Post;
+  categoriesButton: ICategoryButton[] = [
+      {
+        id: 1,
+        title: "Litterature",
+  
+      },
+      {
+        id: 2,
+        title: "Cinema",
+  
+      },
+      {
+        id: 3,
+        title: "Citation",
+      }
+    ]
+    
+
 constructor(
   private activatedRoute : ActivatedRoute,
   private postService : PostService,
   private router : Router,
   private formBuilder: FormBuilder
 ){
+  this.catForm = this.formBuilder.group({
+    categorie: ['', [Validators.required]],
+  });
  
 }
 
-catForm!: FormGroup;
-isNewPost: boolean = true;
-post!: Post;
-categoriesButton: ICategoryButton[] = [
-    {
-      id: 1,
-      title: "Litterature",
-      icon: "assets/icons/livre.png",
-    },
-    {
-      id: 2,
-      title: "Cinema",
-      icon: "assets/icons/clap.png",
-    },
-    {
-      id: 3,
-      title: "Citation",
-      icon: "assets/icons/citation.png",
-    }
-  ]
-  
-  
 
   
-
-
 
   ngOnInit(): void {
     this.getPostDetails();
     this.checkIfIsNewPost();
-    this.catForm = this.formBuilder.group({
-      cat: [null],
-    
-    });
-
   }
 
  
@@ -81,6 +75,7 @@ categoriesButton: ICategoryButton[] = [
     } else {
       this.router.navigate(['']);
     }
+   
  
   }
 
@@ -93,6 +88,7 @@ categoriesButton: ICategoryButton[] = [
          this.isNewPost = false;
        }
      }
+
 
 
 
