@@ -45,15 +45,21 @@
         <label for="photo">Photo de couverture :</label>
         <div class="photo-image">
 
+           
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
-                (change)="onFileSelected($event)">
+                (change)="onFileSelected($event)" >
+                
             @if(selectedFileUrl){
             <img class="photo selected" [src]="selectedFileUrl" alt="selectedFileUrl">
-            }
-            @else(){
+            }@else(){
+            <img class="photo selected" [src]="imageUrl"[alt]="imageUrl">
+                }
+        
+        @if(isNewPost){
             <img class="photo notSelected" src="assets/illustration/placeholder.jpg"
                 alt="Image placeholder">
             }
+   
         </div>
 
     </div>

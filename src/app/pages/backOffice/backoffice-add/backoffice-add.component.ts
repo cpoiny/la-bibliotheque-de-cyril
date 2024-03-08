@@ -28,23 +28,10 @@ constructor(
   private activatedRoute : ActivatedRoute,
   private postService : PostService,
   private router : Router,
-  private formBuilder : FormBuilder
-){
-  // this.formData = {
-  //   auteur :"",
-  //   titre : this.postToDisplay?.title,
-  //   theme : "mon Theme",
-  //   publication: this.postToDisplay?.content,
-  //   photo: this.postToDisplay?.picture
-
-  // }
-}
+){}
 
   isNewPost: boolean = true;
   post!: Post;
-
-
-
   categoriesButton: ICategoryButton[] = [
     {
       id: 1,
@@ -62,8 +49,7 @@ constructor(
       icon: "assets/icons/citation.png",
     }
   ]
-  postToDisplay : Post | undefined;
-  // formData : Post;
+
 
   ngOnInit(): void {
     this.getPostDetails();
@@ -74,27 +60,17 @@ constructor(
     console.log("checked", (document.getElementById("button.title") as HTMLInputElement).checked);
   }
 
-
-
-  //fonction pour récupérer une todo par id
   getPostDetails(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    console.log("id todo", id);
     const foundPost = this.postService.getPostById(id);
-    this.isNewPost = false;
-
     if(foundPost){
       this.post = foundPost[0];
+      this.isNewPost = false;
     } else {
-      this.router.navigate(['**']);
+      this.router.navigate(['']);
     }
-    // this.displayPost(foundPost[0]);
-
  
   }
-
-
-
 
 }
 

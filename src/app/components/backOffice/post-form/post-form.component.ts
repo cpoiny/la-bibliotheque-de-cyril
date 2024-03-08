@@ -5,6 +5,7 @@ import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -19,6 +20,7 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
+    private activatedRoute : ActivatedRoute
 
   ) { }
 
@@ -29,6 +31,8 @@ export class PostFormComponent implements OnInit {
   postForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl!: string | ArrayBuffer | null;
+  imageUrl: string = '';
+  isNewPost: boolean = true;
 
 
 
@@ -38,10 +42,11 @@ export class PostFormComponent implements OnInit {
     this.getAllAuthors();
     this.getAllThemes();
     if (this.post) {
-      console.log("my post", this.post);
       this.getAuthorById();
       this.displayPost(this.post);
+      this.imageUrl = this.post.picture;
     }
+    this.checkIfIsNewPost();
 
   }
 
@@ -73,7 +78,7 @@ export class PostFormComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.selectedFile = file;
-      this.postForm.patchValue({ image: file });
+      this.postForm.patchValue({ photo: file });
      
       // Afficher l'image sélectionnée
       const reader = new FileReader();
@@ -81,8 +86,16 @@ export class PostFormComponent implements OnInit {
         this.selectedFileUrl = reader.result as string;
       };
       reader.readAsDataURL(this.selectedFile);
+  
     }
   }
+
+  checkIfIsNewPost(): void {
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    if(id){
+      this.isNewPost = false;
+    }
+   }
 
 
   getAllPosts(): void {
@@ -111,7 +124,7 @@ displayPost(post : Post): void {
     titre: this.post?.title,
     theme: this.post?.theme,
     publication: this.post?.content,
-    photo: this.post?.picture
+    photo : this.post?.picture,
   });
 }
 }
