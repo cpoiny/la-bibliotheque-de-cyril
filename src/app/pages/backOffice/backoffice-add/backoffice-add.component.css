@@ -43,16 +43,65 @@
     font-weight: normal;
 }
 
-.test input[type="radio"]:checked + label {
-    /* Styles à appliquer lorsque le bouton radio est sélectionné */
-    font-weight: bold;
-    color: red;
-  }
 
-.test label {
-    /* Styles à appliquer lorsque le bouton radio est sélectionné */
-   color :blue
-  }
+
+.all-cat {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.all-cat-mobile{ display:none;}
+
+.categoryList {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+/*CSS Pour bouton categorie*/
+.boxCatContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 28px;
+    margin-top: -10px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.boxCatContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.iconcat {
+    display :none;
+}
+
+.boxcat {
+    position: absolute;
+    border-radius: 20px;
+    border: black solid 1px;
+    top: 12px;
+    left: -10px;
+    text-align: center;
+    padding: 13px;
+}
+
+.boxCatContainer input:checked~.boxcat {
+    background-color: var(--gold);
+    border: none;
+}
+
 
 
 
@@ -70,7 +119,7 @@
     .container-entete {
         flex-direction: column;
         justify-content: center;
-        /* width: 100%; */
+     
         align-items: center;
     }
 
@@ -79,17 +128,23 @@
         display: block;
     }
 
-  
+   .all-cat{
+    display: none;
+   }
+   .all-cat-mobile{
+    display: block;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+   }
 
-    .cat-icon {
+    .boxcat{
         display: block;
-    }
-
-    .cat-text {
-        display: none;
-    }
-
-
+        margin:0;
+        width: 5vw;
+        height: 5vw;
+       
+    }    
 
     @media (max-width: 799px) {
 
@@ -103,14 +158,19 @@
             font-size: 1.5rem;
         }
 
-        .cat-icon {
-            display: block;
-        }
-
-        .cat-text {
+        .all-cat{
             display: none;
+           }
+        .all-cat-mobile{
+            display: block;
+           }
+        
+        .iconcat{
+            display: block;
+            width: 20vw;
+            height: 8vh;
         }
-
+      
 
     }
 }

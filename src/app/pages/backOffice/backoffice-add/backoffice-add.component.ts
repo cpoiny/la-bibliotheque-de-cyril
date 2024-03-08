@@ -34,26 +34,26 @@ constructor(
  
 }
 
-
+catForm!: FormGroup;
 isNewPost: boolean = true;
 post!: Post;
-categoriesButton: ICategoryButton[] = [
-    {
-      id: 1,
-      title: "Littérature",
-      icon: "assets/icons/livre.png",
-    },
-    {
-      id: 2,
-      title: "Cinéma",
-      icon: "assets/icons/clap.png",
-    },
-    {
-      id: 3,
-      title: "Citation",
-      icon: "assets/icons/citation.png",
-    }
-  ]
+// categoriesButton: ICategoryButton[] = [
+//     {
+//       id: 1,
+//       title: "Littérature",
+//       icon: "assets/icons/livre.png",
+//     },
+//     {
+//       id: 2,
+//       title: "Cinéma",
+//       icon: "assets/icons/clap.png",
+//     },
+//     {
+//       id: 3,
+//       title: "Citation",
+//       icon: "assets/icons/citation.png",
+//     }
+//   ]
   
   
 
@@ -64,6 +64,10 @@ categoriesButton: ICategoryButton[] = [
   ngOnInit(): void {
     this.getPostDetails();
     this.checkIfIsNewPost();
+    this.catForm = this.formBuilder.group({
+      cat: [null],
+    
+    });
 
   }
 
