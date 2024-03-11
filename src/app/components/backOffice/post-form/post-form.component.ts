@@ -31,10 +31,11 @@ export class PostFormComponent implements OnInit {
   listOfThemes: string[] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
-  selectedFileUrl: string | ArrayBuffer | null = ''
+  selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   isEmptyImage? : boolean;
-
+  showCustomInput: boolean = false;
+  nouvelAuteur: string = '';
 
 
 
@@ -69,9 +70,10 @@ export class PostFormComponent implements OnInit {
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+      console.log("formulaire non valide", this.postForm.value);
     } else {
       
-      console.log("formulaire non valide")
+      console.log("formulaire non valide", this.postForm.value);
     }
   }
 
@@ -119,14 +121,15 @@ export class PostFormComponent implements OnInit {
   displayPost(post: Post): void {
     this.postForm.patchValue({
       auteur: this.getAuthorById(),
-      titre: this.post?.title,
-      theme: this.post?.theme,
-      publication: this.post?.content,
-      photo: this.post?.picture,
-      categorie : this.post?.category,
+      titre: post?.title,
+      theme: post?.theme,
+      publication: post?.content,
+      photo: post?.picture,
+      categorie : post?.category,
     });
   }
 
+  // verification de l'url pour gérer l'affichage conditionnel
   checkIfNewPost(): void {
     const url = this.router.url;
     if(url.includes("ajouter")){
@@ -134,11 +137,8 @@ export class PostFormComponent implements OnInit {
     } else {
       this.isEmptyImage = false;
     }
-
   }
 
-  showCustomInput: boolean = false;
-  nouvelAuteur: string = '';
 
   onAuteurChange(event: any) {
     if (event.target.value === 'autre') {

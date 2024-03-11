@@ -10,8 +10,8 @@
         }
         <option value="autre">Autre (précisez)</option>
         </select>
-@if(showCustomInput){
-
+        
+        @if(showCustomInput){
         <div class="postForm-champ" >
             <label for="autreAuteur">Nouvel auteur :</label>
             <input type="text" class="input-form" id="autreAuteur" name="autreAuteur" [(ngModel)]="nouvelAuteur">
@@ -30,6 +30,7 @@
         }
 
     </div>
+
     <!-- Catégorie -->
     <div class="postForm-champ">
         <label for="theme">Theme :</label>
@@ -42,6 +43,7 @@
            
         </select>
     </div>
+
     <!-- Publication -->
     <div class="postForm-champ">
         <label for="publication">Publication:</label>
@@ -56,7 +58,6 @@
         <div class="photo-image">
 
             <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
                 (change)="onFileSelected($event)" value="">
 
@@ -79,7 +80,7 @@
     <!-- Boutons -->
     <div class="postForm-champ">
         <button>Annuler</button>
-        <button type="submit" [disabled]="postForm.invalid">Publier</button>
+        <button type="submit" >Publier</button>
     </div>
 
 

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderBoComponent } from '../../../components/backOffice/header-bo/header-bo.component';
-import { CardComponent } from '../../../components/card/card.component';
 import { Post } from '../../../models/post.model';
 import { PostService } from '../../../services/PostService/post.service';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { ActionsButtonComponent } from '../../../components/backOffice/actions-button/actions-button.component';
+import { CardBoComponent } from '../../../components/backOffice/card-bo/card-bo.component';
 
 @Component({
   selector: 'app-back-office-posts',
   standalone: true,
-  imports: [HeaderBoComponent, CardComponent, RouterLink, ButtonComponent, ActionsButtonComponent],
+  imports: [HeaderBoComponent, CardBoComponent, RouterLink, ButtonComponent, ActionsButtonComponent],
   templateUrl: './back-office-posts.component.html',
   styleUrl: './back-office-posts.component.css'
 })
