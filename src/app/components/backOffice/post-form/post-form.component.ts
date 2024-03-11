@@ -8,6 +8,12 @@ import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 
+export interface ICategoryButton {
+  id: number;
+  title: string;
+}
+
+
 @Component({
   selector: 'app-post-form',
   standalone: true,
@@ -36,6 +42,24 @@ export class PostFormComponent implements OnInit {
   isEmptyImage? : boolean;
   showCustomInput: boolean = false;
   nouvelAuteur: string = '';
+  isNewPost: boolean = true;
+
+  categoriesButton: ICategoryButton[] = [
+    {
+      id: 1,
+      title: "Litterature",
+
+    },
+    {
+      id: 2,
+      title: "Cinema",
+
+    },
+    {
+      id: 3,
+      title: "Citation",
+    }
+  ]
 
 
 
@@ -134,8 +158,10 @@ export class PostFormComponent implements OnInit {
     const url = this.router.url;
     if(url.includes("ajouter")){
       this.isEmptyImage = true;
+      this.isNewPost = true;
     } else {
       this.isEmptyImage = false;
+      this.isNewPost = false;
     }
   }
 
