@@ -112,7 +112,7 @@ form .postForm-champ label {
 
 .all-cat {
     display: flex;
-    width: 70%;
+    width: 80%;
     height: 5vw;
     justify-content: space-between;
 }
@@ -187,6 +187,7 @@ form .postForm-champ label {
 
     .all-cat {
         margin-top: 5vw;
+
 
     }
 

@@ -27,15 +27,16 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
-    private router: Router
+    private router: Router,
+    ){}
 
-  ) { }
 
   @Input() post: Post | undefined;
   posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
+  catForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
@@ -86,6 +87,10 @@ export class PostFormComponent implements OnInit {
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
     })
+
+    this.catForm = this.formBuilder.group({
+      categorie: ['', [Validators.required]],
+    });
   }
 
 

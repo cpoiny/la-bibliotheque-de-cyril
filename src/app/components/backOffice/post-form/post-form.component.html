@@ -1,8 +1,6 @@
 
 <section class="container">
 
-
-
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
     <div class="container-entete">
@@ -15,24 +13,20 @@
             }
            
             <div class="all-cat">
+                <form [formGroup]="catForm">
                 @for(category of categoriesButton; track category.id){
                 <div class="categoryList">
                     <label class="boxCatContainer" [for]="category.id">
-                        <input required type="radio" [id]="category.id" formControlName="categorie" name="categorie" class="cat"
+                        <input class="cat" required type="radio" [id]="category.id" formControlName="categorie" name="categorie" 
                             value="category">
                         <span class="boxcat">{{category.title}}</span>
                     </label>
                 </div>
             }
+                </form>
             </div>
-       
-
         </div>
     </div>
-
-
-
-
 
 
     <!-- Nom Auteur -->
@@ -109,7 +103,6 @@
             }
 
         </div>
-
     </div>
 
 
@@ -118,8 +111,6 @@
         <button>Annuler</button>
         <button type="submit" >Publier</button>
     </div>
-
-
 
 </form>
 
