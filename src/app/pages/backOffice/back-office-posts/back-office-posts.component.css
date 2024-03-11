@@ -13,10 +13,14 @@
     display: flex;
     gap: 5vh;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
 }
 
 
+.posts ul li {
+    display: flex;
+    flex-direction: column;
+}
 
 h2 {
     margin: 5vh;
@@ -51,6 +55,6 @@ app-button:hover {
 .actions-button {
     display: flex;
     justify-content: end;
-    
+    margin-top: 1vh;
 }
 

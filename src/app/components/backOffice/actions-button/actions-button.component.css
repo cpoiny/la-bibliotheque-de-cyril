@@ -15,6 +15,13 @@ button img{
 
 @media (max-width:425px){
     button img{
-        width: 5vw;
+        width: 6vw;
+    }
+}
+
+
+@media (min-width:426px) and (max-width:1025px){
+    button img{
+        width: 4vw;
     }
 }

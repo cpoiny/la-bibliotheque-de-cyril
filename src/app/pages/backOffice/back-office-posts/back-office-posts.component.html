@@ -7,6 +7,8 @@
         <app-button [title]="ajouter"></app-button>
     </div>
 
+
+
     <!-- Catégorie littérature -->
     <div class="posts">
         <h2>Littérature</h2>
@@ -28,6 +30,8 @@
         }
     </div>
 
+
+
     <!-- Catégorie Cinéma -->
     <div class="posts">
         <h2>Cinéma</h2>
@@ -37,7 +41,8 @@
             <li>
                 <app-card-bo routerLink="modifier/{{post.id}}" class="card" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
                 </div>
 
             </li>
@@ -58,7 +63,8 @@
             <li>
                 <app-card-bo routerLink="modifier/{{post.id}}" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
                 </div>
             </li>
             }
