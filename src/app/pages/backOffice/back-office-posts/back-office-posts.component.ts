@@ -14,49 +14,43 @@ import { CardBoComponent } from '../../../components/backOffice/card-bo/card-bo.
   templateUrl: './back-office-posts.component.html',
   styleUrl: './back-office-posts.component.css'
 })
-export class BackOfficePostsComponent implements OnInit{
+export class BackOfficePostsComponent implements OnInit {
 
-constructor (
-  private postService: PostService,
-){}
+  constructor(
+    private postService: PostService,
+  ) { }
 
-ajouter: string = "Nouvelle publication";
-bookPosts : Post[] = [];
-moviePosts : Post[] = [];
-quotePosts : Post[] = [];
-srcEdit : string = "assets/icons/edit.png";
-srcDelete : string = "assets/icons/corbeille.png"
+  ajouter: string = "Nouvelle publication";
+  bookPosts: Post[] = [];
+  moviePosts: Post[] = [];
+  quotePosts: Post[] = [];
+  srcEdit: string = "assets/icons/edit.png";
+  srcDelete: string = "assets/icons/corbeille.png"
 
-ngOnInit() : void {
+  ngOnInit(): void {
 
-this.getAllPosts();
+    this.getAllPosts();
 
-}
+  }
 
 
-getAllPosts() : void {
-  
-  let posts : Post[] = [];
-  posts = this.postService.getAllPosts();
-  this.bookPosts =  posts.filter((post)=> post.category === "litterature");
-  this.moviePosts = posts.filter((post)=> post.category === "cinema");
-  this.quotePosts = posts.filter((post)=> post.category === "citation");
-}
+  getAllPosts(): void {
 
-filterAllPosts() : void {
-}
+    let posts: Post[] = [];
+    posts = this.postService.getAllPosts();
+    this.bookPosts = posts.filter((post) => post.category === "litterature");
+    this.moviePosts = posts.filter((post) => post.category === "cinema");
+    this.quotePosts = posts.filter((post) => post.category === "citation");
+  }
 
-onEdit(post: Post): void {
-  console.log("click edit", post);
 
-  // recupérer toutes les valeurs du formulaire dont nom ateur, theme du media (avec le media id) , 
-}
+  onEdit(post: Post): void {
+    console.log("click edit", post);
+  }
 
-onDelete(post: Post): void {
-  console.log("click delete", post);
-  // open modale pour confirmer la suppression
-
-  // fonction delete by ID
-
-}
+  onDelete(post: Post): void {
+    console.log("click delete", post);
+    // open modale pour confirmer la suppression
+    this.postService.deletePostById(post.id);
+  }
 }

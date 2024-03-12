@@ -92,7 +92,7 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
-      this.postService.addPost(this.postForm);
+      this.postService.createPost(this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image

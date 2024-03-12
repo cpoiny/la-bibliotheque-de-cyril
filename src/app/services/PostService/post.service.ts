@@ -69,7 +69,7 @@ export class PostService {
   }
 
 
-  addPost(post: FormGroup):void {
+  createPost(post: FormGroup):void {
      const postToAdd = new Post(
        0,
        post.value.titre,
@@ -85,18 +85,22 @@ export class PostService {
        post.value.theme,
        null
      )
-    console.log("my post", postToAdd);
+   this.addPost(postToAdd);
   }
 
+  // Requete POST
+  addPost(post: Post): void {
+    const url = "";
+    this.http.post(url, post)
+  }
 
-  //    this.postForm = this.formBuilder.group({
-  //   auteur: ['', [Validators.required]],
-  //   titre: ['', [Validators.required]],
-  //   theme: ['', [Validators.required]],
-  //   publication: ['', [Validators.required, Validators.minLength(5)]],
-  //   photo: [null, [Validators.required]],
-  //   categorie: ['', [Validators.required]]
-  // })
+  deletePostById(id: number): Post[]{
+    const posts = this.getAllPosts();
+    posts.map((post) => post.id !== id);
+    console.log("posts apres suppression", posts);
+    return posts;
+  }
+  
 
 
 
