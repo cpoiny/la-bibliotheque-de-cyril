@@ -1,15 +1,14 @@
 <app-header-bo></app-header-bo>
 <div class="container">
+
     <!-- Afficher toutes les cards -->
-
-
-
-
-
     <div routerLink="ajouter" class="ajout">
         <img src="assets/icons/plus-gold.png" alt="ajouter">
         <app-button [title]="ajouter"></app-button>
     </div>
+
+
+
     <!-- Catégorie littérature -->
     <div class="posts">
         <h2>Littérature</h2>
@@ -17,8 +16,7 @@
         <ul>
             @for(post of bookPosts; track post.id) {
             <li>
-                <app-card class="card" [id]="post.id" [picture]="post.picture" [title]="post.title">
-                </app-card>
+                <app-card-bo routerLink="modifier/{{post.id}}" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
                     <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
                     <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
@@ -27,30 +25,29 @@
             </li>
             }
         </ul>
-
         } @else {
         <p class="no-post">Aucun post dans cette catégorie.</p>
         }
     </div>
 
-    <!-- Catégorie Cinéma -->
 
+
+    <!-- Catégorie Cinéma -->
     <div class="posts">
         <h2>Cinéma</h2>
         @if (moviePosts.length > 0){
         <ul>
             @for(post of moviePosts; track post.id) {
             <li>
-                <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
-                </app-card>
+                <app-card-bo routerLink="modifier/{{post.id}}" class="card" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
                 </div>
 
             </li>
             }
         </ul>
-
         } @else {
         <p class="no-post">Aucun post dans cette catégorie.</p>
         }
@@ -64,15 +61,14 @@
         <ul>
             @for(post of quotePosts; track post.id) {
             <li>
-                <app-card [id]="post.id" [picture]="post.picture" [title]="post.title">
-                </app-card>
+                <app-card-bo routerLink="modifier/{{post.id}}" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
-                    <app-actions-button></app-actions-button>
+                    <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
                 </div>
             </li>
             }
         </ul>
-
         } @else {
         <p class="no-post">Aucun post dans cette catégorie.</p>
         }

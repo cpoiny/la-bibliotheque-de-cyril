@@ -8,6 +8,12 @@ import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 
+export interface ICategoryButton {
+  id: number;
+  title: string;
+}
+
+
 @Component({
   selector: 'app-post-form',
   standalone: true,
@@ -21,20 +27,40 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private authorService: AuthorService,
     private mediaService: MediaService,
-    private router: Router
+    private router: Router,
+    ){}
 
-  ) { }
 
   @Input() post: Post | undefined;
   posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
+  // catForm!: FormGroup;
   selectedFile!: File | null;
-  selectedFileUrl: string | ArrayBuffer | null = ''
+  selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   isEmptyImage? : boolean;
+  showCustomInput: boolean = false;
+  nouvelAuteur: string = '';
+  isNewPost: boolean = true;
 
+  categoriesButton: ICategoryButton[] = [
+    {
+      id: 1,
+      title: "Litterature",
+
+    },
+    {
+      id: 2,
+      title: "Cinema",
+
+    },
+    {
+      id: 3,
+      title: "Citation",
+    }
+  ]
 
 
 
@@ -69,9 +95,10 @@ export class PostFormComponent implements OnInit {
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+      console.log("formulaire non valide", this.postForm.value);
     } else {
       
-      console.log("formulaire non valide")
+      console.log("formulaire non valide", this.postForm.value);
     }
   }
 
@@ -119,26 +146,26 @@ export class PostFormComponent implements OnInit {
   displayPost(post: Post): void {
     this.postForm.patchValue({
       auteur: this.getAuthorById(),
-      titre: this.post?.title,
-      theme: this.post?.theme,
-      publication: this.post?.content,
-      photo: this.post?.picture,
-      categorie : this.post?.category,
+      titre: post?.title,
+      theme: post?.theme,
+      publication: post?.content,
+      photo: post?.picture,
+      categorie : post?.category,
     });
   }
 
+  // verification de l'url pour gérer l'affichage conditionnel
   checkIfNewPost(): void {
     const url = this.router.url;
     if(url.includes("ajouter")){
       this.isEmptyImage = true;
+      this.isNewPost = true;
     } else {
       this.isEmptyImage = false;
+      this.isNewPost = false;
     }
-
   }
 
-  showCustomInput: boolean = false;
-  nouvelAuteur: string = '';
 
   onAuteurChange(event: any) {
     if (event.target.value === 'autre') {

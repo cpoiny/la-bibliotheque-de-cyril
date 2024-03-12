@@ -34,8 +34,6 @@
 
 @media (max-width: 600px) {
     .button {
-        font-size: 0.8rem;
-        width:50vw;
-        min-width:50vw;
+       display: none;
     }
 }

@@ -1,4 +1,40 @@
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+<section class="container">
+
+<form class="formulaire-complet" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+    <div class="container-entete">
+        <img src="assets/illustration/back-office.png" alt="back-office">
+        <div class="entete-titre">
+            @if(isNewPost){
+            <h1>Ajouter une publication</h1>
+            }@else (){
+            <h1>Modifier la publication</h1>
+            }
+
+
+            <div class="mesCat">
+                <div>
+                    <input class="cat1" required type="radio" id="litterature" formControlName="categorie" name="categorie" 
+                    value="litterature">
+                    <label for="litterature">Littérature</label>
+                </div>
+              <div>
+                <input class="cat1" required type="radio" id="cinema" formControlName="categorie" name="categorie" 
+                value="cinema">
+                <label for="cinema">Cinéma</label>
+
+              </div>
+                   <div>
+                    <input class="cat1" required type="radio" id="citation" formControlName="categorie" name="categorie" 
+                    value="citation">
+                    <label for="citation">Citation</label> 
+                </div>              
+            </div>
+        </div>
+    </div>
+
+
     <!-- Nom Auteur -->
     <div class="postForm-champ">
         <label for="auteur">Auteur :</label>
@@ -10,8 +46,8 @@
         }
         <option value="autre">Autre (précisez)</option>
         </select>
-@if(showCustomInput){
-
+        
+        @if(showCustomInput){
         <div class="postForm-champ" >
             <label for="autreAuteur">Nouvel auteur :</label>
             <input type="text" class="input-form" id="autreAuteur" name="autreAuteur" [(ngModel)]="nouvelAuteur">
@@ -30,6 +66,7 @@
         }
 
     </div>
+
     <!-- Catégorie -->
     <div class="postForm-champ">
         <label for="theme">Theme :</label>
@@ -42,6 +79,7 @@
            
         </select>
     </div>
+
     <!-- Publication -->
     <div class="postForm-champ">
         <label for="publication">Publication:</label>
@@ -56,7 +94,6 @@
         <div class="photo-image">
 
             <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-
             <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
                 (change)="onFileSelected($event)" value="">
 
@@ -72,16 +109,15 @@
             }
 
         </div>
-
     </div>
 
 
     <!-- Boutons -->
     <div class="postForm-champ">
         <button>Annuler</button>
-        <button type="submit" [disabled]="postForm.invalid">Publier</button>
+        <button type="submit" >Publier</button>
     </div>
 
-
-
 </form>
+
+</section>

@@ -1,0 +1,47 @@
+.card {
+    width: 15vw;
+    height: 15vw;
+    gap: 5vh;
+    position: relative;
+    cursor:pointer;
+    
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* Responsive */
+
+
+@media (max-width: 425px) {
+
+   
+    .titre-partie{
+        font-size: 18px;
+        margin: 0 0 4vh;
+    }
+
+    .card{
+        width:45vw;
+        height:45vw;
+    }
+}
+
+
+@media (min-width: 426px) and (max-width:1025px){
+
+  
+    .titre-partie{
+        font-size: 18px;
+        margin: 0 0 4vh;
+    }
+
+    .card{
+        width:30vw;
+        height:30vw;
+    }
+}
