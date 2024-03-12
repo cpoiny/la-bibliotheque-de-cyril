@@ -1,7 +1,7 @@
 
 <section class="container">
 
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+<form class="formulaire-complet" [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
     <div class="container-entete">
         <img src="assets/illustration/back-office.png" alt="back-office">
@@ -11,19 +11,25 @@
             }@else (){
             <h1>Modifier la publication</h1>
             }
-           
-            <div class="all-cat">
-                <form [formGroup]="catForm">
-                @for(category of categoriesButton; track category.id){
-                <div class="categoryList">
-                    <label class="boxCatContainer" [for]="category.id">
-                        <input class="cat" required type="radio" [id]="category.id" formControlName="categorie" name="categorie" 
-                            value="category">
-                        <span class="boxcat">{{category.title}}</span>
-                    </label>
+
+
+            <div class="mesCat">
+                <div>
+                    <input class="cat1" required type="radio" id="litterature" formControlName="categorie" name="categorie" 
+                    value="litterature">
+                    <label for="litterature">Littérature</label>
                 </div>
-            }
-                </form>
+              <div>
+                <input class="cat1" required type="radio" id="cinema" formControlName="categorie" name="categorie" 
+                value="cinema">
+                <label for="cinema">Cinéma</label>
+
+              </div>
+                   <div>
+                    <input class="cat1" required type="radio" id="citation" formControlName="categorie" name="categorie" 
+                    value="citation">
+                    <label for="citation">Citation</label> 
+                </div>              
             </div>
         </div>
     </div>

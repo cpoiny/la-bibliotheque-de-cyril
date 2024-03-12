@@ -36,7 +36,7 @@ export class PostFormComponent implements OnInit {
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
-  catForm!: FormGroup;
+  // catForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
@@ -87,10 +87,6 @@ export class PostFormComponent implements OnInit {
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
     })
-
-    this.catForm = this.formBuilder.group({
-      categorie: ['', [Validators.required]],
-    });
   }
 
 
