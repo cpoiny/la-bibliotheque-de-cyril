@@ -92,6 +92,7 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
+      this.postService.addPost(this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
@@ -175,5 +176,8 @@ export class PostFormComponent implements OnInit {
       this.nouvelAuteur = ''; // Réinitialiser la valeur du nouvel auteur si nécessaire
     }
   }
-}
+
+
+  }
+
 

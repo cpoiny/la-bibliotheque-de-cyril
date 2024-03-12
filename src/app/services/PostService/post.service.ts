@@ -5,6 +5,7 @@ import { Post, PostAdapter } from '../../models/post.model';
 import { Author } from '../../models/author.model';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +29,12 @@ export class PostService {
   }
 
 
- getPostByIdV2(id: number): Observable<Post> {
-  const url = "" + "post/" + id;
-  return this.http.get(url).pipe(map((data: any) => this.adapter.adapt(data)));
-}
+  getPostByIdV2(id: number): Observable<Post> {
+    const url = "" + "post/" + id;
+    return this.http.get(url).pipe(map((data: any) => this.adapter.adapt(data)));
+  }
 
-// ------------------------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------------------------------------------
 
 
   getAllPosts(): Post[] {
@@ -68,7 +69,34 @@ export class PostService {
   }
 
 
+  addPost(post: FormGroup):void {
+     const postToAdd = new Post(
+       0,
+       post.value.titre,
+       post.value.publication,
+       post.value.photo,
+       0,
+       0,
+       new Date,
+       null,
+       false,
+       false,
+       post.value.categorie,
+       post.value.theme,
+       null
+     )
+    console.log("my post", postToAdd);
+  }
 
+
+  //    this.postForm = this.formBuilder.group({
+  //   auteur: ['', [Validators.required]],
+  //   titre: ['', [Validators.required]],
+  //   theme: ['', [Validators.required]],
+  //   publication: ['', [Validators.required, Validators.minLength(5)]],
+  //   photo: [null, [Validators.required]],
+  //   categorie: ['', [Validators.required]]
+  // })
 
 
 

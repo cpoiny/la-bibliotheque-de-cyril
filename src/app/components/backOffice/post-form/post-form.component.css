@@ -89,15 +89,17 @@
 
 .mesCat div label {
     border: black solid 1px;
-    padding: 10px;
-    border-radius: 20px;
+    width: 8vw;
+    height: 3vw;
+    padding: 2vh;
+    border-radius: 30px;
 }
 
-input[type="radio"].cat1 {
+input[type="radio"].cat {
     display: none;
   }
 
-input[type="radio"].cat1:checked + label {
+input[type="radio"].cat:checked + label {
     background-color: var(--gold);
     border: none;
   }
