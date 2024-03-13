@@ -12,7 +12,7 @@
             <h1>Modifier la publication</h1>
             }
 
-
+<!-- Mes boutons de catégorie -->
             <div class="mesCat">
                 <div>
                     <input class="cat" required type="radio" id="litterature" formControlName="categorie" name="categorie" 
@@ -38,21 +38,14 @@
     <!-- Nom Auteur -->
     <div class="postForm-champ">
         <label for="auteur">Auteur :</label>
-        <!-- <input class="input-form" type="text" id="nom" formControlName="nom"> -->
-        <select class="input-form" name="auteur" id="auteur" formControlName="auteur"  (change)="onAuteurChange($event)">
+        <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur"/>
+        <datalist class="input-form" name="auteur" id="liste-auteur"  (change)="onAuteurChange($event)">
             <option value=""></option>
             @for(author of listOfAuthors; track author.id){
             <option [value]="author.name">{{author.name}}</option>
         }
-        <option value="autre">Autre (précisez)</option>
-        </select>
-        
-        @if(showCustomInput){
-        <div class="postForm-champ" >
-            <label for="autreAuteur">Nouvel auteur :</label>
-            <input type="text" class="input-form" id="autreAuteur" name="autreAuteur" [(ngModel)]="nouvelAuteur">
-        </div>
-    }
+        </datalist>
+    
     </div>
 
 
