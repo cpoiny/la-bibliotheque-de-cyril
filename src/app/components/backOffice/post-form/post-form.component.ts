@@ -36,13 +36,10 @@ export class PostFormComponent implements OnInit {
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
-  // catForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   isEmptyImage? : boolean;
-  showCustomInput: boolean = false;
-  nouvelAuteur: string = '';
   isNewPost: boolean = true;
 
   categoriesButton: ICategoryButton[] = [
@@ -92,6 +89,7 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
+      this.postService.createPost(this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
@@ -166,14 +164,6 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-
-  onAuteurChange(event: any) {
-    if (event.target.value === 'autre') {
-      this.showCustomInput = true;
-    } else {
-      this.showCustomInput = false;
-      this.nouvelAuteur = ''; // Réinitialiser la valeur du nouvel auteur si nécessaire
-    }
   }
-}
+
 

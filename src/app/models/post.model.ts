@@ -16,7 +16,7 @@ export class Post{
     public isOntheWishlist: true | false,
     public category : "litterature" | "cinema" | "citation",
     public theme: string,
-    public galerie?: IGalerie[],
+    public galerie?: IGalerie[] | null,
     ) {}
 
 }
