@@ -11,6 +11,7 @@ import { PostByTypeComponent } from './pages/blog/postByTpe/postByType.component
 import { BackOfficePostsComponent } from './pages/backOffice/back-office-posts/back-office-posts.component';
 import { LayoutComponent } from './pages/backOffice/layout/layout.component';
 import { DashboardComponent } from './pages/backOffice/dashboard/dashboard.component';
+import { authGuard } from './services/Authentication/auth.guard';
 
 export const routes: Routes = [
     {
@@ -52,19 +53,23 @@ export const routes: Routes = [
         children: [
             {
                 path: "mon-compte",
-                component: DashboardComponent
+                component: DashboardComponent,
+                canActivate: [authGuard]
             },
             {
                 path: "toutes-les-publications",
-                component: BackOfficePostsComponent
+                component: BackOfficePostsComponent,
+                canActivate: [authGuard]
             },
             {
                 path: "toutes-les-publications/modifier/:id",
-                component: BackofficeAddComponent
+                component: BackofficeAddComponent,
+                canActivate: [authGuard]
             },
             {
                 path: "toutes-les-publications/ajouter",
-                component: BackofficeAddComponent
+                component: BackofficeAddComponent,
+                canActivate: [authGuard]
             },
         ]
     },
