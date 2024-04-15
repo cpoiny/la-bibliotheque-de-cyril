@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../services/UserService/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginFormComponent {
 
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ){}
 
   // TODO : Finir implementer le formulaire avec message d'erreur
@@ -26,24 +28,24 @@ export class LoginFormComponent {
   });
 
 
-onSubmit() {
+onSubmit(): void{
   const formData = this.loginForm.value;
   const email = formData.email;
   const password = formData.password;
   if(this.loginForm.valid) {
-    this.login(email, password);
-  }
-}
-
-login(email: string, password: string){
   this.userService.login(email, password).subscribe((data)=> {
-    const user = data.user;
-    if(user.token && user.role === "admin") {
-      this.isAdmin.emit(true);
-    }else {
-      this.isAdmin.emit(false)
+    console.log("data", data);
+    if(data) {
+      alert("Login success");
+      localStorage.setItem('token', data.user.token);
+      this.router.navigateByUrl('/admin-lbdc/mon-compte')
+    } else {
+      alert('Login error')
     }
   })
+} else {
+  alert('email ou mot de passe incorrect');
+}
 }
 
 }
