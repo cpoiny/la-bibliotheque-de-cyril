@@ -13,9 +13,6 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent {
   
-  @Output() isAdmin : EventEmitter<boolean> = new EventEmitter();
-
-
   constructor(
     private userService: UserService,
     private router: Router
@@ -34,10 +31,11 @@ onSubmit(): void{
   const password = formData.password;
   if(this.loginForm.valid) {
   this.userService.login(email, password).subscribe((data)=> {
-    console.log("data", data);
-    if(data) {
+    const role = data.user.role;
+    const token = data.user.token;
+    if(data && role == "admin") {
       alert("Login success");
-      localStorage.setItem('token', data.user.token);
+      localStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/mon-compte')
     } else {
       alert('Login error')
