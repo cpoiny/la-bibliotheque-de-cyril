@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import { HeaderBoComponent } from '../../../components/backOffice/header-bo/header-bo.component';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../services/UserService/user.service';
 
 
 @Component({
-  selector: 'app-connexion',
+  selector: 'app-login-form',
   standalone: true,
-  imports: [HeaderBoComponent, ReactiveFormsModule],
-  templateUrl: './connexion.component.html',
-  styleUrl: './connexion.component.css'
+  imports: [ReactiveFormsModule],
+  templateUrl: './login-form.component.html',
+  styleUrl: './login-form.component.css'
 })
-export class ConnexionComponent {
+export class LoginFormComponent {
+  
+  @Output() isAdmin : EventEmitter<boolean> = new EventEmitter();
 
-  isAdmin: boolean = false;
 
   constructor(
-    private userService: UserService,
+    private userService: UserService
   ){}
 
   // TODO : Finir implementer le formulaire avec message d'erreur
@@ -39,11 +39,11 @@ login(email: string, password: string){
   this.userService.login(email, password).subscribe((data)=> {
     const user = data.user;
     if(user.token && user.role === "admin") {
-      this.isAdmin = true;
-      localStorage.setItem('token', user.token);
+      this.isAdmin.emit(true);
+    }else {
+      this.isAdmin.emit(false)
     }
   })
 }
-
 
 }
