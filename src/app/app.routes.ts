@@ -9,6 +9,8 @@ import { CookiesComponent } from './pages/blog/cookies/cookies.component';
 import { ConditionsComponent } from './pages/blog/conditions/conditions.component';
 import { PostByTypeComponent } from './pages/blog/postByTpe/postByType.component';
 import { BackOfficePostsComponent } from './pages/backOffice/back-office-posts/back-office-posts.component';
+import { LayoutComponent } from './pages/backOffice/layout/layout.component';
+import { DashboardComponent } from './pages/backOffice/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -41,12 +43,17 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "admin-lbdc/connexion",
+        path: "admin-lbdc/login",
         component: ConnexionComponent,
     },
     {
         path: "admin-lbdc",
+        component: LayoutComponent,
         children: [
+            {
+                path: "mon-compte",
+                component: DashboardComponent
+            },
             {
                 path: "toutes-les-publications",
                 component: BackOfficePostsComponent

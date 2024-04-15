@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 type IMenu = {
   id: number;
@@ -17,11 +17,15 @@ type IMenu = {
 })
 export class HeaderBoComponent {
 
+  constructor(
+    private router: Router
+  ){}
+
   menuBO : IMenu[] = [
     {
       id: 1,
       title: "Mon compte",
-      link: "/admin-lbdc/connexion"
+      link: "/admin-lbdc/mon-compte"
     },
     {
       id: 2,
@@ -35,6 +39,9 @@ export class HeaderBoComponent {
     }
   ];
 
+  logOff() {
+    console.log("se deconnecter");
+  }
 
 
 }
