@@ -9,6 +9,6 @@ export interface User {
   
   
   export interface UserLogin {
-    user : User,
     message: string;
+    token : string,
   }
