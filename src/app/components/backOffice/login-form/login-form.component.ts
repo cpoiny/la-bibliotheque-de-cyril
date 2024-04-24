@@ -31,9 +31,9 @@ onSubmit(): void{
   const password = formData.password;
   if(this.loginForm.valid) {
   this.userService.login(email, password).subscribe((data)=> {
-    const role = data.user.role;
-    const token = data.user.token;
-    if(data && role == "admin") {
+    console.log("token", data);
+    const token = data.token;
+    if(token) {
       alert("Login success");
       localStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/mon-compte')
