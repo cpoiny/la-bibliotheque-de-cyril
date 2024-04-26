@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 type IMenu = {
   id: number;
@@ -17,11 +17,14 @@ type IMenu = {
 })
 export class HeaderBoComponent {
 
-  url!: string;
+  isLoginPage: boolean = false;
   
-  constructor(
-    private activatedRoute: ActivatedRoute
-  ){}
+
+    constructor(private route: ActivatedRoute) {
+      this.route.url.subscribe(url => {
+        console.log('Activated URL: ', url[1].path);
+  })
+}
 
   menuBO : IMenu[] = [
     {
@@ -46,14 +49,21 @@ export class HeaderBoComponent {
   }
 
   ngOnInit(): void {
-   this.getUrl();
-     
+
+    this.getCurrentUrl();
+    
   }
 
-  getUrl():void {
-   //
-   
+  getCurrentUrl(): void {
+    this.route.url.subscribe(url => {
+      if( url[1].path === "login") {
+        this.isLoginPage = true
+      };
+    
+    });
   }
-  }
+}
+ 
+
 
 

@@ -1,9 +1,11 @@
 <div class="header-bo">
     <div class="entete-bo">
         <h1>La bibliothèque de Cyril</h1>
+        @if(!isLoginPage){
         <app-picture-profile class="picture"></app-picture-profile>
+        }
     </div>
-    @if(true){
+    @if(!isLoginPage){
     <nav class="nav-bo">
         <ul>
             @for(menu of menuBO; track menu.id){

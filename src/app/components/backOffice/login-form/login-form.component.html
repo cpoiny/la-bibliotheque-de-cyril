@@ -1,4 +1,8 @@
-<h2>Se connecter</h2>
+<div class="container">
+
+
+
+<h2>Admin</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label>
       Email:
@@ -8,8 +12,10 @@
     <label>
       Mot de passe:
       <input type="password" formControlName="password">
+      <a href="" class="forgot_password">Mot de passe oublié</a>
     </label>
     <br>
-    <button type="submit()">Se connecter</button>
+    <app-button class="button_connexion" [title]="title"></app-button>
   </form>
 
+</div>

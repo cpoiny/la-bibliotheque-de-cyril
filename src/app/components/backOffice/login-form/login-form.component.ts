@@ -1,18 +1,20 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../services/UserService/user.service';
 import { Router } from '@angular/router';
+import { ButtonComponent } from '../../button/button.component';
 
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
   
+  title = "Se connecter"
   constructor(
     private userService: UserService,
     private router: Router
