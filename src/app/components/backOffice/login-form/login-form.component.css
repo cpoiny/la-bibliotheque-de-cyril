@@ -41,3 +41,8 @@ label input {
     margin-bottom: 2rem;
 }
 
+.display_error_message{
+    color: red;
+    font-size: clamp(10px, 0.5em, 14px);
+    font-style: italic;
+}

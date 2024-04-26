@@ -6,12 +6,15 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label>
       Email:
-      <input type="email" formControlName="email">
+      <input type="email" id="email" formControlName="email" required>
     </label>
+    @if (!isValidLogin) {
+      <p class="display_error_message">{{errorLogin}}</p>
+      }
     <br>
     <label>
       Mot de passe:
-      <input type="password" formControlName="password">
+      <input type="password" id="password" formControlName="password" required>
       <a href="" class="forgot_password">Mot de passe oublié</a>
     </label>
     <br>

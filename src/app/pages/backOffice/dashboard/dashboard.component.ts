@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/Authentication/authentication.service';
+import { DisplayMessageService } from '../../../shared/display-message.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,17 +14,27 @@ import { AuthenticationService } from '../../../services/Authentication/authenti
 export class DashboardComponent {
 
   constructor(
-    private authService : AuthenticationService
+    private authService : AuthenticationService,
+   private errorMessageService : DisplayMessageService
+    
   ){}
 
 deconnecter : string = "Deconnexion";
 modifier : string = "Enregistrer";
+errorMessage: string | undefined;
+isValidEmail? :boolean;
 
 
 
 emailForm: FormGroup = new FormGroup({
-  emailOld: new FormControl('', Validators.required),
-  emailNew: new FormControl('', Validators.required)
+  emailOld: new FormControl("", [
+    Validators.required,
+    Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+  ]),
+  emailNew: new FormControl("", [
+    Validators.required,
+    Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+  ])
 });
 
 passwordForm: FormGroup = new FormGroup({
@@ -33,7 +44,14 @@ passwordForm: FormGroup = new FormGroup({
 
 
 onSubmitEmail(): void {
+  this.checkEmail();
+  // aller vers le back et mettre à jour si l'ancien email fourni est correct sinon retourner une erreur de mise à jour
   console.log("emailForm", this.emailForm.value);
+}
+
+checkEmail(): void {
+  this.errorMessage = this.errorMessageService.displayErrorMessageForUpdateEmail(this.emailForm);
+  if (this.errorMessage) this.isValidEmail = false;
 }
 
 onSubmitPassword(): void {
