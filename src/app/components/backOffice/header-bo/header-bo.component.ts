@@ -19,12 +19,7 @@ export class HeaderBoComponent {
 
   isLoginPage: boolean = false;
   
-
-    constructor(private route: ActivatedRoute) {
-      this.route.url.subscribe(url => {
-        console.log('Activated URL: ', url[1].path);
-  })
-}
+  constructor(private route: ActivatedRoute) {}
 
   menuBO : IMenu[] = [
     {

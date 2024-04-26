@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../../services/UserService/user.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../button/button.component';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
+import { catchError } from 'rxjs';
 
 
 @Component({
@@ -32,20 +34,37 @@ onSubmit(): void{
   const email = formData.email;
   const password = formData.password;
   if(this.loginForm.valid) {
-  this.userService.login(email, password).subscribe((data)=> {
-    console.log("token", data);
-    const token = data.token;
-    if(token) {
-      alert("Login success");
-      localStorage.setItem('token', token);
-      this.router.navigateByUrl('/admin-lbdc/mon-compte')
-    } else {
-      alert('Login error')
-    }
-  })
-} else {
-  alert('email ou mot de passe incorrect');
-}
+    this.userService.login(email, password).subscribe((data)=> {
+      console.log("data", data);
+      if (data){
+        this.decodeToken(data.token);
+      } else {
+        this.loginForm.reset();
+      } 
+      
+    });
+  } else {
+    alert('email ou mot de passe incorrect');
+  }
 }
 
+decodeToken(token : string) :void {
+ 
+  let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
+  decodedToken = jwtDecode(token);
+
+  jwtDecode(token);
+  const role = decodedToken.role;
+  console.log('decode :', role)
+  if (role === "admin"){
+    alert("Login success");
+      localStorage.setItem('token', token);
+      this.router.navigateByUrl('/admin-lbdc/mon-compte')
+  } else {
+      alert('Login error');
+      this.loginForm.reset();
+    }
+  
+  }
 }
+

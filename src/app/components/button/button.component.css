@@ -1,18 +1,18 @@
 .button{
     background-color: var(--gold);
-    width:18vw;
-    min-width:18vw;
-    height:5vh;
+    width:12vw;
+    min-width:12vw;
+    height:6vh;
     min-height: 4vh;
     border-radius: 20px;
     color: white;
     font-family: "Merriweather", serif;
-    font-size: 1.12rem;
+    font-size: 1rem;
     border: none;
     display:block;
     margin: 0 auto;
-   text-align: center;
-    padding: 0 1vh;
+    text-align: center;
+    padding: 1vh;
 }
 
 .button:hover{
