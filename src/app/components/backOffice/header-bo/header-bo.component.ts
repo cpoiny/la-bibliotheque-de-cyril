@@ -51,10 +51,9 @@ export class HeaderBoComponent {
   }
 
   getUrl():void {
-    this.activatedRoute.snapshot('login')
-    
+   //
    
   }
   }
 
-}
+
