@@ -3,8 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../../services/UserService/user.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../button/button.component';
-import { JwtPayload, jwtDecode } from 'jwt-decode';
-import { catchError } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+
 
 
 @Component({
@@ -41,15 +41,14 @@ onSubmit(): void{
       } else {
         this.loginForm.reset();
       } 
-      
     });
   } else {
     alert('email ou mot de passe incorrect');
   }
 }
 
+
 decodeToken(token : string) :void {
- 
   let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
   decodedToken = jwtDecode(token);
 
@@ -59,6 +58,7 @@ decodeToken(token : string) :void {
   if (role === "admin"){
     alert("Login success");
       localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/mon-compte')
   } else {
       alert('Login error');

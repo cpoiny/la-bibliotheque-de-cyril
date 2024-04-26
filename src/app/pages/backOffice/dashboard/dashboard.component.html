@@ -1,0 +1,39 @@
+<div class="container flex">
+
+    <h1> Bienvenue Cyril </h1>
+    <section>
+        <h2>Email</h2>
+        <form [formGroup]="emailForm" class="flex" (ngSubmit)="onSubmitEmail()">
+            <label for=""> Ancien email *
+                <input type="email" formControlName="emailOld">
+            </label>
+
+            <label for=""> Nouvel email *
+                <input type="email" formControlName="emailNew">
+            </label>
+
+         <button type=submit>Modifier</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Mot de passe</h2>
+        <form [formGroup]="passwordForm" class="flex" (ngSubmit)="onSubmitPassword()" >
+            <label > Ancien mot de passe *
+                <input type="text" formControlName="passwordOld">
+            </label>
+
+            <label for=""> Nouveau mot de passe *
+                <input type="text" formControlName="passwordNew">
+            </label>
+
+            <button type=submit>Modifier</button>
+
+        </form>
+    </section>
+
+
+    <app-button [title]="deconnecter" (click)="logout()"></app-button>
+
+
+</div>

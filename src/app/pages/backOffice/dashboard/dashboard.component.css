@@ -1,0 +1,50 @@
+h1, h2 {
+    font-family: "Merriweather", sans-serif;
+    margin-bottom: 1rem;
+}
+
+h1{
+    text-align: center;
+    width: 100%;
+}
+form {
+    width: 30vw;
+}
+
+label, input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    border-radius: 30px;
+    padding: 0.5rem;
+}
+.container {
+    align-items: start;
+    height: 70vh;
+    width: 90vw;
+    margin: 20vh auto 0;
+    justify-content: space-between;
+}
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 40%;
+    margin: 0 auto 2rem;
+    padding: 0.4rem;
+    background-color: var(--main);
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Merriweather", sans-serif;
+}
+
+button:hover{
+    background-color: var(--gold);
+    color: var(--white);
+}
