@@ -28,7 +28,6 @@ export class DisplayMessageService {
   }
 
   displayErrorMessageForUpdateEmail(emailForm : FormGroup): string | undefined {
-    
     let errorOldEmail = (emailForm.get('emailOld')?.hasError('required') || emailForm.get('emailOld')?.hasError('pattern')) ? 
     'Une adresse email valide est requise' : "";
     let errorNewEmail = (emailForm.get('emailNew')?.hasError('required') || emailForm.get('emailNew')?.hasError('pattern')) ? 
@@ -38,6 +37,16 @@ export class DisplayMessageService {
     } else {
       return ;
     }
-  
 }
+
+displayErrorMessageForPassword(passwordForm : FormGroup): string | undefined {
+  let passwordMessage = passwordForm.get('password')?.hasError('required') ? 
+   'Veuillez renseigner un mot de passe' : "";
+  if(passwordMessage){
+     return passwordMessage;
+  } else {
+    return ;
+  }
+}
+
 }

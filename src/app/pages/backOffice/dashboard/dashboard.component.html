@@ -27,12 +27,17 @@
         <h2>Mot de passe</h2>
         <form [formGroup]="passwordForm" class="formDataAdmin flex" (ngSubmit)="onSubmitPassword()" >
             <label class="data-admin" > Ancien mot de passe *
-                <input type="text" formControlName="passwordOld">
+                <input type="text" formControlName="passwordOld" required>
             </label>
-
+            @if (!isPassword) {
+                <p class="display_error_message">{{requiredPassword}}</p>
+                }
             <label class="data-admin" for=""> Nouveau mot de passe *
-                <input type="text" formControlName="passwordNew">
+                <input type="text" formControlName="passwordNew" required>
             </label>
+            @if (!isPassword) {
+                <p class="display_error_message">{{requiredPassword}}</p>
+                }
 
             <button class="update_button" type=submit>Modifier</button>
 
