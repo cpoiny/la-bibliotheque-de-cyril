@@ -22,9 +22,9 @@ export class DashboardComponent {
 deconnecter : string = "Deconnexion";
 modifier : string = "Enregistrer";
 errorMessage: string | undefined;
+requiredPassword: string | undefined;
 isValidEmail? :boolean;
-
-
+isPassword? : boolean;
 
 emailForm: FormGroup = new FormGroup({
   emailOld: new FormControl("", [
@@ -55,7 +55,14 @@ checkEmail(): void {
 }
 
 onSubmitPassword(): void {
+  this.checkPassword();
   console.log("password", this.passwordForm.value);
+}
+
+checkPassword(): void {
+  this.requiredPassword = this.errorMessageService.displayErrorMessageForPassword(this.passwordForm);
+  console.log("error password: ", this.requiredPassword)
+  if (this.requiredPassword) this.isPassword = false;
 }
 
 logout(): void {

@@ -75,9 +75,8 @@ decodeToken(token : string) :void {
   console.log('decode :', role)
   if (role === "admin"){
     alert("Login success");
-      localStorage.setItem('token', token);
-      sessionStorage.setItem('token', token);
-      this.router.navigateByUrl('/admin-lbdc/mon-compte')
+    localStorage.setItem('token', token);
+    this.router.navigateByUrl('/admin-lbdc/mon-compte')
   } else {
       alert('Login error');
       this.loginForm.reset();
