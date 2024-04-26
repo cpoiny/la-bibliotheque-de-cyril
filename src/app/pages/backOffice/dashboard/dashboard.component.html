@@ -1,0 +1,46 @@
+<div class="container flex">
+
+    <h1> Bienvenue Cyril </h1>
+    <section>
+        <h2>Email</h2>
+        <form [formGroup]="emailForm" class=" formDataAdmin flex" (ngSubmit)="onSubmitEmail()">
+            <label class="data-admin" for="emailOld"> Ancien email *
+                <input type="email" id="email" formControlName="emailOld" required>
+            </label>
+            @if (!isValidEmail) {
+                <p class="display_error_message">{{errorMessage}}</p>
+                }
+
+            <label class="data-admin" for="emailNew"> Nouvel email *
+                <input type="email" id="emailNew" formControlName="emailNew" required>
+            </label>
+            @if (!isValidEmail) {
+                <p class="display_error_message">{{errorMessage}}</p>
+                }
+                
+
+         <button  class="update_button" type=submit >Modifier</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Mot de passe</h2>
+        <form [formGroup]="passwordForm" class="formDataAdmin flex" (ngSubmit)="onSubmitPassword()" >
+            <label class="data-admin" > Ancien mot de passe *
+                <input type="text" formControlName="passwordOld">
+            </label>
+
+            <label class="data-admin" for=""> Nouveau mot de passe *
+                <input type="text" formControlName="passwordNew">
+            </label>
+
+            <button class="update_button" type=submit>Modifier</button>
+
+        </form>
+    </section>
+
+
+    <app-button [title]="deconnecter" (click)="logout()"></app-button>
+
+
+</div>

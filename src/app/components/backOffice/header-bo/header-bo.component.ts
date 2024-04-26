@@ -39,14 +39,8 @@ export class HeaderBoComponent {
     }
   ];
 
-  logOff() {
-    console.log("se deconnecter");
-  }
-
   ngOnInit(): void {
-
-    this.getCurrentUrl();
-    
+    this.getCurrentUrl();    
   }
 
   getCurrentUrl(): void {

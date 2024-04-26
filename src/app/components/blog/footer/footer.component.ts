@@ -6,6 +6,7 @@ import { CookiesComponent } from '../../../pages/blog/cookies/cookies.component'
 import { ConditionsComponent } from '../../../pages/blog/conditions/conditions.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
+import { DisplayMessageService } from '../../../shared/display-message.service';
 
 @Component({
   selector: 'app-footer',
@@ -17,6 +18,10 @@ import { PictureProfileComponent } from '../../picture-profile/picture-profile.c
 })
 export class FooterComponent implements OnInit {
 
+  constructor(
+    private errorMessageService : DisplayMessageService
+  ){}
+
   // Propriété du bouton du formulaire
   title = "Envoyer";
 
@@ -24,8 +29,8 @@ export class FooterComponent implements OnInit {
   formContact!: FormGroup;
   isInvalidMessage: boolean = false;
   isInvalidEmail: boolean = false;
-  errorMessage : string = "";
-  errorEmail : string = "";
+  errorMessage : string | undefined ;
+  errorEmail : string | undefined;
 
   ngOnInit() {
 
@@ -43,22 +48,13 @@ export class FooterComponent implements OnInit {
   }
 
   displayErrorMessageForMessage(): void {
-    this.errorMessage = this.formContact.get('message')?.hasError('required') ? 'Veuillez écrire un message' : "";
-    if(this.errorMessage){
-      this.isInvalidMessage = true;
-    } else {
-      this.isInvalidMessage = false;
-    }
+    this.errorMessage = this.errorMessageService.displayErrorMessage(this.formContact);
+    if (this.errorMessage) this.isInvalidMessage = true;
   }
 
   displayErrorMessageForEmail(): void {
-    this.errorEmail = (this.formContact.get('email')?.hasError('required') || this.formContact.get('email')?.hasError('pattern')) ? 
-    'Une adresse email valide est requise' : "";
-    if(this.errorEmail){
-      this.isInvalidEmail = true;
-    } else {
-      this.isInvalidEmail = false;
-    }
+    this.errorEmail = this.errorMessageService.displayErrorMessageForEmail(this.formContact);
+    if (this.errorEmail) this.isInvalidEmail = true;
   }
 
   //TO DO : Send the message and email to Cyril 

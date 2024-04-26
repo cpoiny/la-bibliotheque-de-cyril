@@ -20,7 +20,7 @@ export class BackOfficePostsComponent implements OnInit {
     private postService: PostService,
   ) { }
 
-  ajouter: string = "Nouvelle publication";
+  ajouter: string = "Nouveau post";
   bookPosts: Post[] = [];
   moviePosts: Post[] = [];
   quotePosts: Post[] = [];

@@ -3,8 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../../services/UserService/user.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../button/button.component';
-import { JwtPayload, jwtDecode } from 'jwt-decode';
-import { catchError } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { DisplayMessageService } from '../../../shared/display-message.service';
+
 
 
 @Component({
@@ -16,20 +17,37 @@ import { catchError } from 'rxjs';
 })
 export class LoginFormComponent {
   
-  title = "Se connecter"
+  title = "Se connecter";
+  errorLogin : string | undefined;
+  isValidLogin!: boolean;
+
+
+
+
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private errorMessageService : DisplayMessageService
   ){}
 
   // TODO : Finir implementer le formulaire avec message d'erreur
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email:new FormControl("", [
+      Validators.required,
+       Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+    ]),
     password: new FormControl('', Validators.required)
   });
 
+  checkLogin(): void {
+    this.errorLogin = this.errorMessageService.displayErrorMessageForEmail(this.loginForm);
+    if(this.errorLogin) {
+      this.isValidLogin = false
+  }
+}
 
 onSubmit(): void{
+  this.checkLogin();
   const formData = this.loginForm.value;
   const email = formData.email;
   const password = formData.password;
@@ -41,15 +59,14 @@ onSubmit(): void{
       } else {
         this.loginForm.reset();
       } 
-      
     });
   } else {
     alert('email ou mot de passe incorrect');
   }
 }
 
+
 decodeToken(token : string) :void {
- 
   let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
   decodedToken = jwtDecode(token);
 
@@ -59,6 +76,7 @@ decodeToken(token : string) :void {
   if (role === "admin"){
     alert("Login success");
       localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/mon-compte')
   } else {
       alert('Login error');
