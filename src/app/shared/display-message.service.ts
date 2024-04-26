@@ -28,15 +28,16 @@ export class DisplayMessageService {
   }
 
   displayErrorMessageForUpdateEmail(emailForm : FormGroup): string | undefined {
-    let errorEmail : string;
-    errorEmail = (emailForm.get('emailOld')?.hasError('required') || emailForm.get('emailOld')?.hasError('pattern')) ? 
+    
+    let errorOldEmail = (emailForm.get('emailOld')?.hasError('required') || emailForm.get('emailOld')?.hasError('pattern')) ? 
     'Une adresse email valide est requise' : "";
-    errorEmail = (emailForm.get('emailNew')?.hasError('required') || emailForm.get('emailNew')?.hasError('pattern')) ? 
-    'Une adresse email valide est requise' : "";
-    if(errorEmail){
-       return errorEmail;
+    let errorNewEmail = (emailForm.get('emailNew')?.hasError('required') || emailForm.get('emailNew')?.hasError('pattern')) ? 
+     'Une adresse email valide est requise' : "";
+    if(errorOldEmail || errorNewEmail){
+       return errorOldEmail;
     } else {
       return ;
     }
-  }
+  
+}
 }

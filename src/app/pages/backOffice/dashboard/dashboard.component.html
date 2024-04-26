@@ -5,7 +5,7 @@
         <h2>Email</h2>
         <form [formGroup]="emailForm" class=" formDataAdmin flex" (ngSubmit)="onSubmitEmail()">
             <label class="data-admin" for="emailOld"> Ancien email *
-                <input type="email" id="emailOld" formControlName="emailOld" required>
+                <input type="email" id="email" formControlName="emailOld" required>
             </label>
             @if (!isValidEmail) {
                 <p class="display_error_message">{{errorMessage}}</p>
