@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 type IMenu = {
   id: number;
@@ -17,9 +17,9 @@ type IMenu = {
 })
 export class HeaderBoComponent {
 
-  constructor(
-    private router: Router
-  ){}
+  isLoginPage: boolean = false;
+  
+  constructor(private route: ActivatedRoute) {}
 
   menuBO : IMenu[] = [
     {
@@ -43,5 +43,22 @@ export class HeaderBoComponent {
     console.log("se deconnecter");
   }
 
+  ngOnInit(): void {
 
+    this.getCurrentUrl();
+    
+  }
+
+  getCurrentUrl(): void {
+    this.route.url.subscribe(url => {
+      if( url[1].path === "login") {
+        this.isLoginPage = true
+      };
+    
+    });
+  }
 }
+ 
+
+
+

@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { UserLogin } from '../../models/interfaces/user';
+import { ErrorRequestHandler } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ login(email: string, password: string): Observable<UserLogin>{
     })
   };
   const url = this.baseUrlApi + "/login";
-  return this.http.post<UserLogin>(url, {email: email, password: password},httpOptions);
+  return this.http.post<UserLogin>(url, {email: email, password: password},httpOptions)
+  .pipe(catchError((error : ErrorRequestHandler) => {
+    console.log("error" , error);
+    return throwError(error);
+  }));
 }
 }

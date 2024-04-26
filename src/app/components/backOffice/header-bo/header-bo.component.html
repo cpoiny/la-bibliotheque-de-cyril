@@ -1,8 +1,11 @@
 <div class="header-bo">
     <div class="entete-bo">
         <h1>La bibliothèque de Cyril</h1>
+        @if(!isLoginPage){
         <app-picture-profile class="picture"></app-picture-profile>
+        }
     </div>
+    @if(!isLoginPage){
     <nav class="nav-bo">
         <ul>
             @for(menu of menuBO; track menu.id){
@@ -13,4 +16,5 @@
             <button type="button" (click)="logOff()"><img src="assets/icons/deconnexion.png" alt=""></button>
         </ul>
     </nav>
+}
 </div>

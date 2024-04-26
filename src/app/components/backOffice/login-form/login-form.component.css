@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: "Caveat", sans-serif;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+form {    
+    width: 30vw;
+    min-width: 30vw;
+    border: black solid 1px;
+    padding: 3rem 5rem;
+    border-radius : 30px;
+}
+
+label {
+    font-family: "Caveat", sans-serif;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label input {
+    font-family: "Courier prime new", sans-serif;
+    padding: 0.5rem;
+    border-radius: 20px;
+}
+.forgot_password {
+    font-size: 1rem;
+    align-self: flex-end;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
