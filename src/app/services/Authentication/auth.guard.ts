@@ -3,7 +3,8 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
-  // Arrow function, so there is no constructor we need to use inject function instead of constructor
+  // Arrow function, so there is no constructor we need to
+  // use inject function instead of constructor
   const router = inject(Router);
 
   if (typeof localStorage !== 'undefined') {

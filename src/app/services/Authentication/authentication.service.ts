@@ -22,7 +22,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['admin-lbdc/login']);
   }
 }
