@@ -56,20 +56,20 @@
         <h3 class="titre-partie titre-publication">NOUVELLE PUBLICATION</h3>
         <article class="last-post flex">
           
+            
 <div class="last-post-img">
-
-    <a routerLink= "la_bibliotheque_de_cyril/publications/litterature/{{lastPost.id}}">
+    <a routerLink= "la_bibliotheque_de_cyril/publications/litterature/{{lastPost?.id}}">
         <figure class="card-last-post">
-            <img src="{{lastPost.picture}}" alt="{{lastPost.title}}">
+            <img src="{{lastPost?.picture}}" alt="{{lastPost?.title}}">
             <figcaption>Voir la publication</figcaption>
         </figure>
         </a>
-
+    
 </div>
 
             <div class="last-post-content flex">
-                <h4 class="last-post-title">{{lastPost.title}}</h4>
-                <p class="last-post-resume">{{lastPost.content | slice:0:200}}... </p>
+                <h4 class="last-post-title">{{lastPost?.title}}</h4>
+                <p class="last-post-resume">{{lastPost?.content | slice:0:200}}... </p>
             </div>
         </article>
 

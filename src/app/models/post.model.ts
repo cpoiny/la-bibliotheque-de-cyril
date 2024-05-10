@@ -12,11 +12,11 @@ export class Post{
     public picture: string,
     public publication_date: Date,
     public updated_date: Date | null,
-    public isDraft: true | false,
+    public is_draft: true | false,
     public quantity_comments: number | null,
     public quantity_likes: number | null,
-    public authors : [Author] | null,
-    public medias: [Media] | null,
+    public authors : [Author],
+    public medias: [Media],
     public isOntheWishlist?: true | false
     ) {}
 

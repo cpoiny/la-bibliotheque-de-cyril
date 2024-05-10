@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { POSTS } from '../../mocks/posts.mock';
-import { AUTHORS } from '../../mocks/author.mock';
 import { Post, PostAdapter } from '../../models/post.model';
-import { Author } from '../../models/author.model';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -36,25 +32,26 @@ export class PostService {
     this.http.delete<{ data: Post }>(url)
     .pipe(map(response => response.data));
   }
+
+  getPostByCategory(postsPublished: Post[],category: string): Observable<Post[]> {
+    return this.getAllPosts().pipe(
+      map((posts: Post[]) => {
+        if (posts) {
+          if (category === "litterature") {
+            return postsPublished.filter((post) => post.medias![0].category === "litterature");
+          } else if (category === "cinema") {
+            return postsPublished.filter((post) => post.medias![0].category === "cinema");
+          } else {
+            return postsPublished.filter((post) => post.medias![0].category === "citation");
+          }
+        } else {
+          return [];
+        }
+      })
+    );
+  }
+
 }
-
-
-  // getPostByCategory(posts: Post[], category: string): Post[] {
-  //   if (posts) {
-  //     if (category === "litterature") {
-  //       return posts.filter((post) => post.medias![0].category === "litterature")
-  //     } else if (category === "cinema") {
-  //       return posts.filter((post) => post.medias![0].category === "cinema")
-  //     } else {
-  //       return posts.filter((post) => post.medias![0].category === "citation")
-  //     }
-  //   } else {
-  //     return [];
-  //   }
-
-  // }
-
-
 
 
 
