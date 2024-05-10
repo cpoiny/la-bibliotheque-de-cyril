@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { MEDIAS } from '../../mocks/media.mock';
 import { Media } from '../../models/media.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaService {
+  
+  
+  books: Media[] = MEDIAS;
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  public baseUrl = "http://localhost:8086/medias";
 
-books: Media[] = MEDIAS;
+  getAllMedias(): Observable<Media[]> {
+    return this.http.get<{ data: Media[] }>(this.baseUrl)
+    .pipe(map(response => response.data));
+  }
+
+
 
   getAllBooks(): Media[] {
     const myBooks = MEDIAS.filter((media: Media) => media.category === "litterature")
@@ -23,17 +34,20 @@ books: Media[] = MEDIAS;
   }
 
   getAllTheme(): string[] {
-    let myResult: string[] = [];
+    let themes: string[] = [];
     let mediaThemeUnique = new Set();
-    MEDIAS.filter(media => {
-      const estUnique = !mediaThemeUnique.has(media.theme);
-      mediaThemeUnique.add(media.theme);
-      if(estUnique) {
-        myResult.push(media.theme)
-      }
+    this.getAllMedias().subscribe((data) => {
+      data.filter(media => {
+        const estUnique = !mediaThemeUnique.has(media.theme);
+        mediaThemeUnique.add(media.theme);
+        if(estUnique) {
+          themes.push(media.theme)
+        }
     })
-    myResult.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
-    return myResult;
+    
+    })
+    themes.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
+    return themes;
   }
 }
 

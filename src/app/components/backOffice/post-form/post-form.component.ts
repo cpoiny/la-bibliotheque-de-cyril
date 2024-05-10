@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -32,7 +32,7 @@ export class PostFormComponent implements OnInit {
 
 
   @Input() post: Post | undefined;
-  posts: Post[] = [];
+  //posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
@@ -64,15 +64,18 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfNewPost();
     this.buildForm();
-    this.getAllPosts();
     this.getAllAuthors();
     this.getAllThemes();
-    if (this.post) {
-      this.getAuthorById();
-      this.displayPost(this.post);
-      this.imageUrl = this.post.picture;
-    }
+    
 
+  }
+
+ 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['post'] && changes['post'].currentValue) {
+      this.displayPost();
+      this.imageUrl = this.post!.picture;
+    }
   }
 
   buildForm(): void {
@@ -121,36 +124,29 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  getAllPosts(): void {
-    this.postService.getAllPosts().subscribe((data) => {
-      this.posts = data;
-    });
-  }
-
+  
+// OK
   getAllAuthors(): void {
-    this.listOfAuthors = this.authorService.getAllAuthors();
+   this.authorService.getAllAuthors().subscribe((data) => {
+    this.listOfAuthors = this.authorService.sortAuthor(data);
+   });
   }
 
+  // OK
   getAllThemes(): void {
     this.listOfThemes = this.mediaService.getAllTheme();
   }
 
-  getAuthorById(): string {
-    if (!this.post) {
-      return "Pas d'auteur";
-    } else {
-      return this.authorService.getAuthorById(this.post?.authors![0].id);
-    }
-  };
-
-  displayPost(post: Post): void {
+  // je ne recupere pas l'image, ni la categorie
+  displayPost(): void {
+    console.log("patch value");
     this.postForm.patchValue({
-      auteur: this.getAuthorById(),
-      titre: post?.title,
-      theme: post?.medias![0].theme,
-      publication: post?.content,
-      photo: post?.picture,
-      categorie: post?.medias![0].category,
+      auteur: this.post!.authors![0].name,
+      titre: this.post!.title,
+      theme: this.post!.medias![0].theme,
+      publication: this.post!.content,
+      photo: this.post!.picture,
+      categorie: this.post!.medias![0].category,
     });
   }
 
