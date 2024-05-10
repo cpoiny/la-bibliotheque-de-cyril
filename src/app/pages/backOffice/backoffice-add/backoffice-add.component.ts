@@ -4,49 +4,45 @@ import { PostFormComponent } from '../../../components/backOffice/post-form/post
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-backoffice-add',
   standalone: true,
-  imports: [HeaderBoComponent,PostFormComponent],
+  imports: [HeaderBoComponent, PostFormComponent],
   templateUrl: './backoffice-add.component.html',
   styleUrl: './backoffice-add.component.css'
 })
 export class BackofficeAddComponent implements OnInit {
 
-
   post!: Post;
-  
-    
 
-constructor(
-  private activatedRoute : ActivatedRoute,
-  private postService : PostService,
-  private router : Router,
-){}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private postService: PostService,
+    private router: Router,
+  ) { }
 
-
-  
 
   ngOnInit(): void {
     this.getPostDetails();
   }
 
- 
+
   // To get the post and send it to the form in order to patch value
   getPostDetails(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    const foundPost = this.postService.getPostById(id);
-    if(foundPost){
-      this.post = foundPost[0];
-    } else {
-      this.router.navigate(['']);
-    }
-   
- 
+    this.postService.getPostById(id).subscribe((data) => {
+      if (data) {
+        this.post = data;
+        console.log("post detail", data);
+      } else {
+        this.router.navigate(['']);
+      }
+    }, (error: HttpErrorResponse) => {
+      console.log("error", (error.error.detail));
+    });
   }
-
-
 }
 

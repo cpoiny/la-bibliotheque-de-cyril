@@ -39,13 +39,13 @@ author!: Author;
 
   getPostById(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    const postToDisplay = this.postService.getPostById(id);
-    this.post = postToDisplay[0];
+   // const postToDisplay = this.postService.getPostById(id);
+  //  this.post = postToDisplay[0];
   }
 
   getAuthorById(post: Post): void {
-    const authorToDisplay = this.postService.getAuthorById(post);
-    this.author = authorToDisplay;
+   // const authorToDisplay = this.postService.getAuthorById(post);
+    //this.author = authorToDisplay;
   }
 
   goBack() {

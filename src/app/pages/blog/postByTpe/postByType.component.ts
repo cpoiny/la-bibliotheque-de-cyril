@@ -35,7 +35,7 @@ export class PostByTypeComponent implements OnInit {
 
     // Méthode appelée une première fois
     this.getPostByCategory();
-  
+
 
     //Methode pour recharger mon composant à chaque changement d'url ensuite
     this.router.events
@@ -49,8 +49,11 @@ export class PostByTypeComponent implements OnInit {
 
   // Methode pour récupérer tous les posts
   getAllPostsPublished(): Post[] {
-    let posts : Post[] = [];
-    posts = this.postService.getAllPosts().filter((post:Post)=> post.isDraft === false);
+    let posts: Post[] = [];
+    this.postService.getAllPosts().subscribe((data => {
+      posts = data;
+      posts.filter((post: Post) => post.isDraft === false);
+    }))
     return posts;
   }
 
@@ -59,10 +62,10 @@ export class PostByTypeComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       const url = params.get('type');
       this.title = url!;
-      this.postsByCategory = this.postService.getPostByCategory(this.allPostsPublished, url!);
+      // this.postsByCategory = this.postService.getPostByCategory(this.allPostsPublished, url!);
     })
   }
 
- 
+
 
 }

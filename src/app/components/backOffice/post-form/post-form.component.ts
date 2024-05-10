@@ -6,7 +6,7 @@ import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 export interface ICategoryButton {
   id: number;
@@ -28,7 +28,7 @@ export class PostFormComponent implements OnInit {
     private authorService: AuthorService,
     private mediaService: MediaService,
     private router: Router,
-    ){}
+  ) { }
 
 
   @Input() post: Post | undefined;
@@ -39,7 +39,7 @@ export class PostFormComponent implements OnInit {
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
-  isEmptyImage? : boolean;
+  isEmptyImage?: boolean;
   isNewPost: boolean = true;
 
   categoriesButton: ICategoryButton[] = [
@@ -89,13 +89,13 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
-      this.postService.createPost(this.postForm);
+      //this.postService.createPost(this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
       console.log("formulaire non valide", this.postForm.value);
     } else {
-      
+
       console.log("formulaire non valide", this.postForm.value);
     }
   }
@@ -103,7 +103,7 @@ export class PostFormComponent implements OnInit {
   // Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-   
+
     if (file) {
       this.selectedFile = file;
       this.postForm.patchValue({ image: file });
@@ -122,7 +122,9 @@ export class PostFormComponent implements OnInit {
   }
 
   getAllPosts(): void {
-    this.posts = this.postService.getAllPosts();
+    this.postService.getAllPosts().subscribe((data) => {
+      this.posts = data;
+    });
   }
 
   getAllAuthors(): void {
@@ -137,7 +139,7 @@ export class PostFormComponent implements OnInit {
     if (!this.post) {
       return "Pas d'auteur";
     } else {
-      return this.authorService.getAuthorById(this.post?.author_id);
+      return this.authorService.getAuthorById(this.post?.authors![0].id);
     }
   };
 
@@ -145,17 +147,17 @@ export class PostFormComponent implements OnInit {
     this.postForm.patchValue({
       auteur: this.getAuthorById(),
       titre: post?.title,
-      theme: post?.theme,
+      theme: post?.medias![0].theme,
       publication: post?.content,
       photo: post?.picture,
-      categorie : post?.category,
+      categorie: post?.medias![0].category,
     });
   }
 
   // verification de l'url pour gérer l'affichage conditionnel
   checkIfNewPost(): void {
     const url = this.router.url;
-    if(url.includes("ajouter")){
+    if (url.includes("ajouter")) {
       this.isEmptyImage = true;
       this.isNewPost = true;
     } else {
@@ -164,6 +166,6 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  }
+}
 
 

@@ -28,19 +28,18 @@ export class BackOfficePostsComponent implements OnInit {
   srcDelete: string = "assets/icons/corbeille.png"
 
   ngOnInit(): void {
-
-    this.getAllPosts();
-
+   this.getAllPosts();
   }
 
 
   getAllPosts(): void {
-
-    let posts: Post[] = [];
-    posts = this.postService.getAllPosts();
-    this.bookPosts = posts.filter((post) => post.category === "litterature");
-    this.moviePosts = posts.filter((post) => post.category === "cinema");
-    this.quotePosts = posts.filter((post) => post.category === "citation");
+    this.postService.getAllPosts().subscribe((data) => {
+      let posts : Post[] = []
+      posts = data;
+    this.bookPosts = posts.filter((post) => post.medias![0].category === "litterature");
+    this.moviePosts = posts.filter((post) => post.medias![0].category === "cinema");
+    this.quotePosts = posts.filter((post) => post.medias![0].category === "citation");
+  })
   }
 
 
@@ -51,6 +50,6 @@ export class BackOfficePostsComponent implements OnInit {
   onDelete(post: Post): void {
     console.log("click delete", post);
     // open modale pour confirmer la suppression
-    this.postService.deletePostById(post.id);
+   // this.postService.deletePostById(post.id);
   }
 }

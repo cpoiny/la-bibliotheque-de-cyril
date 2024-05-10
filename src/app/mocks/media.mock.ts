@@ -7,8 +7,6 @@ export const MEDIAS: Media[] = [
         title: "Le café suspendu",
         author_id: 1,
         theme: "Classique",
-        created_at: new Date("2022-06-18"),
-        updated_date: null,
         edition: "Editions Grasset",
         category : "litterature"
     },
@@ -17,8 +15,6 @@ export const MEDIAS: Media[] = [
         title: "Le dernier été en ville",
         author_id: 2,
         theme: "Classique",
-        created_at: new Date("2022-05-01"),
-        updated_date: null,
         edition: " Editions Gallimard",
         category : "litterature"
     },
@@ -27,8 +23,6 @@ export const MEDIAS: Media[] = [
         title: "Vivre libre",
         author_id: 3,
         theme: "Aventure",
-        created_at: new Date("2021-07-27"),
-        updated_date: null,
         edition: "Editions Points",
         category : "litterature"
     },
@@ -37,8 +31,6 @@ export const MEDIAS: Media[] = [
         title: "L'ecume des jours",
         author_id: 4,
         theme: "Classique",
-        created_at: new Date("2020-09-30"),
-        updated_date: null,
         edition: "Editions 1018",
         category : "litterature"
     },
@@ -47,8 +39,6 @@ export const MEDIAS: Media[] = [
         title: "Tendre est la nuit",
         author_id: 5,
         theme: "Classique",
-        created_at:new Date("2020-09-17"),
-        updated_date: null,
         edition: "Livre de poche",
         category : "litterature"
     },
@@ -57,8 +47,6 @@ export const MEDIAS: Media[] = [
         title: "La vie devant soi",
         author_id: 6,
         theme: "Classique",
-        created_at: new Date("2020-12-13"),
-        updated_date: null,
         edition: "Editions Folio",
         category : "litterature"
     },
@@ -67,8 +55,6 @@ export const MEDIAS: Media[] = [
         title: "Sur la route",
         author_id: 7,
         theme: "Classique",
-        created_at: new Date("2021-01-09"),
-        updated_date: null,
         edition: "Eidtions Folio",
         category : "litterature"
     },
@@ -77,8 +63,6 @@ export const MEDIAS: Media[] = [
         title: "Fight club",
         author_id: 8,
         theme: "Classique",
-        created_at: new Date("2021-02-08"),
-        updated_date: null,
         edition: "Editions Folio",
         category : "litterature"
     },
@@ -87,8 +71,6 @@ export const MEDIAS: Media[] = [
         title: "Les yeux noirs existent",
         author_id: 9,
         theme: "Classique",
-        created_at: new Date("2022-12-29"),
-        updated_date: null,
         edition: "",
         category : "litterature"
     },
@@ -97,8 +79,6 @@ export const MEDIAS: Media[] = [
         title: "La constellation",
         author_id: 10,
         theme: "Poesie",
-        created_at: new Date("2023-05-01"),
-        updated_date: null,
         edition: "Editions Grasset",
         category : "litterature"
     },
@@ -107,8 +87,6 @@ export const MEDIAS: Media[] = [
         title: "L'amant",
         author_id: 11,
         theme: "Classique",
-        created_at: new Date("2022-11-28"),
-        updated_date: null,
         edition: "Editions de minuit",
         category : "litterature"
     },
@@ -117,8 +95,6 @@ export const MEDIAS: Media[] = [
         title: "Test",
         author_id: 11,
         theme: "Action",
-        created_at: new Date("2022-11-28"),
-        updated_date: null,
         edition: "movie film",
         category : "cinema"
     },
