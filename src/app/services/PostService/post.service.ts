@@ -20,7 +20,7 @@ export class PostService {
       .pipe(map(response => response.data));
   }
 
-
+  // ok
   getPostById(id: number): Observable<Post> {
     const url = this.baseUrl+ "/" + id;
     return this.http.get<{ data: Post }>(url)
@@ -33,6 +33,7 @@ export class PostService {
     .pipe(map(response => response.data));
   }
 
+  // ok
   getPostByCategory(postsPublished: Post[],category: string): Observable<Post[]> {
     return this.getAllPosts().pipe(
       map((posts: Post[]) => {

@@ -29,9 +29,10 @@ export class PostByTypeComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
+  // ok
   ngOnInit(): void {
 
-    this.allPostsPublished = this.getAllPostsPublished();
+    this.getAllPostsPublished();
     //Methode pour recharger mon composant à chaque changement d'url ensuite
     this.router.events
       .pipe(
@@ -42,14 +43,15 @@ export class PostByTypeComponent implements OnInit {
 
   }
 
-  // Methode pour récupérer tous les posts
-  getAllPostsPublished(): Post[] {
+  //ok Methode pour récupérer tous les posts
+  getAllPostsPublished(): void {
     let posts: Post[] = [];
     this.postService.getAllPosts().subscribe((data => {
       posts = data.filter((post: Post) => post.is_draft === false);
+      this.allPostsPublished = posts;
+      this.getPostByCategory();
     }));
-    this.getPostByCategory();
-    return posts;
+   
   }
 
   // ok Méthode pour récupérer les posts en fonction de l'url

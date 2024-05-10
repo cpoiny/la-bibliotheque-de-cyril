@@ -14,7 +14,7 @@
             <!-- TITRE POST : Livre et auteur -->
             <div class="titres">
                 <h1 class="titre-partie ">" {{post.title}} "</h1>
-                <h2 class="titre-media">{{author.name}}</h2>
+                <h2 class="titre-media">{{post.authors[0].name}}</h2>
 
             </div>
 
@@ -39,7 +39,7 @@
                 </p>
 
                 <!-- DATE -->
-                <p class="post-date">Date de publication: {{post.publication_date | date: 'longDate'}}</p>
+                <p class="post-date">Date de publication: {{post.publicated_at | date: 'longDate'}}</p>
                 
             </div>
         </div>
@@ -48,7 +48,7 @@
 
         <!-- Auteur -->
         <h2 class="titre-partie espace">L'auteur</h2>
-        <app-author [author]="author"></app-author>
+        <app-author [author]="post.authors[0]"></app-author>
 
         <app-vertical-line></app-vertical-line>
 

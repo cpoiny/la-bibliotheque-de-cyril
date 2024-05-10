@@ -39,8 +39,10 @@ author!: Author;
 
   getPostById(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-   // const postToDisplay = this.postService.getPostById(id);
-  //  this.post = postToDisplay[0];
+    this.postService.getPostById(id).subscribe((data) =>{
+      this.post = data;
+      console.log("this post by id", this.post, data)
+    });
   }
 
   getAuthorById(post: Post): void {
