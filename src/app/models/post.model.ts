@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Adapter } from "./adapter.model";
+import { Author } from "./author.model";
+import { Media } from "./media.model";
 
 export class Post{
 
@@ -8,25 +10,26 @@ export class Post{
     public title: string,
     public content: string,
     public picture: string,
-    public media_id : number,
-    public author_id: number,
-    public publication_date: Date,
-    public updated_date: Date | null,
-    public isDraft: true | false,
-    public isOntheWishlist: true | false,
-    public category : "litterature" | "cinema" | "citation",
-    public theme: string,
-    public galerie?: IGalerie[] | null,
+    public publicated_at: Date,
+    public updated_at: Date | null,
+    public is_draft: true | false,
+    public quantity_comments: number | null,
+    public quantity_likes: number | null,
+    public authors : [Author],
+    public medias: [Media],
+    public isOntheWishlist?: true | false
     ) {}
 
 }
+    
 
-export class IGalerie {
-    constructor(
-        public titre: string,
-        public img: string
-    ){}
-}
+
+// export class IGalerie {
+//     constructor(
+//         public titre: string,
+//         public img: string
+//     ){}
+// }
 
 @Injectable({
     providedIn: 'root'
@@ -38,14 +41,14 @@ export class PostAdapter implements Adapter<Post>{
             item.title,
             item.content,
             item.picture,
-            item.media_id,
-            item.author_id,
             item.publication_date,
             item.updated_date,
             item.isDraft,
+            item.quantity_comments,
+            item.quantity_likes,
+            [item.authors],
+            [item.medias],
             item.isOntheWishlist,
-            item.category,
-            item.galerie,
         )
     }
 }

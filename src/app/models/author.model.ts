@@ -4,8 +4,8 @@ export class Author {
 
         public id: number,
         public name: string,
+        public description: string,
         public picture: string,
-        public description: string
 
     ) {}
 }

@@ -29,14 +29,10 @@ export class PostByTypeComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
+  // ok
   ngOnInit(): void {
 
-    this.allPostsPublished = this.getAllPostsPublished();
-
-    // Méthode appelée une première fois
-    this.getPostByCategory();
-  
-
+    this.getAllPostsPublished();
     //Methode pour recharger mon composant à chaque changement d'url ensuite
     this.router.events
       .pipe(
@@ -47,22 +43,30 @@ export class PostByTypeComponent implements OnInit {
 
   }
 
-  // Methode pour récupérer tous les posts
-  getAllPostsPublished(): Post[] {
-    let posts : Post[] = [];
-    posts = this.postService.getAllPosts().filter((post:Post)=> post.isDraft === false);
-    return posts;
+  //ok Methode pour récupérer tous les posts
+  getAllPostsPublished(): void {
+    let posts: Post[] = [];
+    this.postService.getAllPosts().subscribe((data => {
+      posts = data.filter((post: Post) => post.is_draft === false);
+      this.allPostsPublished = posts;
+      this.getPostByCategory();
+    }));
+   
   }
 
-  // Méthode pour récupérer les posts en fonction de l'url
+  // ok Méthode pour récupérer les posts en fonction de l'url
   getPostByCategory() {
     this.activatedRoute.paramMap.subscribe(params => {
       const url = params.get('type');
       this.title = url!;
-      this.postsByCategory = this.postService.getPostByCategory(this.allPostsPublished, url!);
-    })
+      if (this.allPostsPublished) {
+        this.postService.getPostByCategory(this.allPostsPublished, url!).subscribe((data) => {
+          this.postsByCategory = data;
+        });
+      }
+    });
   }
 
- 
+
 
 }

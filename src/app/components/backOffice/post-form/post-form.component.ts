@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -6,7 +6,7 @@ import { AuthorService } from '../../../services/AuthorService/author.service';
 import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 export interface ICategoryButton {
   id: number;
@@ -28,18 +28,18 @@ export class PostFormComponent implements OnInit {
     private authorService: AuthorService,
     private mediaService: MediaService,
     private router: Router,
-    ){}
+  ) { }
 
 
   @Input() post: Post | undefined;
-  posts: Post[] = [];
+  //posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
-  isEmptyImage? : boolean;
+  isEmptyImage?: boolean;
   isNewPost: boolean = true;
 
   categoriesButton: ICategoryButton[] = [
@@ -64,15 +64,18 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfNewPost();
     this.buildForm();
-    this.getAllPosts();
     this.getAllAuthors();
     this.getAllThemes();
-    if (this.post) {
-      this.getAuthorById();
-      this.displayPost(this.post);
-      this.imageUrl = this.post.picture;
-    }
+    
 
+  }
+
+ 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['post'] && changes['post'].currentValue) {
+      this.displayPost();
+      this.imageUrl = this.post!.picture;
+    }
   }
 
   buildForm(): void {
@@ -89,13 +92,13 @@ export class PostFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.postForm.valid) {
-      this.postService.createPost(this.postForm);
+      //this.postService.createPost(this.postForm);
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
       console.log("formulaire non valide", this.postForm.value);
     } else {
-      
+
       console.log("formulaire non valide", this.postForm.value);
     }
   }
@@ -103,7 +106,7 @@ export class PostFormComponent implements OnInit {
   // Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-   
+
     if (file) {
       this.selectedFile = file;
       this.postForm.patchValue({ image: file });
@@ -121,41 +124,36 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  getAllPosts(): void {
-    this.posts = this.postService.getAllPosts();
-  }
-
+  
+// OK
   getAllAuthors(): void {
-    this.listOfAuthors = this.authorService.getAllAuthors();
+   this.authorService.getAllAuthors().subscribe((data) => {
+    this.listOfAuthors = this.authorService.sortAuthor(data);
+   });
   }
 
+  // OK
   getAllThemes(): void {
     this.listOfThemes = this.mediaService.getAllTheme();
   }
 
-  getAuthorById(): string {
-    if (!this.post) {
-      return "Pas d'auteur";
-    } else {
-      return this.authorService.getAuthorById(this.post?.author_id);
-    }
-  };
-
-  displayPost(post: Post): void {
+  // je ne recupere pas l'image, ni la categorie
+  displayPost(): void {
+    console.log("patch value");
     this.postForm.patchValue({
-      auteur: this.getAuthorById(),
-      titre: post?.title,
-      theme: post?.theme,
-      publication: post?.content,
-      photo: post?.picture,
-      categorie : post?.category,
+      auteur: this.post!.authors![0].name,
+      titre: this.post!.title,
+      theme: this.post!.medias![0].theme,
+      publication: this.post!.content,
+      photo: this.post!.picture,
+      categorie: this.post!.medias![0].category,
     });
   }
 
   // verification de l'url pour gérer l'affichage conditionnel
   checkIfNewPost(): void {
     const url = this.router.url;
-    if(url.includes("ajouter")){
+    if (url.includes("ajouter")) {
       this.isEmptyImage = true;
       this.isNewPost = true;
     } else {
@@ -164,6 +162,6 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  }
+}
 
 

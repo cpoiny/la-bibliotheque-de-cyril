@@ -11,40 +11,38 @@ import { Post } from '../../../models/post.model';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent,RouterLink,VerticalLineComponent,CardCategoryComponent, SlicePipe],
+  imports: [HeaderComponent, RouterLink, VerticalLineComponent, CardCategoryComponent, SlicePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
-posts!: Post[];
-lastPost! :Post;
+  posts!: Post[];
+  lastPost!: Post;
 
-constructor(
-  private postService: PostService
-){}
+  constructor(
+    private postService: PostService
+  ) { }
 
-ngOnInit(){
-  this.getAllPosts();
-  if (this.posts){
-    this.getLastPost(this.posts);
-  } else {
-    this.getAllPosts;
-    this.getLastPost(this.posts);
+  ngOnInit() {
+    this.getAllPosts();
   }
 
-}
+  getAllPosts(): void {
+    this.postService.getAllPosts().subscribe((data) => {
+      if (data) {
+        this.posts = data;
+        this.getLastPost(this.posts);
+      }
+    });
+  }
 
-getAllPosts(): Post[] {
-  return this.posts = this.postService.getAllPosts();
-}
 
-
-getLastPost(posts: Post[]): void {
-  const allPost = posts
-  .sort((a,b) => (b.publication_date as any) - (a.publication_date as any));
-  this.lastPost = allPost[0];
-}
+  getLastPost(posts: Post[]): void {
+    const allPost = posts
+      .sort((a, b) => (b.publicated_at as any) - (a.publicated_at as any));
+    this.lastPost = allPost[0];
+  }
 
 
 }

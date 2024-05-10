@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { POSTS } from '../../mocks/posts.mock';
-import { AUTHORS } from '../../mocks/author.mock';
 import { Post, PostAdapter } from '../../models/post.model';
-import { Author } from '../../models/author.model';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,96 +9,57 @@ import { FormGroup } from '@angular/forms';
 export class PostService {
 
   constructor(
-    private http: HttpClient,
-    private adapter: PostAdapter
+    private http: HttpClient
   ) { }
 
-  posts: Post[] = [];
+  public baseUrl = "http://localhost:8086/posts"
 
-
-
-  // version 2 --------------------------------------------------------------------------------------------------------------
-
-  getAllPostsV2(): Observable<Post[]> {
-    const url = "";
-    return this.http.get(url).pipe(map((data: any) => data.map((item: any) => this.adapter.adapt(item))));
+ // OK
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<{ data: Post[] }>(this.baseUrl)
+      .pipe(map(response => response.data));
   }
 
-
-  getPostByIdV2(id: number): Observable<Post> {
-    const url = "" + "post/" + id;
-    return this.http.get(url).pipe(map((data: any) => this.adapter.adapt(data)));
+  // ok
+  getPostById(id: number): Observable<Post> {
+    const url = this.baseUrl+ "/" + id;
+    return this.http.get<{ data: Post }>(url)
+    .pipe(map(response => response.data));
   }
 
-  // ------------------------------------------------------------------------------------------------------------------------------------
-
-
-  getAllPosts(): Post[] {
-    return POSTS;
+  deletePost(id: number) : void {
+    const url = this.baseUrl + '/' + id;
+    this.http.delete<{ data: Post }>(url)
+    .pipe(map(response => response.data));
   }
 
-  getPostById(id: number): Post[] {
-    const post = POSTS.filter((post) => post.id === id);
-    return post;
+  // ok
+  getPostByCategory(postsPublished: Post[],category: string): Observable<Post[]> {
+    return this.getAllPosts().pipe(
+      map((posts: Post[]) => {
+        if (posts) {
+          if (category === "litterature") {
+            return postsPublished.filter((post) => post.medias![0].category === "litterature");
+          } else if (category === "cinema") {
+            return postsPublished.filter((post) => post.medias![0].category === "cinema");
+          } else {
+            return postsPublished.filter((post) => post.medias![0].category === "citation");
+          }
+        } else {
+          return [];
+        }
+      })
+    );
   }
-
-
-  getPostByCategory(posts: Post[], category: string): Post[] {
-    if (posts) {
-      if (category === "litterature") {
-        return posts.filter((post) => post.category === "litterature")
-      } else if (category === "cinema") {
-        return posts.filter((post) => post.category === "cinema")
-      } else {
-        return posts.filter((post) => post.category === "citation")
-      }
-    } else {
-      return [];
-    }
-
-  }
-
-  getAuthorById(post: Post): Author {
-    const id = post.author_id;
-    const author = AUTHORS.filter((author) => author.id === id);
-    return author[0];
-  }
-
-
-  createPost(post: FormGroup):void {
-     const postToAdd = new Post(
-       0,
-       post.value.titre,
-       post.value.publication,
-       post.value.photo,
-       0,
-       0,
-       new Date,
-       null,
-       false,
-       false,
-       post.value.categorie,
-       post.value.theme,
-       null
-     )
-   this.addPost(postToAdd);
-  }
-
-  // Requete POST
-  addPost(post: Post): void {
-    const url = "";
-    this.http.post(url, post)
-  }
-
-  deletePostById(id: number): Post[]{
-    const posts = this.getAllPosts();
-    posts.map((post) => post.id !== id);
-    console.log("posts apres suppression", posts);
-    return posts;
-  }
-  
-
-
-
 
 }
+
+
+
+
+
+
+
+
+
+
