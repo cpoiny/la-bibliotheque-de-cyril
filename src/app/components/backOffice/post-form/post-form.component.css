@@ -43,7 +43,7 @@
     border-radius: 25px;
     font-size: 20px;
     padding: 30px;
-    font-family: "Courier Prime", 'Courier New', Courier, monospace;
+    font-family: "Courier Prime", "Segoe UI Emoji", Arial, sans-serif;
     overflow-y: scroll;
 }
 
@@ -60,6 +60,9 @@
 .container-entete img {
     width: 20%;
     min-width: 20vw;
+    height: 15vw;
+    min-height: 15vw;
+    object-fit: contain;
 }
 
 .entete-titre {

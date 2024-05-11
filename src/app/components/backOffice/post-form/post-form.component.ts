@@ -170,6 +170,7 @@ export class PostFormComponent implements OnInit {
     });
   }
 
+  // ok
   getAllThemes(data: Media[]): void {
     let themes: string[] = [];
     let mediaThemesUnique = new Set();
@@ -184,6 +185,7 @@ export class PostFormComponent implements OnInit {
   this.listOfThemes = themes;
   }
 
+  //ok
   getAllEditions(data: Media[]): void {
     let editions: string[] =[];
     let mediaEditionsUnique = new Set();
