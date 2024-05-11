@@ -133,7 +133,10 @@ export class PostFormComponent implements OnInit {
 
     // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
     onFileSelectedAuteur(event: any) {
-      const file: File = event.target.files[0];
+     // const file: File = event.target.files[0];
+     const element = event.target as HTMLInputElement;
+     if (element.files && element.files.length > 0) {
+     const file: File = element.files[0];
   
       if (file) {
         this.selectedAuteurFile = file;
@@ -148,7 +151,7 @@ export class PostFormComponent implements OnInit {
   
         };
         reader.readAsDataURL(this.selectedAuteurFile);
-  
+      }
       }
     }
 
@@ -170,7 +173,7 @@ export class PostFormComponent implements OnInit {
     });
   }
 
-  // ok
+  //
   getAllThemes(data: Media[]): void {
     let themes: string[] = [];
     let mediaThemesUnique = new Set();
