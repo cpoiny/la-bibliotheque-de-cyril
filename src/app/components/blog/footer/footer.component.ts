@@ -7,6 +7,7 @@ import { ConditionsComponent } from '../../../pages/blog/conditions/conditions.c
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 import { DisplayMessageService } from '../../../shared/display-message.service';
+import { MailService } from '../../../services/MailService/mail.service';
 
 @Component({
   selector: 'app-footer',
@@ -19,7 +20,8 @@ import { DisplayMessageService } from '../../../shared/display-message.service';
 export class FooterComponent implements OnInit {
 
   constructor(
-    private errorMessageService : DisplayMessageService
+    private errorMessageService : DisplayMessageService,
+    private mailService : MailService
   ){}
 
   // Propriété du bouton du formulaire
@@ -61,7 +63,15 @@ export class FooterComponent implements OnInit {
   onSubmit() {
     this.displayErrorMessageForMessage();
     this.displayErrorMessageForEmail();
-    this.resetForm();
+    if (this.formContact.valid){
+      const email = this.formContact.get('email')?.value;
+      const message = this.formContact.get('message')?.value;
+      this.mailService.sendEmail(email, message).subscribe(response => {
+        console.log(response);
+      });
+      this.resetForm();
+
+    }
   }
 
   resetForm(){
