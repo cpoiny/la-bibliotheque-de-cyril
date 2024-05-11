@@ -63,16 +63,16 @@ export class FooterComponent implements OnInit {
   onSubmit() {
     this.displayErrorMessageForMessage();
     this.displayErrorMessageForEmail();
-    if (this.formContact.valid){
-      const email = this.formContact.get('email')?.value;
-      const message = this.formContact.get('message')?.value;
-      this.mailService.sendEmail(email, message).subscribe(response => {
-        console.log(response);
-      });
-      this.resetForm();
+    // if (this.formContact.valid){
+    //   const email = this.formContact.get('email')?.value;
+    //   const message = this.formContact.get('message')?.value;
+    //   this.mailService.sendEmail(email, message).subscribe(response => {
+    //     console.log(response);
+    //   });
+    this.resetForm();
 
     }
-  }
+  
 
   resetForm(){
     if(this.formContact.valid) {

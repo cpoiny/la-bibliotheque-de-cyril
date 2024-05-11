@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Message } from '../../models/message.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +12,18 @@ export class MailService {
     private http: HttpClient
   ) { }
 
-  public baseUrl = "http://localhost:8086/messages"
+  public baseUrl = "http://localhost:8086/messages/"
   
   sendEmail(email: string, message: string) : Observable<Object> {
+    const url = this.baseUrl + "/send";
+    const messageToSend : Message = new Message(
+      email =  email,
+      message  = message
+    );
    //return this.http.post(this.baseUrl,{ email, message }).map((response)=> response.data);
-   return this.http.post<{ email, message }>(this.baseUrl)
-    .pipe(map(response => response.data));
+   return this.http.post(url, {messageToSend});
   }
 
-  getPostById(id: number): Observable<Post> {
-    const url = this.baseUrl+ "/" + id;
-    return this.http.get<{ data: Post }>(url)
-    .pipe(map(response => response.data));
-  }
+
 
 }

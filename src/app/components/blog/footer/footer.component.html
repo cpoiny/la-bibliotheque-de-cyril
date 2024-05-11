@@ -16,7 +16,7 @@
         <!-- Me contacter -->
         <div class="contact flex column">
             <h3 class="footer_h3">Me contacter</h3>
-            <form action="mailto:csapoypoy@gmail.com" method="post" [formGroup]="formContact" (ngSubmit)="onSubmit()">
+            <form action="mailto:labibliothequedecyril2024@gmail.com" method="post" [formGroup]="formContact" (ngSubmit)="onSubmit()" enctype="text/plain">
                 <textarea placeholder="Votre message..." formControlName="message" id="message"
                     cols="30" rows="6" required></textarea>
                 @if (isInvalidMessage) {
