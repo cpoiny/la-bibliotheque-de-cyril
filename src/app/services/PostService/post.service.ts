@@ -35,16 +35,16 @@ export class PostService {
   }
 
   // ok
-  getPostByCategory(postsPublished: Post[],category: string): Observable<Post[]> {
+  getPostByCategory(postsPublished: Post[], category: string): Observable<Post[]> {
     return this.getAllPosts().pipe(
       map((posts: Post[]) => {
         if (posts) {
           if (category === "litterature") {
-            return postsPublished.filter((post) => post.media?.category === "litterature");
+            return postsPublished.filter((post) => post.medias![0].category === "litterature");
           } else if (category === "cinema") {
-            return postsPublished.filter((post) => post.media?.category === "cinema");
+            return postsPublished.filter((post) => post.medias![0].category === "cinema");
           } else {
-            return postsPublished.filter((post) => post.media?.category === "citation");
+            return postsPublished.filter((post) => post.medias![0].category === "citation");
           }
         } else {
           return [];

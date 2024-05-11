@@ -36,10 +36,10 @@ export class BackOfficePostsComponent implements OnInit {
     this.postService.getAllPosts().subscribe((data) => {
       let posts : Post[] = []
       posts = data;
-    this.bookPosts = posts.filter((post) => post.media?.category === "litterature");
+    this.bookPosts = posts.filter((post) => post.medias![0].category === "litterature");
     console.log("books", this.bookPosts);
-    this.moviePosts = posts.filter((post) => post.media?.category === "cinema");
-    this.quotePosts = posts.filter((post) => post.media?.category === "citation");
+    this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
+    this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
   })
   }
 

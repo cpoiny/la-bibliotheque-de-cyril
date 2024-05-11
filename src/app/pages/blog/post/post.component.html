@@ -14,7 +14,7 @@
             <!-- TITRE POST : Livre et auteur -->
             <div class="titres">
                 <h1 class="titre-partie ">" {{post.title}} "</h1>
-                <h2 class="titre-media">{{post.author.name}}</h2>
+                <h2 class="titre-media">{{post.authors[0].name}}</h2>
 
             </div>
 
@@ -48,7 +48,7 @@
 
         <!-- Auteur -->
         <h2 class="titre-partie espace">L'auteur</h2>
-        <app-author [author]="post.author"></app-author>
+        <app-author [author]="post.authors[0]"></app-author>
 
         <app-vertical-line></app-vertical-line>
 

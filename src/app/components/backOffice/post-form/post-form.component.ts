@@ -155,8 +155,8 @@ export class PostFormComponent implements OnInit {
       false,
       0,
       0,
-      author,
-      media
+     [author],
+     [media]
     )
     return newPost;
     }
@@ -258,17 +258,17 @@ export class PostFormComponent implements OnInit {
   // ok
   displayPost(): void {
     this.imageUrl = this.post!.picture;
-    this.auteurImageUrl = this.post!.author.picture;
+    this.auteurImageUrl = this.post!.authors[0].picture;
     let titre = this.post!.title;
     this.postForm.patchValue({
-      auteur: this.post!.author.name,
-      description: this.post!.author.description,
+      auteur: this.post!.authors[0].name,
+      description: this.post!.authors[0].description,
       // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
       titre: titre,
-      theme: this.post!.media.theme,
-      edition: this.post!.media.edition,
+      theme: this.post!.medias[0].theme,
+      edition: this.post!.medias[0].edition,
       publication: this.post!.content,
-      categorie: this.post!.media.category,
+      categorie: this.post!.medias[0].category,
       photo: this.imageUrl
     });
   }
