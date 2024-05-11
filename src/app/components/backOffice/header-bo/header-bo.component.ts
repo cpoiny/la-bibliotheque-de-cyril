@@ -45,7 +45,7 @@ export class HeaderBoComponent {
 
   getCurrentUrl(): void {
     this.route.url.subscribe(url => {
-      if( url[1].path === "login") {
+      if( url[1] && url[1].path === "login") {
         this.isLoginPage = true
       };
     

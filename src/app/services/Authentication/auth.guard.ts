@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const localData = localStorage.getItem('token');
   if(localData !== null) {
-    console.error('je suis la');
+    console.log('je suis la');
     return true;
   }else {
     router.navigateByUrl('/admin-lbdc/login');

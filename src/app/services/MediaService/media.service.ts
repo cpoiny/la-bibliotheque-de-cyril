@@ -20,8 +20,6 @@ export class MediaService {
     .pipe(map(response => response.data));
   }
 
-
-
   getAllBooks(): Media[] {
     const myBooks = MEDIAS.filter((media: Media) => media.category === "litterature")
     this.books = myBooks;
@@ -33,22 +31,6 @@ export class MediaService {
     return book[0];
   }
 
-  getAllTheme(): string[] {
-    let themes: string[] = [];
-    let mediaThemeUnique = new Set();
-    this.getAllMedias().subscribe((data) => {
-      data.filter(media => {
-        const estUnique = !mediaThemeUnique.has(media.theme);
-        mediaThemeUnique.add(media.theme);
-        if(estUnique) {
-          themes.push(media.theme)
-        }
-    })
-    
-    })
-    themes.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
-    return themes;
-  }
 }
 
 
