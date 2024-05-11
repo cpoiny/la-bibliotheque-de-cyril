@@ -38,8 +38,12 @@ export class PostFormComponent implements OnInit {
   postForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
+  selectedAuteurFile!: File | null;
+  selectedAuteurFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
+  auteurImageUrl: string = '';
   isEmptyImage?: boolean;
+  isEmptyImageAuteur?: boolean;
   isNewPost: boolean = true;
 
   categoriesButton: ICategoryButton[] = [
@@ -80,6 +84,8 @@ export class PostFormComponent implements OnInit {
   buildForm(): void {
     this.postForm = this.formBuilder.group({
       auteur: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.minLength(5)]],
+      photoAuteur: [null, [Validators.required]],
       titre: ['', [Validators.required]],
       theme: ['', [Validators.required]],
       publication: ['', [Validators.required, Validators.minLength(5)]],
@@ -123,6 +129,27 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+    // Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
+    onFileSelectedAuteur(event: any) {
+      const file: File = event.target.files[0];
+  
+      if (file) {
+        this.selectedAuteurFile = file;
+        this.postForm.patchValue({ image: file });
+        this.auteurImageUrl = '';
+        this.isEmptyImageAuteur = false;
+  
+        // Afficher l'image sélectionnée
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.selectedAuteurFileUrl = reader.result as string;
+  
+        };
+        reader.readAsDataURL(this.selectedAuteurFile);
+  
+      }
+    }
+
   
 // OK
   getAllAuthors(): void {
@@ -139,10 +166,13 @@ export class PostFormComponent implements OnInit {
   // je ne recupere pas l'image, ni la categorie
   displayPost(): void {
     this.imageUrl = this.post!.picture;
-  //  console.log("picture", picture);
+    this.auteurImageUrl = this.post!.authors![0].picture;
+    let titre = this.post!.title;
     this.postForm.patchValue({
       auteur: this.post!.authors![0].name,
-      titre: this.post!.title,
+      description : this.post!.authors[0].description,
+     // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
+      titre: titre,
       theme: this.post!.medias![0].theme,
       publication: this.post!.content,
       categorie: this.post!.medias![0].category,
