@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Post, PostAdapter } from '../../models/post.model';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiResponsePost } from '../../models/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +40,11 @@ export class PostService {
       map((posts: Post[]) => {
         if (posts) {
           if (category === "litterature") {
-            return postsPublished.filter((post) => post.medias![0].category === "litterature");
+            return postsPublished.filter((post) => post.media?.category === "litterature");
           } else if (category === "cinema") {
-            return postsPublished.filter((post) => post.medias![0].category === "cinema");
+            return postsPublished.filter((post) => post.media?.category === "cinema");
           } else {
-            return postsPublished.filter((post) => post.medias![0].category === "citation");
+            return postsPublished.filter((post) => post.media?.category === "citation");
           }
         } else {
           return [];
@@ -51,6 +52,16 @@ export class PostService {
       })
     );
   }
+
+  
+  // CREATE POST
+  createPost(post : Post) : Observable<ApiResponsePost> {
+    const url = this. baseUrl + "/ajouter";
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    return this.http.post(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
+  }
+
 
 }
 

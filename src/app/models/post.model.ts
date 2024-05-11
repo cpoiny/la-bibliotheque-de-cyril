@@ -15,8 +15,8 @@ export class Post{
     public is_draft: true | false,
     public quantity_comments: number | null,
     public quantity_likes: number | null,
-    public authors : [Author],
-    public medias: [Media],
+    public author : Author,
+    public media: Media,
     public isOntheWishlist?: true | false
     ) {}
 
@@ -46,8 +46,8 @@ export class PostAdapter implements Adapter<Post>{
             item.isDraft,
             item.quantity_comments,
             item.quantity_likes,
-            [item.authors],
-            [item.medias],
+            item.author,
+            item.media,
             item.isOntheWishlist,
         )
     }

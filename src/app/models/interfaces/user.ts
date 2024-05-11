@@ -1,3 +1,5 @@
+import { Post } from "../post.model";
+
 export interface User {
     id: number;
     pseudo: string;
@@ -11,4 +13,9 @@ export interface User {
   export interface UserLogin {
     message: string;
     token : string,
+  }
+
+  export interface ApiResponsePost {
+    status: string,
+    data : Post
   }
