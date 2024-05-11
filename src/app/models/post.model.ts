@@ -15,8 +15,8 @@ export class Post{
     public is_draft: true | false,
     public quantity_comments: number | null,
     public quantity_likes: number | null,
-    public authors : [Author],
-    public medias: [Media],
+    public authors : Author[],
+    public medias: Media[],
     public isOntheWishlist?: true | false
     ) {}
 

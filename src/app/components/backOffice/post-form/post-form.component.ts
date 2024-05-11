@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
@@ -75,7 +75,7 @@ export class PostFormComponent implements OnInit {
 
   }
 
- 
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'] && changes['post'].currentValue) {
       this.displayPost();
@@ -98,17 +98,70 @@ export class PostFormComponent implements OnInit {
 
 
   onSubmit(): void {
+ //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
-      //this.postService.createPost(this.postForm);
-      this.postForm.reset();
-      this.selectedFile = null; // Réinitialiser la sélection de fichier
-      this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-      console.log("formulaire valide", this.postForm.valid);
-    } else {
-
-      console.log("formulaire non valide", this.postForm.value);
-    }
+      const postToCreate : Post = this.transformFormToPost();
+      if(postToCreate) {
+        console.log("post To create", postToCreate);
+        this.postService.createPost(postToCreate).subscribe((data) => {
+          console.log("data reposne creation de post", data);
+        })
+      }
+      // this.postForm.reset();
+      // this.selectedFile = null; // Réinitialiser la sélection de fichier
+      // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+      
   }
+}
+
+// checkFormErrors(formGroup: FormGroup) {
+//   Object.keys(formGroup.controls).forEach(key => {
+//     const control = formGroup.get(key);
+//     if (control) {
+//       const controlErrors: ValidationErrors | null = control.errors;
+//       if (controlErrors != null) {
+//         Object.keys(controlErrors).forEach(keyError => {
+//           console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+//         });
+//       }
+//     }
+//   });
+// }
+
+
+  transformFormToPost() : Post {
+    const post = this.postForm.value;
+    const author : Author = new Author(
+       0,
+       post.auteur,
+       post.description,
+       post.photoAuteur
+    );
+    const media : Media = new Media (
+      0,
+      post.titre,
+      post.categorie,
+      post.theme,
+      author.id,
+      post.edition
+    )
+    const newPost : Post = new Post(
+      0,
+      post.titre,
+      post.publication,
+      post.photo,
+      new Date,
+      null,
+      false,
+      0,
+      0,
+     [author],
+     [media]
+    )
+    return newPost;
+    }
+  
+
 
   //ok - Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
@@ -131,45 +184,44 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-    // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
-    onFileSelectedAuteur(event: any) {
-     // const file: File = event.target.files[0];
-     const element = event.target as HTMLInputElement;
-     if (element.files && element.files.length > 0) {
-     const file: File = element.files[0];
-  
+  // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
+  onFileSelectedAuteur(event: any) {
+    const element = event.target as HTMLInputElement;
+    if (element.files && element.files.length > 0) {
+      const file: File = element.files[0];
+
       if (file) {
         this.selectedAuteurFile = file;
         this.postForm.patchValue({ image: file });
         this.auteurImageUrl = '';
         this.isEmptyImageAuteur = false;
-  
+
         // Afficher l'image sélectionnée
         const reader = new FileReader();
         reader.onload = () => {
           this.selectedAuteurFileUrl = reader.result as string;
-  
+
         };
         reader.readAsDataURL(this.selectedAuteurFile);
       }
-      }
     }
+  }
 
-  
-// OK
+
+  // OK
   getAllAuthors(): void {
-   this.authorService.getAllAuthors().subscribe((data) => {
-    this.listOfAuthors = this.authorService.sortAuthor(data);
-   });
+    this.authorService.getAllAuthors().subscribe((data) => {
+      this.listOfAuthors = this.authorService.sortAuthor(data);
+    });
   }
 
   // OK
   loadFilters(): void {
-   this.mediaService.getAllMedias().subscribe((data)=> {
-    if(data){
-      this.getAllThemes(data);
-      this.getAllEditions(data);
-    }
+    this.mediaService.getAllMedias().subscribe((data) => {
+      if (data) {
+        this.getAllThemes(data);
+        this.getAllEditions(data);
+      }
     });
   }
 
@@ -177,46 +229,46 @@ export class PostFormComponent implements OnInit {
   getAllThemes(data: Media[]): void {
     let themes: string[] = [];
     let mediaThemesUnique = new Set();
-      data.filter(media => {
-        const estUnique = !mediaThemesUnique.has(media.theme);
-        mediaThemesUnique.add(media.theme);
-        if(estUnique) {
-          themes.push(media.theme)
-        }
+    data.filter(media => {
+      const estUnique = !mediaThemesUnique.has(media.theme);
+      mediaThemesUnique.add(media.theme);
+      if (estUnique) {
+        themes.push(media.theme)
+      }
     })
-    themes.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
-  this.listOfThemes = themes;
+    themes.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+    this.listOfThemes = themes;
   }
 
   //ok
   getAllEditions(data: Media[]): void {
-    let editions: string[] =[];
+    let editions: string[] = [];
     let mediaEditionsUnique = new Set();
-      data.filter(media => {
-        const estUnique = !mediaEditionsUnique.has(media.edition);
-        mediaEditionsUnique.add(media.edition);
-        if(estUnique) {
-          editions!.push(media.edition!);
-        }
+    data.filter(media => {
+      const estUnique = !mediaEditionsUnique.has(media.edition);
+      mediaEditionsUnique.add(media.edition);
+      if (estUnique) {
+        editions!.push(media.edition!);
+      }
     })
-    editions!.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
-  this.listOfEditions = editions;
+    editions!.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+    this.listOfEditions = editions;
   }
 
   // ok
   displayPost(): void {
     this.imageUrl = this.post!.picture;
-    this.auteurImageUrl = this.post!.authors![0].picture;
+    this.auteurImageUrl = this.post!.authors[0].picture;
     let titre = this.post!.title;
     this.postForm.patchValue({
-      auteur: this.post!.authors![0].name,
-      description : this.post!.authors[0].description,
-     // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
+      auteur: this.post!.authors[0].name,
+      description: this.post!.authors[0].description,
+      // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
       titre: titre,
-      theme: this.post!.medias![0].theme,
+      theme: this.post!.medias[0].theme,
       edition: this.post!.medias[0].edition,
       publication: this.post!.content,
-      categorie: this.post!.medias![0].category,
+      categorie: this.post!.medias[0].category,
       photo: this.imageUrl
     });
   }

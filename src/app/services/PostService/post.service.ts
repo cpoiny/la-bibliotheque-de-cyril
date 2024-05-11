@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Post, PostAdapter } from '../../models/post.model';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiResponsePost } from '../../models/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class PostService {
   }
 
   // ok
-  getPostByCategory(postsPublished: Post[],category: string): Observable<Post[]> {
+  getPostByCategory(postsPublished: Post[], category: string): Observable<Post[]> {
     return this.getAllPosts().pipe(
       map((posts: Post[]) => {
         if (posts) {
@@ -51,6 +52,16 @@ export class PostService {
       })
     );
   }
+
+  
+  // CREATE POST
+  createPost(post : Post) : Observable<ApiResponsePost> {
+    const url = this. baseUrl + "/ajouter";
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    return this.http.post(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
+  }
+
 
 }
 
