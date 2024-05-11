@@ -36,14 +36,14 @@
 }
 
 .menu nav ul li img {
-    margin: 0.5vw;
+    margin: 1vw;
     width: 15%;
     cursor: pointer;
 }
 
 .menu nav ul li a {
     font-family: 'Courier Prime', Courier, monospace;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .menu ul li a:hover {
@@ -56,7 +56,7 @@
 
 .active a {
     color: var(--gold);
-    font-size: 18px;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -126,9 +126,8 @@
     }
 
     .menu nav ul li img {
-        width: 80%;
-        height: 80%;
-        margin: 0 auto;
+        width: 90%;
+        margin: 0;
     }
 
     .active {
