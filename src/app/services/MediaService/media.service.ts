@@ -20,16 +20,12 @@ export class MediaService {
     .pipe(map(response => response.data));
   }
 
-  getAllBooks(): Media[] {
-    const myBooks = MEDIAS.filter((media: Media) => media.category === "litterature")
-    this.books = myBooks;
-    return this.books;
+  getMediaById(id: number): Observable<Media> {
+    const url = this.baseUrl+ "/" + id;
+    return this.http.get<{ data: Media }>(url)
+    .pipe(map(response => response.data));
   }
 
-  getOneBook(id: number) : Media {
-    const book = MEDIAS.filter((media: Media) => media.id === id);
-    return book[0];
-  }
 
 }
 

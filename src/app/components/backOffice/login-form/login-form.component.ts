@@ -76,7 +76,7 @@ export class LoginFormComponent {
     if (role === "admin") {
       alert("Login success");
       localStorage.setItem('token', token);
-      this.router.navigateByUrl('/admin-lbdc/mon-compte')
+      this.router.navigateByUrl('/admin-lbdc/mon-compte');
     } else {
       alert('Login error');
       this.loginForm.reset();

@@ -105,37 +105,31 @@ export class PostFormComponent implements OnInit {
         console.log("post To create", postToCreate);
         this.postService.createPost(postToCreate).subscribe((data) => {
           console.log("data reposne creation de post", data);
-        })
-      }
-      // this.postForm.reset();
-      // this.selectedFile = null; // Réinitialiser la sélection de fichier
-      // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-      
+        
+      this.postForm.reset();
+      this.selectedFile = null; // Réinitialiser la sélection de fichier
+      this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+      this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
+    })
+  }
   }
 }
 
-// checkFormErrors(formGroup: FormGroup) {
-//   Object.keys(formGroup.controls).forEach(key => {
-//     const control = formGroup.get(key);
-//     if (control) {
-//       const controlErrors: ValidationErrors | null = control.errors;
-//       if (controlErrors != null) {
-//         Object.keys(controlErrors).forEach(keyError => {
-//           console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
-//         });
-//       }
-//     }
-//   });
-// }
+
+
 
 
   transformFormToPost() : Post {
     const post = this.postForm.value;
+    const urlAuteur = post.photoAuteur;
+    const urlPublication = post.photo;
+    urlAuteur.replace("C:/fakepath/", "assets/img/");
+    urlPublication.replace("C:/fakepath/", "assets/img/");
     const author : Author = new Author(
        0,
        post.auteur,
        post.description,
-       post.photoAuteur
+       urlAuteur
     );
     const media : Media = new Media (
       0,
@@ -149,7 +143,7 @@ export class PostFormComponent implements OnInit {
       0,
       post.titre,
       post.publication,
-      post.photo,
+      urlPublication,
       new Date,
       null,
       false,
@@ -179,6 +173,7 @@ export class PostFormComponent implements OnInit {
         this.selectedFileUrl = reader.result as string;
 
       };
+      
       reader.readAsDataURL(this.selectedFile);
 
     }

@@ -27,7 +27,10 @@ constructor(
 
 
 ngOnInit(){
-this.book = this.mediaService.getOneBook(this.id);
+this.mediaService.getMediaById(this.id).subscribe((data) => {
+  this.book = data;
+});
+console.log("this book", this.book);
 }
 
 }
