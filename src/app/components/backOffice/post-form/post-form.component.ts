@@ -7,6 +7,7 @@ import { Author } from '../../../models/author.model';
 import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Media } from '../../../models/media.model';
 
 export interface ICategoryButton {
   id: number;
@@ -35,6 +36,7 @@ export class PostFormComponent implements OnInit {
   //posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
+  listOfEditions?: string[] = [];
   postForm!: FormGroup;
   selectedFile!: File | null;
   selectedFileUrl: string | ArrayBuffer | null = '';
@@ -69,8 +71,7 @@ export class PostFormComponent implements OnInit {
     this.checkIfNewPost();
     this.buildForm();
     this.getAllAuthors();
-    this.getAllThemes();
-    
+    this.loadFilters();
 
   }
 
@@ -88,6 +89,7 @@ export class PostFormComponent implements OnInit {
       photoAuteur: [null, [Validators.required]],
       titre: ['', [Validators.required]],
       theme: ['', [Validators.required]],
+      edition: ['', [Validators.required]],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
@@ -101,14 +103,14 @@ export class PostFormComponent implements OnInit {
       this.postForm.reset();
       this.selectedFile = null; // Réinitialiser la sélection de fichier
       this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-      console.log("formulaire non valide", this.postForm.value);
+      console.log("formulaire valide", this.postForm.valid);
     } else {
 
       console.log("formulaire non valide", this.postForm.value);
     }
   }
 
-  // Methode pour afficher l'image selectionnée dans le formulaire
+  //ok - Methode pour afficher l'image selectionnée dans le formulaire
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
@@ -129,7 +131,7 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-    // Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
+    // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
     onFileSelectedAuteur(event: any) {
       const file: File = event.target.files[0];
   
@@ -159,11 +161,44 @@ export class PostFormComponent implements OnInit {
   }
 
   // OK
-  getAllThemes(): void {
-    this.listOfThemes = this.mediaService.getAllTheme();
+  loadFilters(): void {
+   this.mediaService.getAllMedias().subscribe((data)=> {
+    if(data){
+      this.getAllThemes(data);
+      this.getAllEditions(data);
+    }
+    });
   }
 
-  // je ne recupere pas l'image, ni la categorie
+  getAllThemes(data: Media[]): void {
+    let themes: string[] = [];
+    let mediaThemesUnique = new Set();
+      data.filter(media => {
+        const estUnique = !mediaThemesUnique.has(media.theme);
+        mediaThemesUnique.add(media.theme);
+        if(estUnique) {
+          themes.push(media.theme)
+        }
+    })
+    themes.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
+  this.listOfThemes = themes;
+  }
+
+  getAllEditions(data: Media[]): void {
+    let editions: string[] =[];
+    let mediaEditionsUnique = new Set();
+      data.filter(media => {
+        const estUnique = !mediaEditionsUnique.has(media.edition);
+        mediaEditionsUnique.add(media.edition);
+        if(estUnique) {
+          editions!.push(media.edition!);
+        }
+    })
+    editions!.sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
+  this.listOfEditions = editions;
+  }
+
+  // ok
   displayPost(): void {
     this.imageUrl = this.post!.picture;
     this.auteurImageUrl = this.post!.authors![0].picture;
@@ -174,13 +209,14 @@ export class PostFormComponent implements OnInit {
      // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
       titre: titre,
       theme: this.post!.medias![0].theme,
+      edition: this.post!.medias[0].edition,
       publication: this.post!.content,
       categorie: this.post!.medias![0].category,
       photo: this.imageUrl
     });
   }
 
-  // verification de l'url pour gérer l'affichage conditionnel
+  // ok -verification de l'url pour gérer l'affichage conditionnel
   checkIfNewPost(): void {
     const url = this.router.url;
     if (url.includes("ajouter")) {

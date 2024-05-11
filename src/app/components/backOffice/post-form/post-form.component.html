@@ -13,18 +13,18 @@
 
                 <!-- Mes boutons de catégorie -->
                 <div class="mesCat">
-                    <div>
+                    <div class="categoriebutton">
                         <input class="cat" required type="radio" id="litterature" formControlName="categorie"
                             name="categorie" value="litterature">
                         <label for="litterature">Littérature</label>
                     </div>
-                    <div>
+                    <div  class="categoriebutton">
                         <input class="cat" required type="radio" id="cinema" formControlName="categorie"
                             name="categorie" value="cinema">
                         <label for="cinema">Cinéma</label>
 
                     </div>
-                    <div>
+                    <div  class="categoriebutton">
                         <input class="cat" required type="radio" id="citation" formControlName="categorie"
                             name="categorie" value="citation">
                         <label for="citation">Citation</label>
@@ -98,6 +98,18 @@
                 <option value="{{theme}}">{{theme}}</option>
                 }
 
+            </datalist>
+        </div>
+
+        <!-- Editions -->
+        <div class="postForm-champ">
+            <label for="edition">Edition :</label>
+            <input list="liste-edition" class="input-form" type="text" id="edition" formControlName="edition" />
+            <datalist class="input-form" name="edition" id="liste-edition">
+                <option value=""></option>
+                @for(edition of listOfEditions; track edition){
+                <option value="{{edition}}">{{edition}}</option>
+                }
             </datalist>
         </div>
 

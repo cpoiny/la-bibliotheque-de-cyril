@@ -6,6 +6,7 @@ button {
 }
 button img{
     width: 2vw;
+    /* border: red solid 2px; */
 }
 /* Test */
 
@@ -13,15 +14,17 @@ button img{
 
 /* RESPONSIVE */
 
-@media (max-width:425px){
+@media (max-width:426px){
     button img{
-        width: 6vw;
+        width: 4vw;
     }
 }
 
 
 @media (min-width:426px) and (max-width:1025px){
     button img{
-        width: 4vw;
+        width: 3vw;
+        min-width:3vw;
+        max-width:5vw;
     }
 }
