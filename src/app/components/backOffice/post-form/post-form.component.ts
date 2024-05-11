@@ -74,7 +74,6 @@ export class PostFormComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'] && changes['post'].currentValue) {
       this.displayPost();
-      this.imageUrl = this.post!.picture;
     }
   }
 
@@ -139,14 +138,15 @@ export class PostFormComponent implements OnInit {
 
   // je ne recupere pas l'image, ni la categorie
   displayPost(): void {
-    console.log("patch value");
+    this.imageUrl = this.post!.picture;
+  //  console.log("picture", picture);
     this.postForm.patchValue({
       auteur: this.post!.authors![0].name,
       titre: this.post!.title,
       theme: this.post!.medias![0].theme,
       publication: this.post!.content,
-      photo: this.post!.picture,
       categorie: this.post!.medias![0].category,
+      photo: this.imageUrl
     });
   }
 

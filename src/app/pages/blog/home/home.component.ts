@@ -18,7 +18,7 @@ import { Post } from '../../../models/post.model';
 export class HomeComponent implements OnInit {
 
   posts!: Post[];
-  lastPost!: Post;
+  lastPost?: Post;
 
   constructor(
     private postService: PostService

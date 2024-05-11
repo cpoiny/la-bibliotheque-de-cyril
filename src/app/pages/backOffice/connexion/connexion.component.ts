@@ -12,4 +12,9 @@ import { HeaderBoComponent } from '../../../components/backOffice/header-bo/head
 })
 export class ConnexionComponent {
 
+  ngOnInit() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.clear();
+    }
+  }
  }
