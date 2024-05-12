@@ -40,10 +40,10 @@ export class PostFormComponent implements OnInit {
   listOfThemes: string[] = [];
   listOfEditions?: string[] = [];
   postForm!: FormGroup;
-  selectedFile!: File | null;
-  selectedFileUrl: string | ArrayBuffer | null = '';
-  selectedAuteurFile!: File | null;
-  selectedAuteurFileUrl: string | ArrayBuffer | null = '';
+  // selectedFile!: File | null;
+  // selectedFileUrl: string | ArrayBuffer | null = '';
+  // selectedAuteurFile!: File | null;
+  // selectedAuteurFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   auteurImageUrl: string = '';
   isEmptyImage?: boolean;
@@ -111,8 +111,8 @@ export class PostFormComponent implements OnInit {
           console.log("data reposne creation de post", data);
 
           this.postForm.reset();
-          this.selectedFile = null; // Réinitialiser la sélection de fichier
-          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          // this.selectedFile = null; // Réinitialiser la sélection de fichier
+          // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
           this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
         })
       }
@@ -126,8 +126,8 @@ export class PostFormComponent implements OnInit {
         console.log("post To Update", postToUpdate);
         this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe((data) => {
           this.postForm.reset();
-          this.selectedFile = null; // Réinitialiser la sélection de fichier
-          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          // this.selectedFile = null; // Réinitialiser la sélection de fichier
+          // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
           this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
         }
         );
@@ -172,49 +172,49 @@ export class PostFormComponent implements OnInit {
 
 
   //ok - Methode pour afficher l'image selectionnée dans le formulaire
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  // onFileSelected(event: any) {
+  //   const file: File = event.target.files[0];
 
-    if (file) {
-      this.selectedFile = file;
-      this.postForm.patchValue({ image: file });
-      this.imageUrl = '';
-      this.isEmptyImage = false;
+  //   if (file) {
+  //     this.selectedFile = file;
+  //     this.postForm.patchValue({ image: file });
+  //     this.imageUrl = '';
+  //     this.isEmptyImage = false;
 
-      // Afficher l'image sélectionnée
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.selectedFileUrl = reader.result as string;
+  //     // Afficher l'image sélectionnée
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.selectedFileUrl = reader.result as string;
 
-      };
+  //     };
 
-      reader.readAsDataURL(this.selectedFile);
+  //     reader.readAsDataURL(this.selectedFile);
 
-    }
-  }
+  //   }
+  // }
 
   // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
-  onFileSelectedAuteur(event: any) {
-    const element = event.target as HTMLInputElement;
-    if (element.files && element.files.length > 0) {
-      const file: File = element.files[0];
+  // onFileSelectedAuteur(event: any) {
+  //   const element = event.target as HTMLInputElement;
+  //   if (element.files && element.files.length > 0) {
+  //     const file: File = element.files[0];
 
-      if (file) {
-        this.selectedAuteurFile = file;
-        this.postForm.patchValue({ image: file });
-        this.auteurImageUrl = '';
-        this.isEmptyImageAuteur = false;
+  //     if (file) {
+  //       this.selectedAuteurFile = file;
+  //       this.postForm.patchValue({ image: file });
+  //       this.auteurImageUrl = '';
+  //       this.isEmptyImageAuteur = false;
 
-        // Afficher l'image sélectionnée
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.selectedAuteurFileUrl = reader.result as string;
+  //       // Afficher l'image sélectionnée
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         this.selectedAuteurFileUrl = reader.result as string;
 
-        };
-        reader.readAsDataURL(this.selectedAuteurFile);
-      }
-    }
-  }
+  //       };
+  //       reader.readAsDataURL(this.selectedAuteurFile);
+  //     }
+  //   }
+  // }
 
 
   // OK

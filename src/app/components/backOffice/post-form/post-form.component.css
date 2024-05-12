@@ -1,4 +1,3 @@
-
 .container {
     width: 80%;
     min-width: 80%;
@@ -27,6 +26,11 @@
     font-size: 28px;
 }
 
+.postForm-champ img{
+    object-fit: contain;
+    border: black solid 1px;
+}
+
 .input-form {
     width: 70%;
     height: 5vh;
@@ -36,6 +40,16 @@
     padding-left: 30px;
     font-family: "Courier Prime", 'Courier New', Courier, monospace;
     background-color: white;
+}
+
+
+.input-photo {
+    width: 60%;
+}
+
+.input-photo textarea {
+    font-size: 1rem;
+    padding: .8rem;
 }
 
 .publication {
@@ -80,7 +94,7 @@
 
 /* Boutons de catégorie */
 
-.mesCat{
+.mesCat {
     width: 100%;
     height: 8vh;
     display: flex;
@@ -90,7 +104,7 @@
 
 .mesCat .categoriebutton label {
     border: black solid 1px;
-    width:100%;
+    width: 100%;
     min-width: 100%;
     height: 3vw;
     padding: 2vh 3vw;
@@ -99,13 +113,13 @@
 
 input[type="radio"].cat {
     display: none;
-  }
+}
 
-input[type="radio"].cat:checked + label {
+input[type="radio"].cat:checked+label {
     background-color: var(--gold);
     border: none;
     color: white;
-  }
+}
 
 /* Photo de la publication */
 
@@ -139,14 +153,14 @@ input[type="radio"].cat:checked + label {
 
 /* Boutons Annuler , Publier, Modifier */
 
-.postForm-button{
-    margin-bottom: 5vh;
-    display:flex;
+.postForm-button {
+    margin: 10vh 0 10vh;
+    display: flex;
     justify-content: end;
     gap: 3vh;
 }
 
-.buttons{
+.buttons {
     width: 10vw;
     min-width: 20%;
     padding: 0.8rem 0.5rem;
@@ -155,34 +169,31 @@ input[type="radio"].cat:checked + label {
     cursor: pointer;
     font-family: "Courier prime", sans-serif;
 }
-.validation{
+
+.validation {
     background-color: var(--gold);
     border: none;
     color: white;
 }
-.validation:hover{
+
+.validation:hover {
     background-color: var(--blue);
     color: white;
-    /* border: var(--gold) solid 1px; */
 }
 
-.cancel{
+.cancel {
     background-color: var(--white);
     border: var(--gold) solid 1px;
     color: var(--gold);
 }
-/* .cancel:hover{
-    background-color: var(--gold);
-    border: none;
-    color: white;
-} */
+
 
 
 /* RESPONSIVE */
 
 @media (max-width: 850px) {
-  
-    .postForm-champ  {
+
+    .postForm-champ {
         flex-wrap: wrap;
     }
 
@@ -192,10 +203,10 @@ input[type="radio"].cat:checked + label {
         width: 100%;
     }
 
-   .post-photo{
-    display: flex;
-    flex-direction: column;
-   }
+    .post-photo {
+        display: flex;
+        flex-direction: column;
+    }
 
     .photo {
         width: 30vw;
@@ -229,20 +240,21 @@ input[type="radio"].cat:checked + label {
     }
 
     .container-entete img {
-       display:none;
-        
+        display: none;
+
     }
 }
 
 @media (max-width: 450px) {
-   
 
-    .container-entete  {
+
+    .container-entete {
         height: 20vh;
         width: 100%;
     }
-    .buttons{
-    width: 50%;
+
+    .buttons {
+        width: 50%;
     }
 
 }

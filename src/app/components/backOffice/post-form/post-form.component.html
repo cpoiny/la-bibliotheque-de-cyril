@@ -77,31 +77,14 @@
         </div>
 
         <!-- Photo de couverture -->
-        <div class="postForm-champ post-photo">
-            <label for="photo2">Photo de la publication :</label>
-            <div class="photo-image">
-
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photo2" (change)="onFileSelected($event)"
-                    value="">
-
-
-                @if(isEmptyImage){
-                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                }
-                @if(selectedFileUrl){
-                <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
-                }
-                @if(imageUrl){
-                <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                }
-
-            </div>
-        </div>
 
         <div class="postForm-champ">
-            <label for="photo"></label>
-            <input class="input-form" name="photo" id="photo" type="text" formControlName="photo">
+            <label for="photo">Photo de la publication :</label>
+            <div class="input-photo">
+                <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
+                <textarea class="publication" name="photo" id="photo" type="text"
+                    formControlName="photo"></textarea>
+            </div>
         </div>
 
 
@@ -125,45 +108,27 @@
         </div>
 
         <!-- Photo de l'auteur -->
-        <div class="postForm-champ post-photo">
-            <label for="photoAuteur2">Photo de l'auteur(trice) :</label>
-            <div class="photo-image">
 
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photoAuteur2"
-                    (change)="onFileSelectedAuteur($event)">
-
-
-                @if(isEmptyImageAuteur){
-                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                }
-                @if(selectedAuteurFileUrl){
-                <img class="photo selected" [src]="selectedAuteurFileUrl" [alt]="selectedAuteurFileUrl">
-                }
-                @if(auteurImageUrl){
+        <div class="postForm-champ">
+            <label for="photoAuteur">Photo de l'auteur(trice) :</label>
+            <div class="input-photo">
                 <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
-                }
-
+                <textarea class="publication" name="photoAuteur" id="photoAuteur" type="text"
+                    formControlName="photoAuteur"></textarea>
             </div>
         </div>
 
-        <div class="postForm-champ">
-            <label for="photoAuteur"></label>
-            <input class="input-form" name="photoAuteur" id="photoAuteur" type="text" formControlName="photoAuteur">
-        </div>
-
-
         <!-- Boutons -->
-        
+
         <div class="postForm-button">
-            <button class="buttons cancel" >Annuler</button>
+            <button class="buttons cancel">Annuler</button>
             @if (isNewPost){
             <button class="buttons validation" type="submit" (click)="onCreate()">Publier</button>
             }@else{
             <button class="buttons validation" type="submit" (click)="onUpdate()">Modifier</button>
             }
         </div>
-    
+
     </form>
 
 </section>
