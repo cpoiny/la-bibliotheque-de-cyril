@@ -121,6 +121,7 @@ export class PostFormComponent implements OnInit {
   }
 
   onUpdate(): void {
+    this.postForm.controls['photoAuteur'].setValue(this.post!.authors[0].picture);
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
@@ -143,13 +144,13 @@ export class PostFormComponent implements OnInit {
     urlAuteur.replace("C:/fakepath/", "assets/img/auteur/");
     urlPublication.replace("C:/fakepath/", "assets/img/");
     const author: Author = new Author(
-      this.post!.authors[0].id ? this.post!.authors[0].id : 0,
+      this.post?.authors[0].id ? this.post.authors[0].id : 0,
       post.auteur,
       post.description,
       urlAuteur
     );
     const media: Media = new Media(
-      this.post!.medias[0].id ? this.post!.medias[0].id : 0,
+      this.post?.medias[0].id ? this.post.medias[0].id : 0,
       post.titre,
       post.categorie,
       post.theme,
@@ -157,11 +158,11 @@ export class PostFormComponent implements OnInit {
       post.edition
     )
     const newPost: Post = new Post(
-      this.post!.id ? this.post!.id : 0,
+      this.post?.id ? this.post!.id : 0,
       post.titre,
       post.publication,
       urlPublication,
-      this.post?.publicated_at ? this.post?.publicated_at : new Date,
+      this.post?.publicated_at ? this.post!.publicated_at : new Date,
       null,
       this.post?.is_draft ? this.post.is_draft : false,
       this.post?.quantity_comments ? this.post.quantity_comments : 0,
@@ -271,17 +272,16 @@ export class PostFormComponent implements OnInit {
   displayPost(): void {
     this.imageUrl = this.post!.picture;
     this.auteurImageUrl = this.post!.authors[0].picture;
-    let titre = this.post!.title;
     this.postForm.patchValue({
       auteur: this.post!.authors[0].name,
       description: this.post!.authors[0].description,
-      // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
-      titre: titre,
+      titre: this.post!.title,
       theme: this.post!.medias[0].theme,
       edition: this.post!.medias[0].edition,
       publication: this.post!.content,
       categorie: this.post!.medias[0].category,
-      photo: this.imageUrl
+      photo: this.imageUrl,
+      photoAuteur: this.post!.authors[0].picture, 
     });
   }
 

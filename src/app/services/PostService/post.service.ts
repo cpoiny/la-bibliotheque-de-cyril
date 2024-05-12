@@ -67,7 +67,7 @@ export class PostService {
       const url = this. baseUrl + "/modifier/" + id;
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
-      return this.http.post(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
+      return this.http.put(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
     }
 
 
