@@ -1,6 +1,6 @@
 <section class="container">
 
-    <form class="formulaire-complet" [formGroup]="postForm" >
+    <form class="formulaire-complet" [formGroup]="postForm">
 
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
@@ -18,19 +18,90 @@
                             name="categorie" value="litterature">
                         <label for="litterature">Littérature</label>
                     </div>
-                    <div  class="categoriebutton">
+                    <div class="categoriebutton">
                         <input class="cat" required type="radio" id="cinema" formControlName="categorie"
                             name="categorie" value="cinema">
                         <label for="cinema">Cinéma</label>
 
                     </div>
-                    <div  class="categoriebutton">
+                    <div class="categoriebutton">
                         <input class="cat" required type="radio" id="citation" formControlName="categorie"
                             name="categorie" value="citation">
                         <label for="citation">Citation</label>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Titre -->
+        <div class="postForm-champ">
+            <label for="titre">Titre :</label>
+            @if (post) {
+            <input class="input-form" name="titre" id="titre" formControlName="titre">
+            } @else {
+            <input class="input-form" name="titre" id="titre" formControlName="titre">
+            }
+
+        </div>
+
+        <!-- Publication -->
+        <div class="postForm-champ">
+            <label for="publication">Publication:</label>
+            <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
+                formControlName="publication"></textarea>
+        </div>
+
+        <!-- Catégorie -->
+        <div class="postForm-champ">
+            <label for="theme">Theme :</label>
+            <input list="liste-theme" class="input-form" type="text" id="theme" formControlName="theme" />
+            <datalist class="input-form" name="theme" id="liste-theme">
+                <option value=""></option>
+                @for(theme of listOfThemes; track theme){
+                <option value="{{theme}}">{{theme}}</option>
+                }
+
+            </datalist>
+        </div>
+
+        <!-- Editions -->
+        <div class="postForm-champ">
+            <label for="edition">Edition :</label>
+            <input list="liste-edition" class="input-form" type="text" id="edition" formControlName="edition" />
+            <datalist class="input-form" name="edition" id="liste-edition">
+                <option value=""></option>
+                @for(edition of listOfEditions; track edition){
+                <option value="{{edition}}">{{edition}}</option>
+                }
+            </datalist>
+        </div>
+
+        <!-- Photo de couverture -->
+        <div class="postForm-champ post-photo">
+            <label for="photo2">Photo de la publication :</label>
+            <div class="photo-image">
+
+                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
+                <input class="input-photo" type="file" accept="assets/*" id="photo2" (change)="onFileSelected($event)"
+                    value="">
+
+
+                @if(isEmptyImage){
+                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
+                }
+                @if(selectedFileUrl){
+                <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
+                }
+                @if(imageUrl){
+                <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
+                }
+
+            </div>
+        </div>
+
+        <div class="postForm-champ">
+            <label for="photo"></label>
+            <input class="input-form" name="photo" id="photo" type="text" formControlName="photo">
         </div>
 
 
@@ -77,82 +148,8 @@
         </div>
 
         <div class="postForm-champ">
-            <label for="photoAuteur">Image de l'auteur(trice) :</label>
-            <input class="input-form" name="photoAuteur" id="photoAuteur" type="text" formControlName="photoAuteur" >
-        </div>
-        
-
-
-        <!-- Titre -->
-        <div class="postForm-champ">
-            <label for="titre">Titre :</label>
-            @if (post) {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
-            } @else {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
-            }
-
-        </div>
-
-        <!-- Catégorie -->
-        <div class="postForm-champ">
-            <label for="theme">Theme :</label>
-            <input list="liste-theme" class="input-form" type="text" id="theme" formControlName="theme" />
-            <datalist class="input-form" name="theme" id="liste-theme">
-                <option value=""></option>
-                @for(theme of listOfThemes; track theme){
-                <option value="{{theme}}">{{theme}}</option>
-                }
-
-            </datalist>
-        </div>
-
-        <!-- Editions -->
-        <div class="postForm-champ">
-            <label for="edition">Edition :</label>
-            <input list="liste-edition" class="input-form" type="text" id="edition" formControlName="edition" />
-            <datalist class="input-form" name="edition" id="liste-edition">
-                <option value=""></option>
-                @for(edition of listOfEditions; track edition){
-                <option value="{{edition}}">{{edition}}</option>
-                }
-            </datalist>
-        </div>
-
-        <!-- Publication -->
-        <div class="postForm-champ">
-            <label for="publication">Publication:</label>
-            <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
-                formControlName="publication"></textarea>
-        </div>
-
-
-        <!-- Photo de couverture -->
-        <div class="postForm-champ post-photo">
-            <label for="photo2">Photo de couverture :</label>
-            <div class="photo-image">
-
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photo2"
-                    (change)="onFileSelected($event)" value="">
-
-
-                @if(isEmptyImage){
-                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                }
-                @if(selectedFileUrl){
-                <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
-                }
-                @if(imageUrl){
-                <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                }
-
-            </div>
-        </div>
-
-        <div class="postForm-champ">
-            <label for="photo">Lien du post:</label>
-            <input class="input-form" name="photo" id="photo" type="text" formControlName="photo">
+            <label for="photoAuteur"></label>
+            <input class="input-form" name="photoAuteur" id="photoAuteur" type="text" formControlName="photoAuteur">
         </div>
 
 
@@ -164,7 +161,7 @@
         </div>
         } @else {
         <div class="postForm-champ">
-            <button>Annuler</button>
+            <button (click)="onCancel()">Annuler</button>
             <button type="submit" (click)="onUpdate()">Modifier</button>
         </div>
         }

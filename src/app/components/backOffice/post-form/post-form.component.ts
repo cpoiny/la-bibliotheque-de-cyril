@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
@@ -8,8 +8,8 @@ import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
-import { catchError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
+
 
 export interface ICategoryButton {
   id: number;
@@ -31,6 +31,7 @@ export class PostFormComponent implements OnInit {
     private authorService: AuthorService,
     private mediaService: MediaService,
     private router: Router,
+    private location: Location
   ) { }
 
 
@@ -89,7 +90,7 @@ export class PostFormComponent implements OnInit {
       photoAuteur: [null, [Validators.required]],
       titre: ['', [Validators.required]],
       theme: ['', [Validators.required]],
-      edition: ['', [Validators.required]],
+      edition: [''],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
@@ -290,6 +291,10 @@ export class PostFormComponent implements OnInit {
       this.isEmptyImage = false;
       this.isNewPost = false;
     }
+  }
+
+  onCancel(): void {
+    this.location.back();
   }
 
 }
