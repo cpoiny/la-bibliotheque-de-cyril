@@ -35,7 +35,6 @@ export class PostFormComponent implements OnInit {
 
 
   @Input() post: Post | undefined;
-  //posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   listOfEditions?: string[] = [];
@@ -74,7 +73,6 @@ export class PostFormComponent implements OnInit {
     this.buildForm();
     this.getAllAuthors();
     this.loadFilters();
-
   }
 
 
@@ -121,7 +119,6 @@ export class PostFormComponent implements OnInit {
   }
 
   onUpdate(): void {
-    this.postForm.controls['photoAuteur'].setValue(this.post!.authors[0].picture);
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
@@ -139,15 +136,13 @@ export class PostFormComponent implements OnInit {
 
   transformFormToPost(): Post {
     const post = this.postForm.value;
-    const urlAuteur = post.photoAuteur;
-    const urlPublication = post.photo;
-    urlAuteur.replace("C:/fakepath/", "assets/img/auteur/");
-    urlPublication.replace("C:/fakepath/", "assets/img/");
+    // const urlAuteur = post.photoAuteur;
+    // const urlPublication = post.photo;
     const author: Author = new Author(
       this.post?.authors[0].id ? this.post.authors[0].id : 0,
       post.auteur,
       post.description,
-      urlAuteur
+      post.photoAuteur
     );
     const media: Media = new Media(
       this.post?.medias[0].id ? this.post.medias[0].id : 0,
@@ -161,7 +156,7 @@ export class PostFormComponent implements OnInit {
       this.post?.id ? this.post!.id : 0,
       post.titre,
       post.publication,
-      urlPublication,
+      post.photo,
       this.post?.publicated_at ? this.post!.publicated_at : new Date,
       null,
       this.post?.is_draft ? this.post.is_draft : false,
