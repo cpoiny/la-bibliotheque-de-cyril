@@ -64,7 +64,7 @@ export class PostService {
     return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   }
 
-  // DELETE
+  // ok DELETE
   deletePost(id: number): Observable<ApiResponsePost> {
     const url = this.baseUrl + '/' + id;
     const token = localStorage.getItem('token');
