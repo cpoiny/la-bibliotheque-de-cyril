@@ -16,6 +16,7 @@ export class CardComponent implements OnInit{
 
 @Input() picture!: string;  
 @Input() title!: string;
+@Input() theme!: string;
 @Input() id! :number;
 book!: Media;
 
