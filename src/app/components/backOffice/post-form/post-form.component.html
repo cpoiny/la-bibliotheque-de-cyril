@@ -149,12 +149,12 @@
         @if (isNewPost){
         <div class="postForm-champ">
             <button>Annuler</button>
-            <button type="submit">Publier</button>
+            <button type="submit" (click)="onCreate()">Publier</button>
         </div>
         } @else {
         <div class="postForm-champ">
             <button>Annuler</button>
-            <button type="submit">Modifier</button>
+            <button type="submit" (click)="onUpdate()">Modifier</button>
         </div>
         }
     </form>

@@ -62,6 +62,14 @@ export class PostService {
     return this.http.post(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
   }
 
+    // UPDATE POST
+    updatePost(post : Post, id: number) : Observable<ApiResponsePost> {
+      const url = this. baseUrl + "/modifier/" + id;
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
+      return this.http.post(url, post,{ headers: headers}).pipe(map((data: any) => data as ApiResponsePost));
+    }
+
 
 }
 

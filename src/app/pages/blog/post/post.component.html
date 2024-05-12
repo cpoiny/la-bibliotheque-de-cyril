@@ -3,7 +3,7 @@
 
     <!-- Menu -->
     <app-header class="header"></app-header>
-
+    @if (post){
     <!-- POST -->
     <section class="container">
         <div class="back-btn-titres">
@@ -12,11 +12,13 @@
                 <img src="assets/icons/retour.png" alt="retour en arrière">
             </button>
             <!-- TITRE POST : Livre et auteur -->
+           
             <div class="titres">
-                <h1 class="titre-partie ">" {{post.title}} "</h1>
-                <h2 class="titre-media">{{post.authors[0].name}}</h2>
+                <h1 class="titre-partie ">" {{post!.title}} "</h1>
+                <h2 class="titre-media">{{post!.authors[0].name}}</h2>
 
             </div>
+        
 
 
 
@@ -51,9 +53,9 @@
         <app-author [author]="post.authors[0]"></app-author>
 
         <app-vertical-line></app-vertical-line>
-
         <!-- D'autres propositions -->
     </section>
+}
     
 </div>
 

@@ -28,10 +28,10 @@ constructor(
 
 
 ngOnInit(){
-this.mediaService.getMediaById(this.id).subscribe((data) => {
+this.mediaService.getMediaById(this.book.id).subscribe((data) => {
   this.book = data;
 });
-console.log("this book", this.book);
+//console.log("this book", this.book);
 }
 
 }
