@@ -154,17 +154,16 @@
 
 
         <!-- Boutons -->
-        @if (isNewPost){
-        <div class="postForm-champ">
-            <button>Annuler</button>
-            <button type="submit" (click)="onCreate()">Publier</button>
+        
+        <div class="postForm-button">
+            <button class="buttons cancel" >Annuler</button>
+            @if (isNewPost){
+            <button class="buttons validation" type="submit" (click)="onCreate()">Publier</button>
+            }@else{
+            <button class="buttons validation" type="submit" (click)="onUpdate()">Modifier</button>
+            }
         </div>
-        } @else {
-        <div class="postForm-champ">
-            <button (click)="onCancel()">Annuler</button>
-            <button type="submit" (click)="onUpdate()">Modifier</button>
-        </div>
-        }
+    
     </form>
 
 </section>
