@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
@@ -8,8 +8,8 @@ import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
-import { catchError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
+
 
 export interface ICategoryButton {
   id: number;
@@ -31,19 +31,16 @@ export class PostFormComponent implements OnInit {
     private authorService: AuthorService,
     private mediaService: MediaService,
     private router: Router,
+    private location: Location
   ) { }
 
 
   @Input() post: Post | undefined;
-  //posts: Post[] = [];
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   listOfEditions?: string[] = [];
+  listOfMedias: Media[] = [];
   postForm!: FormGroup;
-  selectedFile!: File | null;
-  selectedFileUrl: string | ArrayBuffer | null = '';
-  selectedAuteurFile!: File | null;
-  selectedAuteurFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   auteurImageUrl: string = '';
   isEmptyImage?: boolean;
@@ -53,12 +50,12 @@ export class PostFormComponent implements OnInit {
   categoriesButton: ICategoryButton[] = [
     {
       id: 1,
-      title: "Litterature",
+      title: "Littérature",
 
     },
     {
       id: 2,
-      title: "Cinema",
+      title: "Cinéma",
 
     },
     {
@@ -67,16 +64,12 @@ export class PostFormComponent implements OnInit {
     }
   ]
 
-
-
   ngOnInit(): void {
     this.checkIfNewPost();
     this.buildForm();
     this.getAllAuthors();
     this.loadFilters();
-
   }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'] && changes['post'].currentValue) {
@@ -91,15 +84,11 @@ export class PostFormComponent implements OnInit {
       photoAuteur: [null, [Validators.required]],
       titre: ['', [Validators.required]],
       theme: ['', [Validators.required]],
-      edition: ['', [Validators.required]],
+      edition: [''],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
     })
-  }
-
-  onSubmit(): void {
-    console.log("test on sumit)");
   }
 
   onCreate(): void {
@@ -112,8 +101,8 @@ export class PostFormComponent implements OnInit {
           console.log("data reposne creation de post", data);
 
           this.postForm.reset();
-          this.selectedFile = null; // Réinitialiser la sélection de fichier
-          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          // this.selectedFile = null; // Réinitialiser la sélection de fichier
+          // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
           this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
         })
       }
@@ -121,15 +110,14 @@ export class PostFormComponent implements OnInit {
   }
 
   onUpdate(): void {
-    this.postForm.controls['photoAuteur'].setValue(this.post!.authors[0].picture);
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
         console.log("post To Update", postToUpdate);
         this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe((data) => {
           this.postForm.reset();
-          this.selectedFile = null; // Réinitialiser la sélection de fichier
-          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          // this.selectedFile = null; // Réinitialiser la sélection de fichier
+          // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
           this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
         }
         );
@@ -139,29 +127,14 @@ export class PostFormComponent implements OnInit {
 
   transformFormToPost(): Post {
     const post = this.postForm.value;
-    const urlAuteur = post.photoAuteur;
-    const urlPublication = post.photo;
-    urlAuteur.replace("C:/fakepath/", "assets/img/auteur/");
-    urlPublication.replace("C:/fakepath/", "assets/img/");
-    const author: Author = new Author(
-      this.post?.authors[0].id ? this.post.authors[0].id : 0,
-      post.auteur,
-      post.description,
-      urlAuteur
-    );
-    const media: Media = new Media(
-      this.post?.medias[0].id ? this.post.medias[0].id : 0,
-      post.titre,
-      post.categorie,
-      post.theme,
-      author.id,
-      post.edition
-    )
+    const author = this.checkIfnewAuthor(post.auteur);
+    const media = this.checkIfnewMedia(post.titre, author.id);
+
     const newPost: Post = new Post(
       this.post?.id ? this.post!.id : 0,
       post.titre,
       post.publication,
-      urlPublication,
+      post.photo,
       this.post?.publicated_at ? this.post!.publicated_at : new Date,
       null,
       this.post?.is_draft ? this.post.is_draft : false,
@@ -174,51 +147,50 @@ export class PostFormComponent implements OnInit {
   }
 
 
-
   //ok - Methode pour afficher l'image selectionnée dans le formulaire
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  // onFileSelected(event: any) {
+  //   const file: File = event.target.files[0];
 
-    if (file) {
-      this.selectedFile = file;
-      this.postForm.patchValue({ image: file });
-      this.imageUrl = '';
-      this.isEmptyImage = false;
+  //   if (file) {
+  //     this.selectedFile = file;
+  //     this.postForm.patchValue({ image: file });
+  //     this.imageUrl = '';
+  //     this.isEmptyImage = false;
 
-      // Afficher l'image sélectionnée
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.selectedFileUrl = reader.result as string;
+  //     // Afficher l'image sélectionnée
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.selectedFileUrl = reader.result as string;
 
-      };
+  //     };
 
-      reader.readAsDataURL(this.selectedFile);
+  //     reader.readAsDataURL(this.selectedFile);
 
-    }
-  }
+  //   }
+  // }
 
   // ok -Methode pour afficher l'image de l'auteur selectionnée dans le formulaire
-  onFileSelectedAuteur(event: any) {
-    const element = event.target as HTMLInputElement;
-    if (element.files && element.files.length > 0) {
-      const file: File = element.files[0];
+  // onFileSelectedAuteur(event: any) {
+  //   const element = event.target as HTMLInputElement;
+  //   if (element.files && element.files.length > 0) {
+  //     const file: File = element.files[0];
 
-      if (file) {
-        this.selectedAuteurFile = file;
-        this.postForm.patchValue({ image: file });
-        this.auteurImageUrl = '';
-        this.isEmptyImageAuteur = false;
+  //     if (file) {
+  //       this.selectedAuteurFile = file;
+  //       this.postForm.patchValue({ image: file });
+  //       this.auteurImageUrl = '';
+  //       this.isEmptyImageAuteur = false;
 
-        // Afficher l'image sélectionnée
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.selectedAuteurFileUrl = reader.result as string;
+  //       // Afficher l'image sélectionnée
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         this.selectedAuteurFileUrl = reader.result as string;
 
-        };
-        reader.readAsDataURL(this.selectedAuteurFile);
-      }
-    }
-  }
+  //       };
+  //       reader.readAsDataURL(this.selectedAuteurFile);
+  //     }
+  //   }
+  // }
 
 
   // OK
@@ -228,12 +200,62 @@ export class PostFormComponent implements OnInit {
     });
   }
 
+  // ok
+  checkIfnewAuthor(author: string): Author {
+    const isExisting = this.listOfAuthors.find((auteur) => author === auteur.name);
+    console.log("exisitng auteur", isExisting);
+    if (isExisting) {
+      const existingAuthor = new Author(
+        isExisting.id,
+        author,
+        this.postForm.get('description')!.value,
+        this.postForm.get('photoAuteur')!.value,
+      )
+      return existingAuthor;
+    } else {
+      const newAuthor = new Author(
+        0,
+        author,
+        this.postForm.get('description')!.value,
+        this.postForm.get('photoAuteur')!.value,
+      );
+      return newAuthor;
+    }
+  }
+
+  checkIfnewMedia(book: string, author_id: number): Media {
+    const isExistingMedia = this.listOfMedias.find((media) => book === media.title);
+    console.log("exisitng media", isExistingMedia);
+    if (isExistingMedia) {
+      const existingMedia = new Media(
+        isExistingMedia.id,
+        book,
+        this.postForm.get('categorie')!.value,
+        this.postForm.get('theme')!.value,
+        author_id,
+        this.postForm.get('edition')?.value,
+      )
+      return existingMedia;
+    } else {
+      const newMedia = new Media(
+        0,
+        book,
+        this.postForm.get('category')!.value,
+        this.postForm.get('theme')!.value,
+        author_id,
+        this.postForm.get('edition')?.value,
+      );
+      return newMedia;
+    }
+  }
+
   // OK
   loadFilters(): void {
     this.mediaService.getAllMedias().subscribe((data) => {
       if (data) {
         this.getAllThemes(data);
         this.getAllEditions(data);
+        this.listOfMedias = data;
       }
     });
   }
@@ -281,7 +303,7 @@ export class PostFormComponent implements OnInit {
       publication: this.post!.content,
       categorie: this.post!.medias[0].category,
       photo: this.imageUrl,
-      photoAuteur: this.post!.authors[0].picture, 
+      photoAuteur: this.post!.authors[0].picture,
     });
   }
 
@@ -295,6 +317,11 @@ export class PostFormComponent implements OnInit {
       this.isEmptyImage = false;
       this.isNewPost = false;
     }
+  }
+
+  // ok
+  onCancel(): void {
+    this.location.back();
   }
 
 }

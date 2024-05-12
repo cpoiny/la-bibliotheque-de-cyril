@@ -1,6 +1,6 @@
 <section class="container">
 
-    <form class="formulaire-complet" [formGroup]="postForm" >
+    <form class="formulaire-complet" [formGroup]="postForm">
 
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
@@ -18,13 +18,13 @@
                             name="categorie" value="litterature">
                         <label for="litterature">Littérature</label>
                     </div>
-                    <div  class="categoriebutton">
+                    <div class="categoriebutton">
                         <input class="cat" required type="radio" id="cinema" formControlName="categorie"
                             name="categorie" value="cinema">
                         <label for="cinema">Cinéma</label>
 
                     </div>
-                    <div  class="categoriebutton">
+                    <div class="categoriebutton">
                         <input class="cat" required type="radio" id="citation" formControlName="categorie"
                             name="categorie" value="citation">
                         <label for="citation">Citation</label>
@@ -32,56 +32,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- Nom Auteur -->
-        <div class="postForm-champ">
-            <label for="auteur">Auteur(trice) :</label>
-            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" />
-            <datalist class="input-form" name="auteur" id="liste-auteur">
-                <option value=""></option>
-                @for(author of listOfAuthors; track author.id){
-                <option [value]="author.name">{{author.name}}</option>
-                }
-            </datalist>
-        </div>
-
-        <!-- Description auteur -->
-        <div class="postForm-champ">
-            <label for="description">Description de l'auteur(trice) :</label>
-            <textarea class="publication" name="description" id="description" cols="30" rows="3"
-                formControlName="description"></textarea>
-        </div>
-
-        <!-- Photo de l'auteur -->
-        <div class="postForm-champ post-photo">
-            <label for="photoAuteur2">Photo de l'auteur(trice) :</label>
-            <div class="photo-image">
-
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photoAuteur2" formControlName="photoAuteur2"
-                    (change)="onFileSelectedAuteur($event)">
-
-
-                @if(isEmptyImageAuteur){
-                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                }
-                @if(selectedAuteurFileUrl){
-                <img class="photo selected" [src]="selectedAuteurFileUrl" [alt]="selectedAuteurFileUrl">
-                }
-                @if(auteurImageUrl){
-                <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
-                }
-
-            </div>
-        </div>
-
-        <div class="postForm-champ">
-            <label for="photoAuteur">Image de l'auteur(trice) :</label>
-            <input class="input-form" name="photoAuteur" id="photoAuteur" type="text" formControlName="photoAuteur" >
-        </div>
-        
-
 
         <!-- Titre -->
         <div class="postForm-champ">
@@ -92,6 +42,13 @@
             <input class="input-form" name="titre" id="titre" formControlName="titre">
             }
 
+        </div>
+
+        <!-- Publication -->
+        <div class="postForm-champ">
+            <label for="publication">Publication:</label>
+            <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
+                formControlName="publication"></textarea>
         </div>
 
         <!-- Catégorie -->
@@ -119,55 +76,59 @@
             </datalist>
         </div>
 
-        <!-- Publication -->
-        <div class="postForm-champ">
-            <label for="publication">Publication:</label>
-            <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
-                formControlName="publication"></textarea>
-        </div>
-
-
         <!-- Photo de couverture -->
-        <div class="postForm-champ post-photo">
-            <label for="photo2">Photo de couverture :</label>
-            <div class="photo-image">
 
-                <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photo2" formControlName="photo2"
-                    (change)="onFileSelected($event)" value="">
-
-
-                @if(isEmptyImage){
-                <img class="photo notSelected" src="assets/illustration/placeholder.jpg" alt="Image placeholder">
-                }
-                @if(selectedFileUrl){
-                <img class="photo selected" [src]="selectedFileUrl" [alt]="selectedFileUrl">
-                }
-                @if(imageUrl){
+        <div class="postForm-champ">
+            <label for="photo">Photo de la publication :</label>
+            <div class="input-photo">
                 <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                }
-
+                <textarea class="publication" name="photo" id="photo" type="text"
+                    formControlName="photo"></textarea>
             </div>
         </div>
 
+
+        <!-- Nom Auteur -->
         <div class="postForm-champ">
-            <label for="photo">Lien du post:</label>
-            <input class="input-form" name="photo" id="photo" type="text" formControlName="photo">
+            <label for="auteur">Auteur(trice) :</label>
+            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" />
+            <datalist class="input-form" name="auteur" id="liste-auteur">
+                <option value=""></option>
+                @for(author of listOfAuthors; track author.id){
+                <option [value]="author.name">{{author.name}}</option>
+                }
+            </datalist>
         </div>
 
+        <!-- Description auteur -->
+        <div class="postForm-champ">
+            <label for="description">Description de l'auteur(trice) :</label>
+            <textarea class="publication" name="description" id="description" cols="30" rows="3"
+                formControlName="description"></textarea>
+        </div>
+
+        <!-- Photo de l'auteur -->
+
+        <div class="postForm-champ">
+            <label for="photoAuteur">Photo de l'auteur(trice) :</label>
+            <div class="input-photo">
+                <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
+                <textarea class="publication" name="photoAuteur" id="photoAuteur" type="text"
+                    formControlName="photoAuteur"></textarea>
+            </div>
+        </div>
 
         <!-- Boutons -->
-        @if (isNewPost){
-        <div class="postForm-champ">
-            <button>Annuler</button>
-            <button type="submit" (click)="onCreate()">Publier</button>
+
+        <div class="postForm-button">
+            <button class="buttons cancel">Annuler</button>
+            @if (isNewPost){
+            <button class="buttons validation" type="submit" (click)="onCreate()">Publier</button>
+            }@else{
+            <button class="buttons validation" type="submit" (click)="onUpdate()">Modifier</button>
+            }
         </div>
-        } @else {
-        <div class="postForm-champ">
-            <button>Annuler</button>
-            <button type="submit" (click)="onUpdate()">Modifier</button>
-        </div>
-        }
+
     </form>
 
 </section>
