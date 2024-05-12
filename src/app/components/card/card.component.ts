@@ -2,8 +2,8 @@ import { UpperCasePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PostComponent } from '../../pages/blog/post/post.component';
-import { MediaService } from '../../services/MediaService/media.service';
 import { Media } from '../../models/media.model';
+import { PostService } from '../../services/PostService/post.service';
 
 @Component({
   selector: 'app-card',
@@ -22,16 +22,15 @@ book!: Media;
 
 
 constructor(
-  private mediaService: MediaService
+  private postService: PostService
 )
 {}
 
 
 ngOnInit(){
-this.mediaService.getMediaById(this.book?.id).subscribe((data) => {
-  this.book = data;
+this.postService.getPostById(this.id).subscribe((data) => {
+  this.book = data.medias[0];
 });
-//console.log("this book", this.book);
 }
 
 }
