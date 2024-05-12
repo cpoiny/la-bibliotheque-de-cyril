@@ -136,15 +136,9 @@ export class PostFormComponent implements OnInit {
   }
 
   transformFormToPost(): Post {
-    const post = this.postForm.value;
-    // const urlAuteur = post.photoAuteur;
-    // const urlPublication = post.photo;
-    const author: Author = new Author(
-      this.post?.authors[0].id ? this.post.authors[0].id : 0,
-      post.auteur,
-      post.description,
-      post.photoAuteur
-    );
+      const post = this.postForm.value;
+      const author = this.checkIfnewAuthor(post.auteur);
+
     const media: Media = new Media(
       this.post?.medias[0].id ? this.post.medias[0].id : 0,
       post.titre,
@@ -168,7 +162,6 @@ export class PostFormComponent implements OnInit {
     )
     return newPost;
   }
-
 
 
   //ok - Methode pour afficher l'image selectionnée dans le formulaire
@@ -224,6 +217,28 @@ export class PostFormComponent implements OnInit {
     });
   }
 
+  checkIfnewAuthor(author: string): Author {
+    const isExisting = this.listOfAuthors.find((auteur) => author === auteur.name);
+    console.log("exisitng auteur", isExisting);
+    if (isExisting) {
+      const existingAuthor = new Author(
+        isExisting.id,
+        author,
+        this.postForm.get('description')!.value,
+        this.postForm.get('photoAuteur')!.value,
+      )
+      return existingAuthor;
+    } else {
+      const newAuthor = new Author(
+        0,
+        author,
+        this.postForm.get('description')!.value,
+        this.postForm.get('photoAuteur')!.value,
+      );
+      return newAuthor;
+    }
+  }
+
   // OK
   loadFilters(): void {
     this.mediaService.getAllMedias().subscribe((data) => {
@@ -277,7 +292,7 @@ export class PostFormComponent implements OnInit {
       publication: this.post!.content,
       categorie: this.post!.medias[0].category,
       photo: this.imageUrl,
-      photoAuteur: this.post!.authors[0].picture, 
+      photoAuteur: this.post!.authors[0].picture,
     });
   }
 
@@ -293,6 +308,7 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+  // ok
   onCancel(): void {
     this.location.back();
   }
