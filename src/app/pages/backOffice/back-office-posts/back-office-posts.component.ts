@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { ActionsButtonComponent } from '../../../components/backOffice/actions-button/actions-button.component';
 import { CardBoComponent } from '../../../components/backOffice/card-bo/card-bo.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-back-office-posts',
@@ -51,6 +52,10 @@ export class BackOfficePostsComponent implements OnInit {
   onDelete(post: Post): void {
     console.log("click delete", post);
     // open modale pour confirmer la suppression
-   // this.postService.deletePostById(post.id);
+   this.postService.deletePost(post.id).subscribe((data)=>{
+    console.log("response", data);
+    window.location.reload();
+    
+   });
   }
 }

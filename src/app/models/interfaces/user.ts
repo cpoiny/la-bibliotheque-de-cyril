@@ -17,5 +17,5 @@ export interface User {
 
   export interface ApiResponsePost {
     status: string,
-    data : Post
+    data? : Post
   }
