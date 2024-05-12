@@ -1,6 +1,6 @@
 <section class="container">
 
-    <form class="formulaire-complet" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <form class="formulaire-complet" [formGroup]="postForm" >
 
         <div class="container-entete">
             <img src="assets/illustration/back-office.png" alt="back-office">
@@ -55,12 +55,12 @@
 
         <!-- Photo de l'auteur -->
         <div class="postForm-champ post-photo">
-            <label for="photoAuteur">Photo de l'auteur(trice) :</label>
+            <label for="photoAuteur2">Photo de l'auteur(trice) :</label>
             <div class="photo-image">
 
                 <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photoAuteur" formControlName="photoAuteur"
-                    (change)="onFileSelectedAuteur($event)" value="">
+                <input class="input-photo" type="file" accept="assets/*" id="photoAuteur2" formControlName="photoAuteur2"
+                    (change)="onFileSelectedAuteur($event)">
 
 
                 @if(isEmptyImageAuteur){
@@ -75,6 +75,12 @@
 
             </div>
         </div>
+
+        <div class="postForm-champ">
+            <label for="photoAuteur">Image de l'auteur(trice) :</label>
+            <input class="input-form" name="photoAuteur" id="photoAuteur" type="text" formControlName="photoAuteur" >
+        </div>
+        
 
 
         <!-- Titre -->
@@ -123,11 +129,11 @@
 
         <!-- Photo de couverture -->
         <div class="postForm-champ post-photo">
-            <label for="photo">Photo de couverture :</label>
+            <label for="photo2">Photo de couverture :</label>
             <div class="photo-image">
 
                 <!-- J'affiche mon patch et son changement si je suis sur modifier -->
-                <input class="input-photo" type="file" accept="assets/*" id="photo" formControlName="photo"
+                <input class="input-photo" type="file" accept="assets/*" id="photo2" formControlName="photo2"
                     (change)="onFileSelected($event)" value="">
 
 
@@ -144,17 +150,22 @@
             </div>
         </div>
 
+        <div class="postForm-champ">
+            <label for="photo">Lien du post:</label>
+            <input class="input-form" name="photo" id="photo" type="text" formControlName="photo">
+        </div>
+
 
         <!-- Boutons -->
         @if (isNewPost){
         <div class="postForm-champ">
             <button>Annuler</button>
-            <button type="submit">Publier</button>
+            <button type="submit" (click)="onCreate()">Publier</button>
         </div>
         } @else {
         <div class="postForm-champ">
             <button>Annuler</button>
-            <button type="submit">Modifier</button>
+            <button type="submit" (click)="onUpdate()">Modifier</button>
         </div>
         }
     </form>

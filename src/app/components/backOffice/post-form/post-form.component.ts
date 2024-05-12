@@ -8,6 +8,8 @@ import { MediaService } from '../../../services/MediaService/media.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
+import { catchError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface ICategoryButton {
   id: number;
@@ -96,65 +98,81 @@ export class PostFormComponent implements OnInit {
     })
   }
 
-
   onSubmit(): void {
- //   this.checkFormErrors(this.postForm);
+    console.log("test on sumit)");
+  }
+
+  onCreate(): void {
+    //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
-      const postToCreate : Post = this.transformFormToPost();
-      if(postToCreate) {
+      const postToCreate: Post = this.transformFormToPost();
+      if (postToCreate) {
         console.log("post To create", postToCreate);
         this.postService.createPost(postToCreate).subscribe((data) => {
           console.log("data reposne creation de post", data);
-        
-      this.postForm.reset();
-      this.selectedFile = null; // Réinitialiser la sélection de fichier
-      this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-      this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
-    })
+
+          this.postForm.reset();
+          this.selectedFile = null; // Réinitialiser la sélection de fichier
+          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
+        })
+      }
+    }
   }
+
+  onUpdate(): void {
+    this.postForm.controls['photoAuteur'].setValue(this.post!.authors[0].picture);
+    if (this.postForm.valid) {
+      const postToUpdate: Post = this.transformFormToPost();
+      if (postToUpdate) {
+        console.log("post To Update", postToUpdate);
+        this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe((data) => {
+          this.postForm.reset();
+          this.selectedFile = null; // Réinitialiser la sélection de fichier
+          this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
+        }
+        );
+      }
+    }
   }
-}
 
-
-
-
-
-  transformFormToPost() : Post {
+  transformFormToPost(): Post {
     const post = this.postForm.value;
     const urlAuteur = post.photoAuteur;
     const urlPublication = post.photo;
-    urlAuteur.replace("C:/fakepath/", "assets/img/");
+    urlAuteur.replace("C:/fakepath/", "assets/img/auteur/");
     urlPublication.replace("C:/fakepath/", "assets/img/");
-    const author : Author = new Author(
-       0,
-       post.auteur,
-       post.description,
-       urlAuteur
+    const author: Author = new Author(
+      this.post?.authors[0].id ? this.post.authors[0].id : 0,
+      post.auteur,
+      post.description,
+      urlAuteur
     );
-    const media : Media = new Media (
-      0,
+    const media: Media = new Media(
+      this.post?.medias[0].id ? this.post.medias[0].id : 0,
       post.titre,
       post.categorie,
       post.theme,
       author.id,
       post.edition
     )
-    const newPost : Post = new Post(
-      0,
+    const newPost: Post = new Post(
+      this.post?.id ? this.post!.id : 0,
       post.titre,
       post.publication,
       urlPublication,
-      new Date,
+      this.post?.publicated_at ? this.post!.publicated_at : new Date,
       null,
-      false,
-      0,
-      0,
-     [author],
-     [media]
+      this.post?.is_draft ? this.post.is_draft : false,
+      this.post?.quantity_comments ? this.post.quantity_comments : 0,
+      this.post?.quantity_likes ? this.post.quantity_likes : 0,
+      [author],
+      [media]
     )
     return newPost;
-    }
-  
+  }
+
 
 
   //ok - Methode pour afficher l'image selectionnée dans le formulaire
@@ -173,7 +191,7 @@ export class PostFormComponent implements OnInit {
         this.selectedFileUrl = reader.result as string;
 
       };
-      
+
       reader.readAsDataURL(this.selectedFile);
 
     }
@@ -254,17 +272,16 @@ export class PostFormComponent implements OnInit {
   displayPost(): void {
     this.imageUrl = this.post!.picture;
     this.auteurImageUrl = this.post!.authors[0].picture;
-    let titre = this.post!.title;
     this.postForm.patchValue({
       auteur: this.post!.authors[0].name,
       description: this.post!.authors[0].description,
-      // photoAuteur: this.auteurImageUrl, me genere une erreur en le commantant ca fonctionne
-      titre: titre,
+      titre: this.post!.title,
       theme: this.post!.medias[0].theme,
       edition: this.post!.medias[0].edition,
       publication: this.post!.content,
       categorie: this.post!.medias[0].category,
-      photo: this.imageUrl
+      photo: this.imageUrl,
+      photoAuteur: this.post!.authors[0].picture, 
     });
   }
 
