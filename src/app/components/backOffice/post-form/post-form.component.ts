@@ -39,11 +39,8 @@ export class PostFormComponent implements OnInit {
   listOfAuthors: Author[] = [];
   listOfThemes: string[] = [];
   listOfEditions?: string[] = [];
+  listOfMedias: Media[] = [];
   postForm!: FormGroup;
-  // selectedFile!: File | null;
-  // selectedFileUrl: string | ArrayBuffer | null = '';
-  // selectedAuteurFile!: File | null;
-  // selectedAuteurFileUrl: string | ArrayBuffer | null = '';
   imageUrl: string = '';
   auteurImageUrl: string = '';
   isEmptyImage?: boolean;
@@ -53,12 +50,12 @@ export class PostFormComponent implements OnInit {
   categoriesButton: ICategoryButton[] = [
     {
       id: 1,
-      title: "Litterature",
+      title: "Littérature",
 
     },
     {
       id: 2,
-      title: "Cinema",
+      title: "Cinéma",
 
     },
     {
@@ -67,15 +64,12 @@ export class PostFormComponent implements OnInit {
     }
   ]
 
-
-
   ngOnInit(): void {
     this.checkIfNewPost();
     this.buildForm();
     this.getAllAuthors();
     this.loadFilters();
   }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'] && changes['post'].currentValue) {
@@ -95,10 +89,6 @@ export class PostFormComponent implements OnInit {
       photo: [null, [Validators.required]],
       categorie: ['', [Validators.required]]
     })
-  }
-
-  onSubmit(): void {
-    console.log("test on sumit)");
   }
 
   onCreate(): void {
@@ -136,17 +126,10 @@ export class PostFormComponent implements OnInit {
   }
 
   transformFormToPost(): Post {
-      const post = this.postForm.value;
-      const author = this.checkIfnewAuthor(post.auteur);
+    const post = this.postForm.value;
+    const author = this.checkIfnewAuthor(post.auteur);
+    const media = this.checkIfnewMedia(post.titre, author.id);
 
-    const media: Media = new Media(
-      this.post?.medias[0].id ? this.post.medias[0].id : 0,
-      post.titre,
-      post.categorie,
-      post.theme,
-      author.id,
-      post.edition
-    )
     const newPost: Post = new Post(
       this.post?.id ? this.post!.id : 0,
       post.titre,
@@ -217,6 +200,7 @@ export class PostFormComponent implements OnInit {
     });
   }
 
+  // ok
   checkIfnewAuthor(author: string): Author {
     const isExisting = this.listOfAuthors.find((auteur) => author === auteur.name);
     console.log("exisitng auteur", isExisting);
@@ -239,12 +223,39 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+  checkIfnewMedia(book: string, author_id: number): Media {
+    const isExistingMedia = this.listOfMedias.find((media) => book === media.title);
+    console.log("exisitng media", isExistingMedia);
+    if (isExistingMedia) {
+      const existingMedia = new Media(
+        isExistingMedia.id,
+        book,
+        this.postForm.get('categorie')!.value,
+        this.postForm.get('theme')!.value,
+        author_id,
+        this.postForm.get('edition')?.value,
+      )
+      return existingMedia;
+    } else {
+      const newMedia = new Media(
+        0,
+        book,
+        this.postForm.get('category')!.value,
+        this.postForm.get('theme')!.value,
+        author_id,
+        this.postForm.get('edition')?.value,
+      );
+      return newMedia;
+    }
+  }
+
   // OK
   loadFilters(): void {
     this.mediaService.getAllMedias().subscribe((data) => {
       if (data) {
         this.getAllThemes(data);
         this.getAllEditions(data);
+        this.listOfMedias = data;
       }
     });
   }
