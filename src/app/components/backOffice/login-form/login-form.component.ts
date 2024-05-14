@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ButtonComponent } from '../../button/button.component';
 import { jwtDecode } from 'jwt-decode';
 import { DisplayMessageService } from '../../../shared/display-message.service';
+import { catchError } from 'rxjs';
 
 
 
@@ -19,7 +20,9 @@ export class LoginFormComponent {
 
   title = "Se connecter";
   errorLogin: string | undefined;
+  errorPassword: string | undefined;
   isValidLogin!: boolean;
+  isPassword! : boolean;
 
 
 
@@ -39,32 +42,36 @@ export class LoginFormComponent {
     password: new FormControl('', Validators.required)
   });
 
-  checkLogin(): void {
+  checkLoginAndPassword(): void {
     this.errorLogin = this.errorMessageService.displayErrorMessageForEmail(this.loginForm);
+    this.errorPassword = this.errorMessageService.displayErrorMessageForPassword(this.loginForm);
     if (this.errorLogin) {
-      this.isValidLogin = false
+      this.isValidLogin = false;
+    }
+    if (this.errorPassword) {
+      this.isPassword = false;
     }
   }
 
   onSubmit(): void {
-    this.checkLogin();
-    const formData = this.loginForm.value;
-    const email = formData.email;
-    const password = formData.password;
+    this.checkLoginAndPassword();
+    const formConnexion = this.loginForm.value;
+    const{ email, password} = formConnexion;
     if (this.loginForm.valid) {
       this.userService.login(email, password).subscribe((data) => {
-        console.log("data", data);
         if (data) {
           this.decodeToken(data.token);
         } else {
+          alert('Email ou mot de passe incorrects !');
           this.loginForm.reset();
         }
-      });
-    } else {
-      alert('email ou mot de passe incorrect');
+      }, (error) => {
+        console.log(error);
+        alert('Email ou mot de passe incorrects !');
+        this.loginForm.reset();
+      })
     }
   }
-
 
   decodeToken(token: string): void {
     let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
@@ -76,7 +83,7 @@ export class LoginFormComponent {
     if (role === "admin") {
       alert("Login success");
       localStorage.setItem('token', token);
-      this.router.navigateByUrl('/admin-lbdc/mon-compte');
+      this.router.navigateByUrl('/admin-lbdc/toutes-les-publications');
     } else {
       alert('Login error');
       this.loginForm.reset();

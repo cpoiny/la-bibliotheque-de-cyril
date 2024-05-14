@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
@@ -9,18 +10,30 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   if (typeof localStorage !== 'undefined') {
 
-  const localData = localStorage.getItem('token');
-  if(localData !== null) {
-    console.log('je suis la');
-    return true;
-  }else {
+    const token = localStorage.getItem('token');
+
+    if (token !== null) {
+      
+      let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
+      decodedToken = jwtDecode(token);
+      const role = decodedToken.role;
+      
+      if (role === "admin") {
+        return true;
+      } else {
+        router.navigateByUrl('/admin-lbdc/login');
+        return false;
+      }
+
+    } else {
+      router.navigateByUrl('/admin-lbdc/login');
+      return false;
+    }
+    
+  } else {
     router.navigateByUrl('/admin-lbdc/login');
+    console.error('localStorage is not available');
     return false;
   }
-} else {
-  router.navigateByUrl('/admin-lbdc/login');
-  console.error('localStorage is not available');
-  return false; 
-}
-
 };
+

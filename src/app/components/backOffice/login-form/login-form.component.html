@@ -15,6 +15,9 @@
     <label>
       Mot de passe:
       <input type="password" id="password" formControlName="password" required>
+      @if (!isPassword) {
+        <p class="display_error_message">{{errorPassword}}</p>
+        }
       <a href="" class="forgot_password">Mot de passe oublié</a>
     </label>
     <br>
