@@ -74,13 +74,9 @@ export class LoginFormComponent {
   }
 
   decodeToken(token: string): void {
-    let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
-    decodedToken = jwtDecode(token);
-
-    jwtDecode(token);
-    const role = decodedToken.role;
-    console.log('decode :', role)
-    if (role === "admin") {
+    let isAdmin : boolean;
+    isAdmin = this.userService.decodeToken(token);
+    if (isAdmin) {
       alert("Login success");
       localStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/toutes-les-publications');
@@ -88,7 +84,6 @@ export class LoginFormComponent {
       alert('Login error');
       this.loginForm.reset();
     }
-
   }
 }
 

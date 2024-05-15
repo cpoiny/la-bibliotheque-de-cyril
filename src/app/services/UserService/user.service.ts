@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { UserLogin } from '../../models/interfaces/user';
 import { ErrorRequestHandler } from 'express';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,17 @@ export class UserService {
         console.log("error", error);
         return throwError(error);
       }));
+  }
+
+  decodeToken(token: string): boolean {
+    let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
+    decodedToken = jwtDecode(token);
+    const role = decodedToken.role;
+    
+    if (role === "admin") {
+     return true;
+    } else {
+      return false;
+    }
   }
 }
