@@ -43,6 +43,8 @@ label input {
 
 .display_error_message{
     color: red;
-    font-size: clamp(10px, 0.5em, 14px);
+    /* font-size: clamp(10px, 0.5em, 12px); */
+    font-size: 0.8rem;
     font-style: italic;
+    font-family: 'Merriweather', sans-serif;
 }

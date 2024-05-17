@@ -240,7 +240,7 @@ export class PostFormComponent implements OnInit {
       const newMedia = new Media(
         0,
         book,
-        this.postForm.get('category')!.value,
+        this.postForm.get('categorie')!.value,
         this.postForm.get('theme')!.value,
         author_id,
         this.postForm.get('edition')?.value,

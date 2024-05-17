@@ -24,16 +24,15 @@ li:nth-child(3n) .x {
 }
 
 .titre-category {
-    font-family: 'Courier Prime', Courier, monospace;
-    text-transform: uppercase;
+    font-family: 'Caveat', monospace;
+    font-size: clamp(25px, 0.5rem, 30px);
     font-weight: bold;
     margin-bottom: 2vh;
-    font-size:larger;
 }
 
 .text-category {
-    font-family: "Caveat", sans-serif;
-    font-size: clamp(25px, 0.5rem, 30px);
+    font-family: "Courier prime", sans-serif;
+    font-size: clamp(15px, 0.5rem, 20px);
     height: auto;
 }
 
