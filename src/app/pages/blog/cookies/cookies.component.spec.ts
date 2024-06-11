@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { CookiesComponent } from './cookies.component';
 
 describe('CookiesComponent', () => {
@@ -8,7 +8,7 @@ describe('CookiesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CookiesComponent]
+      imports: [CookiesComponent, RouterTestingModule]
     })
     .compileComponents();
     
@@ -21,3 +21,5 @@ describe('CookiesComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

@@ -2,13 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 
-describe('HomeComponent', () => {
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PostService } from '../../../services/PostService/post.service';
+import { RouterTestingModule } from '@angular/router/testing';
+
+fdescribe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent]
+      imports: [HomeComponent,HttpClientTestingModule, RouterTestingModule ],
+      providers: [PostService]
     })
     .compileComponents();
     
