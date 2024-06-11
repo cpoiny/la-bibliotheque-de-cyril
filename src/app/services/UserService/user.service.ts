@@ -17,6 +17,13 @@ export class UserService {
   private baseUrlApi: string = 'http://localhost:8086/users';
 
 
+  /**
+   * Log in a user with the email and password provided in the form of the application.
+   * @param email The user's email.
+   * @param password The user's password.
+   * @returns An Observable that emits a UserLogin object.
+   * UserLogin object contains a message and a token.
+   */
   login(email: string, password: string): Observable<UserLogin> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -30,17 +37,22 @@ export class UserService {
         console.log("error", error);
         return throwError(error);
       }));
-  }
+  };
 
+  /**
+   * Decodes a JWT token and checks if the user has an "admin" role.
+   * @param token - The JWT token to decode.
+   * @returns A boolean indicating whether the user has an "admin" role or not.
+   */
   decodeToken(token: string): boolean {
     let decodedToken: { email: string, exp: number, iat: number, id: number, role: string };
     decodedToken = jwtDecode(token);
     const role = decodedToken.role;
-    
+
     if (role === "admin") {
-     return true;
+      return true;
     } else {
       return false;
     }
-  }
+  };
 }

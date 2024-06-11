@@ -9,27 +9,39 @@ import { ApiResponsePost } from '../../models/interfaces/user';
 })
 export class PostService {
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient){}
 
   public baseUrl = "http://localhost:8086/posts"
 
-  // OK
+
+  /**
+   * Returns all posts from API.
+   * @returns An Observable that emits an array of Post objects.
+   */
   getAllPosts(): Observable<Post[]> {
     return this.http.get<{ data: Post[] }>(this.baseUrl)
       .pipe(map(response => response.data));
-  }
+  };
 
-  // ok
+
+  /**
+   * Returns a post by its ID from API.
+   * @param id - The ID of the post to retrieve.
+   * @returns An Observable that emits the retrieved post.
+   */
   getPostById(id: number): Observable<Post> {
     const url = this.baseUrl + "/" + id;
     return this.http.get<{ data: Post }>(url)
       .pipe(map(response => response.data));
-  }
+  };
 
 
-  // ok
+  /**
+   * Returns posts by category.
+   * @param postsPublished - The array of published posts only.
+   * @param category - The category to filter the posts by.
+   * @returns An Observable that emits an array of posts filtered by the specified category.
+   */
   getPostByCategory(postsPublished: Post[], category: string): Observable<Post[]> {
     return this.getAllPosts().pipe(
       map((posts: Post[]) => {
@@ -46,29 +58,49 @@ export class PostService {
         }
       })
     );
-  }
+  };
 
-  // ok CREATE POST
+
+  /**
+   * Creates a new post.
+   * Sets of the headers with the token which is required by the API as a permission to create.
+   * @param post The post object to be created.
+   * @returns An Observable of ApiResponsePost.
+   */
   createPost(post: Post): Observable<ApiResponsePost> {
     const url = this.baseUrl + "/ajouter";
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
     return this.http.post(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
-  }
+  };
 
-  // ok UPDATE POST
+
+  /**
+   * Updates a post with the given ID.
+   * Sets of the headers with the token which is required by the API as a permission to update.
+   * @param post The updated post object.
+   * @param id The ID of the post to update.
+   * @returns An Observable of ApiResponsePost.
+   */
   updatePost(post: Post, id: number): Observable<ApiResponsePost> {
     const url = this.baseUrl + "/modifier/" + id;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
     return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
-  }
+  };
 
-  // ok DELETE
+
+  /**
+   * Deletes a post with the specified ID.
+   * Sets of the headers with the token which is required by the API as a permission to delete.
+   * @param id - The ID of the post to delete.
+   * @returns An Observable that emits an ApiResponsePost object.
+   */
   deletePost(id: number): Observable<ApiResponsePost> {
     const url = this.baseUrl + '/' + id;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
-    return this.http.delete(url, { headers: headers }).pipe(map((data: any)=> data as ApiResponsePost));
-  }
+    return this.http.delete(url, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
+  };
+
 }
