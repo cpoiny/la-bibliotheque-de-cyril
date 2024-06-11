@@ -14,6 +14,14 @@ describe('AuthorComponent', () => {
     
     fixture = TestBed.createComponent(AuthorComponent);
     component = fixture.componentInstance;
+    component.author = {
+      id: 1,
+      name: "Amanda STHERS",
+      picture: "assets/img/auteur/Amanda-Sthers.jpg",
+      description: "Lorem Ipsum tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. \n Ut enim ad minima veniam, quis"
+    }
+
+
     fixture.detectChanges();
   });
 

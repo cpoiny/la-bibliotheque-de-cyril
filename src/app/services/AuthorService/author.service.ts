@@ -18,19 +18,6 @@ export class AuthorService {
     .pipe(map(response => response.data));
   }
 
-  //   let myResult: Author[] = [];
-  //   let authorListUnique = new Set();
-  //   AUTHORS.filter(author => {
-  //     const estUnique = !authorListUnique.has(author.name);
-  //     authorListUnique.add(author.name);
-  //     if (estUnique) {
-  //       myResult.push(author);
-  //     }
-  //   })
-  //   myResult = this.sortAuthor(myResult);
-  //   return myResult;
-  // }
-
   getAuthorById(id: number): Observable<Author> {
     const url = this.baseUrl+ "/" + id;
     return this.http.get<{ data: Author }>(url)
