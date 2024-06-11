@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MEDIAS } from '../../mocks/media.mock';
 import { Media } from '../../models/media.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
@@ -8,25 +7,30 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class MediaService {
-  
-  
-  books: Media[] = MEDIAS;
+
   constructor(private http: HttpClient) { }
 
   public baseUrl = "http://localhost:8086/medias";
 
+  /**
+   * Returns all medias from the API.
+   * @returns An Observable that emits an array of Media objects.
+   */
   getAllMedias(): Observable<Media[]> {
     return this.http.get<{ data: Media[] }>(this.baseUrl)
-    .pipe(map(response => response.data));
-  }
+      .pipe(map(response => response.data));
+  };
 
+  /**
+   * Returns a media object by its ID.
+   * @param id - The ID of the media object to retrieve.
+   * @returns An Observable that emits the media object.
+   */
   getMediaById(id: number): Observable<Media> {
-    const url = this.baseUrl+ "/" + id;
+    const url = this.baseUrl + "/" + id;
     return this.http.get<{ data: Media }>(url)
-    .pipe(map(response => response.data));
-  }
-
-
+      .pipe(map(response => response.data));
+  };
 }
 
 
