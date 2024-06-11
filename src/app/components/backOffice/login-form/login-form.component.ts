@@ -3,10 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../../services/UserService/user.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../button/button.component';
-import { jwtDecode } from 'jwt-decode';
 import { DisplayMessageService } from '../../../shared/display-message.service';
-import { catchError } from 'rxjs';
-
 
 
 @Component({
