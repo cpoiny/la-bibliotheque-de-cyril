@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private errorMessageService : DisplayMessageService,
-    private mailService : MailService
+   // private mailService : MailService
   ){}
 
   // Propriété du bouton du formulaire

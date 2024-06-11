@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageHeaderComponent } from '../../../components/blog/page-header/page-header.component';
 import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 import { HeaderComponent } from '../../../components/blog/header/header.component';
