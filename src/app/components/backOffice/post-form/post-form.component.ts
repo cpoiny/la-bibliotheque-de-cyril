@@ -36,9 +36,10 @@ export class PostFormComponent implements OnInit {
     private location: Location
   ) { }
 
-  title! : string;
-  message! : string; 
+  title!: string;
+  message!: string;
   isOpen: boolean = false
+  @Input() actionType: string = '';
 
   @Input() post: Post | undefined;
   listOfAuthors: Author[] = [];
@@ -96,22 +97,55 @@ export class PostFormComponent implements OnInit {
     })
   }
 
-  // want to open the modal when click on submit form
-   openModalToCreate() {
+
+  onModalClosed(result: string): void {
+    if (result == 'Publier') {
+      console.log('L\'utilisateur a cliqué sur "Valider/Publier",', result);
+    //  this.onCreate();
+    }
+    else if (result == 'Modifier') {
+      console.log('L\'utilisateur a cliqué sur "Valider / Modifier",', result);
+      this.onUpdate();
+    } else {
+      console.log("Le formulaire n'est pas valide");
+      this.location.back();
+    }
+    this.isOpen = false;
+
+  }
+
+
+
+
+
+  // ok
+  onCancel(event: string): void {
+    this.isOpen = true;
+    this.title = "Confirmation d'annulation";
+    this.message = "Etes-vous sûr d'annuler la publication de ce post ?";
+    this.actionType = event;
+  }
+
+  confirmAction() {
+    this.isOpen = false;
+  }
+
+
+  cancelAction() {
+    this.isOpen = false;
+  }
+
+  openModal(event: string) {
+    console.log("event click", event);
     this.isOpen = true;
     this.title = "Confirmation de publication"
     this.message = "Etes-vous sûr de vouloir publier ce post ?";
-   }
-  
-
-   confirm() {
-    this.isOpen = false;
-   }
+    this.actionType = event;
+  }
 
   onCreate(): void {
-    this.openModalToCreate();
-    //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
+
       const postToCreate: Post = this.transformFormToPost();
       if (postToCreate) {
         console.log("post To create", postToCreate);
@@ -127,8 +161,9 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+
+
   onUpdate(): void {
-    this.openModalToCreate();
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
@@ -338,25 +373,7 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  // ok
-  onCancel(): void {
-    this.openModalToDelete();
-  }
 
-  close() {
-    this.isOpen = false;
-   }
-
-  openModalToDelete() {
-    this.isOpen = true;
-    this.title = "Confirmation d'annulation";
-    this.message = "Etes-vous sûr d'annuler ce post ?";
-   }
-
-   onModalClosed(result: boolean) {
-    console.log(result); // true or false
-    this.isOpen = result;
-  }
 }
 
 

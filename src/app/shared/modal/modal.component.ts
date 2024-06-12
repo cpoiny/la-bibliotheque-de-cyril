@@ -12,6 +12,7 @@ export class ModalComponent {
 
   @Input() title = '';
   @Input() message = '';
+  @Input() actionType = '';
   @Input() isOpen = false;
   @Output() closed = new EventEmitter();
   @Output() validated = new EventEmitter();
@@ -20,11 +21,11 @@ export class ModalComponent {
 
 // Add function to close modal when click on close button
 closeModal() {
-  this.closed.emit(false);
+  this.closed.emit(this.actionType);
 }
 
   // Add function to valid modal when click on overlay
 confirm() {
-  this.validated.emit(true);
+  this.closed.emit(this.actionType);
 }
 }
