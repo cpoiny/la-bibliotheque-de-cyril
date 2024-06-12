@@ -121,7 +121,7 @@
         <!-- Boutons -->
 
         <div class="postForm-button">
-            <button class="buttons cancel">Annuler</button>
+            <button class="buttons cancel" (click)="onCancel()">Annuler</button>
             @if (isNewPost){
             <button class="buttons validation" type="submit" (click)="onCreate()">Publier</button>
             }@else{
@@ -131,7 +131,8 @@
 
     </form>
     @if(isOpen){
-    <app-modal [title]="title" [message]="message" (close)="close()" (confirm)="confirm()"></app-modal>
+    <app-modal [title]="title" [message]="message" (closed)="onModalClosed($event)" (close)="close()" (confirm)="confirm()"></app-modal>
     }
+
     
 </section>

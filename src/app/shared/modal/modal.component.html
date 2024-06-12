@@ -1,9 +1,9 @@
-<div class="overlay" >
+<div class="overlay">
     <div class="modal">
-        <h2>{{title}}Confirmation</h2>
-        <p>{{message}} Etes vous sur de vouloir supprimer ?</p>
+        <h2>{{title}}</h2>
+        <p>{{message}}</p>
         <div class="buttons">
-            <button (click)="close()" class="button-cancel">Annuler</button>
+            <button (click)="closeModal()" class="button-cancel">Annuler</button>
             <button (click)="confirm()" class="button-validate">Valider</button>
         </div>
     </div>

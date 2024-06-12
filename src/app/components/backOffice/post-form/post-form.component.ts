@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
 import { Location } from '@angular/common';
 import { ModalComponent } from '../../../shared/modal/modal.component';
-import { EventEmitter } from 'stream';
+
 
 
 export interface ICategoryButton {
@@ -36,9 +36,8 @@ export class PostFormComponent implements OnInit {
     private location: Location
   ) { }
 
-  title! : "Confirmation"
-  message! : "Voulez-vous publier ce post ?"
-
+  title! : string;
+  message! : string; 
   isOpen: boolean = false
 
   @Input() post: Post | undefined;
@@ -98,20 +97,19 @@ export class PostFormComponent implements OnInit {
   }
 
   // want to open the modal when click on submit form
-   openModal() {
+   openModalToCreate() {
     this.isOpen = true;
+    this.title = "Confirmation de publication"
+    this.message = "Etes-vous sûr de vouloir publier ce post ?";
    }
-
-   close() {
-    this.isOpen = false;
-   }
+  
 
    confirm() {
     this.isOpen = false;
    }
 
   onCreate(): void {
-    this.openModal();
+    this.openModalToCreate();
     //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
       const postToCreate: Post = this.transformFormToPost();
@@ -130,6 +128,7 @@ export class PostFormComponent implements OnInit {
   }
 
   onUpdate(): void {
+    this.openModalToCreate();
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
@@ -341,9 +340,23 @@ export class PostFormComponent implements OnInit {
 
   // ok
   onCancel(): void {
-    this.location.back();
+    this.openModalToDelete();
   }
 
+  close() {
+    this.isOpen = false;
+   }
+
+  openModalToDelete() {
+    this.isOpen = true;
+    this.title = "Confirmation d'annulation";
+    this.message = "Etes-vous sûr d'annuler ce post ?";
+   }
+
+   onModalClosed(result: boolean) {
+    console.log(result); // true or false
+    this.isOpen = result;
+  }
 }
 
 
