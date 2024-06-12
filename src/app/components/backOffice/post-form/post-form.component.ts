@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
 import { Location } from '@angular/common';
+import { ModalComponent } from '../../../shared/modal/modal.component';
+import { EventEmitter } from 'stream';
 
 
 export interface ICategoryButton {
@@ -20,7 +22,7 @@ export interface ICategoryButton {
 @Component({
   selector: 'app-post-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, ModalComponent],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })
@@ -34,6 +36,10 @@ export class PostFormComponent implements OnInit {
     private location: Location
   ) { }
 
+  title! : "Confirmation"
+  message! : "Voulez-vous publier ce post ?"
+
+  isOpen: boolean = false
 
   @Input() post: Post | undefined;
   listOfAuthors: Author[] = [];
@@ -91,7 +97,21 @@ export class PostFormComponent implements OnInit {
     })
   }
 
+  // want to open the modal when click on submit form
+   openModal() {
+    this.isOpen = true;
+   }
+
+   close() {
+    this.isOpen = false;
+   }
+
+   confirm() {
+    this.isOpen = false;
+   }
+
   onCreate(): void {
+    this.openModal();
     //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
       const postToCreate: Post = this.transformFormToPost();
