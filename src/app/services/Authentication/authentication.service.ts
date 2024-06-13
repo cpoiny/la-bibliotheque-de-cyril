@@ -17,6 +17,7 @@ export class AuthenticationService {
    }
 
    checkToken() {
+    if (typeof localStorage !== 'undefined') {
     const token = localStorage.getItem('token');
     if (token) {
       // Vérifiez si le token est valide. Si c'est le cas, définissez isAuthenticated sur true.
@@ -24,6 +25,7 @@ export class AuthenticationService {
     } else {
       this.isAuthenticated = false;
     }
+  }
   }
 
   setTokenExpiration(expiration: Date): void {

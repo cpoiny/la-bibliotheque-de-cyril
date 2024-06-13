@@ -15,17 +15,16 @@ export class ModalComponent {
   @Input() actionType = '';
   @Input() isOpen = false;
   @Output() closed = new EventEmitter();
-  @Output() validated = new EventEmitter();
 
 
 
 // Add function to close modal when click on close button
 closeModal() {
-  this.closed.emit(this.actionType);
+  this.closed.emit(false);
 }
 
   // Add function to valid modal when click on overlay
 confirm() {
-  this.closed.emit(this.actionType);
+  this.closed.emit(true);
 }
 }

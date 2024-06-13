@@ -67,7 +67,6 @@ export class BackOfficePostsComponent implements OnInit {
     console.log("response", data);
     window.location.reload();
   });
-  //this.isOpen = false;
   };
 
   openModal(post: Post, action: string) {

@@ -131,7 +131,7 @@
 
     </form>
     @if(isOpen){
-    <app-modal [actionType]="actionType" [title]="title" [message]="message" (closed)="onModalClosed($event)" (close)="cancelAction()" (confirm)="confirmAction()"></app-modal>
+    <app-modal [actionType]="actionType" [title]="title" [message]="message" (closed)="onModalClosed($event)" ></app-modal>
     }
 
     

@@ -98,20 +98,17 @@ export class PostFormComponent implements OnInit {
   }
 
 
-  onModalClosed(result: string): void {
-    if (result == 'Publier') {
+  onModalClosed(result: boolean): void {
+    if (this.actionType === 'Publier' && result) {
       console.log('L\'utilisateur a cliqué sur "Valider/Publier",', result);
-     this.onCreate();
-    }
-    else if (result == 'Modifier') {
+      this.onCreate();
+    } else if (this.actionType === 'Modifier' && result) {
       console.log('L\'utilisateur a cliqué sur "Valider / Modifier",', result);
       this.onUpdate();
-    } else {
-      console.log("Le formulaire n'est pas valide");
-      this.location.back();
+    } else if (this.actionType === 'Annuler' && !result) {
+      console.log('L\'utilisateur a cliqué sur "Annuler",', result);
     }
     this.isOpen = false;
-
   }
 
 
@@ -119,28 +116,19 @@ export class PostFormComponent implements OnInit {
 
 
   // ok
-  onCancel(event: string): void {
+  onCancel(action: string): void {
     this.isOpen = true;
     this.title = "Confirmation d'annulation";
-    this.message = "Etes-vous sûr d'annuler la publication de ce post ?";
-    this.actionType = event;
-  }
-
-  confirmAction() {
-    this.isOpen = false;
+    this.message = "Etes-vous sûr d'annuler la publication ou modifications apportées a ce post ?";
+    this.actionType = action;
   }
 
 
-  cancelAction() {
-    this.isOpen = false;
-  }
-
-  openModal(event: string) {
-    console.log("event click", event);
+  openModal(action: string) {
     this.isOpen = true;
     this.title = "Confirmation de publication"
     this.message = "Etes-vous sûr de vouloir publier ce post ?";
-    this.actionType = event;
+    this.actionType = action;
   }
 
   onCreate(): void {
@@ -153,7 +141,9 @@ export class PostFormComponent implements OnInit {
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications').then(() => {
+            window.location.reload(); // Refresh the page to get the updated data
+          });
         })
       }
     }
