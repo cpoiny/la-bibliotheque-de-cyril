@@ -38,9 +38,7 @@ export class BackOfficePostsComponent implements OnInit {
   isAuthenticated = false;
 
   ngOnInit(): void {
-    console.log("avant",this.isAuthenticated);
     this.isAuthenticated = this.authService.isLoggedIn();
-    console.log("apres", this.isAuthenticated);
     this.getAllPosts();
   }
 
@@ -51,7 +49,6 @@ export class BackOfficePostsComponent implements OnInit {
       let posts : Post[] = []
       posts = data;
     this.bookPosts = posts.filter((post) => post.medias[0].category === "litterature");
-    console.log("books bob", this.bookPosts);
     this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
     this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
   })
@@ -64,13 +61,11 @@ export class BackOfficePostsComponent implements OnInit {
 
   onDelete(post: Post): void {
    this.postService.deletePost(post.id).subscribe((data)=>{
-    console.log("response", data);
     window.location.reload();
   });
   };
 
   openModal(post: Post, action: string) {
-    console.log("event click", action);
     this.isOpen = true;
     this.title = "Confirmation de suppression"
     this.message = `Etes-vous sûr de vouloir supprimer le post sur "${post.title}" ?`;
@@ -80,20 +75,8 @@ export class BackOfficePostsComponent implements OnInit {
 
   onModalClosed(result: string): void {
     if (result == 'Valider' || result == 'Supprimer') {
-      console.log('L\'utilisateur a cliqué sur "Valider/Supprimer",', result);
       this.onDelete(this.postToDelete!);
-    } else if (result == 'Annuler') {
-      console.log('L\'utilisateur a cliqué sur "Annuler",', result);
     }
      this.isOpen = false;
-  }
-
-  confirmAction() {
-   // this.isOpen = false;
-  }
-
-
-  cancelAction() {
-   // this.isOpen = false;
   }
 }

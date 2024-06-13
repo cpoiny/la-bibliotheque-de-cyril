@@ -46,7 +46,6 @@ passwordForm: FormGroup = new FormGroup({
 onSubmitEmail(): void {
   this.checkEmail();
   // aller vers le back et mettre à jour si l'ancien email fourni est correct sinon retourner une erreur de mise à jour
-  console.log("emailForm", this.emailForm.valid);
 }
 
 checkEmail(): void {
@@ -56,12 +55,10 @@ checkEmail(): void {
 
 onSubmitPassword(): void {
   this.checkPassword();
-  console.log("password", this.passwordForm.value);
 }
 
 checkPassword(): void {
   this.requiredPassword = this.errorMessageService.displayErrorMessageForPassword(this.passwordForm);
-  console.log("error password: ", this.requiredPassword)
   if (this.requiredPassword) this.isPassword = false;
 }
 

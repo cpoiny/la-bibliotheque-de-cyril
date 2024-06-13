@@ -100,26 +100,21 @@ export class PostFormComponent implements OnInit {
 
   onModalClosed(result: boolean): void {
     if (this.actionType === 'Publier' && result) {
-      console.log('L\'utilisateur a cliqué sur "Valider/Publier",', result);
       this.onCreate();
     } else if (this.actionType === 'Modifier' && result) {
-      console.log('L\'utilisateur a cliqué sur "Valider / Modifier",', result);
       this.onUpdate();
-    } else if (this.actionType === 'Annuler' && !result) {
-      console.log('L\'utilisateur a cliqué sur "Annuler",', result);
+    } else if (this.actionType === 'Annuler' && result) {
+      this.location.back();
     }
     this.isOpen = false;
   }
-
-
-
 
 
   // ok
   onCancel(action: string): void {
     this.isOpen = true;
     this.title = "Confirmation d'annulation";
-    this.message = "Etes-vous sûr d'annuler la publication ou modifications apportées a ce post ?";
+    this.message = "Etes-vous sûr d'annuler la publication ou les modifications apportées a ce post ?";
     this.actionType = action;
   }
 
@@ -135,9 +130,7 @@ export class PostFormComponent implements OnInit {
     if (this.postForm.valid) {
       const postToCreate: Post = this.transformFormToPost();
       if (postToCreate) {
-        console.log("post To create", postToCreate);
         this.postService.createPost(postToCreate).subscribe((data) => {
-          console.log("data reposne creation de post", data);
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
@@ -155,7 +148,6 @@ export class PostFormComponent implements OnInit {
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
-        console.log("post To Update", postToUpdate);
         this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe(() => {
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
@@ -246,7 +238,6 @@ export class PostFormComponent implements OnInit {
   // ok
   checkIfnewAuthor(author: string): Author {
     const isExisting = this.listOfAuthors.find((auteur) => author === auteur.name);
-    console.log("exisitng auteur", isExisting);
     if (isExisting) {
       const existingAuthor = new Author(
         isExisting.id,
@@ -268,7 +259,6 @@ export class PostFormComponent implements OnInit {
 
   checkIfnewMedia(book: string, author_id: number): Media {
     const isExistingMedia = this.listOfMedias.find((media) => book === media.title);
-    console.log("exisitng media", isExistingMedia);
     if (isExistingMedia) {
       const existingMedia = new Media(
         isExistingMedia.id,

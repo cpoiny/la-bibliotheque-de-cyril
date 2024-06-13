@@ -17,13 +17,10 @@ export class ModalComponent {
   @Output() closed = new EventEmitter();
 
 
-
-// Add function to close modal when click on close button
 closeModal() {
   this.closed.emit(false);
 }
 
-  // Add function to valid modal when click on overlay
 confirm() {
   this.closed.emit(true);
 }

@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPosts();
-    console.log("requesting posts");
+
   }
 
   getAllPosts(): void {

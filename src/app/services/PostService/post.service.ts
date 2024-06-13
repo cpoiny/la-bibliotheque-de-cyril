@@ -38,9 +38,12 @@ export class PostService {
    * @returns An Observable that emits the retrieved post.
    */
   getPostById(id: number): Observable<Post> {
+    if(id !== 0){
     const url = this.baseUrl + "/" + id;
     return this.http.get<{ data: Post }>(url)
       .pipe(map(response => response.data));
+    }
+    return new Observable();
   };
 
 
