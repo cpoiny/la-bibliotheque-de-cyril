@@ -101,7 +101,7 @@ export class PostFormComponent implements OnInit {
   onModalClosed(result: string): void {
     if (result == 'Publier') {
       console.log('L\'utilisateur a cliqué sur "Valider/Publier",', result);
-    //  this.onCreate();
+     this.onCreate();
     }
     else if (result == 'Modifier') {
       console.log('L\'utilisateur a cliqué sur "Valider / Modifier",', result);
