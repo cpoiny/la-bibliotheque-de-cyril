@@ -40,9 +40,8 @@ export class HomeComponent implements OnInit {
 
 
   getLastPost(posts: Post[]): void {
-    const allPost = posts
-      .sort((a, b) => (b.publicated_at as any) - (a.publicated_at as any));
-    this.lastPost = allPost[0];
+    const allPost = posts.sort((a, b) => new Date(b.publicated_at).getTime() - new Date(a.publicated_at).getTime());
+  this.lastPost = allPost[0];
   }
 
 
