@@ -7,10 +7,24 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   private tokenExpiration! : Date;
+  private isAuthenticated = false;
 
   constructor(
-    private router : Router
-  ) { }
+    private router : Router,
+    
+  ) {
+    this.checkToken();
+   }
+
+   checkToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Vérifiez si le token est valide. Si c'est le cas, définissez isAuthenticated sur true.
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
+  }
 
   setTokenExpiration(expiration: Date): void {
     this.tokenExpiration = expiration;
@@ -21,8 +35,18 @@ export class AuthenticationService {
    if (istokenExpired) this.logout();
   }
 
+  login(token: string) {
+    localStorage.setItem('token', token);
+    this.isAuthenticated = true;
+  }
+  
   logout(): void {
     localStorage.clear();
+    this.isAuthenticated = false;
     this.router.navigate(['admin-lbdc/login']);
+  }
+
+  isLoggedIn() {
+    return this.isAuthenticated;
   }
 }

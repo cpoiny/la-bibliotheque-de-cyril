@@ -7,6 +7,7 @@ import { ButtonComponent } from '../../../components/button/button.component';
 import { ActionsButtonComponent } from '../../../components/backOffice/actions-button/actions-button.component';
 import { CardBoComponent } from '../../../components/backOffice/card-bo/card-bo.component';
 import { ModalComponent } from '../../../shared/modal/modal.component';
+import { AuthenticationService } from '../../../services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-back-office-posts',
@@ -19,6 +20,7 @@ export class BackOfficePostsComponent implements OnInit {
 
   constructor(
     private postService: PostService,
+    private authService: AuthenticationService
   ) { }
 
   ajouter: string = "Nouveau post";
@@ -32,10 +34,16 @@ export class BackOfficePostsComponent implements OnInit {
   message: string = "";
   actionType: string = "";
   postToDelete? : Post;
+  posts : Post[] = [];
+  isAuthenticated = false;
 
   ngOnInit(): void {
-   this.getAllPosts();
+    console.log("avant",this.isAuthenticated);
+    this.isAuthenticated = this.authService.isLoggedIn();
+    console.log("apres", this.isAuthenticated);
+    this.getAllPosts();
   }
+
 
 
   getAllPosts(): void {
@@ -43,9 +51,9 @@ export class BackOfficePostsComponent implements OnInit {
       let posts : Post[] = []
       posts = data;
     this.bookPosts = posts.filter((post) => post.medias[0].category === "litterature");
-    console.log("books", this.bookPosts);
+    console.log("books bob", this.bookPosts);
     this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
-    this.quotePosts = posts.filter((post) => post.medias[0].category === "citations");
+    this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
   })
   }
 

@@ -145,13 +145,11 @@ export class PostFormComponent implements OnInit {
 
   onCreate(): void {
     if (this.postForm.valid) {
-
       const postToCreate: Post = this.transformFormToPost();
       if (postToCreate) {
         console.log("post To create", postToCreate);
         this.postService.createPost(postToCreate).subscribe((data) => {
           console.log("data reposne creation de post", data);
-
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
@@ -168,13 +166,14 @@ export class PostFormComponent implements OnInit {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
         console.log("post To Update", postToUpdate);
-        this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe((data) => {
+        this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe(() => {
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
-        }
-        );
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications').then(() => {
+            window.location.reload(); // Refresh the page to get the updated data
+          });
+        });
       }
     }
   }

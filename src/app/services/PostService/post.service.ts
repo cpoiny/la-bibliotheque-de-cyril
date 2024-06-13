@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponsePost } from '../../models/interfaces/user';
 import { environment } from '../../../environments/environment.local';
@@ -14,6 +14,7 @@ export class PostService {
 
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
+
 
   /**
    * Returns all posts from API.
@@ -58,7 +59,7 @@ export class PostService {
           } else if (category === "cinema") {
             return postsPublished.filter((post) => post.medias[0].category === "cinema");
           } else {
-            return postsPublished.filter((post) => post.medias[0].category === "citations");
+            return postsPublished.filter((post) => post.medias[0].category === "citation");
           }
         } else {
           return [];
@@ -93,8 +94,11 @@ export class PostService {
     const url = this.baseUrl + "/modifier/" + id;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
-    return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
-  };
+   return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
+  
+   };
+  
+
 
 
   /**
