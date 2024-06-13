@@ -47,11 +47,11 @@ export class PostService {
       map((posts: Post[]) => {
         if (posts) {
           if (category === "litterature") {
-            return postsPublished.filter((post) => post.medias![0].category === "litterature");
+            return postsPublished.filter((post) => post.medias[0].category === "litterature");
           } else if (category === "cinema") {
-            return postsPublished.filter((post) => post.medias![0].category === "cinema");
+            return postsPublished.filter((post) => post.medias[0].category === "cinema");
           } else {
-            return postsPublished.filter((post) => post.medias![0].category === "citation");
+            return postsPublished.filter((post) => post.medias[0].category === "citations");
           }
         } else {
           return [];

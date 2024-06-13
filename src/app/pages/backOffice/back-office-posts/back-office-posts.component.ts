@@ -45,7 +45,7 @@ export class BackOfficePostsComponent implements OnInit {
     this.bookPosts = posts.filter((post) => post.medias[0].category === "litterature");
     console.log("books", this.bookPosts);
     this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
-    this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
+    this.quotePosts = posts.filter((post) => post.medias[0].category === "citations");
   })
   }
 
