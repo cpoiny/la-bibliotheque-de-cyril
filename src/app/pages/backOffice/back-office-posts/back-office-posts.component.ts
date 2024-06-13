@@ -80,10 +80,9 @@ export class BackOfficePostsComponent implements OnInit {
   }
 
   onModalClosed(result: string): void {
-    if (result == 'Valider') {
+    if (result == 'Valider' || result == 'Supprimer') {
       console.log('L\'utilisateur a cliqué sur "Valider/Supprimer",', result);
       this.onDelete(this.postToDelete!);
-      
     } else if (result == 'Annuler') {
       console.log('L\'utilisateur a cliqué sur "Annuler",', result);
     }
