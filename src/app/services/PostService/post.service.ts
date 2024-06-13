@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { Observable, map } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponsePost } from '../../models/interfaces/user';
+import { environment } from '../../../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,23 @@ export class PostService {
 
   constructor(private http: HttpClient){}
 
-  public baseUrl = "http://localhost:8086/posts"
-
+  public baseUrl = environment.baseUrl + "posts";
+  private posts$?: Observable<Post[]>;
 
   /**
    * Returns all posts from API.
    * @returns An Observable that emits an array of Post objects.
    */
   getAllPosts(): Observable<Post[]> {
-    return this.http.get<{ data: Post[] }>(this.baseUrl)
-      .pipe(map(response => response.data));
-  };
+    if (!this.posts$) {
+      this.posts$ = this.http.get<{ data: Post[] }>(this.baseUrl)
+        .pipe(
+          map(response => response.data),
+          shareReplay(1)
+        );
+    }
+    return this.posts$;
+  }
 
 
   /**

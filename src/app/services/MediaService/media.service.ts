@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Media } from '../../models/media.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class MediaService {
 
   constructor(private http: HttpClient) { }
 
-  public baseUrl = "http://localhost:8086/medias";
+  public baseUrl = environment.baseUrl + "medias";
 
   /**
    * Returns all medias from the API.
