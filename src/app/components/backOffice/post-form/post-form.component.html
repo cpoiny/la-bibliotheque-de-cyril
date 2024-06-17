@@ -82,8 +82,8 @@
             <label for="photo">Photo de la publication :</label>
             <div class="input-photo">
                 <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                <textarea class="publication" name="photo" id="photo" type="text"
-                    formControlName="photo" (input)="updateImageUrl($event)"></textarea>
+                <input name="photo" id="photo" type="text"
+                    formControlName="photo" (input)="updateImageUrl($event)">
             </div>
         </div>
 
@@ -112,8 +112,8 @@
             <label for="photoAuteur">Photo de l'auteur(trice) :</label>
             <div class="input-photo">
                 <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
-                <textarea class="publication" name="photoAuteur" id="photoAuteur" type="text"
-                    formControlName="photoAuteur"></textarea>
+                <input name="photoAuteur" id="photoAuteur" type="text"
+                    formControlName="photoAuteur">
             </div>
         </div>
 

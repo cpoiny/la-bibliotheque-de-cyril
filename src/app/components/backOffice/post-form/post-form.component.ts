@@ -47,8 +47,8 @@ export class PostFormComponent implements OnInit {
   listOfEditions?: string[] = [];
   listOfMedias: Media[] = [];
   postForm!: FormGroup;
-  imageUrl: string = '';
-  auteurImageUrl: string = '';
+  imageUrl: string = "assets/illustration/placeholder.jpg";
+  auteurImageUrl: string = "assets/illustration/placeholder.jpg";
   isEmptyImage?: boolean;
   isEmptyImageAuteur?: boolean;
   isNewPost: boolean = true;
