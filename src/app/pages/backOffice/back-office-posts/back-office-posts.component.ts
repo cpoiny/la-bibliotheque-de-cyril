@@ -29,12 +29,12 @@ export class BackOfficePostsComponent implements OnInit {
   quotePosts: Post[] = [];
   srcEdit: string = "assets/icons/edit.png";
   srcDelete: string = "assets/icons/corbeille.png";
-  isOpen : boolean = false;
+  isOpen: boolean = false;
   title: string = "";
   message: string = "";
   actionType: string = "";
-  postToDelete? : Post;
-  posts : Post[] = [];
+  postToDelete?: Post;
+  posts: Post[] = [];
   isAuthenticated = false;
 
   ngOnInit(): void {
@@ -46,12 +46,12 @@ export class BackOfficePostsComponent implements OnInit {
 
   getAllPosts(): void {
     this.postService.getAllPosts().subscribe((data) => {
-      let posts : Post[] = []
+      let posts: Post[] = []
       posts = data;
-    this.bookPosts = posts.filter((post) => post.medias[0].category === "litterature");
-    this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
-    this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
-  })
+      this.bookPosts = posts.filter((post) => post.medias[0].category === "litterature");
+      this.moviePosts = posts.filter((post) => post.medias[0].category === "cinema");
+      this.quotePosts = posts.filter((post) => post.medias[0].category === "citation");
+    })
   }
 
 
@@ -60,10 +60,17 @@ export class BackOfficePostsComponent implements OnInit {
   }
 
   onDelete(post: Post): void {
-   this.postService.deletePost(post.id).subscribe((data)=>{
-    window.location.reload();
-  });
-  };
+    this.postService.deletePost(post.id).subscribe(
+      (data) => {
+        window.location.reload();
+      },
+      (error) => {
+        // Handle the error here
+        console.log(error);
+        alert(error.error.message);
+      }
+    );
+  }
 
   openModal(post: Post, action: string) {
     this.isOpen = true;
@@ -73,10 +80,12 @@ export class BackOfficePostsComponent implements OnInit {
     this.postToDelete = post;
   }
 
+
+
   onModalClosed(result: string): void {
-    if (result == 'Valider' || result == 'Supprimer') {
+    if (result) {
       this.onDelete(this.postToDelete!);
     }
-     this.isOpen = false;
+    this.isOpen = false;
   }
 }

@@ -22,6 +22,7 @@ closeModal() {
 }
 
 confirm() {
+  console.log("je suis dans la confirmation de suppression ?")
   this.closed.emit(true);
 }
 }
