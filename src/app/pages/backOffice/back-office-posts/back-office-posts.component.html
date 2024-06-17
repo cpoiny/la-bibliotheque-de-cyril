@@ -19,16 +19,16 @@
                 <app-card-bo routerLink="modifier/{{post.id}}" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
                     <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
-                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="openModal(post, 'Supprimer')"></app-actions-button>
                 </div>
-
             </li>
-            }
-        </ul>
-        } @else {
-        <p class="no-post">Aucun post dans cette catégorie.</p>
         }
-    </div>
+    </ul>
+} @else {
+    <p class="no-post">Aucun post dans cette catégorie.</p>
+}
+</div>
+
 
 
 
@@ -42,7 +42,7 @@
                 <app-card-bo routerLink="modifier/{{post.id}}" class="card" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
                     <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
-                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="openModal(post, 'Supprimer')"></app-actions-button>
                 </div>
 
             </li>
@@ -64,7 +64,7 @@
                 <app-card-bo routerLink="modifier/{{post.id}}" [picture]="post.picture" [title]="post.title"></app-card-bo>
                 <div class="actions-button">
                     <app-actions-button routerLink="modifier/{{post.id}}" [src]="srcEdit" [alt]="srcEdit" (buttonAction)="onEdit(post)"></app-actions-button>
-                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="onDelete(post)"></app-actions-button>
+                    <app-actions-button [src]="srcDelete"  [alt]="srcDelete" (buttonAction)="openModal(post, 'Supprimer')"></app-actions-button>
                 </div>
             </li>
             }
@@ -74,4 +74,8 @@
         }
     </div>
 
+
+    @if(isOpen){
+        <app-modal [actionType]="actionType" [title]="title" [message]="message" (closed)="onModalClosed($event)"></app-modal>
+        }
 </div>

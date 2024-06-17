@@ -32,7 +32,6 @@ author!: Author;
 
   ngOnInit() {
     this.getPostById();
-    //console.log("post to display", this.post);
     this.getAuthorById(this.post);
 
   }
@@ -41,7 +40,6 @@ author!: Author;
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.postService.getPostById(id).subscribe((data) =>{
       this.post = data;
-      //console.log("this post by id", this.post, data)
     });
   }
 

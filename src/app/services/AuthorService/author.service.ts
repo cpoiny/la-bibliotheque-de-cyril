@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Author } from '../../models/author.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  public baseUrl = "http://localhost:8086/authors"
+  public baseUrl = environment.baseUrl + "authors";
 
 
   /**

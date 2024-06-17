@@ -63,7 +63,6 @@ export class LoginFormComponent {
           this.loginForm.reset();
         }
       }, (error) => {
-        console.log(error);
         alert('Email ou mot de passe incorrects !');
         this.loginForm.reset();
       })

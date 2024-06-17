@@ -121,14 +121,18 @@
         <!-- Boutons -->
 
         <div class="postForm-button">
-            <button class="buttons cancel">Annuler</button>
+            <button class="buttons cancel" (click)="onCancel('Annuler')">Annuler</button>
             @if (isNewPost){
-            <button class="buttons validation" type="submit" (click)="onCreate()">Publier</button>
+            <button class="buttons validation" type="submit" (click)="openModal('Publier')">Publier</button>
             }@else{
-            <button class="buttons validation" type="submit" (click)="onUpdate()">Modifier</button>
+            <button class="buttons validation" type="submit" (click)="openModal('Modifier')">Modifier</button>
             }
         </div>
 
     </form>
+    @if(isOpen){
+    <app-modal [actionType]="actionType" [title]="title" [message]="message" (closed)="onModalClosed($event)" ></app-modal>
+    }
 
+    
 </section>

@@ -36,7 +36,6 @@ export class BackofficeAddComponent implements OnInit {
     this.postService.getPostById(id).subscribe((data) => {
       if (data) {
         this.post = data;
-        console.log("post detail", data);
       } else {
         this.router.navigate(['']);
       }

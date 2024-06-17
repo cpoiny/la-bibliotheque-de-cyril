@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Media } from '../../../models/media.model';
 import { Location } from '@angular/common';
+import { ModalComponent } from '../../../shared/modal/modal.component';
+
 
 
 export interface ICategoryButton {
@@ -20,7 +22,7 @@ export interface ICategoryButton {
 @Component({
   selector: 'app-post-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, ModalComponent],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })
@@ -34,6 +36,10 @@ export class PostFormComponent implements OnInit {
     private location: Location
   ) { }
 
+  title!: string;
+  message!: string;
+  isOpen: boolean = false
+  @Input() actionType: string = '';
 
   @Input() post: Post | undefined;
   listOfAuthors: Author[] = [];
@@ -91,36 +97,65 @@ export class PostFormComponent implements OnInit {
     })
   }
 
+
+  onModalClosed(result: boolean): void {
+    if (this.actionType === 'Publier' && result) {
+      this.onCreate();
+    } else if (this.actionType === 'Modifier' && result) {
+      this.onUpdate();
+    } else if (this.actionType === 'Annuler' && result) {
+      this.location.back();
+    }
+    this.isOpen = false;
+  }
+
+
+  // ok
+  onCancel(action: string): void {
+    this.isOpen = true;
+    this.title = "Confirmation d'annulation";
+    this.message = "Etes-vous sûr d'annuler la publication ou les modifications apportées a ce post ?";
+    this.actionType = action;
+  }
+
+
+  openModal(action: string) {
+    this.isOpen = true;
+    this.title = "Confirmation de publication"
+    this.message = "Etes-vous sûr de vouloir publier ce post ?";
+    this.actionType = action;
+  }
+
   onCreate(): void {
-    //   this.checkFormErrors(this.postForm);
     if (this.postForm.valid) {
       const postToCreate: Post = this.transformFormToPost();
       if (postToCreate) {
-        console.log("post To create", postToCreate);
         this.postService.createPost(postToCreate).subscribe((data) => {
-          console.log("data reposne creation de post", data);
-
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications').then(() => {
+            window.location.reload(); // Refresh the page to get the updated data
+          });
         })
       }
     }
   }
 
+
+
   onUpdate(): void {
     if (this.postForm.valid) {
       const postToUpdate: Post = this.transformFormToPost();
       if (postToUpdate) {
-        console.log("post To Update", postToUpdate);
-        this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe((data) => {
+        this.postService.updatePost(postToUpdate, postToUpdate.id).subscribe(() => {
           this.postForm.reset();
           // this.selectedFile = null; // Réinitialiser la sélection de fichier
           // this.selectedFileUrl = null; // Réinitialiser l'URL de l'image
-          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications')
-        }
-        );
+          this.router.navigateByUrl('/admin-lbdc/toutes-les-publications').then(() => {
+            window.location.reload(); // Refresh the page to get the updated data
+          });
+        });
       }
     }
   }
@@ -203,7 +238,6 @@ export class PostFormComponent implements OnInit {
   // ok
   checkIfnewAuthor(author: string): Author {
     const isExisting = this.listOfAuthors.find((auteur) => author === auteur.name);
-    console.log("exisitng auteur", isExisting);
     if (isExisting) {
       const existingAuthor = new Author(
         isExisting.id,
@@ -225,7 +259,6 @@ export class PostFormComponent implements OnInit {
 
   checkIfnewMedia(book: string, author_id: number): Media {
     const isExistingMedia = this.listOfMedias.find((media) => book === media.title);
-    console.log("exisitng media", isExistingMedia);
     if (isExistingMedia) {
       const existingMedia = new Media(
         isExistingMedia.id,
@@ -319,10 +352,6 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  // ok
-  onCancel(): void {
-    this.location.back();
-  }
 
 }
 

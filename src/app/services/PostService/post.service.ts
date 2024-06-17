@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponsePost } from '../../models/interfaces/user';
+import { environment } from '../../../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class PostService {
 
   constructor(private http: HttpClient){}
 
-  public baseUrl = "http://localhost:8086/posts"
+  public baseUrl = environment.baseUrl + "posts";
+  private posts$?: Observable<Post[]>;
 
 
   /**
@@ -19,9 +21,15 @@ export class PostService {
    * @returns An Observable that emits an array of Post objects.
    */
   getAllPosts(): Observable<Post[]> {
-    return this.http.get<{ data: Post[] }>(this.baseUrl)
-      .pipe(map(response => response.data));
-  };
+    if (!this.posts$) {
+      this.posts$ = this.http.get<{ data: Post[] }>(this.baseUrl)
+        .pipe(
+          map(response => response.data),
+          shareReplay(1)
+        );
+    }
+    return this.posts$;
+  }
 
 
   /**
@@ -30,9 +38,12 @@ export class PostService {
    * @returns An Observable that emits the retrieved post.
    */
   getPostById(id: number): Observable<Post> {
+    if(id !== 0){
     const url = this.baseUrl + "/" + id;
     return this.http.get<{ data: Post }>(url)
       .pipe(map(response => response.data));
+    }
+    return new Observable();
   };
 
 
@@ -47,11 +58,11 @@ export class PostService {
       map((posts: Post[]) => {
         if (posts) {
           if (category === "litterature") {
-            return postsPublished.filter((post) => post.medias![0].category === "litterature");
+            return postsPublished.filter((post) => post.medias[0].category === "litterature");
           } else if (category === "cinema") {
-            return postsPublished.filter((post) => post.medias![0].category === "cinema");
+            return postsPublished.filter((post) => post.medias[0].category === "cinema");
           } else {
-            return postsPublished.filter((post) => post.medias![0].category === "citation");
+            return postsPublished.filter((post) => post.medias[0].category === "citation");
           }
         } else {
           return [];
@@ -86,8 +97,11 @@ export class PostService {
     const url = this.baseUrl + "/modifier/" + id;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
-    return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
-  };
+   return this.http.put(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
+  
+   };
+  
+
 
 
   /**
