@@ -152,14 +152,23 @@ input.invalid, textarea.invalid {
     align-items: center;
 }
 
+.mesCat .categoriebutton {
+   width: 100%;
+    display: flex;
+    margin: 1vh;
+    align-items: center;
+}
+
 .mesCat .categoriebutton label {
     border: var(--gold) solid 1px;
     width: 100%;
     min-width: 100%;
-    height: 3vw;
-    padding: 2vh 3vw;
+    height: 40px;
+    min-height: 3vw;
     border-radius: 30px;
     color: var(--gold);
+    text-align: center;
+    padding-top: 9px; 
 }
 
 input[type="radio"].cat {
@@ -281,7 +290,7 @@ input[type="radio"].cat:checked+label {
 
 
     .entete-titre {
-        width: 90%;
+        width: 100%;
         text-align: center;
     }
 
@@ -292,6 +301,12 @@ input[type="radio"].cat:checked+label {
     .container-entete img {
         display: none;
 
+    }
+    .input-photo {
+        width: 100%;
+    }
+    .buttons {
+        width: 50%;
     }
 }
 

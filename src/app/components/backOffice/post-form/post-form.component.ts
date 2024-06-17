@@ -88,22 +88,16 @@ export class PostFormComponent implements OnInit {
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      auteur: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(5)]],
-      photoAuteur: [null, [Validators.required, this.notDefaultValue(this.auteurImageUrl).bind(this)]],
-      titre: ['', [Validators.required]],
-      theme: ['', [Validators.required]],
+      auteur: [null, [Validators.required]],
+      description: [null, [Validators.required, Validators.minLength(5)]],
+      photoAuteur: [null, [Validators.required]],
+      titre: [null, [Validators.required]],
+      theme: [null, [Validators.required]],
       edition: [''],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
       categorie: [null, [Validators.required]]
     })
-  }
-
-  notDefaultValue(defaultValue: any) {
-    return (control: FormControl) => {
-      return control.value !== defaultValue ? null : { defaultValue: true };
-    };
   }
 
 
