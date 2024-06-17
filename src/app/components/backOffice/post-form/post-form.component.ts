@@ -97,6 +97,20 @@ export class PostFormComponent implements OnInit {
     })
   }
 
+  updateFieldsAuthor(event: any) {
+    const selectedAuthorName = event.target.value;
+    const selectedAuthor = this.listOfAuthors.find(author => author.name === selectedAuthorName);
+  
+    if (selectedAuthor) {
+      this.postForm.get('description')?.setValue(selectedAuthor.description);
+      this.postForm.get('photoAuteur')?.setValue(selectedAuthor.picture);
+      this.auteurImageUrl = selectedAuthor.picture;
+    }
+  }
+
+  updateImageUrl(event: any) {
+    this.imageUrl = event.target.value;
+  }
 
   onModalClosed(result: boolean): void {
     if (this.actionType === 'Publier' && result) {

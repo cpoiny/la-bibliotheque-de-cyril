@@ -83,7 +83,7 @@
             <div class="input-photo">
                 <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
                 <textarea class="publication" name="photo" id="photo" type="text"
-                    formControlName="photo"></textarea>
+                    formControlName="photo" (input)="updateImageUrl($event)"></textarea>
             </div>
         </div>
 
@@ -91,7 +91,7 @@
         <!-- Nom Auteur -->
         <div class="postForm-champ">
             <label for="auteur">Auteur(trice) :</label>
-            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" />
+            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" (input)="updateFieldsAuthor($event)"/>
             <datalist class="input-form" name="auteur" id="liste-auteur">
                 <option value=""></option>
                 @for(author of listOfAuthors; track author.id){
@@ -108,7 +108,6 @@
         </div>
 
         <!-- Photo de l'auteur -->
-
         <div class="postForm-champ">
             <label for="photoAuteur">Photo de l'auteur(trice) :</label>
             <div class="input-photo">
