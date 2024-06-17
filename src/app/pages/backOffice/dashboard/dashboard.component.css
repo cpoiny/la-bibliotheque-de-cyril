@@ -1,8 +1,7 @@
 .container {
-    align-items: start;
-    height: 70vh;
-    width: 90vw;
-    margin: 20vh auto 0;
+    align-items: center;
+    width: 50vw;
+    margin: 20vh auto 5vh;
     justify-content: space-between;
 }
 .flex {
@@ -12,7 +11,7 @@
 
 h1, h2 {
     font-family: "Merriweather", sans-serif;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 h1{
@@ -20,8 +19,16 @@ h1{
     width: 100%;
 }
 
-.formDataAdmin {
-    width: 30vw;
+.formDataAdmin label {
+    font-size: 1.3rem;
+}
+
+.section-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    margin-top: 3vh;
 }
 
 .data-admin, input {
@@ -34,16 +41,22 @@ input {
     padding: 0.5rem;
 }
 
+input:focus{
+    outline: none;
+    border: var(--gold) solid 2px;
+}
+
 .update_button {
     width: 40%;
     margin: 0 auto 2rem;
-    padding: 0.4rem;
-    background-color: var(--main);
-    border: none;
+    padding:0.8rem;
+    background-color:white;
+    border: var(--gold) solid 2px;
     border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
     font-family: "Merriweather", sans-serif;
+    color:var(--gold);
 }
 
 .update_button:hover{
@@ -56,4 +69,34 @@ input {
     font-size: clamp(18px 0.5em 25px);
     font-style: italic;
     margin-bottom: 1rem;
+}
+
+.logout{
+    margin: 3vh;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.vertical-line{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/* Responsive */
+@media (max-width: 426px) {
+
+    .container {
+        width: 90vw;
+    }
+   
+   
+}
+
+@media (min-width: 427px) and (max-width: 1024px) {
+    .container {
+        width: 90vw;
+    }
 }

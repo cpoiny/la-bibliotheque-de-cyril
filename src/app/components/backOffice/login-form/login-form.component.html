@@ -5,7 +5,7 @@
 <h2>Admin</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label>
-      Email:
+      Email* :
       <input type="email" id="email" formControlName="email" required>
     </label>
     @if (!isValidLogin) {
@@ -13,7 +13,7 @@
       }
     <br>
     <label>
-      Mot de passe:
+      Mot de passe* :
       <input type="password" id="password" formControlName="password" required>
       @if (!isPassword) {
         <p class="display_error_message">{{errorPassword}}</p>
@@ -21,7 +21,7 @@
       <a href="" class="forgot_password">Mot de passe oublié</a>
     </label>
     <br>
-    <app-button class="button_connexion" [title]="title"></app-button>
+    <app-button [title]="title"></app-button>
   </form>
 
 </div>

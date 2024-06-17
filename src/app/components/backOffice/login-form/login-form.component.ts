@@ -59,11 +59,10 @@ export class LoginFormComponent {
         if (data) {
           this.decodeToken(data.token);
         } else {
-          alert('Email ou mot de passe incorrects !');
+  
           this.loginForm.reset();
         }
       }, (error) => {
-        alert('Email ou mot de passe incorrects !');
         this.loginForm.reset();
       })
     }
@@ -73,11 +72,9 @@ export class LoginFormComponent {
     let isAdmin : boolean;
     isAdmin = this.userService.decodeToken(token);
     if (isAdmin) {
-      alert("Login success");
       localStorage.setItem('token', token);
       this.router.navigateByUrl('/admin-lbdc/toutes-les-publications');
     } else {
-      alert('Login error');
       this.loginForm.reset();
     }
   }

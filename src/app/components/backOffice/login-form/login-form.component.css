@@ -12,8 +12,7 @@ h2 {
 }
 
 form {    
-    width: 30vw;
-    min-width: 30vw;
+    width: 40vw;
     border: black solid 1px;
     padding: 3rem 5rem;
     border-radius : 30px;
@@ -47,4 +46,26 @@ label input {
     font-size: 0.8rem;
     font-style: italic;
     font-family: 'Merriweather', sans-serif;
+}
+
+
+
+@media (max-width: 1024px){
+
+    form {    
+        width: 50vw;
+        min-width:80%;
+        
+    }
+
+}
+
+@media (max-width: 500px){
+
+    form {    
+        width: 90%;
+        padding: 3rem;
+        
+    }
+
 }

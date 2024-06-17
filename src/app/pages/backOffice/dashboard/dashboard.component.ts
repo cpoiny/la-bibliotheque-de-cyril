@@ -3,11 +3,12 @@ import { ButtonComponent } from '../../../components/button/button.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/Authentication/authentication.service';
 import { DisplayMessageService } from '../../../shared/display-message.service';
+import { VerticalLineComponent } from '../../../components/vertical-line/vertical-line.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ButtonComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, ReactiveFormsModule, VerticalLineComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -19,7 +20,7 @@ export class DashboardComponent {
     
   ){}
 
-deconnecter : string = "Deconnexion";
+deconnecter : string = "Déconnexion";
 modifier : string = "Enregistrer";
 errorMessage: string | undefined;
 requiredPassword: string | undefined;

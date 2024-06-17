@@ -26,7 +26,7 @@
     font-size: 28px;
 }
 
-.postForm-champ img{
+.postForm-champ img {
     object-fit: contain;
     border: black solid 1px;
 }
@@ -42,7 +42,9 @@
     background-color: white;
 }
 
-input:focus, textarea:focus, .photo-url:focus {
+input:focus,
+textarea:focus,
+.photo-url:focus {
     outline: none;
     border: solid 2px var(--gold);
 }
@@ -104,10 +106,11 @@ input:focus, textarea:focus, .photo-url:focus {
     font-family: 'Merriweather', Courier, monospace;
 }
 
-input.invalid, textarea.invalid {
+input.invalid,
+textarea.invalid {
     border: 2px solid red;
-  }
-  
+}
+
 
 
 
@@ -140,6 +143,8 @@ input.invalid, textarea.invalid {
 .entete-titre h1 {
     font-family: "Merriweather", sans-serif;
     font-weight: normal;
+    width: 100%;
+    text-align: center;
 }
 
 /* Boutons de catégorie */
@@ -153,7 +158,7 @@ input.invalid, textarea.invalid {
 }
 
 .mesCat .categoriebutton {
-   width: 100%;
+    width: 100%;
     display: flex;
     margin: 1vh;
     align-items: center;
@@ -168,7 +173,8 @@ input.invalid, textarea.invalid {
     border-radius: 30px;
     color: var(--gold);
     text-align: center;
-    padding-top: 9px; 
+    padding-top: 8%;
+    font-size: 1.2rem;
 }
 
 input[type="radio"].cat {
@@ -228,6 +234,7 @@ input[type="radio"].cat:checked+label {
     font-weight: bold;
     cursor: pointer;
     font-family: "Courier prime", sans-serif;
+    font-size: 1.3rem;
 }
 
 .validation {
@@ -270,7 +277,8 @@ input[type="radio"].cat:checked+label {
 
     .photo {
         width: 50vw;
-        height: 50vw;    }
+        height: 50vw;
+    }
 
     h1 {
         margin: 5vh;
@@ -283,6 +291,10 @@ input[type="radio"].cat:checked+label {
     .container-formulaire {
         width: 100%;
         margin: 0;
+    }
+
+    .mesCat .categoriebutton label {
+        padding-top: 5%;
     }
 }
 
@@ -302,9 +314,11 @@ input[type="radio"].cat:checked+label {
         display: none;
 
     }
+
     .input-photo {
         width: 100%;
     }
+
     .buttons {
         width: 50%;
     }
@@ -321,5 +335,11 @@ input[type="radio"].cat:checked+label {
     .buttons {
         width: 50%;
     }
+
+    .mesCat .categoriebutton label {
+        font-size: 0.8rem;
+        padding-top: 10%;
+    }
+
 
 }

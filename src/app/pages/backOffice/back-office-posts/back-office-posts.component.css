@@ -9,11 +9,10 @@
 }
 
 .posts ul {
-    margin: 0 5vh;
+    margin: 0 3vh;
     display: flex;
     gap: 5vh;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 
@@ -58,3 +57,8 @@ app-button:hover {
     margin-top: 1vh;
 }
 
+@media (max-width: 450px) {
+   .bouton-ajout{
+    display: none;
+   }
+}
