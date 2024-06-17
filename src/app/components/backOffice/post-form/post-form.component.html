@@ -14,8 +14,8 @@
                 <!-- Mes boutons de catégorie -->
                 <div class="mesCat">
                     <div class="categoriebutton">
-                        <input class="cat" required type="radio" id="litterature" formControlName="categorie"
-                            name="categorie" value="litterature">
+                        <input class="cat"  type="radio" id="litterature" formControlName="categorie"
+                            name="categorie" value="litterature" required>
                         <label for="litterature">Littérature</label>
                     </div>
                     <div class="categoriebutton">
@@ -25,38 +25,45 @@
 
                     </div>
                     <div class="categoriebutton">
-                        <input class="cat" required type="radio" id="citation" formControlName="categorie"
-                            name="categorie" value="citation">
+                        <input class="cat"  type="radio" id="citation" formControlName="categorie"
+                            name="categorie" value="citation" required >
                         <label for="citation">Citation</label>
                     </div>
                 </div>
             </div>
         </div>
 
+        @if (!isFormValid){
+            <p class="error-message">
+                Le formulaire n'est pas valide. Veuillez renseigner tous les champs obligatoire ainsi qu'une catégorie.
+            </p>
+        }
+
+        
         <!-- Titre -->
         <div class="postForm-champ">
-            <label for="titre">Titre :</label>
+            <label for="titre">Titre* :</label>
             @if (post) {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
+            <input class="input-form" name="titre" id="titre" formControlName="titre" required [class.invalid]="submitted && postForm.controls['titre'].invalid">
             } @else {
-            <input class="input-form" name="titre" id="titre" formControlName="titre">
+            <input class="input-form" name="titre" id="titre" formControlName="titre" required [class.invalid]="submitted && postForm.controls['titre'].invalid">
             }
 
         </div>
 
         <!-- Publication -->
         <div class="postForm-champ">
-            <label for="publication">Publication:</label>
+            <label for="publication">Publication* :</label>
             <textarea class="publication" name="publication" id="publication" cols="30" rows="10"
-                formControlName="publication"></textarea>
+                formControlName="publication" required [class.invalid]="submitted && postForm.controls['publication'].invalid"></textarea>
         </div>
 
         <!-- Catégorie -->
         <div class="postForm-champ">
-            <label for="theme">Theme :</label>
-            <input list="liste-theme" class="input-form" type="text" id="theme" formControlName="theme" />
+            <label for="theme">Thème* :</label>
+            <input list="liste-theme" class="input-form" type="text" id="theme" formControlName="theme" required [class.invalid]="submitted && postForm.controls['theme'].invalid"/>
             <datalist class="input-form" name="theme" id="liste-theme">
-                <option value=""></option>
+                <option class="test-list" value=""></option>
                 @for(theme of listOfThemes; track theme){
                 <option value="{{theme}}">{{theme}}</option>
                 }
@@ -79,19 +86,19 @@
         <!-- Photo de couverture -->
 
         <div class="postForm-champ">
-            <label for="photo">Photo de la publication :</label>
+            <label for="photo">Photo de la publication* :</label>
             <div class="input-photo">
                 <img class="photo selected" [src]="imageUrl" [alt]="imageUrl">
-                <textarea class="publication" name="photo" id="photo" type="text"
-                    formControlName="photo"></textarea>
+                <input name="photo" id="photo" type="text"
+                    formControlName="photo" (input)="updateImageUrl($event)" required>
             </div>
         </div>
 
 
         <!-- Nom Auteur -->
         <div class="postForm-champ">
-            <label for="auteur">Auteur(trice) :</label>
-            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" />
+            <label for="auteur">Auteur(trice)* :</label>
+            <input list="liste-auteur" class="input-form" type="text" id="nom" formControlName="auteur" (input)="updateFieldsAuthor($event)" required [class.invalid]="submitted && postForm.controls['auteur'].invalid"/>
             <datalist class="input-form" name="auteur" id="liste-auteur">
                 <option value=""></option>
                 @for(author of listOfAuthors; track author.id){
@@ -102,19 +109,18 @@
 
         <!-- Description auteur -->
         <div class="postForm-champ">
-            <label for="description">Description de l'auteur(trice) :</label>
+            <label for="description">Description de l'auteur(trice)* :</label>
             <textarea class="publication" name="description" id="description" cols="30" rows="3"
-                formControlName="description"></textarea>
+                formControlName="description" required [class.invalid]="submitted && postForm.controls['description'].invalid"></textarea>
         </div>
 
         <!-- Photo de l'auteur -->
-
         <div class="postForm-champ">
-            <label for="photoAuteur">Photo de l'auteur(trice) :</label>
+            <label for="photoAuteur">Photo de l'auteur(trice)* :</label>
             <div class="input-photo">
                 <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
-                <textarea class="publication" name="photoAuteur" id="photoAuteur" type="text"
-                    formControlName="photoAuteur"></textarea>
+                <input name="photoAuteur" id="photoAuteur"
+                    formControlName="photoAuteur" required [class.invalid]="submitted && postForm.controls['photoAuteur'].errors?.['defaultValue']" >
             </div>
         </div>
 

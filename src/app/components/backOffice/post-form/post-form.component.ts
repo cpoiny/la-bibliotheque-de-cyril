@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { AuthorService } from '../../../services/AuthorService/author.service';
@@ -47,11 +47,14 @@ export class PostFormComponent implements OnInit {
   listOfEditions?: string[] = [];
   listOfMedias: Media[] = [];
   postForm!: FormGroup;
-  imageUrl: string = '';
-  auteurImageUrl: string = '';
+  imageUrl: string = "assets/illustration/placeholder.jpg";
+  auteurImageUrl: string = "assets/illustration/placeholder.jpg";
   isEmptyImage?: boolean;
   isEmptyImageAuteur?: boolean;
   isNewPost: boolean = true;
+  isFormValid: boolean = true;
+  submitted = false;
+  isUrlValid = true;
 
   categoriesButton: ICategoryButton[] = [
     {
@@ -85,18 +88,33 @@ export class PostFormComponent implements OnInit {
 
   buildForm(): void {
     this.postForm = this.formBuilder.group({
-      auteur: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(5)]],
+      auteur: [null, [Validators.required]],
+      description: [null, [Validators.required, Validators.minLength(5)]],
       photoAuteur: [null, [Validators.required]],
-      titre: ['', [Validators.required]],
-      theme: ['', [Validators.required]],
+      titre: [null, [Validators.required]],
+      theme: [null, [Validators.required]],
       edition: [''],
       publication: ['', [Validators.required, Validators.minLength(5)]],
       photo: [null, [Validators.required]],
-      categorie: ['', [Validators.required]]
+      categorie: [null, [Validators.required]]
     })
   }
 
+
+  updateFieldsAuthor(event: any) {
+    const selectedAuthorName = event.target.value;
+    const selectedAuthor = this.listOfAuthors.find(author => author.name === selectedAuthorName);
+
+    if (selectedAuthor) {
+      this.postForm.get('description')?.setValue(selectedAuthor.description);
+      this.postForm.get('photoAuteur')?.setValue(selectedAuthor.picture);
+      this.auteurImageUrl = selectedAuthor.picture;
+    }
+  }
+
+  updateImageUrl(event: any) {
+    this.imageUrl = event.target.value;
+  }
 
   onModalClosed(result: boolean): void {
     if (this.actionType === 'Publier' && result) {
@@ -120,10 +138,21 @@ export class PostFormComponent implements OnInit {
 
 
   openModal(action: string) {
-    this.isOpen = true;
-    this.title = "Confirmation de publication"
-    this.message = "Etes-vous sûr de vouloir publier ce post ?";
-    this.actionType = action;
+    this.submitted = true;
+    if (this.auteurImageUrl === "assets/illustration/placeholder.jpg" || this.imageUrl === "assets/illustration/placeholder.jpg") {
+      this.isUrlValid = false;
+      console.log("isUrlValid false", this.isUrlValid);
+    }
+    if (this.postForm.valid && this.imageUrl !== "assets/illustration/placeholder.jpg" && this.auteurImageUrl !== "assets/illustration/placeholder.jpg") {
+      this.isOpen = true;
+      this.isUrlValid = true;
+      console.log("isUrlValid true", this.isUrlValid);
+      this.title = "Confirmation de publication"
+      this.message = "Etes-vous sûr de vouloir publier ce post ?";
+      this.actionType = action;
+    } else {
+      this.isFormValid = false;
+    }
   }
 
   onCreate(): void {
