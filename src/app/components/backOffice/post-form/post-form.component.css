@@ -173,7 +173,7 @@ textarea.invalid {
     border-radius: 30px;
     color: var(--gold);
     text-align: center;
-    padding-top: 8%;
+    padding-top: 6%;
     font-size: 1.2rem;
 }
 
@@ -234,7 +234,7 @@ input[type="radio"].cat:checked+label {
     font-weight: bold;
     cursor: pointer;
     font-family: "Courier prime", sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .validation {

@@ -86,7 +86,7 @@ input:focus{
 
 
 /* Responsive */
-@media (max-width: 426px) {
+@media (max-width: 427px) {
 
     .container {
         width: 90vw;
