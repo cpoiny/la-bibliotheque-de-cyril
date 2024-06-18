@@ -1,6 +1,7 @@
 import { Component, Signal, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
+
 
 type IMenu = {
   id: number;
@@ -21,6 +22,10 @@ type IMenu = {
 
 export class HeaderComponent{
 
+
+  constructor (
+    private router: Router
+  ){}
 menu : Signal<IMenu[]> = signal([
   {
     id: 1,
@@ -54,6 +59,19 @@ menu : Signal<IMenu[]> = signal([
   }
 ]);
 
-
+// implement the search bar function here
+searchBar(){
+  console.log("search bar clicked");
+  this.router.navigateByUrl('/la_bibliotheque_de_cyril/recherche');
 }
 
+// implement redirectToRecherche methode
+redirectToRecherche(event: Event){
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+  if(value.length > 0){
+      this.router.navigateByUrl('/la_bibliotheque_de_cyril/recherche');
+}
+}
+
+}

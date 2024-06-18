@@ -12,6 +12,7 @@ import { BackOfficePostsComponent } from './pages/backOffice/back-office-posts/b
 import { LayoutComponent } from './pages/backOffice/layout/layout.component';
 import { DashboardComponent } from './pages/backOffice/dashboard/dashboard.component';
 import { authGuard } from './services/Authentication/auth.guard';
+import { SearchComponent } from './pages/blog/search/search.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,10 @@ export const routes: Routes = [
             {
                 path: "publications/:type/:id",
                 component: PostComponent,
+            },
+            {
+                path: "recherche",
+                component: SearchComponent
             },
             {
                 path: "page_de_confidentialite",

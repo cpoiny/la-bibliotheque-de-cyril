@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    border: red solid 2px;
+
+}
+
+
+.bandeau-header img {
+    width: 100%;
+    height: 15vh;
+    object-fit: cover;
+}
+
+.titre{
+    font-family: 'Merriweather', sans-serif;
+    font-size: 2rem;
+    padding-left: 5vw;
+    margin: 5vh auto 5vh;
+}
