@@ -68,19 +68,18 @@ menu : Signal<IMenu[]> = signal([
 
 redirectToRecherche(event: Event){
     const target = event.target as HTMLInputElement;
-    const value = target.value;
+    const value = target.value.toLowerCase();
+ // je veux que ma valeur ne soit pas sensible à la casse
+
+
   if(value.length > 0){
     this.postService.getAllPosts().subscribe((posts) => {
-      this.postsFromresearch = posts.filter((post) => post.title.includes(value) || post.authors[0].name.includes(value) || post.content.includes(value));
+      this.postsFromresearch = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
       console.log(this.postsFromresearch);
       if(this.postsFromresearch.length > 0){
         this.postService.sendPostsFromResearch(this.postsFromresearch);
-        this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
       }
-      else {
         this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
-      }
-     
     });
 }
 }
