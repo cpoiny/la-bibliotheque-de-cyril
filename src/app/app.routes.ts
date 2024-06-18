@@ -31,7 +31,7 @@ export const routes: Routes = [
                 component: PostComponent,
             },
             {
-                path: "recherche",
+                path: "recherche/:search",
                 component: SearchComponent
             },
             {

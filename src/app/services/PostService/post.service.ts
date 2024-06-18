@@ -14,6 +14,7 @@ export class PostService {
 
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
+  public postsSearched = new Subject<Post[]>();
 
 
   /**
@@ -116,5 +117,9 @@ export class PostService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
     return this.http.delete(url, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
+
+  sendPostsFromResearch(posts: Post[]){
+    return this.postsSearched.next(posts);
+  }
 
 }

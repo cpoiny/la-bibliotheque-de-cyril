@@ -6,26 +6,32 @@
     <div class="menu">
         <nav>
             <ul>
+                <!-- Home -->
                 <li class="flex" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <img routerLink="{{menu()[0].link}}" src="{{menu()[0].icon}}" alt="{{menu()[0].title}}">
                     <a routerLink="{{menu()[0].link}}">{{menu()[0].title}}</a>
                 </li>
 
-                <li class="flex" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <!-- Search bar -->
+                <li class="flex" routerLinkActive="active">
                     <img routerLink="{{menu()[1].link}}" src="{{menu()[1].icon}}" alt="{{menu()[1].title}}">
-                    <input type="text" placeholder="{{menu()[1].title}}"  (keyup.enter)="redirectToRecherche($event)">
+                    <input type="text" placeholder="{{menu()[1].title}}" class="search" (keyup.enter)="redirectToRecherche($event)">
                 </li>
 
+                <!-- Category Books -->
                 <li class="flex" routerLinkActive="active">
                     <img routerLink="{{menu()[2].link}}" src="{{menu()[2].icon}}" alt="{{menu()[2].title}}">
                     <a routerLink="{{menu()[2].link}}">{{menu()[2].title}}</a>
                 </li>
 
+
+                <!-- Category Movies -->
                 <li class="flex" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <img routerLink="{{menu()[3].link}}" src="{{menu()[3].icon}}" alt="{{menu()[3].title}}">
                     <a routerLink="{{menu()[3].link}}">{{menu()[3].title}}</a>
                 </li>
 
+                <!-- Category Quotes -->
                 <li class="flex" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <img routerLink="{{menu()[4].link}}" src="{{menu()[4].icon}}" alt="{{menu()[4].title}}">
                     <a routerLink="{{menu()[4].link}}">{{menu()[4].title}}</a>

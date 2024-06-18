@@ -1,6 +1,8 @@
 import { Component, Signal, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
+import { PostService } from '../../../services/PostService/post.service';
+import { Post } from '../../../models/post.model';
 
 
 type IMenu = {
@@ -22,10 +24,14 @@ type IMenu = {
 
 export class HeaderComponent{
 
+  postsFromresearch : Post[] = [];
 
   constructor (
-    private router: Router
+    private router: Router,
+    public postService : PostService
   ){}
+
+
 menu : Signal<IMenu[]> = signal([
   {
     id: 1,
@@ -59,18 +65,23 @@ menu : Signal<IMenu[]> = signal([
   }
 ]);
 
-// implement the search bar function here
-searchBar(){
-  console.log("search bar clicked");
-  this.router.navigateByUrl('/la_bibliotheque_de_cyril/recherche');
-}
 
-// implement redirectToRecherche methode
 redirectToRecherche(event: Event){
     const target = event.target as HTMLInputElement;
     const value = target.value;
   if(value.length > 0){
-      this.router.navigateByUrl('/la_bibliotheque_de_cyril/recherche');
+    this.postService.getAllPosts().subscribe((posts) => {
+      this.postsFromresearch = posts.filter((post) => post.title.includes(value) || post.authors[0].name.includes(value) || post.content.includes(value));
+      console.log(this.postsFromresearch);
+      if(this.postsFromresearch.length > 0){
+        this.postService.sendPostsFromResearch(this.postsFromresearch);
+        this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
+      }
+      else {
+        this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
+      }
+     
+    });
 }
 }
 

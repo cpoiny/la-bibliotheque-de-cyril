@@ -1,6 +1,5 @@
 .container {
     display: flex;
-    border: red solid 2px;
 
 }
 
@@ -11,9 +10,19 @@
     object-fit: cover;
 }
 
-.titre{
-    font-family: 'Merriweather', sans-serif;
+.titre {
     font-size: 2rem;
+}
+
+.titre, .search, .card-list, .search-img {
+    font-family: 'Merriweather', sans-serif;
     padding-left: 5vw;
     margin: 5vh auto 5vh;
+}
+
+.card-list {
+    display : flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 3vw;
 }
