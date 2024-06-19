@@ -32,7 +32,6 @@ author!: Author;
 
   ngOnInit() {
     this.getPostById();
-    this.getAuthorById(this.post);
 
   }
 
@@ -43,10 +42,6 @@ author!: Author;
     });
   }
 
-  getAuthorById(post: Post): void {
-   // const authorToDisplay = this.postService.getAuthorById(post);
-    //this.author = authorToDisplay;
-  }
 
   goBack() {
     this.location.back();

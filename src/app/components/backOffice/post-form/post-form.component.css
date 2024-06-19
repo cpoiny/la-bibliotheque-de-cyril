@@ -28,7 +28,8 @@
 
 .postForm-champ img {
     object-fit: contain;
-    border: black solid 1px;
+    border: white solid 1px;
+    border-radius : 20px;
 }
 
 .input-form {
@@ -195,6 +196,7 @@ input[type="radio"].cat:checked+label {
     min-width: 12vw;
     min-height: 12vw;
     border-radius: 20px;
+    
 }
 
 .photo-image {
@@ -276,8 +278,8 @@ input[type="radio"].cat:checked+label {
     }
 
     .photo {
-        width: 50vw;
-        height: 50vw;
+        width: 30vw;
+        height: 30vw;
     }
 
     h1 {

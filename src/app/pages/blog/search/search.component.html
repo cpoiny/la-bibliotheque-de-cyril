@@ -14,7 +14,7 @@
             <ul class="card-list">
                 @for (post of postsFromresearch; track post.id) {
                 <li>
-                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.medias[0].theme">
+                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.medias[0].theme" [category]="post.medias[0].category">
                     </app-card>
                 </li>
                 }
