@@ -4,6 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { UserLogin } from '../../models/interfaces/user';
 import { ErrorRequestHandler } from 'express';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-  private baseUrlApi: string = 'http://localhost:8086/users';
+  private baseUrlApi: string =  environment.baseUrl + "users";
 
 
   /**

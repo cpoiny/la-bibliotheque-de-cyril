@@ -1,0 +1,29 @@
+<div class="bandeau-header">
+    <img src="assets/illustration/recherche-page.png" alt="bandeau-page-de-recherche">
+</div>
+
+ <div class="container">
+     <app-header class="header"></app-header>
+
+     <section>
+        <h1 class="titre">Ma recherche</h1>
+
+        <!-- afficher les posts de ma recherche -->
+        @if (postsFromresearch.length > 0) {
+            <p class="search">{{message}} </p>
+            <ul class="card-list">
+                @for (post of postsFromresearch; track post.id) {
+                <li>
+                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.medias[0].theme" [category]="post.medias[0].category">
+                    </app-card>
+                </li>
+                }
+            </ul>
+        } @else {
+            <p class="search">0 résultat pour la recherche de {{searchTerm}}!</p>
+            <img class="search-img" src="assets/illustration/recherche-sans-resultat.png" alt="pas de resultat">
+        }
+     
+        </section>
+
+ </div>

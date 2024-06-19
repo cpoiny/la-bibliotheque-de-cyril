@@ -56,13 +56,11 @@
     }
     
     .auteur-img {
-        border: red solid 2px;
         width: 100%;
     }
 
     .auteur-description {
         width: 100%;
-        border : red solid 2px;
     }
 
 }
