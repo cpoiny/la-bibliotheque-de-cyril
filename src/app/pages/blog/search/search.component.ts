@@ -29,8 +29,10 @@ export class SearchComponent {
  ngOnInit() {
    let search = this.activatedRoute.snapshot.paramMap.get('search');
    this.postsFromResearch = this.postService.getResults(search!);
-  this.postService.postsFromResearch.subscribe((results : Post[]) => {
+  
+   this.postService.postsFromResearch.subscribe((results : Post[]) => {
       this.postsFromResearch = results;
+      this.message = this.postsFromResearch.length > 1 ? `${this.postsFromResearch.length} résultats pour votre recherche.` : " 1 résultat pour votre recherche !"
   });
   
   }
