@@ -20,7 +20,8 @@ export class PostService {
   //public postsSearched = new Subject<IPostSearched>();
   public postsSearched = new Subject<Post[]>();
   public searchTerm = new Subject<string>();
-  public postsFromResearch : Post [] = [];
+  public postsFromResearch2 : Post[] = [];
+  public postsFromResearch = new Subject<Post[]>();
 
 
 
@@ -127,22 +128,29 @@ export class PostService {
   //  this.postsSearched.next(posts);
   // }
 
-  filterPosts(value : string): Post[] | []{
-    this.searchTerm.next(value);
-    const posts = this.getAllPosts();
-     let results : Post[];
-     posts.subscribe((data) => {
-   data.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
-   return results;
-});
-  return [];
+//   filterPosts(value : string): Post[] | []{
+//     this.searchTerm.next(value);
+//     const posts = this.getAllPosts();
+//      let results : Post[];
+//      posts.subscribe((data) => {
+//    data.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+//    return results;
+// });
+//   return [];
+//   }
+
+
+  filterPosts(value : string) : void {
+    this.getAllPosts().subscribe((posts) => {
+      this.postsFromResearch2 = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+      this.postsFromResearch.next(this.postsFromResearch2);
+      });
   }
 
-
-  filterPosts2(value : string) : Post[] {
+  getResults(value : string) : Post[] {
     this.getAllPosts().subscribe((posts) => {
-      this.postsFromResearch = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+      this.postsFromResearch2 = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
       });
-      return this.postsFromResearch;
+      return this.postsFromResearch2;
   }
 }

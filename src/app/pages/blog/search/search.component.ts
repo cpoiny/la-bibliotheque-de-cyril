@@ -4,6 +4,7 @@ import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { CardComponent } from '../../../components/card/card.component';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -26,15 +27,13 @@ export class SearchComponent {
 
 
  ngOnInit() {
-  this.displayResearch();
+   let search = this.activatedRoute.snapshot.paramMap.get('search');
+   this.postsFromResearch = this.postService.getResults(search!);
+  this.postService.postsFromResearch.subscribe((results : Post[]) => {
+      this.postsFromResearch = results;
+  });
+  
   }
-
-  displayResearch() : void {
-    this.postService.searchTerm.subscribe((term : string) => {
-      //let search = this.activatedRoute.snapshot.paramMap.get('search');
-      this.postsFromResearch = this.postService.filterPosts2(term);
-    });
-    }
 
   }
 

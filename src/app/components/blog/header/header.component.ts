@@ -1,5 +1,5 @@
 import { Component, Signal, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -28,7 +28,8 @@ export class HeaderComponent{
 
   constructor (
     private router: Router,
-    public postService : PostService
+    public postService : PostService,
+    private activatedRoute : ActivatedRoute
   ){}
 
 
@@ -66,16 +67,19 @@ menu : Signal<IMenu[]> = signal([
 ]);
 
 
-redirectToRecherche(event: Event){
+redirectToRecherche(event: Event):void {
   const target = event.target as HTMLInputElement;
   const value = target.value.toLowerCase();
   // je veux que ma valeur ne soit pas sensible à la casse
-  
-  if(value.length > 0){
-   this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
-   this.postService.searchTerm.next(value);
-  // this.postService.filterPosts2(value);
+  if(value.length > 0 ){
+    if( !this.router.url.includes('recherche')){
+      this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
+    }
+    else {
+      this.postService.filterPosts(value);
+    }
   }
+
 }
 
 }
