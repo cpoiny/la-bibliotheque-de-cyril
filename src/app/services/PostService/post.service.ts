@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
 import { Observable, Subject, map, shareReplay } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApiResponsePost, IPostSearched } from '../../models/interfaces/user';
+import { ApiResponsePost } from '../../models/interfaces/user';
 import { environment } from '../../../environments/environment.local';
 
 
@@ -17,7 +17,11 @@ export class PostService {
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
   
-  public postsSearched = new Subject<IPostSearched>();
+  //public postsSearched = new Subject<IPostSearched>();
+  public postsSearched = new Subject<Post[]>();
+  public searchTerm = new Subject<string>();
+  public postsFromResearch : Post [] = [];
+
 
 
   /**
@@ -114,12 +118,31 @@ export class PostService {
     return this.http.delete(url, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
 
-  sendPostsFromResearch(posts: Post[], value: string){
-    let postSearch : IPostSearched = {
-      post : posts,
-      searchTerm : value
-    };
-    this.postsSearched.next(postSearch);
+  // sendPostsFromResearch(posts: Post[], value: string){
+  //   let postSearch : IPostSearched = {
+  //     post : posts,
+  //     searchTerm : value
+  //   };
+  //  // this.postsSearched.next(postSearch);
+  //  this.postsSearched.next(posts);
+  // }
+
+  filterPosts(value : string): Post[] | []{
+    this.searchTerm.next(value);
+    const posts = this.getAllPosts();
+     let results : Post[];
+     posts.subscribe((data) => {
+   data.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+   return results;
+});
+  return [];
   }
 
+
+  filterPosts2(value : string) : Post[] {
+    this.getAllPosts().subscribe((posts) => {
+      this.postsFromResearch = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+      });
+      return this.postsFromResearch;
+  }
 }
