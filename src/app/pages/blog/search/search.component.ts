@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../../components/blog/header/header.componen
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { CardComponent } from '../../../components/card/card.component';
-import { ActivatedRoute } from '@angular/router';
+import { IPostSearched } from '../../../models/interfaces/user';
 
 @Component({
   selector: 'app-search',
@@ -19,31 +19,18 @@ export class SearchComponent {
   searchTerm : string = '';
 
   constructor(
-    private postService: PostService,
-    private activatedRoute :ActivatedRoute
+    private postService: PostService
   ){}
 
 
   ngOnInit() {
-    this.postService.postsSearched.subscribe((posts: Post[]) => {
-      this.postsFromresearch = posts;
-      this.getSearchValue();
+    this.postService.postsSearched.subscribe((results: IPostSearched) => {
+      this.postsFromresearch = results.post;
+      this.searchTerm = results.searchTerm;
+      this.message =  this.postsFromresearch.length > 1 ?  `${this.postsFromresearch.length} résultats pour votre recherche.` : `1 résultat pour votre recherche. `;
     });
   }
-
-    ngOnChanges() {
-      this.getSearchValue();
-
-    }
-
-    getSearchValue() : void {
-      const search = this.activatedRoute.snapshot.paramMap.get('search');
-      if (search) {
-        this.searchTerm = search;
-        this.message =  this.postsFromresearch.length > 1 ?  `${this.postsFromresearch.length} résultats pour la recherche de "${this.searchTerm}".` : `1 résultat pour la recherche de "${this.searchTerm}". `;
-      }
-    }
-   
+  
   }
 
 

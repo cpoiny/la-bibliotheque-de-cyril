@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
+import { Observable, Subject, map, shareReplay } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApiResponsePost } from '../../models/interfaces/user';
+import { ApiResponsePost, IPostSearched } from '../../models/interfaces/user';
 import { environment } from '../../../environments/environment.local';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class PostService {
 
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
-  public postsSearched = new Subject<Post[]>();
+  public postsSearched = new Subject<IPostSearched>();
 
 
   /**
@@ -32,21 +34,19 @@ export class PostService {
     return this.posts$;
   }
 
-
   /**
    * Returns a post by its ID from API.
    * @param id - The ID of the post to retrieve.
    * @returns An Observable that emits the retrieved post.
    */
-  getPostById(id: string): Observable<Post> {
-    if(id !== '0'){
+  getPostById(id: number): Observable<Post> {
+    if(id !== 0){
     const url = this.baseUrl + "/" + id;
     return this.http.get<{ data: Post }>(url)
       .pipe(map(response => response.data));
     }
     return new Observable();
   };
-
 
   /**
    * Returns posts by category.
@@ -72,7 +72,6 @@ export class PostService {
     );
   };
 
-
   /**
    * Creates a new post.
    * Sets of the headers with the token which is required by the API as a permission to create.
@@ -85,7 +84,6 @@ export class PostService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
     return this.http.post(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
-
 
   /**
    * Updates a post with the given ID.
@@ -102,9 +100,6 @@ export class PostService {
   
    };
   
-
-
-
   /**
    * Deletes a post with the specified ID.
    * Sets of the headers with the token which is required by the API as a permission to delete.
@@ -118,8 +113,12 @@ export class PostService {
     return this.http.delete(url, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
 
-  sendPostsFromResearch(posts: Post[]){
-    return this.postsSearched.next(posts);
+  sendPostsFromResearch(posts: Post[], value: string){
+    let postSearch : IPostSearched = {
+      post : posts,
+      searchTerm : value
+    };
+    return this.postsSearched.next(postSearch);
   }
 
 }

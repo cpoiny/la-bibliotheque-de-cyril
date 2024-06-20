@@ -19,3 +19,8 @@ export interface User {
     status: string,
     data? : Post
   }
+
+  export interface IPostSearched {
+    post : Post[],
+    searchTerm : string
+  }
