@@ -9,7 +9,7 @@
         <h1 class="titre">Ma recherche</h1>
 
         <!-- afficher les posts de ma recherche -->
-        @if (postsFromresearch.length > 0) {
+        @if (postsFromresearch.length > 0 ) {
             <p class="search">{{message}} </p>
             <ul class="card-list">
                 @for (post of postsFromresearch; track post.id) {

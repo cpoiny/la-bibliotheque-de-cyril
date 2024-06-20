@@ -16,6 +16,7 @@ export class PostService {
 
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
+  
   public postsSearched = new Subject<IPostSearched>();
 
 
@@ -118,7 +119,7 @@ export class PostService {
       post : posts,
       searchTerm : value
     };
-    return this.postsSearched.next(postSearch);
+    this.postsSearched.next(postSearch);
   }
 
 }

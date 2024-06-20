@@ -50,12 +50,14 @@
     color: var(--gold);
 }
 
-.search {
+.search{
     border :none;
     width: 80%;
     padding: 0.2rem;
     opacity: 0.5;
 }
+
+
 .search::placeholder {
     font-family: 'Courier Prime', Courier, monospace;
     font-size: 1rem;
