@@ -17,10 +17,10 @@ export class CardComponent implements OnInit{
 @Input() picture!: string;  
 @Input() title!: string;
 @Input() theme!: string;
-@Input() id! :number;
+@Input() id! : number;
 @Input() category!: string;
 book!: Media;
-
+url: string[] = [];
 
 constructor(
   private postService: PostService
@@ -32,6 +32,8 @@ ngOnInit(){
 this.postService.getPostById(this.id).subscribe((data) => {
   this.book = data.medias[0];
 });
+
+this.url = ["/la_bibliotheque_de_cyril/publications/", this.category, this.id.toString()];
 }
 
 }

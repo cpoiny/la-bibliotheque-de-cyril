@@ -4,6 +4,8 @@ import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
 import { CardComponent } from '../../../components/card/card.component';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-search',
@@ -14,36 +16,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent {
 
-  postsFromresearch: Post[] = [];
+  postsFromResearch: Post[] = [];
   message? : string;
   searchTerm : string = '';
 
   constructor(
     private postService: PostService,
-    private activatedRoute :ActivatedRoute
+    private activatedRoute : ActivatedRoute
   ){}
 
 
-  ngOnInit() {
-    this.postService.postsSearched.subscribe((posts: Post[]) => {
-      this.postsFromresearch = posts;
-      this.getSearchValue();
-    });
+ ngOnInit() {
+   let search = this.activatedRoute.snapshot.paramMap.get('search');
+   this.postsFromResearch = this.postService.getResults(search!);
+  
+   this.postService.postsFromResearch.subscribe((results : Post[]) => {
+      this.postsFromResearch = results;
+      this.message = this.postsFromResearch.length > 1 ? `${this.postsFromResearch.length} résultats pour votre recherche.` : " 1 résultat pour votre recherche !"
+  });
+  
   }
 
-    ngOnChanges() {
-      this.getSearchValue();
-
-    }
-
-    getSearchValue() : void {
-      const search = this.activatedRoute.snapshot.paramMap.get('search');
-      if (search) {
-        this.searchTerm = search;
-        this.message =  this.postsFromresearch.length > 1 ?  `${this.postsFromresearch.length} résultats pour la recherche de "${this.searchTerm}".` : `1 résultat pour la recherche de "${this.searchTerm}". `;
-      }
-    }
-   
   }
-
 

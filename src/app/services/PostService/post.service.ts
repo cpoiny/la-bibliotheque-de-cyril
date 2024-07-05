@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
+import { Observable, Subject, map, shareReplay } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponsePost } from '../../models/interfaces/user';
 import { environment } from '../../../environments/environment.local';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,13 @@ export class PostService {
 
   public baseUrl = environment.baseUrl + "posts";
   private posts$?: Observable<Post[]>;
+  
+  //public postsSearched = new Subject<IPostSearched>();
   public postsSearched = new Subject<Post[]>();
+  public searchTerm = new Subject<string>();
+  public postsFromResearch2 : Post[] = [];
+  public postsFromResearch = new Subject<Post[]>();
+
 
 
   /**
@@ -32,7 +40,6 @@ export class PostService {
     return this.posts$;
   }
 
-
   /**
    * Returns a post by its ID from API.
    * @param id - The ID of the post to retrieve.
@@ -46,7 +53,6 @@ export class PostService {
     }
     return new Observable();
   };
-
 
   /**
    * Returns posts by category.
@@ -72,7 +78,6 @@ export class PostService {
     );
   };
 
-
   /**
    * Creates a new post.
    * Sets of the headers with the token which is required by the API as a permission to create.
@@ -85,7 +90,6 @@ export class PostService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
     return this.http.post(url, post, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
-
 
   /**
    * Updates a post with the given ID.
@@ -102,9 +106,6 @@ export class PostService {
   
    };
   
-
-
-
   /**
    * Deletes a post with the specified ID.
    * Sets of the headers with the token which is required by the API as a permission to delete.
@@ -118,8 +119,38 @@ export class PostService {
     return this.http.delete(url, { headers: headers }).pipe(map((data: any) => data as ApiResponsePost));
   };
 
-  sendPostsFromResearch(posts: Post[]){
-    return this.postsSearched.next(posts);
+  // sendPostsFromResearch(posts: Post[], value: string){
+  //   let postSearch : IPostSearched = {
+  //     post : posts,
+  //     searchTerm : value
+  //   };
+  //  // this.postsSearched.next(postSearch);
+  //  this.postsSearched.next(posts);
+  // }
+
+//   filterPosts(value : string): Post[] | []{
+//     this.searchTerm.next(value);
+//     const posts = this.getAllPosts();
+//      let results : Post[];
+//      posts.subscribe((data) => {
+//    data.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+//    return results;
+// });
+//   return [];
+//   }
+
+
+  filterPosts(value : string) : void {
+    this.getAllPosts().subscribe((posts) => {
+      this.postsFromResearch2 = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+      this.postsFromResearch.next(this.postsFromResearch2);
+      });
   }
 
+  getResults(value : string) : Post[] {
+    this.getAllPosts().subscribe((posts) => {
+      this.postsFromResearch2 = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
+      });
+      return this.postsFromResearch2;
+  }
 }

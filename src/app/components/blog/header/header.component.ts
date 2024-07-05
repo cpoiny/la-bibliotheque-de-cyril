@@ -1,5 +1,5 @@
 import { Component, Signal, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -28,7 +28,8 @@ export class HeaderComponent{
 
   constructor (
     private router: Router,
-    public postService : PostService
+    public postService : PostService,
+    private activatedRoute : ActivatedRoute
   ){}
 
 
@@ -66,22 +67,19 @@ menu : Signal<IMenu[]> = signal([
 ]);
 
 
-redirectToRecherche(event: Event){
-    const target = event.target as HTMLInputElement;
-    const value = target.value.toLowerCase();
- // je veux que ma valeur ne soit pas sensible à la casse
+redirectToRecherche(event: Event):void {
+  const target = event.target as HTMLInputElement;
+  const value = target.value.toLowerCase();
+  // je veux que ma valeur ne soit pas sensible à la casse
+  if(value.length > 0 ){
+    if( !this.router.url.includes('recherche')){
+      this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
+    }
+    else {
+      this.postService.filterPosts(value);
+    }
+  }
 
-
-  if(value.length > 0){
-    this.postService.getAllPosts().subscribe((posts) => {
-      this.postsFromresearch = posts.filter((post) => post.title.toLowerCase().includes(value) || post.authors[0].name.toLowerCase().includes(value) || post.content.toLowerCase().includes(value));
-      console.log(this.postsFromresearch);
-      if(this.postsFromresearch.length > 0){
-        this.postService.sendPostsFromResearch(this.postsFromresearch);
-      }
-        this.router.navigateByUrl(`/la_bibliotheque_de_cyril/recherche/${value}`);
-    });
-}
 }
 
 }

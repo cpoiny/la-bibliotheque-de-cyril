@@ -25,7 +25,6 @@
 }
 
 /* Navigation */
-
 .menu {
     width: 85%;
 }
@@ -50,12 +49,14 @@
     color: var(--gold);
 }
 
-.search {
+.search{
     border :none;
     width: 80%;
     padding: 0.2rem;
     opacity: 0.5;
 }
+
+
 .search::placeholder {
     font-family: 'Courier Prime', Courier, monospace;
     font-size: 1rem;
@@ -102,9 +103,6 @@
         font-size: 14px;
         text-align: left;
     }
-
-  
-
 }
 
 /* smartphone */
@@ -130,9 +128,7 @@
     }
 
     .menu nav ul li {
-        width: 50%;
         margin: 0 auto 3vh;
-        padding: 1vh;
     }
 
     .menu nav ul li a {
@@ -140,8 +136,9 @@
     }
 
     .menu nav ul li img {
-        width: 90%;
-        margin: 0;
+        display: block;
+        width: 5vw;
+        height: 5vw;
     }
 
     .menu nav ul li input {
