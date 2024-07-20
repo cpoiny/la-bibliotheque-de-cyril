@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../components/blog/header/header.component';
+import { HeaderComponent } from '../header/header.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { CardComponent } from '../../../components/card/card.component';
+import { CardComponent } from '../../card/card.component';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
