@@ -120,7 +120,7 @@
             <div class="input-photo">
                 <img class="photo selected" [src]="auteurImageUrl" [alt]="auteurImageUrl">
                 <input name="photoAuteur" id="photoAuteur"
-                    formControlName="photoAuteur" required [class.invalid]="submitted && postForm.controls['photoAuteur'].errors?.['defaultValue']" >
+                    formControlName="photoAuteur" (input)="updateImageAuteurUrl($event)" required [class.invalid]="submitted && postForm.controls['photoAuteur'].errors?.['defaultValue']" >
             </div>
         </div>
 

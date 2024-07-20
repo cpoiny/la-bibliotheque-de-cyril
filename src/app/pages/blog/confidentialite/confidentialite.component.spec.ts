@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ConfidentialiteComponent } from './confidentialite.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ConfidentialiteComponent', () => {
   let component: ConfidentialiteComponent;
@@ -9,7 +10,7 @@ describe('ConfidentialiteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfidentialiteComponent, RouterTestingModule]
+      imports: [ConfidentialiteComponent, RouterTestingModule, HttpClientModule]
     })
     .compileComponents();
     

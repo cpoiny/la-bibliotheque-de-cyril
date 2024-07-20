@@ -6,9 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../services/PostService/post.service';
 
 import { DatePipe, Location, UpperCasePipe } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { AuthorComponent } from '../../../components/blog/author/author.component';
 import { Post } from '../../../models/post.model';
 import { Author } from '../../../models/author.model';
+registerLocaleData(localeFr);
 
 @Component({
   selector: 'app-post',
