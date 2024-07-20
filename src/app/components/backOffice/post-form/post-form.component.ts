@@ -116,6 +116,10 @@ export class PostFormComponent implements OnInit {
     this.imageUrl = event.target.value;
   }
 
+  updateImageAuteurUrl(event: any) {
+    this.auteurImageUrl = event.target.value;
+  }
+
   onModalClosed(result: boolean): void {
     if (this.actionType === 'Publier' && result) {
       this.onCreate();
