@@ -74,6 +74,10 @@
     font-weight: bold;
 }
 
+.searchBarMobile{
+    display: none;
+}
+
 /* Responsive */
 
 /* tablet */
@@ -103,7 +107,13 @@
         font-size: 14px;
         text-align: left;
     }
+
+    .searchBarMobile{
+        display: none;
+    }
 }
+
+
 
 /* smartphone */
 @media (max-width:600px) {
@@ -151,6 +161,14 @@
         border-radius: 50%;
     }
 
+    .searchBarWeb{
+        display: none !important;
+    }
+
+    .searchBarMobile{
+        display: block;
+    }
+
 }
 
 @media (max-width:425px) {
@@ -158,5 +176,4 @@
         width: 18vw;
         min-width: 18vw;
     }
-
 }

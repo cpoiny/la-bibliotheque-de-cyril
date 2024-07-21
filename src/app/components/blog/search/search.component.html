@@ -2,28 +2,34 @@
     <img src="assets/illustration/recherche-page.png" alt="bandeau-page-de-recherche">
 </div>
 
- <div class="container">
-     <app-header class="header"></app-header>
+<div class="container">
+    <app-header class="header"></app-header>
 
-     <section>
+    <section>
         <h1 class="titre">Ma recherche</h1>
+        <input class="searchBar" type="text" placeholder="Je cherche un auteur, un livre ..." 
+            (keyup.enter)="redirectToRecherche($event)">
+
 
         <!-- afficher les posts de ma recherche -->
         @if (postsFromResearch.length > 0 ) {
-            <p class="search">{{message}} </p>
-            <ul class="card-list">
-                @for (post of postsFromResearch; track post.id) {
-                <li>
-                    <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.medias[0].theme" [category]="post.medias[0].category">
-                    </app-card>
-                </li>
-                }
-            </ul>
+        <p class="search">{{message}} </p>
+        <ul class="card-list">
+            @for (post of postsFromResearch; track post.id) {
+            <li>
+                <app-card [id]="post.id" [picture]="post.picture" [title]="post.title" [theme]="post.medias[0].theme"
+                    [category]="post.medias[0].category">
+                </app-card>
+            </li>
+            }
+        </ul>
         } @else {
-            <p class="search">0 résultat pour votre recherche !</p>
-            <img class="search-img" src="assets/illustration/recherche-sans-resultat.png" alt="pas de resultat">
+        <p class="search">0 résultat pour votre recherche !</p>
+        <img class="search-img" src="assets/illustration/recherche-sans-resultat.png" alt="pas de resultat">
         }
-     
-        </section>
 
- </div>
+
+
+    </section>
+
+</div>
