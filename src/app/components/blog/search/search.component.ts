@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchComponent {
 
   postsFromResearch: Post[] = [];
-  message? : string;
+  message? : string ;
   searchTerm : string = '';
 
   constructor(
@@ -37,5 +37,15 @@ export class SearchComponent {
   
   }
 
-  }
+  redirectToRecherche(event: Event):void {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.toLowerCase();
+    // je veux que ma valeur ne soit pas sensible à la casse
+    this.postService.filterPosts(value);
+      }
+  
+ }
+
+
+
 

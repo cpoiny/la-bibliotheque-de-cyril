@@ -26,3 +26,27 @@
     flex-wrap: wrap;
     gap: 3vw;
 }
+
+.search-img{
+    min-width: 50%;
+    max-width:80%;
+}
+
+.searchBar{
+    display: none;
+}
+
+
+
+@media (max-width: 600px){
+    .searchBar {
+        display: block;
+        margin-left: 5vw;
+        padding-left: 3vw;
+        font-size: 1rem;
+        width: 70vw;
+        height: 3vh;
+        border-radius : 20px;
+     }
+     
+}

@@ -14,7 +14,8 @@
 
                 <!-- Search bar -->
                 <li class="flex" routerLinkActive="active">
-                    <img routerLink="{{menu()[1].link}}" src="{{menu()[1].icon}}" alt="{{menu()[1].title}}">
+                    <img class="searchBarWeb" src="{{menu()[1].icon}}" alt="{{menu()[1].title}}">
+                    <img class="searchBarMobile" routerLink="{{menu()[1].link}}" src="{{menu()[1].icon}}" alt="{{menu()[1].title}}">
                     <input type="text" placeholder="{{menu()[1].title}}" class="search" (keyup.enter)="redirectToRecherche($event)">
                 </li>
 
