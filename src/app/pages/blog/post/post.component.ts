@@ -11,7 +11,7 @@ import localeFr from '@angular/common/locales/fr';
 import { AuthorComponent } from '../../../components/blog/author/author.component';
 import { Post } from '../../../models/post.model';
 import { Author } from '../../../models/author.model';
-registerLocaleData(localeFr);
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-post',
