@@ -1,5 +1,5 @@
 import { Component, Signal, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PictureProfileComponent } from '../../picture-profile/picture-profile.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
@@ -28,8 +28,7 @@ export class HeaderComponent{
 
   constructor (
     private router: Router,
-    public postService : PostService,
-    private activatedRoute : ActivatedRoute
+    public postService : PostService
   ){}
 
 

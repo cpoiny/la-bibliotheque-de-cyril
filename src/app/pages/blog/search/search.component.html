@@ -8,6 +8,12 @@
      <section>
         <h1 class="titre">Ma recherche</h1>
 
+        <input type="text" class="searchBar" placeholder="Je cherche un auteur, un titre..."  (keyup.enter)="redirectToRecherche($event)">
+      
+        @if (message === "pas de recherche") {
+            <p class="placeholder">Faites une recherche</p>
+        }
+        @else {
         <!-- afficher les posts de ma recherche -->
         @if (postsFromResearch.length > 0 ) {
             <p class="search">{{message}} </p>
@@ -23,7 +29,7 @@
             <p class="search">0 résultat pour votre recherche !</p>
             <img class="search-img" src="assets/illustration/recherche-sans-resultat.png" alt="pas de resultat">
         }
-     
+    }
         </section>
 
  </div>

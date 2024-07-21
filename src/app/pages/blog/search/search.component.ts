@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../../../components/blog/header/header.component';
 import { PostService } from '../../../services/PostService/post.service';
 import { Post } from '../../../models/post.model';
-import { CardComponent } from '../../card/card.component';
-import { ActivatedRoute } from '@angular/router';
+import { CardComponent } from '../../../components/card/card.component';
+import { ActivatedRoute} from '@angular/router';
 
 
 
@@ -17,19 +17,16 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchComponent {
 
   postsFromResearch: Post[] = [];
-  message? : string;
-  searchTerm : string = '';
+  message? : string = "pas de recherche";
+  searchTerm : string = "";
 
   constructor(
-    private postService: PostService,
-    private activatedRoute : ActivatedRoute
+    private postService: PostService
   ){}
 
 
  ngOnInit() {
-   let search = this.activatedRoute.snapshot.paramMap.get('search');
-   this.postsFromResearch = this.postService.getResults(search!);
-  
+
    this.postService.postsFromResearch.subscribe((results : Post[]) => {
       this.postsFromResearch = results;
       this.message = this.postsFromResearch.length > 1 ? `${this.postsFromResearch.length} résultats pour votre recherche.` : " 1 résultat pour votre recherche !"
@@ -37,5 +34,14 @@ export class SearchComponent {
   
   }
 
-  }
+
+  redirectToRecherche(event: Event):void {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.toLowerCase();
+        this.postService.filterPosts(value);
+    }
+    
+  
+  
+}
 

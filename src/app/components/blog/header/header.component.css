@@ -74,10 +74,12 @@
     font-weight: bold;
 }
 
+
+
 /* Responsive */
 
 /* tablet */
-@media (min-width:600px) and (max-width:1024px) {
+@media (min-width:601px) and (max-width:1024px) {
     .container-header {
         width: 27vw;
         min-width: 23vw;
@@ -103,6 +105,9 @@
         font-size: 14px;
         text-align: left;
     }
+
+
+   
 }
 
 /* smartphone */
@@ -150,6 +155,8 @@
         background-color: var(--white);
         border-radius: 50%;
     }
+
+
 
 }
 

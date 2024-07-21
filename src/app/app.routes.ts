@@ -12,7 +12,7 @@ import { BackOfficePostsComponent } from './pages/backOffice/back-office-posts/b
 import { LayoutComponent } from './pages/backOffice/layout/layout.component';
 import { DashboardComponent } from './pages/backOffice/dashboard/dashboard.component';
 import { authGuard } from './services/Authentication/auth.guard';
-import { SearchComponent } from './components/blog/search/search.component';
+import { SearchComponent } from './pages/blog/search/search.component';
 
 export const routes: Routes = [
     {
@@ -31,7 +31,7 @@ export const routes: Routes = [
                 component: PostComponent,
             },
             {
-                path: "recherche/:search",
+                path: "recherche",
                 component: SearchComponent
             },
             {
