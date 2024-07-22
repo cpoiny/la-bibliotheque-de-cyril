@@ -42,15 +42,16 @@
 
 
     .auteur {
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    .auteur-img {
         width: 100%;
     }
 
-    .auteur-img {
-        width: 40%;
-    }
-
     .auteur-description {
-        width: 50%;
+        width: 100%;
     }
 
 
