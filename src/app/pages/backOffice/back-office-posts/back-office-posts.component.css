@@ -13,6 +13,7 @@
     display: flex;
     gap: 5vh;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 
@@ -61,4 +62,11 @@ app-button:hover {
    .bouton-ajout{
     display: none;
    }
+
+   .posts ul{
+    gap: 2vh;
+    justify-content: center;
+   }
+
+
 }
