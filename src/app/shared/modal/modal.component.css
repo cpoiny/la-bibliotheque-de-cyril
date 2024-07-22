@@ -1,9 +1,9 @@
 h2 {
     font-size: 1.5rem;
+    text-align : center;
 }
 
-
-  .overlay {
+.overlay {
     display : flex;
     justify-content: center;
     position: fixed;
@@ -14,7 +14,8 @@ h2 {
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.0); /* Semi-transparent black */
     z-index:99;
-  }
+}
+
 .modal { 
     position: fixed;
     display:flex;
@@ -29,7 +30,8 @@ h2 {
     font-family: "Merriweather", sans-serif;
     justify-content: space-around;
     align-items: center;
-  }
+}
+
 .buttons {
     display: flex;
     justify-content: space-around;
@@ -75,6 +77,8 @@ button {
     color: white;
 }
 
+
+/* Responsive */
 @media (max-width: 900px) {
     .modal{
         width: 80vw;
