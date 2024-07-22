@@ -62,7 +62,7 @@ menu : Signal<IMenu[]> = signal([
     id: 5,
     icon :"assets/icons/citation.png",
     title: "Citations",
-    link: "/la_bibliotheque_de_cyril/publications/citations"
+    link: "/la_bibliotheque_de_cyril/publications/citation"
   }
 ]);
 
