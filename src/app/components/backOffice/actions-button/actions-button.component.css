@@ -6,24 +6,22 @@ button {
 }
 button img{
     width: 2vw;
-    /* border: red solid 2px; */
+ 
 }
-/* Test */
-
 
 
 /* RESPONSIVE */
 
 @media (max-width:426px){
     button img{
-        width: 4vw;
+        width: 7vw;
     }
 }
 
 
 @media (min-width:426px) and (max-width:1025px){
     button img{
-        width: 3vw;
+        width: 4vw;
         min-width:3vw;
         max-width:5vw;
     }
